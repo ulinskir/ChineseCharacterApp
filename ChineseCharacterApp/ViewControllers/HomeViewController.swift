@@ -23,8 +23,11 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        view.backgroundColor = UIColor.Day.neutralGray
+        titleLabel.textColor = UIColor.Day.maroon
+        browseButton.backgroundColor = UIColor.Day.carbonGray
+        modulesButton.backgroundColor = UIColor.Day.carbonGray
+        quickStartButton.backgroundColor = UIColor.Day.carbonGray
+        settingsButton.backgroundColor = UIColor.Day.carbonGray
     }
-
-
 }
-
