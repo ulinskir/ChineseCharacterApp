@@ -14,11 +14,12 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
     
-    @IBOutlet weak var browseButton: UIButton!
-    @IBOutlet weak var modulesButton: UIButton!
-    @IBOutlet weak var quickStartButton: UIButton!
-    @IBOutlet weak var settingsButton: UIButton!
-
+    @IBOutlet weak var browseButton: HomeViewButton!
+    @IBOutlet weak var modulesButton: HomeViewButton!
+    @IBOutlet weak var quickStartButton: HomeViewButton!
+    @IBOutlet weak var settingsButton: HomeViewButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
