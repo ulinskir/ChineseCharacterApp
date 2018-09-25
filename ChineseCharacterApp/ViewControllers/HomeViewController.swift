@@ -18,18 +18,15 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var modulesButton: UIButton!
     @IBOutlet weak var quickStartButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        setBackgroundColor()
-    }
-}
-
-extension UIViewController {
-    func setBackgroundColor() {
         view.backgroundColor = UIColor.Day.neutralGray
-        label.textColor = UIColor.Day.maroon
+        titleLabel.textColor = UIColor.Day.maroon
+        browseButton.backgroundColor = UIColor.Day.carbonGray
+        modulesButton.backgroundColor = UIColor.Day.carbonGray
+        quickStartButton.backgroundColor = UIColor.Day.carbonGray
+        settingsButton.backgroundColor = UIColor.Day.carbonGray
     }
 }
