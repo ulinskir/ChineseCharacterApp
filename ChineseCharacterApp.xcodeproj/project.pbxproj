@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		58B3BCC2215AB7910049A8E5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3BCC1215AB7910049A8E5 /* Constants.swift */; };
+		58B3BCC4215ABB220049A8E5 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3BCC3215ABB220049A8E5 /* ColorScheme.swift */; };
 		58EC0C552156B7EA00F9D1E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC0C542156B7EA00F9D1E6 /* AppDelegate.swift */; };
 		58EC0C572156B7EA00F9D1E6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC0C562156B7EA00F9D1E6 /* HomeViewController.swift */; };
 		58EC0C5A2156B7EA00F9D1E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58EC0C582156B7EA00F9D1E6 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		58B3BCC1215AB7910049A8E5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		58B3BCC3215ABB220049A8E5 /* ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
 		58EC0C512156B7EA00F9D1E6 /* ChineseCharacterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChineseCharacterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58EC0C542156B7EA00F9D1E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		58EC0C562156B7EA00F9D1E6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				58EC0C542156B7EA00F9D1E6 /* AppDelegate.swift */,
 				58B3BCC0215AB6730049A8E5 /* ViewControllers */,
 				58EC0C582156B7EA00F9D1E6 /* Main.storyboard */,
+				58B3BCC3215ABB220049A8E5 /* ColorScheme.swift */,
 				58B3BCC1215AB7910049A8E5 /* Constants.swift */,
 				58EC0C5B2156B7EB00F9D1E6 /* Assets.xcassets */,
 				58EC0C5D2156B7EB00F9D1E6 /* LaunchScreen.storyboard */,
@@ -267,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58B3BCC4215ABB220049A8E5 /* ColorScheme.swift in Sources */,
 				58EC0C572156B7EA00F9D1E6 /* HomeViewController.swift in Sources */,
 				58B3BCC2215AB7910049A8E5 /* Constants.swift in Sources */,
 				58EC0C552156B7EA00F9D1E6 /* AppDelegate.swift in Sources */,
