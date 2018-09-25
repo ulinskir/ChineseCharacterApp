@@ -30,7 +30,7 @@
                                         <color key="textColor" red="0.96928968400000004" green="0.99953407049999998" blue="0.80939469180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUH-tc-4zB">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUH-tc-4zB" customClass="HomeViewButton" customModule="ChineseCharacterApp">
                                         <rect key="frame" x="0.0" y="208" width="315" height="87"/>
                                         <color key="backgroundColor" red="0.96928968400000004" green="0.99953407049999998" blue="0.80939469180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
@@ -38,7 +38,7 @@
                                             <color key="titleColor" red="0.58105844259999995" green="0.12855249639999999" blue="0.57453137639999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTE-dn-bBi">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTE-dn-bBi" customClass="HomeViewButton" customModule="ChineseCharacterApp">
                                         <rect key="frame" x="0.0" y="312" width="315" height="87"/>
                                         <color key="backgroundColor" red="0.96928968400000004" green="0.99953407049999998" blue="0.80939469180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
@@ -49,7 +49,7 @@
                                             <segue destination="jic-dd-Lb1" kind="show" id="9Le-t8-pug"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A00-sC-hoO">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A00-sC-hoO" customClass="HomeViewButton" customModule="ChineseCharacterApp">
                                         <rect key="frame" x="0.0" y="416" width="315" height="87"/>
                                         <color key="backgroundColor" red="0.96928968400000004" green="0.99953407049999998" blue="0.80939469180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
@@ -57,7 +57,7 @@
                                             <color key="titleColor" red="0.58105844259999995" green="0.12855249639999999" blue="0.57453137639999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EAz-Fi-d60">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EAz-Fi-d60" customClass="HomeViewButton" customModule="ChineseCharacterApp">
                                         <rect key="frame" x="0.0" y="520" width="315" height="87"/>
                                         <color key="backgroundColor" red="0.96928968400000004" green="0.99953407049999998" blue="0.80939469180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
@@ -97,7 +97,39 @@
                     <view key="view" contentMode="scaleToFill" id="jDL-Kb-Bwe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Aj8-aE-vpB">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4sv-Aj-wCB">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <items>
+                                            <tabBarItem id="o4f-9D-aft"/>
+                                            <tabBarItem systemItem="more" id="vs5-3j-lcc"/>
+                                        </items>
+                                    </tabBar>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ygQ-Ag-PeS">
+                                        <rect key="frame" x="0.0" y="49" width="375" height="549"/>
+                                    </scrollView>
+                                    <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Y4-Yq-WAv">
+                                        <rect key="frame" x="0.0" y="598" width="375" height="49"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <items>
+                                            <tabBarItem systemItem="favorites" id="CCh-Zn-xpp"/>
+                                            <tabBarItem systemItem="more" id="R0l-YD-yq7"/>
+                                        </items>
+                                    </tabBar>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Aj8-aE-vpB" firstAttribute="leading" secondItem="kcp-AE-JNB" secondAttribute="leading" id="BvS-6T-Elj"/>
+                            <constraint firstItem="kcp-AE-JNB" firstAttribute="bottom" secondItem="Aj8-aE-vpB" secondAttribute="bottom" id="Q2c-KS-Udz"/>
+                            <constraint firstItem="Aj8-aE-vpB" firstAttribute="top" secondItem="kcp-AE-JNB" secondAttribute="top" id="Wkv-Kk-PD3"/>
+                            <constraint firstItem="kcp-AE-JNB" firstAttribute="trailing" secondItem="Aj8-aE-vpB" secondAttribute="trailing" id="r13-68-3gY"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="kcp-AE-JNB"/>
                     </view>
                 </viewController>
