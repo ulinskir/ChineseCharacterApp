@@ -9,14 +9,16 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        setBackgroundColor()
     }
-
-
 }
 
+extension UIViewController {
+    func setBackgroundColor() {
+        view.backgroundColor = UIColor.Day.neutralGray
+        label.textColor = UIColor.Day.maroon
+    }
+}
