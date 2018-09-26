@@ -17,21 +17,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="2rr-A2-wPb">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="2rr-A2-wPb">
                                 <rect key="frame" x="30" y="20" width="315" height="607"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQf-U5-SR7">
-                                        <rect key="frame" x="0.0" y="0.0" width="315" height="87"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="40"/>
                                         <state key="normal" title="Button"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chinese Character App" textAlignment="center" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tt9-yA-QiO">
-                                        <rect key="frame" x="0.0" y="104" width="315" height="87"/>
+                                        <rect key="frame" x="0.0" y="57" width="315" height="161"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                         <color key="textColor" red="0.96928968400000004" green="0.99953407049999998" blue="0.80939469180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUH-tc-4zB" customClass="HomeViewButton" customModule="ChineseCharacterApp">
-                                        <rect key="frame" x="0.0" y="208" width="315" height="87"/>
+                                        <rect key="frame" x="0.0" y="235" width="315" height="80"/>
                                         <color key="backgroundColor" red="0.96928968400000004" green="0.99953407049999998" blue="0.80939469180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                         <state key="normal" title="Browse">
@@ -39,7 +39,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTE-dn-bBi" customClass="HomeViewButton" customModule="ChineseCharacterApp">
-                                        <rect key="frame" x="0.0" y="312" width="315" height="87"/>
+                                        <rect key="frame" x="0.0" y="332" width="315" height="80.5"/>
                                         <color key="backgroundColor" red="0.96928968400000004" green="0.99953407049999998" blue="0.80939469180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                         <state key="normal" title="Modules">
@@ -50,15 +50,18 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A00-sC-hoO" customClass="HomeViewButton" customModule="ChineseCharacterApp">
-                                        <rect key="frame" x="0.0" y="416" width="315" height="87"/>
+                                        <rect key="frame" x="0.0" y="429.5" width="315" height="80"/>
                                         <color key="backgroundColor" red="0.96928968400000004" green="0.99953407049999998" blue="0.80939469180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                         <state key="normal" title="Quick Start">
                                             <color key="titleColor" red="0.58105844259999995" green="0.12855249639999999" blue="0.57453137639999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="SGK-gC-YUj" kind="show" id="fQs-EV-8Cn"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EAz-Fi-d60" customClass="HomeViewButton" customModule="ChineseCharacterApp">
-                                        <rect key="frame" x="0.0" y="520" width="315" height="87"/>
+                                        <rect key="frame" x="0.0" y="526.5" width="315" height="80.5"/>
                                         <color key="backgroundColor" red="0.96928968400000004" green="0.99953407049999998" blue="0.80939469180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                         <state key="normal" title="Settings">
@@ -66,6 +69,13 @@
                                         </state>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="EAz-Fi-d60" firstAttribute="height" secondItem="aQf-U5-SR7" secondAttribute="height" multiplier="2" id="7yz-mK-GtO"/>
+                                    <constraint firstItem="A00-sC-hoO" firstAttribute="height" secondItem="aQf-U5-SR7" secondAttribute="height" multiplier="2" id="9RI-Lw-Sr0"/>
+                                    <constraint firstItem="kTE-dn-bBi" firstAttribute="height" secondItem="aQf-U5-SR7" secondAttribute="height" multiplier="2" id="Y82-FZ-9FS"/>
+                                    <constraint firstItem="tt9-yA-QiO" firstAttribute="height" secondItem="aQf-U5-SR7" secondAttribute="height" multiplier="4" id="drd-jq-w7M"/>
+                                    <constraint firstItem="cUH-tc-4zB" firstAttribute="height" secondItem="aQf-U5-SR7" secondAttribute="height" multiplier="2" id="hoQ-Lr-FdK"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -89,6 +99,133 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="40.799999999999997" y="25.637181409295355"/>
+        </scene>
+        <!--Draw Character View Controller-->
+        <scene sceneID="Lod-Ea-UH3">
+            <objects>
+                <viewController id="SGK-gC-YUj" customClass="DrawCharacterViewController" customModule="ChineseCharacterApp" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lat-vx-wu8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hLD-nb-WHM">
+                                <rect key="frame" x="0.0" y="30" width="375" height="637"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vHh-47-1mm">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="15.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDQ-1C-tBn">
+                                                <rect key="frame" x="0.0" y="0.0" width="31.5" height="15.5"/>
+                                                <state key="normal" title="X"/>
+                                            </button>
+                                            <progressView opaque="NO" contentMode="center" verticalHuggingPriority="750" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="Fkl-ta-TYs">
+                                                <rect key="frame" x="31.5" y="0.0" width="312.5" height="15.5"/>
+                                            </progressView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jkt-tK-k1c">
+                                                <rect key="frame" x="344" y="0.0" width="31" height="15.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <state key="normal" title="..."/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="Fkl-ta-TYs" firstAttribute="width" secondItem="tDQ-1C-tBn" secondAttribute="width" multiplier="10" id="GsA-PL-4mm"/>
+                                            <constraint firstItem="Fkl-ta-TYs" firstAttribute="centerY" secondItem="vHh-47-1mm" secondAttribute="centerY" id="iG2-pl-CzJ"/>
+                                            <constraint firstItem="Jkt-tK-k1c" firstAttribute="width" secondItem="tDQ-1C-tBn" secondAttribute="width" id="obp-Hv-Ea2"/>
+                                        </constraints>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKh-JP-gER">
+                                        <rect key="frame" x="0.0" y="15.5" width="375" height="61.5"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="M3K-T2-L1C">
+                                        <rect key="frame" x="0.0" y="77" width="375" height="61.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pinyin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JkE-Th-0to">
+                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="61.5"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4r7-Y9-727">
+                                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="61.5"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Audio"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mao-JJ-pTZ">
+                                        <rect key="frame" x="0.0" y="138.5" width="375" height="375"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Mao-JJ-pTZ" secondAttribute="height" multiplier="1:1" id="1WP-Oa-jQU"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="12b-2s-pXi">
+                                        <rect key="frame" x="0.0" y="513.5" width="375" height="62"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOG-0M-qHB">
+                                                <rect key="frame" x="0.0" y="0.0" width="177.5" height="62"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Hint"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2KJ-VO-5g2">
+                                                <rect key="frame" x="197.5" y="0.0" width="177.5" height="62"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Undo"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HpH-JT-OCo">
+                                        <rect key="frame" x="0.0" y="575.5" width="375" height="61.5"/>
+                                        <color key="backgroundColor" red="0.58105844259999995" green="0.12855249639999999" blue="0.57453137639999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Submit"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="M3K-T2-L1C" firstAttribute="height" secondItem="GKh-JP-gER" secondAttribute="height" id="A1N-As-tF4"/>
+                                    <constraint firstItem="12b-2s-pXi" firstAttribute="width" secondItem="vHh-47-1mm" secondAttribute="width" id="DdX-e8-zIN"/>
+                                    <constraint firstItem="GKh-JP-gER" firstAttribute="height" secondItem="vHh-47-1mm" secondAttribute="height" multiplier="4" id="DnI-K8-6C4"/>
+                                    <constraint firstItem="Mao-JJ-pTZ" firstAttribute="width" secondItem="vHh-47-1mm" secondAttribute="width" id="JpE-1n-IIK"/>
+                                    <constraint firstItem="HpH-JT-OCo" firstAttribute="height" secondItem="vHh-47-1mm" secondAttribute="height" multiplier="4" id="LFh-SM-tpd"/>
+                                    <constraint firstItem="GKh-JP-gER" firstAttribute="width" secondItem="vHh-47-1mm" secondAttribute="width" id="PnM-6B-gjN"/>
+                                    <constraint firstItem="HpH-JT-OCo" firstAttribute="width" secondItem="vHh-47-1mm" secondAttribute="width" id="Ysb-1T-WnJ"/>
+                                    <constraint firstItem="12b-2s-pXi" firstAttribute="height" secondItem="vHh-47-1mm" secondAttribute="height" multiplier="4" id="cjK-iJ-k3P"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hLD-nb-WHM" firstAttribute="top" secondItem="Y7S-Pg-hNV" secondAttribute="top" constant="10" id="HNI-Et-amS"/>
+                            <constraint firstItem="Y7S-Pg-hNV" firstAttribute="trailing" secondItem="hLD-nb-WHM" secondAttribute="trailing" id="ZMV-I3-kOU"/>
+                            <constraint firstItem="Y7S-Pg-hNV" firstAttribute="bottom" secondItem="hLD-nb-WHM" secondAttribute="bottom" id="fmm-u6-lzm"/>
+                            <constraint firstItem="hLD-nb-WHM" firstAttribute="leading" secondItem="Y7S-Pg-hNV" secondAttribute="leading" id="ttN-9t-2fh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Y7S-Pg-hNV"/>
+                    </view>
+                    <connections>
+                        <outlet property="audioButton" destination="4r7-Y9-727" id="fP9-fM-M3z"/>
+                        <outlet property="drawingView" destination="Mao-JJ-pTZ" id="31t-xU-JF3"/>
+                        <outlet property="exitButton" destination="tDQ-1C-tBn" id="D29-eV-MFj"/>
+                        <outlet property="hintButton" destination="DOG-0M-qHB" id="7Wz-jx-ZVD"/>
+                        <outlet property="optionsButton" destination="Jkt-tK-k1c" id="NsX-sK-vrZ"/>
+                        <outlet property="progressBar" destination="Fkl-ta-TYs" id="JBn-th-CzU"/>
+                        <outlet property="submitButton" destination="HpH-JT-OCo" id="aGH-pC-H2k"/>
+                        <outlet property="undoButton" destination="2KJ-VO-5g2" id="ZKf-PE-FGd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EDI-oz-37m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="740" y="30.134932533733135"/>
         </scene>
         <!--Modules View Controller-->
         <scene sceneID="tsE-xN-AKR">
