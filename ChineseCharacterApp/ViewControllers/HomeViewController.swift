@@ -23,9 +23,5 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.view.backgroundColor = UIColor.Day.neutralGray
-        titleLabel.textColor = UIColor.Day.maroon
-        titleLabel.font = UIFont(name: "Baskerville", size: 20)
-        titleLabel!.adjustsFontSizeToFitWidth = true
     }
 }
