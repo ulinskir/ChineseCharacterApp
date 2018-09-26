@@ -34,10 +34,6 @@ class HomeViewButton: UIButton {
         //self.titleLabel?.font = UIFont.systemFont(ofSize: 15.0)
         //configure()
         
-        backgroundColor = UIColor.Day.carbonGray
-        self.setTitleColor(UIColor.Day.maroon, for: .normal)
-        self.titleLabel?.font =  UIFont(name: "Baskerville", size: 20)
-        self.titleLabel?.adjustsFontSizeToFitWidth = true
     }
     
 }
