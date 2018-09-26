@@ -18,18 +18,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="2rr-A2-wPb">
-                                <rect key="frame" x="30" y="20" width="315" height="1252"/>
+                                <rect key="frame" x="30" y="20" width="315" height="607"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQf-U5-SR7">
-                                        <rect key="frame" x="0.0" y="0.0" width="315" height="194.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="10" id="imA-Ul-1FY"/>
-                                            <constraint firstAttribute="height" constant="20" id="tY5-XU-lAM"/>
-                                        </constraints>
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="87"/>
                                         <state key="normal" title="Profile"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="tt9-yA-QiO">
-                                        <rect key="frame" x="0.0" y="211.5" width="315" height="194.5"/>
+                                        <rect key="frame" x="0.0" y="104" width="315" height="87"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Chinese Character App">
                                                 <attributes>
@@ -42,7 +38,7 @@
                                         <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUH-tc-4zB" customClass="HomeViewButton" customModule="ChineseCharacterApp">
-                                        <rect key="frame" x="0.0" y="423" width="315" height="194.5"/>
+                                        <rect key="frame" x="0.0" y="208" width="315" height="87"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                         <state key="normal" title="Browse">
@@ -50,7 +46,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTE-dn-bBi" customClass="HomeViewButton" customModule="ChineseCharacterApp">
-                                        <rect key="frame" x="0.0" y="634.5" width="315" height="194.5"/>
+                                        <rect key="frame" x="0.0" y="312" width="315" height="87"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                         <state key="normal" title="Modules">
@@ -61,7 +57,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A00-sC-hoO" customClass="HomeViewButton" customModule="ChineseCharacterApp">
-                                        <rect key="frame" x="0.0" y="846" width="315" height="194.5"/>
+                                        <rect key="frame" x="0.0" y="416" width="315" height="87"/>
                                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                         <state key="normal" title="Quick Start">
@@ -69,7 +65,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EAz-Fi-d60" customClass="HomeViewButton" customModule="ChineseCharacterApp">
-                                        <rect key="frame" x="0.0" y="1057.5" width="315" height="194.5"/>
+                                        <rect key="frame" x="0.0" y="520" width="315" height="87"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                         <state key="normal" title="Settings">
