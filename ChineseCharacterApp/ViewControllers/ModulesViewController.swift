@@ -10,6 +10,14 @@ import UIKit
 
 class ModulesViewController: UIViewController {
 
+    
+    @IBOutlet weak var modulesScrollView: UIScrollView!
+    
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

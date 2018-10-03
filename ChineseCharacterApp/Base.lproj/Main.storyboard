@@ -135,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="40.799999999999997" y="25.637181409295355"/>
+            <point key="canvasLocation" x="41" y="30"/>
         </scene>
         <!--Draw Character View Controller-->
         <scene sceneID="Lod-Ea-UH3">
@@ -330,19 +330,23 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Aj8-aE-vpB">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4sv-Aj-wCB">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zwO-sj-JDS">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <items>
-                                            <tabBarItem id="o4f-9D-aft"/>
-                                            <tabBarItem systemItem="more" id="vs5-3j-lcc"/>
+                                            <barButtonItem title="&lt;---" id="HQg-Ll-KgK">
+                                                <connections>
+                                                    <segue destination="BYZ-38-t0r" kind="show" id="bD2-vx-BuA"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="Custom" id="nLd-eL-4IH"/>
+                                            <barButtonItem title="Default" id="hMh-1K-3hu"/>
                                         </items>
-                                    </tabBar>
+                                    </toolbar>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ygQ-Ag-PeS">
-                                        <rect key="frame" x="0.0" y="49" width="375" height="549"/>
+                                        <rect key="frame" x="0.0" y="44" width="375" height="505"/>
                                     </scrollView>
                                     <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Y4-Yq-WAv">
-                                        <rect key="frame" x="0.0" y="598" width="375" height="49"/>
+                                        <rect key="frame" x="0.0" y="549" width="375" height="98"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <items>
                                             <tabBarItem systemItem="favorites" id="CCh-Zn-xpp"/>
@@ -361,10 +365,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kcp-AE-JNB"/>
                     </view>
+                    <connections>
+                        <outlet property="modulesScrollView" destination="ygQ-Ag-PeS" id="hr9-vS-PyW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PSL-tU-iUY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="41" y="754"/>
+            <point key="canvasLocation" x="41" y="740"/>
         </scene>
     </scenes>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
