@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		58656483216481E10019C39C /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58656482216481E10019C39C /* Module.swift */; };
+		586564872164879D0019C39C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586564862164879D0019C39C /* ProfileViewController.swift */; };
+		58656489216487F90019C39C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58656488216487F90019C39C /* SettingsTableViewController.swift */; };
 		58B3BCC2215AB7910049A8E5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3BCC1215AB7910049A8E5 /* Constants.swift */; };
 		58B3BCC4215ABB220049A8E5 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3BCC3215ABB220049A8E5 /* ColorScheme.swift */; };
 		58B3BCC6215AEA470049A8E5 /* ModulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3BCC5215AEA470049A8E5 /* ModulesViewController.swift */; };
@@ -41,6 +43,8 @@
 
 /* Begin PBXFileReference section */
 		58656482216481E10019C39C /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
+		586564862164879D0019C39C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		58656488216487F90019C39C /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		58B3BCC1215AB7910049A8E5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		58B3BCC3215ABB220049A8E5 /* ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
 		58B3BCC5215AEA470049A8E5 /* ModulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesViewController.swift; sourceTree = "<group>"; };
@@ -89,9 +93,11 @@
 		58B3BCC0215AB6730049A8E5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				58656488216487F90019C39C /* SettingsTableViewController.swift */,
 				58EC0C562156B7EA00F9D1E6 /* HomeViewController.swift */,
 				58B3BCC5215AEA470049A8E5 /* ModulesViewController.swift */,
 				58B3BCC9215AF4460049A8E5 /* DrawCharacterViewController.swift */,
+				586564862164879D0019C39C /* ProfileViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -284,9 +290,11 @@
 			files = (
 				58B3BCC4215ABB220049A8E5 /* ColorScheme.swift in Sources */,
 				58EC0C572156B7EA00F9D1E6 /* HomeViewController.swift in Sources */,
+				586564872164879D0019C39C /* ProfileViewController.swift in Sources */,
 				58B3BCC6215AEA470049A8E5 /* ModulesViewController.swift in Sources */,
 				58B3BCC8215AEB8B0049A8E5 /* Buttons.swift in Sources */,
 				58B3BCC2215AB7910049A8E5 /* Constants.swift in Sources */,
+				58656489216487F90019C39C /* SettingsTableViewController.swift in Sources */,
 				58656483216481E10019C39C /* Module.swift in Sources */,
 				58EC0C552156B7EA00F9D1E6 /* AppDelegate.swift in Sources */,
 				58B3BCCA215AF4460049A8E5 /* DrawCharacterViewController.swift in Sources */,

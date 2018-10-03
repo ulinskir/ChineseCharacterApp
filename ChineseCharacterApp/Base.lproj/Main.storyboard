@@ -462,10 +462,10 @@
             </objects>
             <point key="canvasLocation" x="41" y="740"/>
         </scene>
-        <!--Modules View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="9U5-rB-VuI">
             <objects>
-                <viewController id="RW8-4f-HLY" customClass="ModulesViewController" customModule="ChineseCharacterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="RW8-4f-HLY" customClass="ProfileViewController" customModule="ChineseCharacterApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TV2-QK-UHV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -612,7 +612,7 @@
         <!--Settings-->
         <scene sceneID="Ifg-PY-Ptf">
             <objects>
-                <tableViewController title="Settings" id="r5F-ts-AYX" sceneMemberID="viewController">
+                <tableViewController title="Settings" id="r5F-ts-AYX" customClass="SettingsTableViewController" customModule="ChineseCharacterApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xdE-4O-il5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
