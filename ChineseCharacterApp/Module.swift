@@ -10,9 +10,8 @@ import Foundation
 
 struct Module {
     var name: String;
-    var chineseChars : [ChineseChar];
-    
-    
-    
-    <#fields#>
+    var chineseChars : [String];
+    var type: String;
 }
+
+//var moduleArray = [animals, plants, colors];
