@@ -162,13 +162,16 @@
                                                 <state key="normal" title="X">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="BYZ-38-t0r" kind="show" id="auD-8O-ozw"/>
+                                                </connections>
                                             </button>
                                             <progressView opaque="NO" contentMode="center" verticalHuggingPriority="750" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="Fkl-ta-TYs">
                                                 <rect key="frame" x="33" y="0.0" width="328.33333333333331" height="14.666666666666666"/>
                                                 <color key="progressTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </progressView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jkt-tK-k1c">
-                                                <rect key="frame" x="361.33333333333326" y="0.0" width="32.666666666666686" height="14.666666666666666"/>
+                                                <rect key="frame" x="361.33333333333331" y="0.0" width="32.666666666666686" height="14.666666666666666"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <state key="normal" title="..."/>
                                             </button>
@@ -324,7 +327,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EDI-oz-37m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1013" y="633"/>
+            <point key="canvasLocation" x="216" y="300"/>
         </scene>
         <!--Modules View Controller-->
         <scene sceneID="tsE-xN-AKR">
@@ -354,6 +357,9 @@
                                                         </fragment>
                                                     </attributedString>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="BYZ-38-t0r" kind="show" id="vYx-lP-cag"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6s9-g6-HYl">
                                                 <rect key="frame" x="50.666666666666671" y="0.0" width="228.66666666666663" height="59.666666666666664"/>
@@ -386,7 +392,7 @@
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CAi-5E-afy">
-                                                <rect key="frame" x="363.33333333333326" y="0.0" width="50.666666666666686" height="59.666666666666664"/>
+                                                <rect key="frame" x="363.33333333333331" y="0.0" width="50.666666666666686" height="59.666666666666664"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <color key="tintColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal">
@@ -466,7 +472,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PSL-tU-iUY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2846" y="633"/>
+            <point key="canvasLocation" x="-1220" y="300"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="9U5-rB-VuI">
@@ -485,6 +491,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1tS-Mf-Py4">
                                                 <rect key="frame" x="0.0" y="0.0" width="69" height="79.666666666666671"/>
                                                 <state key="normal" title="&lt;-"/>
+                                                <connections>
+                                                    <segue destination="BYZ-38-t0r" kind="show" id="tI1-es-BLo"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5PV-Jx-puA">
                                                 <rect key="frame" x="69" y="0.0" width="345" height="79.666666666666671"/>
@@ -533,7 +542,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CMv-06-Ctk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1846" y="633"/>
+            <point key="canvasLocation" x="-520" y="300"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Ifg-PY-Ptf">
@@ -679,8 +688,11 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ft-Fk-145" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-70" y="633"/>
+            <point key="canvasLocation" x="903" y="300"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="tI1-es-BLo"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

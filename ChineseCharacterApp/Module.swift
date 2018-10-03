@@ -10,9 +10,5 @@ import Foundation
 
 struct Module {
     var name: String;
-    var chineseChars : [ChineseChar];
-    
-    
-    
-    <#fields#>
+//    var chineseChars : [ChineseChar];
 }
