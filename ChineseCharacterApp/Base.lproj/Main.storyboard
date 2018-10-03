@@ -330,8 +330,9 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Aj8-aE-vpB">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zwO-sj-JDS">
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwO-sj-JDS">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                         <items>
                                             <barButtonItem title="&lt;---" id="HQg-Ll-KgK">
                                                 <connections>
@@ -341,22 +342,24 @@
                                             <barButtonItem title="Custom" id="nLd-eL-4IH"/>
                                             <barButtonItem title="Default" id="hMh-1K-3hu"/>
                                         </items>
+                                        <color key="tintColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </toolbar>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ygQ-Ag-PeS">
                                         <rect key="frame" x="0.0" y="44" width="375" height="505"/>
                                     </scrollView>
                                     <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Y4-Yq-WAv">
                                         <rect key="frame" x="0.0" y="549" width="375" height="98"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <items>
                                             <tabBarItem systemItem="favorites" id="CCh-Zn-xpp"/>
                                             <tabBarItem systemItem="more" id="R0l-YD-yq7"/>
                                         </items>
+                                        <color key="tintColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="selectedImageTintColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tabBar>
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Aj8-aE-vpB" firstAttribute="leading" secondItem="kcp-AE-JNB" secondAttribute="leading" id="BvS-6T-Elj"/>
                             <constraint firstItem="kcp-AE-JNB" firstAttribute="bottom" secondItem="Aj8-aE-vpB" secondAttribute="bottom" id="Q2c-KS-Udz"/>
