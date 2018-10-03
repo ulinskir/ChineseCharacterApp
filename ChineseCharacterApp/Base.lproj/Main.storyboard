@@ -154,6 +154,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDQ-1C-tBn">
                                                 <rect key="frame" x="0.0" y="0.0" width="31.5" height="15.5"/>
                                                 <state key="normal" title="X"/>
+                                                <connections>
+                                                    <segue destination="BYZ-38-t0r" kind="show" id="Auj-if-2gK"/>
+                                                </connections>
                                             </button>
                                             <progressView opaque="NO" contentMode="center" verticalHuggingPriority="750" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="Fkl-ta-TYs">
                                                 <rect key="frame" x="31.5" y="0.0" width="312.5" height="15.5"/>
@@ -270,7 +273,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EDI-oz-37m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="740" y="30.134932533733135"/>
+            <point key="canvasLocation" x="991" y="29"/>
         </scene>
         <!--Modules View Controller-->
         <scene sceneID="tsE-xN-AKR">
@@ -286,7 +289,7 @@
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zwO-sj-JDS">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <items>
-                                            <barButtonItem title="&lt;---" id="HQg-Ll-KgK">
+                                            <barButtonItem title="X" id="HQg-Ll-KgK">
                                                 <connections>
                                                     <segue destination="BYZ-38-t0r" kind="show" id="bD2-vx-BuA"/>
                                                 </connections>
@@ -324,7 +327,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PSL-tU-iUY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="41" y="740"/>
+            <point key="canvasLocation" x="-751" y="809"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="bD2-vx-BuA"/>
+    </inferredMetricsTieBreakers>
 </document>
