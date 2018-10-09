@@ -1,5 +1,5 @@
 //
-//  Module.swift
+//  ChineseChar.swift
 //  ChineseCharacterApp
 //
 //  Created by Risa Ulinski on 10/3/18.
@@ -8,12 +8,7 @@
 
 import Foundation
 
-struct Module {
-    var name: String
-    var chineseChars : [ChineseChar]
+struct ChineseChar {
+    var english: String
     
-    init(name:String) {
-        self.name = name
-        chineseChars = []
-    }
 }
