@@ -50,7 +50,7 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     
 //----------------------Table Controller functions-------------------------------
-    let cellSpacingHeight: CGFloat = 30
+    let cellSpacingHeight: CGFloat = 40
     
     
     
