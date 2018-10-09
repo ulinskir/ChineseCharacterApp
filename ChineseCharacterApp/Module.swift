@@ -17,7 +17,3 @@ class Module {
         self.chineseChars = []
     }
 }
-
-var colors = Module(name: "colors", chineseChars: [])
-var animals = Module(name: "animals", chineseChars: [])
-var numbers = Module(name: "numbers", chineseChars: [])

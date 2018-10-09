@@ -13,8 +13,6 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //data
     var modules: [Module] = []
-
-
     
     //Top bar objects
     @IBOutlet weak var backButton: UIButton!
@@ -42,8 +40,10 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
         modulesTableView.delegate = self
         modulesTableView.dataSource = self
         
-        for i in 0...20 {
-            modules.append(Module(name:"test \(i)"))
+        let mod = ["names", "colors", "numbers", "food", "family", "emotions", "sports", "weather", "interests", "school", "shopping", "travel", "places"]
+        
+        for i in mod {
+            modules.append(Module(name:"\(i)", chineseChars:[]))
         }
 
     }
