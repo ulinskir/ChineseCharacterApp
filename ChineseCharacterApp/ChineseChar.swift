@@ -9,6 +9,14 @@
 import Foundation
 
 struct ChineseChar {
-    var english: String
+    let chinese:String
+    let pinyin:String
+    let english:String
+    
+    init(chinese:String, pinyin:String, english:String) {
+        self.chinese = chinese
+        self.pinyin = pinyin
+        self.english = english
+    }
     
 }
