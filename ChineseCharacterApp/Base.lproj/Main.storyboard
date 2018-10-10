@@ -445,7 +445,7 @@
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="moduleNameLabel" destination="SPW-WA-aaZ" id="SXh-QR-NCa"/>
-                                                    <segue destination="Agy-ah-BZl" kind="show" id="xi4-x3-Zft"/>
+                                                    <segue destination="Agy-ah-BZl" kind="show" id="D7X-3W-474"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -699,7 +699,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1p-22-xE2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="447.82608695652175" y="235.71428571428569"/>
+            <point key="canvasLocation" x="926" y="214"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="9U5-rB-VuI">

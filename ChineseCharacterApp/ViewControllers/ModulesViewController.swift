@@ -98,11 +98,11 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // note that indexPath.section is used rather than indexPath.row
-         selectedModule = modules[indexPath.section]
+         //selectedModule = modules[indexPath.section]
 
 
         print("You tapped cell number \(indexPath.section).")
-        
+       // performSegue(withIdentifier: "moduleTapped", sender: self)
         //performSegue(withIdentifier:"moduleTapped", sender: self)
     }
 
@@ -110,10 +110,9 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if segue.destination is ModuleDetailsViewController
-        {
-            let md = segue.destination as? ModuleDetailsViewController
-            md?.module = selectedModule
+        if let destination = segue.destination as? ModuleDetailsViewController {
+            let selectedRow = modulesTableView.indexPathForSelectedRow!.section
+            destination.module = modules[selectedRow]
         }
     }
 //----------------------module management functions------------------------------
