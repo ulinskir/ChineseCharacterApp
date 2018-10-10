@@ -31,6 +31,8 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var deleteModuleButton: UIButton!
     
     
+    var selectedModule:Module? = nil
+    
     
     
     
@@ -96,9 +98,24 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // note that indexPath.section is used rather than indexPath.row
+         selectedModule = modules[indexPath.section]
+
+
         print("You tapped cell number \(indexPath.section).")
+        
+        //performSegue(withIdentifier:"moduleTapped", sender: self)
     }
 
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.destination is ModuleDetailsViewController
+        {
+            let md = segue.destination as? ModuleDetailsViewController
+            md?.module = selectedModule
+        }
+    }
 //----------------------module management functions------------------------------
     
     @IBAction func unwindToModulesList(sender: UIStoryboardSegue) {
