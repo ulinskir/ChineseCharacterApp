@@ -799,7 +799,7 @@
                                                                     <attributedString key="attributedText">
                                                                         <fragment content="Label:     ">
                                                                             <attributes>
-                                                                                <color key="NSColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <font key="NSFont" size="24" name="Baskerville"/>
                                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                             </attributes>
@@ -1041,7 +1041,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="bd8-VD-abA"/>
-        <segue reference="vYx-lP-cag"/>
+        <segue reference="KRX-p4-rLg"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
