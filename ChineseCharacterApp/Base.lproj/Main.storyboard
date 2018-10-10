@@ -765,7 +765,7 @@
                                                 <attributedString key="attributedText">
                                                     <fragment content="Username">
                                                         <attributes>
-                                                            <color key="NSColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="NSColor" red="0.76944679021835327" green="0.11408170312643051" blue="0.082213424146175385" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <font key="NSFont" size="36" name="Baskerville"/>
                                                         </attributes>
                                                     </fragment>
@@ -797,17 +797,10 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryY-wo-YJ8">
                                                                     <rect key="frame" x="0.0" y="0.0" width="138" height="139.66666666666666"/>
                                                                     <attributedString key="attributedText">
-                                                                        <fragment content="Label">
+                                                                        <fragment content="Label:     ">
                                                                             <attributes>
-                                                                                <color key="NSColor" red="0.68212300539016724" green="0.13827034831047058" blue="0.086901642382144928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                <font key="NSFont" size="36" name="Baskerville"/>
-                                                                                <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                            </attributes>
-                                                                        </fragment>
-                                                                        <fragment content=":     ">
-                                                                            <attributes>
-                                                                                <color key="NSColor" red="0.74150365591049194" green="0.17027008533477783" blue="0.083388529717922211" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                <font key="NSFont" size="36" name="Baskerville"/>
+                                                                                <color key="NSColor" red="0.77282971143722534" green="0.25586891174316406" blue="0.078489400446414948" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <font key="NSFont" size="24" name="Baskerville"/>
                                                                                 <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                             </attributes>
                                                                         </fragment>
@@ -820,8 +813,8 @@
                                                                         <fragment content=" Label">
                                                                             <attributes>
                                                                                 <color key="NSColor" red="0.74150365591049194" green="0.17027008533477783" blue="0.083388529717922211" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                <font key="NSFont" size="36" name="Baskerville"/>
-                                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                                <font key="NSFont" size="24" name="Baskerville"/>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                             </attributes>
                                                                         </fragment>
                                                                     </attributedString>
