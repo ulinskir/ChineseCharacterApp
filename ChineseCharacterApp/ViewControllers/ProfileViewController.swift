@@ -13,7 +13,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    var JudyZhou = user(fullName: "Judy Zhou", password: "123", email: "jzhou1@hamilton.edu")
+    let JudyZhou = user(fullName: "Judy Zhou", password: "123", email: "jzhou1@hamilton.edu")
         
     
 
