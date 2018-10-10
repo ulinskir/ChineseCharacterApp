@@ -10,13 +10,23 @@ import UIKit
 
 class CreateModuleViewController: UIViewController {
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func cancelCreateModuleButtonPressed(_ sender: Any) {
+        print("cancelled")
+        
+    }
+    
+    @IBAction func saveModuleButtonPressed(_ sender: Any) {
+        
+    }
+    
     /*
     // MARK: - Navigation
 
