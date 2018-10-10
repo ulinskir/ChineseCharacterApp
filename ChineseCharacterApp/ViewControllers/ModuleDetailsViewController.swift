@@ -1,5 +1,9 @@
 //
 //  ModuleDetailsViewController.swift
+//  Called from the modulesview scene, this view displays the details of a module
+//  including the following
+//  -name
+//  -a list of the characters in the module
 //  ChineseCharacterApp
 //
 //  Created by Risa Ulinski on 10/3/18.
@@ -24,19 +28,14 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
 
     
     var module:Module? = nil
-    //let module = Module(name:"test", chineseChars:[ChineseChar(chinese: "a", pinyin: "men", english: "door")])
+    
     var selectedChar:ChineseChar? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        moduleNameLabel.text = (module != nil) ?  module!.name : ""
         
-        //self.moduleCharactersTableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
-        //moduleCharactersTableView.delegate = self
-        //moduleCharactersTableView.dataSource = self
-        
-        //let door = ChineseChar(chinese: "a", pinyin: "men", english: "door")
 
-        //module = Module(name:"test", chineseChars:[door])
         // Do any additional setup after loading the view.
     }
     
@@ -44,14 +43,11 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         if let chars = self.module?.chineseChars {
            return chars.count
         }
-        print(module?.chineseChars)
-        print(module?.chineseChars.count)
         return 0    }
     
     
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("is called")
         // Create a new cell with the reuse identifier of our prototype cell
         // as our custom table cell class
         let cell = tableView.dequeueReusableCell(withIdentifier:"charCell") as! CharacterInModuleTableViewCell
