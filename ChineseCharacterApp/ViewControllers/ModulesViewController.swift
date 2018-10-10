@@ -13,8 +13,6 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //data
     var modules: [Module] = []
-
-
     
     //Top bar objects
     @IBOutlet weak var backButton: UIButton!
@@ -44,8 +42,11 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
         modulesTableView.delegate = self
         modulesTableView.dataSource = self
         
-        for i in 0...20 {
-            modules.append(Module(name:"test \(i)"))
+        let mod = ["names", "colors", "numbers", "food", "family", "emotions", "sports", "weather", "interests", "school", "shopping", "travel", "places"]
+        let door = ChineseChar(chinese: "a", pinyin: "men", english: "door")
+        
+        for i in mod {
+            modules.append(Module(name:"\(i)", chineseChars:[door]))
         }
 
     }
@@ -89,7 +90,6 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier:"modulesTableCell") as! ModulesTableViewCell
         // Set the text label to the module name
         cell.moduleNameLabel.text = modules[indexPath.section].name
-        cell.layer.cornerRadius = 8
         cell.clipsToBounds = true
         // Return our new cell for display
         return cell

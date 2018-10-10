@@ -12,11 +12,14 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    var JudyZhou = user(fullName: "Judy Zhou", password: "123", email: "jzhou1@hamilton.edu")
+        
+    
 
         // Do any additional setup after loading the view.
     }
     
-
     /*
     // MARK: - Navigation
 

@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct Module {
+class Module {
     var name: String
-    var chineseChars : [ChineseChar]
+    var chineseChars: [ChineseChar]
     
-    init(name:String) {
+    init(name: String, chineseChars: [ChineseChar]) {
         self.name = name
-        chineseChars = []
+        self.chineseChars = []
     }
 }
