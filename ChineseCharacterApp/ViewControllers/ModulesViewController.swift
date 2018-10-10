@@ -87,7 +87,6 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier:"modulesTableCell") as! ModulesTableViewCell
         // Set the text label to the module name
         cell.moduleNameLabel.text = modules[indexPath.section].name
-        cell.layer.cornerRadius = 8
         cell.clipsToBounds = true
         // Return our new cell for display
         return cell
