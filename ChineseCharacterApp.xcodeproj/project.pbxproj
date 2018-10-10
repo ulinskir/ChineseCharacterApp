@@ -11,6 +11,7 @@
 		581494BA216D5D15000DC3B5 /* ModulesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581494B9216D5D15000DC3B5 /* ModulesTableViewCell.swift */; };
 		581494BE216D7F27000DC3B5 /* CharacterInModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581494BD216D7F27000DC3B5 /* CharacterInModuleTableViewCell.swift */; };
 		581494C0216D9944000DC3B5 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581494BF216D9944000DC3B5 /* ProfileTableViewCell.swift */; };
+		581494C2216DA9E3000DC3B5 /* CreateModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581494C1216DA9E3000DC3B5 /* CreateModuleViewController.swift */; };
 		58656483216481E10019C39C /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58656482216481E10019C39C /* Module.swift */; };
 		586564872164879D0019C39C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586564862164879D0019C39C /* ProfileViewController.swift */; };
 		58656489216487F90019C39C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58656488216487F90019C39C /* SettingsTableViewController.swift */; };
@@ -52,6 +53,7 @@
 		581494B9216D5D15000DC3B5 /* ModulesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesTableViewCell.swift; sourceTree = "<group>"; };
 		581494BD216D7F27000DC3B5 /* CharacterInModuleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInModuleTableViewCell.swift; sourceTree = "<group>"; };
 		581494BF216D9944000DC3B5 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		581494C1216DA9E3000DC3B5 /* CreateModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateModuleViewController.swift; sourceTree = "<group>"; };
 		58656482216481E10019C39C /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		586564862164879D0019C39C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		58656488216487F90019C39C /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				58B3BCC5215AEA470049A8E5 /* ModulesViewController.swift */,
 				58B3BCC9215AF4460049A8E5 /* DrawCharacterViewController.swift */,
 				586564862164879D0019C39C /* ProfileViewController.swift */,
+				581494C1216DA9E3000DC3B5 /* CreateModuleViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58FAF4E521650C690029E876 /* ChineseChar.swift in Sources */,
+				581494C2216DA9E3000DC3B5 /* CreateModuleViewController.swift in Sources */,
 				58B3BCC4215ABB220049A8E5 /* ColorScheme.swift in Sources */,
 				581494BE216D7F27000DC3B5 /* CharacterInModuleTableViewCell.swift in Sources */,
 				58EC0C572156B7EA00F9D1E6 /* HomeViewController.swift in Sources */,
