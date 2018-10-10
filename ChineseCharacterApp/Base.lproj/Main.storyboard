@@ -427,7 +427,7 @@
                                                             <attributedString key="attributedText">
                                                                 <fragment content="Module Name">
                                                                     <attributes>
-                                                                        <color key="NSColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="NSColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <font key="NSFont" size="33" name="Baskerville"/>
                                                                     </attributes>
                                                                 </fragment>
@@ -644,7 +644,7 @@
                                                                     <attributedString key="attributedText">
                                                                         <fragment content="Label">
                                                                             <attributes>
-                                                                                <color key="NSColor" red="0.67815607786178589" green="0.13837113976478577" blue="0.087356202304363251" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <color key="NSColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <font key="NSFont" size="64" name="Baskerville"/>
                                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                             </attributes>
@@ -660,7 +660,7 @@
                                                                             <attributedString key="attributedText">
                                                                                 <fragment content="Label">
                                                                                     <attributes>
-                                                                                        <color key="NSColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                        <color key="NSColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <font key="NSFont" size="17" name="Baskerville"/>
                                                                                     </attributes>
                                                                                 </fragment>
@@ -672,7 +672,7 @@
                                                                             <attributedString key="attributedText">
                                                                                 <fragment content="Label">
                                                                                     <attributes>
-                                                                                        <color key="NSColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                        <color key="NSColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <font key="NSFont" size="17" name="Baskerville"/>
                                                                                     </attributes>
                                                                                 </fragment>
@@ -751,7 +751,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1tS-Mf-Py4">
                                                 <rect key="frame" x="0.0" y="0.0" width="69" height="81.666666666666671"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                <state key="normal" title="&lt;-">
+                                                <state key="normal" title="X">
                                                     <color key="titleColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
@@ -765,7 +765,7 @@
                                                 <attributedString key="attributedText">
                                                     <fragment content="Username">
                                                         <attributes>
-                                                            <color key="NSColor" red="0.76944679021835327" green="0.11408170312643051" blue="0.082213424146175385" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="NSColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <font key="NSFont" size="36" name="Baskerville"/>
                                                         </attributes>
                                                     </fragment>
@@ -777,7 +777,7 @@
                                             <constraint firstItem="5PV-Jx-puA" firstAttribute="width" secondItem="1tS-Mf-Py4" secondAttribute="width" multiplier="5" id="AHS-rj-TDi"/>
                                         </constraints>
                                     </stackView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="B6d-Q1-OH3">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="puppy3" translatesAutoresizingMaskIntoConstraints="NO" id="B6d-Q1-OH3">
                                         <rect key="frame" x="0.0" y="81.666666666666671" width="414" height="245.66666666666663"/>
                                     </imageView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hzk-Np-D0p">
@@ -791,28 +791,28 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="139.66666666666666"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Wk-2t-rXs">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="139.66666666666666"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4Se-Nx-5kV">
+                                                            <rect key="frame" x="10" y="10" width="394" height="119.66666666666669"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryY-wo-YJ8">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="138" height="139.66666666666666"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="394" height="60"/>
                                                                     <attributedString key="attributedText">
                                                                         <fragment content="Label:     ">
                                                                             <attributes>
-                                                                                <color key="NSColor" red="0.77282971143722534" green="0.25586891174316406" blue="0.078489400446414948" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <color key="NSColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <font key="NSFont" size="24" name="Baskerville"/>
-                                                                                <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                             </attributes>
                                                                         </fragment>
                                                                     </attributedString>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sT-Vu-gyw">
-                                                                    <rect key="frame" x="138" y="0.0" width="276" height="139.66666666666666"/>
+                                                                    <rect key="frame" x="0.0" y="60" width="394" height="59.666666666666657"/>
                                                                     <attributedString key="attributedText">
                                                                         <fragment content=" Label">
                                                                             <attributes>
-                                                                                <color key="NSColor" red="0.74150365591049194" green="0.17027008533477783" blue="0.083388529717922211" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <color key="NSColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <font key="NSFont" size="24" name="Baskerville"/>
                                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                             </attributes>
@@ -822,15 +822,15 @@
                                                                 </label>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="8sT-Vu-gyw" firstAttribute="width" secondItem="ryY-wo-YJ8" secondAttribute="width" multiplier="2" id="abx-2Q-5Jy"/>
+                                                                <constraint firstItem="8sT-Vu-gyw" firstAttribute="height" secondItem="ryY-wo-YJ8" secondAttribute="height" id="rTq-YV-emc"/>
                                                             </constraints>
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="6Wk-2t-rXs" secondAttribute="trailing" id="0AU-lR-qXW"/>
-                                                        <constraint firstAttribute="bottom" secondItem="6Wk-2t-rXs" secondAttribute="bottom" id="LaF-sF-Ska"/>
-                                                        <constraint firstItem="6Wk-2t-rXs" firstAttribute="leading" secondItem="kcO-06-CQp" secondAttribute="leading" id="RsG-1E-fri"/>
-                                                        <constraint firstItem="6Wk-2t-rXs" firstAttribute="top" secondItem="kcO-06-CQp" secondAttribute="top" id="nYC-zJ-sWv"/>
+                                                        <constraint firstItem="4Se-Nx-5kV" firstAttribute="top" secondItem="kcO-06-CQp" secondAttribute="top" constant="10" id="GAJ-3b-exY"/>
+                                                        <constraint firstAttribute="trailing" secondItem="4Se-Nx-5kV" secondAttribute="trailing" constant="10" id="X6s-ep-RF7"/>
+                                                        <constraint firstItem="4Se-Nx-5kV" firstAttribute="leading" secondItem="kcO-06-CQp" secondAttribute="leading" constant="10" id="hBm-mL-XsJ"/>
+                                                        <constraint firstAttribute="bottom" secondItem="4Se-Nx-5kV" secondAttribute="bottom" constant="10" id="pjd-dw-Xnm"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
@@ -1036,9 +1036,12 @@
             <point key="canvasLocation" x="449" y="-483"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="puppy3" width="480" height="303"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Oyv-M6-exy"/>
-        <segue reference="KRX-p4-rLg"/>
+        <segue reference="bd8-VD-abA"/>
+        <segue reference="vYx-lP-cag"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
