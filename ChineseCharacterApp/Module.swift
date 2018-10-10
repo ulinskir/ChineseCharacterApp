@@ -14,6 +14,6 @@ class Module {
     
     init(name: String, chineseChars: [ChineseChar]) {
         self.name = name
-        self.chineseChars = []
+        self.chineseChars = chineseChars
     }
 }

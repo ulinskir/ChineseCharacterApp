@@ -10,6 +10,12 @@ import UIKit
 
 class CharacterInModuleTableViewCell: UITableViewCell {
 
+    
+    @IBOutlet weak var chineseCharLabel: UILabel!
+    @IBOutlet weak var englishLabel: UILabel!
+    @IBOutlet weak var pinyinLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
