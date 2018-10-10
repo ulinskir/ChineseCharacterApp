@@ -26,16 +26,21 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         userNameLabel.text = user != nil ? user!.fullName : ""
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Create a new cell with the reuse identifier of our prototype cell
         // as our custom table cell class
-        let cell = tableView.dequeueReusableCell(withIdentifier:"profileCell") as! ProfileTableViewCell
+         let cell = tableView.dequeueReusableCell(withIdentifier:"profileCell") as! ProfileTableViewCell
+        if indexPath.row == 0 {
+            cell.profileFieldnameLabel.text = "Full Name:\t"
+            cell.profileFieldvalueLabel.text = user?.fullName
+        } else if indexPath.row == 1 {
+            cell.profileFieldnameLabel.text = "email:\t"
+            cell.profileFieldvalueLabel.text = user?.email
+        }
 
-        cell.profileFieldnameLabel.text = "hi"
-        cell.profileFieldvalueLabel.text = "bye"
         
         // Return our new cell for display
         return cell
