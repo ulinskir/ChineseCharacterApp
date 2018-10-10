@@ -41,9 +41,10 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
         modulesTableView.dataSource = self
         
         let mod = ["names", "colors", "numbers", "food", "family", "emotions", "sports", "weather", "interests", "school", "shopping", "travel", "places"]
+        let door = ChineseChar(chinese: "a", pinyin: "men", english: "door")
         
         for i in mod {
-            modules.append(Module(name:"\(i)", chineseChars:[]))
+            modules.append(Module(name:"\(i)", chineseChars:[door]))
         }
 
     }
