@@ -8,26 +8,46 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
+    
+    @IBOutlet weak var userPropertiesTableView: UITableView!
+    
+    
+    var user:User? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    let JudyZhou = user(fullName: "Judy Zhou", password: "123", email: "jzhou1@hamilton.edu")
+        user = User(fullName: "Judy Zhou", password: "123", email: "jzhou1@hamilton.edu")
         
-    
-
-        // Do any additional setup after loading the view.
+        userNameLabel.text = user != nil ? user!.fullName : ""
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
     }
     
-    /*
-    // MARK: - Navigation
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Create a new cell with the reuse identifier of our prototype cell
+        // as our custom table cell class
+        let cell = tableView.dequeueReusableCell(withIdentifier:"profileCell") as! ProfileTableViewCell
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        cell.profileFieldnameLabel.text = "hi"
+        cell.profileFieldvalueLabel.text = "bye"
+        
+        // Return our new cell for display
+        return cell
     }
-    */
-
+    
+    // method to run when table view cell is tapped
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        print("You tapped cell number \(indexPath.row).")
+        // performSegue(withIdentifier: "moduleTapped", sender: self)
+        //performSegue(withIdentifier:"moduleTapped", sender: self)
+    }
+    
 }

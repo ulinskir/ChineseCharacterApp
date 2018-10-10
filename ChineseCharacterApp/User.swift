@@ -10,7 +10,7 @@ import Foundation
 
 
 //allow user to change their password
-class user {
+class User {
     var ID: String
     var fullName: String
     var password: String

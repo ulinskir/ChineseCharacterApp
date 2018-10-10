@@ -10,6 +10,7 @@
 		382E4C01216D76AE00D2A953 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382E4C00216D76AE00D2A953 /* User.swift */; };
 		581494BA216D5D15000DC3B5 /* ModulesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581494B9216D5D15000DC3B5 /* ModulesTableViewCell.swift */; };
 		581494BE216D7F27000DC3B5 /* CharacterInModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581494BD216D7F27000DC3B5 /* CharacterInModuleTableViewCell.swift */; };
+		581494C0216D9944000DC3B5 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581494BF216D9944000DC3B5 /* ProfileTableViewCell.swift */; };
 		58656483216481E10019C39C /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58656482216481E10019C39C /* Module.swift */; };
 		586564872164879D0019C39C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586564862164879D0019C39C /* ProfileViewController.swift */; };
 		58656489216487F90019C39C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58656488216487F90019C39C /* SettingsTableViewController.swift */; };
@@ -50,6 +51,7 @@
 		382E4C00216D76AE00D2A953 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		581494B9216D5D15000DC3B5 /* ModulesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesTableViewCell.swift; sourceTree = "<group>"; };
 		581494BD216D7F27000DC3B5 /* CharacterInModuleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInModuleTableViewCell.swift; sourceTree = "<group>"; };
+		581494BF216D9944000DC3B5 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		58656482216481E10019C39C /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		586564862164879D0019C39C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		58656488216487F90019C39C /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				58EC0C542156B7EA00F9D1E6 /* AppDelegate.swift */,
 				58B3BCC0215AB6730049A8E5 /* ViewControllers */,
 				58EC0C582156B7EA00F9D1E6 /* Main.storyboard */,
+				581494BF216D9944000DC3B5 /* ProfileTableViewCell.swift */,
 				581494BD216D7F27000DC3B5 /* CharacterInModuleTableViewCell.swift */,
 				581494B9216D5D15000DC3B5 /* ModulesTableViewCell.swift */,
 				58656482216481E10019C39C /* Module.swift */,
@@ -312,6 +315,7 @@
 				58FAF4E7216511290029E876 /* ModuleDetailsViewController.swift in Sources */,
 				382E4C01216D76AE00D2A953 /* User.swift in Sources */,
 				58B3BCC8215AEB8B0049A8E5 /* Buttons.swift in Sources */,
+				581494C0216D9944000DC3B5 /* ProfileTableViewCell.swift in Sources */,
 				581494BA216D5D15000DC3B5 /* ModulesTableViewCell.swift in Sources */,
 				58B3BCC2215AB7910049A8E5 /* Constants.swift in Sources */,
 				58656489216487F90019C39C /* SettingsTableViewController.swift in Sources */,
