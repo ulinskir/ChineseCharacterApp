@@ -203,33 +203,7 @@ func performAlignment (_source:[Point], _target:[Point]) -> Result {
     }
     return result;
 }
-func recognize (source:[Point], target:[Point], offset:Double) -> Result {
-    // checks for stroke and reverse stroke
-    
-    if (offset > kMaxOutOfOrder)
-    {return (score: -Double.infinity,source:nil,target:nil,warning:nil,penalties:nil)};
-    
-    // Perform alignment and check score
-    var result = performAlignment(_source:source, _target:target);
-    
-    // if it sucks, see if they did the stroke in reverse
-    if (result.score == -Double.infinity) {
-        var rev_source = source;
-        rev_source.reverse()
-        let alternative = performAlignment(_source:rev_source, _target:target);
-        
-        // yell at them
-        if (alternative.warning == nil) {
-            result = (score: alternative.score,
-                      source: alternative.source,
-                      target: alternative.target,
-                      warning: "Reversed Stroke",
-                      penalties: alternative.penalties! + 1)
-        }
-    }
-    result.score -= abs(offset) * Double(kOutOfOrderPenalty);
-    return result;
-}
+
 func scorePairing (source:[Point], target:[Point], is_initial_segment:Bool) -> Double {
     
     // Angle offset
@@ -250,4 +224,33 @@ func scorePairing (source:[Point], target:[Point], is_initial_segment:Bool) -> D
     }
     // Return the negative sum of the differences between angle, distance, and length
     return -(angle + distance + length);
+}
+class Recognizer: NSObject {
+    func recognize (source:[Point], target:[Point], offset:Double) -> Result {
+        // checks for stroke and reverse stroke
+        
+        if (offset > kMaxOutOfOrder)
+        {return (score: -Double.infinity,source:nil,target:nil,warning:nil,penalties:nil)};
+        
+        // Perform alignment and check score
+        var result = performAlignment(_source:source, _target:target);
+        
+        // if it sucks, see if they did the stroke in reverse
+        if (result.score == -Double.infinity) {
+            var rev_source = source;
+            rev_source.reverse()
+            let alternative = performAlignment(_source:rev_source, _target:target);
+            
+            // yell at them
+            if (alternative.warning == nil) {
+                result = (score: alternative.score,
+                          source: alternative.source,
+                          target: alternative.target,
+                          warning: "Reversed Stroke",
+                          penalties: alternative.penalties! + 1)
+            }
+        }
+        result.score -= abs(offset) * Double(kOutOfOrderPenalty);
+        return result;
+    }
 }
