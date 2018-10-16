@@ -62,8 +62,8 @@ func getAngle(median:[Point]) -> Double {
 }
 func getBounds(median: [Point]) -> [Point] {
     // finds the minimum and maximum x and y of a set of points
-    var _min:Point = (-Double.infinity, -Double.infinity)
-    var _max:Point = (Double.infinity, Double.infinity)
+    var _min:Point = (Double.infinity, Double.infinity)
+    var _max:Point = (-Double.infinity, -Double.infinity)
     
     for point in median {
         _min.x = min(_min.x, point.x);
@@ -151,9 +151,14 @@ func performAlignment (_source:[Point], _target:[Point]) -> Result {
                 // memo[i - 1][k] is the score of the points up to the previous target point and up to the first source point that is getting checked
                 
                 let score = scorePairing(
+                   
                     source:[source[k], source[j]], target: [target[i - 1], target[i]], is_initial_segment: i == 1);
                 // Compares the two points in the source to two adjacent points of target
+                if (score != -Double.infinity) {
+                    print(score)
+                }
                 
+                // Number of source segments being skipped
                 let penalty = (j - k - 1) * Int(kMissedSegmentPenalty);
                 
                 // looking at the previous row of memo, and passing on the best score if it's better than the score for this row
@@ -204,22 +209,30 @@ func scorePairing (source: [Point], target: [Point], is_initial_segment: Bool) -
     let angle = angleDiff(angle1:getAngle(median:source), angle2:getAngle(median:target));
     
     // Distance between midpoints
+    let targetMidpoint = getMidpoint(median:target)
+
+    let sourceMidpoint = getMidpoint(median:source)
     let distance = sqrt(util.distance2(
-        point1:getMidpoint(median:source), point2:getMidpoint(median:target)));
+        point1: sourceMidpoint, point2:targetMidpoint));
     
     // length ratio with abs(ln(x)) done to make the inputs make sense (just go with it)
     let length = abs(log(
-        getMinimumLength(pair:source) / getMinimumLength(pair:target)));
+        abs(getMinimumLength(pair:source) / getMinimumLength(pair:target))));
+    
+    print("sourceMidpoint: ", sourceMidpoint, "targetMidpoint", targetMidpoint)
     
     // If angle or distance or length are beyond the threshold, returns -infinity
     if (angle > (is_initial_segment ? 1 : 2) * kAngleThreshold ||
         distance > kDistanceThreshold || length > kLengthThreshold) {
+        print("failed_scorePairing")
         return -Double.infinity;
     }
     // Return the negative sum of the differences between angle, distance, and length
-    return -(angle + distance + length);
+    return -angle - distance - length;
+//    print("angle:",angle,"distance",distance,"length",length)
+//    return 0.0
 }
-class User: NSObject {
+class Recognizer: NSObject {
     func recognize (source:[Point], target:[Point], offset: Double) -> Result {
         // checks for stroke and reverse stroke
         
@@ -236,7 +249,7 @@ class User: NSObject {
             let alternative = performAlignment(_source:rev_source, _target:target);
             
             // yell at them
-            if (alternative.warning == nil) {
+            if (alternative.score != -Double.infinity) {
                 result = (score: alternative.score,
                           source: alternative.source,
                           target: alternative.target,
