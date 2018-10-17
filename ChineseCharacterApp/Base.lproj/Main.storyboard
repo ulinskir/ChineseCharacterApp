@@ -1118,6 +1118,9 @@
                                                 <state key="normal" title="X">
                                                     <color key="titleColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="BYZ-38-t0r" kind="show" id="Hak-Or-E2q"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xca-SR-bL5">
                                                 <rect key="frame" x="75" y="0.0" width="339" height="75"/>
@@ -1392,7 +1395,7 @@
                                                     <color key="titleColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="BYZ-38-t0r" kind="show" id="A5g-Tu-ck5"/>
+                                                    <segue destination="BYZ-38-t0r" kind="show" id="1Bs-Jc-xtc"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJH-eu-Nof">
@@ -1512,7 +1515,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="431-VD-apq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2057" y="406"/>
+            <point key="canvasLocation" x="-2429" y="352"/>
         </scene>
     </scenes>
     <resources>
@@ -1521,7 +1524,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Gb1-Vw-imE"/>
         <segue reference="QVl-QF-nat"/>
-        <segue reference="A5g-Tu-ck5"/>
+        <segue reference="Hak-Or-E2q"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
