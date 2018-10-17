@@ -127,7 +127,7 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="tt9-yA-QiO" firstAttribute="height" secondItem="aQf-U5-SR7" secondAttribute="height" multiplier="8" id="drd-jq-w7M"/>
+                                    <constraint firstItem="tt9-yA-QiO" firstAttribute="height" secondItem="aQf-U5-SR7" secondAttribute="height" multiplier="10" id="drd-jq-w7M"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="subviews">
