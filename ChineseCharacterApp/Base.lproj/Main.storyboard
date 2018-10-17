@@ -18,17 +18,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="2rr-A2-wPb">
-                                <rect key="frame" x="30" y="44" width="354" height="778"/>
+                                <rect key="frame" x="30" y="119" width="354" height="703"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQf-U5-SR7">
+                                    <button autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQf-U5-SR7">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="40.666666666666664"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Profile" image="puppy3"/>
                                         <connections>
                                             <segue destination="RW8-4f-HLY" kind="show" id="e2g-V6-quz"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tt9-yA-QiO">
-                                        <rect key="frame" x="0.0" y="57.666666666666657" width="354" height="326.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="235"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Chinese Character App">
                                                 <attributes>
@@ -41,9 +41,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cUH-tc-4zB" customClass="HomeViewButton" customModule="ChineseCharacterApp">
-                                        <rect key="frame" x="0.0" y="401" width="354" height="81.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="252" width="354" height="100"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <rect key="contentStretch" x="0.0" y="0.0" width="0.90000000000000002" height="1"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="DGH-zg-8rx"/>
+                                        </constraints>
                                         <state key="normal">
                                             <attributedString key="attributedTitle">
                                                 <fragment content="Browse">
@@ -60,8 +63,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kTE-dn-bBi" customClass="HomeViewButton" customModule="ChineseCharacterApp">
-                                        <rect key="frame" x="0.0" y="499.33333333333343" width="354" height="81.666666666666686"/>
+                                        <rect key="frame" x="0.0" y="369" width="354" height="100"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="kLi-nA-S2g"/>
+                                        </constraints>
                                         <state key="normal">
                                             <attributedString key="attributedTitle">
                                                 <fragment content="Modules">
@@ -78,8 +84,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A00-sC-hoO" customClass="HomeViewButton" customModule="ChineseCharacterApp">
-                                        <rect key="frame" x="0.0" y="598" width="354" height="81.333333333333371"/>
+                                        <rect key="frame" x="0.0" y="486" width="354" height="100"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="5Up-fA-KgD"/>
+                                        </constraints>
                                         <state key="normal">
                                             <attributedString key="attributedTitle">
                                                 <fragment content="Quick Start">
@@ -96,8 +105,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EAz-Fi-d60" customClass="HomeViewButton" customModule="ChineseCharacterApp">
-                                        <rect key="frame" x="0.0" y="696.33333333333337" width="354" height="81.666666666666629"/>
+                                        <rect key="frame" x="0.0" y="603" width="354" height="100"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="QZD-Xb-GBq"/>
+                                        </constraints>
                                         <state key="normal">
                                             <attributedString key="attributedTitle">
                                                 <fragment content="Settings">
@@ -115,28 +127,39 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="EAz-Fi-d60" firstAttribute="height" secondItem="aQf-U5-SR7" secondAttribute="height" multiplier="2" id="7yz-mK-GtO"/>
-                                    <constraint firstItem="A00-sC-hoO" firstAttribute="height" secondItem="aQf-U5-SR7" secondAttribute="height" multiplier="2" id="9RI-Lw-Sr0"/>
-                                    <constraint firstItem="kTE-dn-bBi" firstAttribute="height" secondItem="aQf-U5-SR7" secondAttribute="height" multiplier="2" id="Y82-FZ-9FS"/>
                                     <constraint firstItem="tt9-yA-QiO" firstAttribute="height" secondItem="aQf-U5-SR7" secondAttribute="height" multiplier="8" id="drd-jq-w7M"/>
-                                    <constraint firstItem="cUH-tc-4zB" firstAttribute="height" secondItem="aQf-U5-SR7" secondAttribute="height" multiplier="2" id="hoQ-Lr-FdK"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="aQf-U5-SR7"/>
+                                    </mask>
+                                </variation>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XWy-v8-cdm">
+                                <rect key="frame" x="344" y="64" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="m90-op-Jhj"/>
+                                    <constraint firstAttribute="width" constant="50" id="wdl-fg-ByC"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="puppy3"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <color key="tintColor" red="0.66003458810000004" green="0.04804273262" blue="0.10386177839999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="XWy-v8-cdm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="9gO-Dg-6WV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2rr-A2-wPb" secondAttribute="bottom" constant="40" id="Al3-uj-HgB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2rr-A2-wPb" secondAttribute="trailing" constant="30" id="GCN-Fs-xfW"/>
                             <constraint firstItem="2rr-A2-wPb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="KfE-i3-ahy"/>
-                            <constraint firstItem="2rr-A2-wPb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Rps-kp-eq4"/>
+                            <constraint firstItem="2rr-A2-wPb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="75" id="Rps-kp-eq4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XWy-v8-cdm" secondAttribute="trailing" constant="20" id="zv3-go-1NA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="browseButton" destination="cUH-tc-4zB" id="56X-tf-Yqm"/>
+                        <outlet property="button" destination="XWy-v8-cdm" id="MPJ-W4-Pof"/>
                         <outlet property="modulesButton" destination="kTE-dn-bBi" id="xuW-zT-tT2"/>
-                        <outlet property="profileButton" destination="aQf-U5-SR7" id="Zez-hR-sVH"/>
                         <outlet property="quickStartButton" destination="A00-sC-hoO" id="7t9-eO-xG7"/>
                         <outlet property="settingsButton" destination="EAz-Fi-d60" id="5DO-Wh-VQu"/>
                         <outlet property="titleLabel" destination="tt9-yA-QiO" id="Z17-8k-bAZ"/>
@@ -674,7 +697,7 @@
                                                                     <attributedString key="attributedText">
                                                                         <fragment content="Label">
                                                                             <attributes>
-                                                                                <color key="NSColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <font key="NSFont" size="64" name="Baskerville"/>
                                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                             </attributes>
@@ -690,7 +713,7 @@
                                                                             <attributedString key="attributedText">
                                                                                 <fragment content="Label">
                                                                                     <attributes>
-                                                                                        <color key="NSColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <font key="NSFont" size="17" name="Baskerville"/>
                                                                                     </attributes>
                                                                                 </fragment>
@@ -702,7 +725,7 @@
                                                                             <attributedString key="attributedText">
                                                                                 <fragment content="Label">
                                                                                     <attributes>
-                                                                                        <color key="NSColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <font key="NSFont" size="17" name="Baskerville"/>
                                                                                     </attributes>
                                                                                 </fragment>
@@ -1095,10 +1118,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pni-3p-KQI">
-                                <rect key="frame" x="0.0" y="44" width="680.66666666666663" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="CL4-R9-hVc" userLabel="top bar">
-                                        <rect key="frame" x="0.0" y="0.0" width="680.66666666666663" height="75"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZn-Wo-nqL">
                                                 <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
@@ -1112,7 +1135,7 @@
                                                 </state>
                                             </button>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xca-SR-bL5">
-                                                <rect key="frame" x="75" y="0.0" width="605.66666666666663" height="75"/>
+                                                <rect key="frame" x="75" y="0.0" width="339" height="75"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <color key="tintColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <attributedString key="attributedText">
@@ -1132,13 +1155,13 @@
                                         </constraints>
                                     </stackView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AIy-MG-2T6">
-                                        <rect key="frame" x="20" y="75" width="640.66666666666663" height="30"/>
+                                        <rect key="frame" x="20" y="75" width="374" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NhB-Gm-Ve8">
-                                        <rect key="frame" x="290.33333333333337" y="105" width="100" height="30"/>
+                                        <rect key="frame" x="157" y="105" width="100" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="F2v-Zz-lpY"/>
@@ -1146,7 +1169,7 @@
                                         <state key="normal" title="Filter by"/>
                                     </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4N7-ME-SxF">
-                                        <rect key="frame" x="0.0" y="135" width="680.66666666666663" height="683"/>
+                                        <rect key="frame" x="0.0" y="135" width="414" height="683"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="j6P-gg-QR9">
                                             <size key="itemSize" width="50" height="50"/>
@@ -1177,7 +1200,7 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="pni-3p-KQI" firstAttribute="leading" secondItem="O1Z-hi-ULl" secondAttribute="leading" id="Fo5-6T-g6L"/>
                             <constraint firstAttribute="trailing" secondItem="pni-3p-KQI" secondAttribute="trailing" id="P5a-EN-K3I"/>
@@ -1365,9 +1388,9 @@
         <image name="puppy3" width="480" height="303"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Pkk-On-Vok"/>
+        <segue reference="Oyv-M6-exy"/>
         <segue reference="fQs-EV-8Cn"/>
-        <segue reference="KRX-p4-rLg"/>
+        <segue reference="bpR-eK-p4I"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
