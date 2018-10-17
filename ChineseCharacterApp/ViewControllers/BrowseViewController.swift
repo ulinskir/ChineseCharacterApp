@@ -1,35 +1,24 @@
 //
-//  CreateModuleViewController.swift
+//  BrowseViewController.swift
 //  ChineseCharacterApp
 //
-//  Created by Risa Ulinski on 10/9/18.
+//  Created by Risa Ulinski on 10/16/18.
 //  Copyright © 2018 Hamilton College CS Senior Seminar. All rights reserved.
 //
 
 import UIKit
 
-class CreateModuleViewController: UIViewController {
+class BrowseViewController: UIViewController {
 
-    @IBOutlet weak var newModuleName: UITextField!
-    @IBOutlet weak var newModuleAuthor: UITextField!
-    @IBOutlet weak var newModuleDescription: UITextView!
-    
-    
+    @IBOutlet weak var searchBarTextEntry: UITextField!
+    @IBOutlet weak var browseCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func cancelCreateModuleButtonPressed(_ sender: Any) {
-        print("cancelled")
-        
-    }
-    
-    @IBAction func saveModuleButtonPressed(_ sender: Any) {
-        
-    }
-    
+
     /*
     // MARK: - Navigation
 
