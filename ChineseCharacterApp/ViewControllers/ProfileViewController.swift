@@ -23,7 +23,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         user = User(fullName: "Judy Zhou", password: "123", email: "jzhou1@hamilton.edu")
         
-        userNameLabel.text = user != nil ? user!.fullName : ""
+        userNameLabel.text = "Profile"
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2

@@ -8,15 +8,20 @@
 
 import Foundation
 
-struct ChineseChar {
-    let chinese:String
-    let pinyin:String
-    let english:String
+class ChineseChar {
+    var char : String
+    var strokes : [String]
+    var definition : String
+    var pinyin: [String]
+    var decomposition: String
+    var radical: String
     
-    init(chinese:String, pinyin:String, english:String) {
-        self.chinese = chinese
-        self.pinyin = pinyin
-        self.english = english
+    init(character: String, strks: [String], def: String, pin: [String], decomp: String, rad: String) {
+        char = character
+        strokes = strks
+        definition = def
+        pinyin = pin
+        radical = rad
+        decomposition = decomp
     }
-    
 }

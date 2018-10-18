@@ -53,9 +53,9 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         let cell = tableView.dequeueReusableCell(withIdentifier:"charCell") as! CharacterInModuleTableViewCell
         
         // Set the text label to the module name
-        cell.chineseCharLabel.text = module?.chineseChars[indexPath.row].chinese
-        cell.englishLabel.text = module?.chineseChars[indexPath.row].english
-        cell.pinyinLabel.text = module?.chineseChars[indexPath.row].pinyin
+        cell.chineseCharLabel.text = module?.chineseChars[indexPath.row].char
+        cell.englishLabel.text = module?.chineseChars[indexPath.row].definition
+        cell.pinyinLabel.text = module?.chineseChars[indexPath.row].pinyin[0]
         cell.clipsToBounds = true
         // Return our new cell for display
         return cell
