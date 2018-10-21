@@ -11,6 +11,7 @@
 		580B6D7B2176BD3700061F4A /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B6D7A2176BD3700061F4A /* BrowseViewController.swift */; };
 		580B6D7D2176C08A00061F4A /* CharacterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B6D7C2176C08A00061F4A /* CharacterDetailsViewController.swift */; };
 		580B6D7F2176C66100061F4A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 580B6D7E2176C66100061F4A /* Storyboard.storyboard */; };
+		580C3BD1217CD25B002E8152 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580C3BD0217CD25B002E8152 /* DrawingView.swift */; };
 		581494BA216D5D15000DC3B5 /* ModulesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581494B9216D5D15000DC3B5 /* ModulesTableViewCell.swift */; };
 		581494BE216D7F27000DC3B5 /* CharacterInModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581494BD216D7F27000DC3B5 /* CharacterInModuleTableViewCell.swift */; };
 		581494C0216D9944000DC3B5 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581494BF216D9944000DC3B5 /* ProfileTableViewCell.swift */; };
@@ -23,6 +24,7 @@
 		58B3BCC6215AEA470049A8E5 /* ModulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3BCC5215AEA470049A8E5 /* ModulesViewController.swift */; };
 		58B3BCC8215AEB8B0049A8E5 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3BCC7215AEB8B0049A8E5 /* Buttons.swift */; };
 		58B3BCCA215AF4460049A8E5 /* DrawCharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3BCC9215AF4460049A8E5 /* DrawCharacterViewController.swift */; };
+		58B3F88C217CD651003BF210 /* Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3F88B217CD651003BF210 /* Recognizer.swift */; };
 		58EC0C552156B7EA00F9D1E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC0C542156B7EA00F9D1E6 /* AppDelegate.swift */; };
 		58EC0C572156B7EA00F9D1E6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC0C562156B7EA00F9D1E6 /* HomeViewController.swift */; };
 		58EC0C5A2156B7EA00F9D1E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58EC0C582156B7EA00F9D1E6 /* Main.storyboard */; };
@@ -53,9 +55,10 @@
 
 /* Begin PBXFileReference section */
 		382E4C00216D76AE00D2A953 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		580B6D7A2176BD3700061F4A /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BrowseViewController.swift; path = ViewControllers/BrowseViewController.swift; sourceTree = "<group>"; };
+		580B6D7A2176BD3700061F4A /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		580B6D7C2176C08A00061F4A /* CharacterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewController.swift; sourceTree = "<group>"; };
 		580B6D7E2176C66100061F4A /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		580C3BD0217CD25B002E8152 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
 		581494B9216D5D15000DC3B5 /* ModulesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesTableViewCell.swift; sourceTree = "<group>"; };
 		581494BD216D7F27000DC3B5 /* CharacterInModuleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInModuleTableViewCell.swift; sourceTree = "<group>"; };
 		581494BF216D9944000DC3B5 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 		58B3BCC5215AEA470049A8E5 /* ModulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesViewController.swift; sourceTree = "<group>"; };
 		58B3BCC7215AEB8B0049A8E5 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		58B3BCC9215AF4460049A8E5 /* DrawCharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawCharacterViewController.swift; sourceTree = "<group>"; };
+		58B3F88B217CD651003BF210 /* Recognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Recognizer.swift; path = ChineseCharacterApp/Recognizer.swift; sourceTree = "<group>"; };
 		58EC0C512156B7EA00F9D1E6 /* ChineseCharacterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChineseCharacterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58EC0C542156B7EA00F9D1E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		58EC0C562156B7EA00F9D1E6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +114,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		580C3BD2217CD4B1002E8152 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				58B3BCC3215ABB220049A8E5 /* ColorScheme.swift */,
+				58B3BCC7215AEB8B0049A8E5 /* Buttons.swift */,
+				581494BF216D9944000DC3B5 /* ProfileTableViewCell.swift */,
+				581494BD216D7F27000DC3B5 /* CharacterInModuleTableViewCell.swift */,
+				581494B9216D5D15000DC3B5 /* ModulesTableViewCell.swift */,
+				580C3BD0217CD25B002E8152 /* DrawingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		580C3BD3217CD4E8002E8152 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				58EC0C582156B7EA00F9D1E6 /* Main.storyboard */,
+				580B6D7E2176C66100061F4A /* Storyboard.storyboard */,
+				58EC0C5D2156B7EB00F9D1E6 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		580C3BD4217CD505002E8152 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				58656482216481E10019C39C /* Module.swift */,
+				382E4C00216D76AE00D2A953 /* User.swift */,
+				58FAF4E421650C690029E876 /* ChineseChar.swift */,
+				58B3BCC1215AB7910049A8E5 /* Constants.swift */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
 		58B3BCC0215AB6730049A8E5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +159,7 @@
 				586564862164879D0019C39C /* ProfileViewController.swift */,
 				580B6D7C2176C08A00061F4A /* CharacterDetailsViewController.swift */,
 				581494C1216DA9E3000DC3B5 /* CreateModuleViewController.swift */,
+				580B6D7A2176BD3700061F4A /* BrowseViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -132,6 +171,7 @@
 				58EC0C682156B7EB00F9D1E6 /* ChineseCharacterAppTests */,
 				58EC0C732156B7EB00F9D1E6 /* ChineseCharacterAppUITests */,
 				58EC0C522156B7EA00F9D1E6 /* Products */,
+				58B3F88B217CD651003BF210 /* Recognizer.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,20 +190,10 @@
 			children = (
 				58EC0C542156B7EA00F9D1E6 /* AppDelegate.swift */,
 				58B3BCC0215AB6730049A8E5 /* ViewControllers */,
-				58EC0C582156B7EA00F9D1E6 /* Main.storyboard */,
-				580B6D7E2176C66100061F4A /* Storyboard.storyboard */,
-				580B6D7A2176BD3700061F4A /* BrowseViewController.swift */,
-				581494BF216D9944000DC3B5 /* ProfileTableViewCell.swift */,
-				581494BD216D7F27000DC3B5 /* CharacterInModuleTableViewCell.swift */,
-				581494B9216D5D15000DC3B5 /* ModulesTableViewCell.swift */,
-				58656482216481E10019C39C /* Module.swift */,
-				382E4C00216D76AE00D2A953 /* User.swift */,
-				58FAF4E421650C690029E876 /* ChineseChar.swift */,
-				58B3BCC7215AEB8B0049A8E5 /* Buttons.swift */,
-				58B3BCC3215ABB220049A8E5 /* ColorScheme.swift */,
-				58B3BCC1215AB7910049A8E5 /* Constants.swift */,
+				580C3BD3217CD4E8002E8152 /* Storyboards */,
+				580C3BD2217CD4B1002E8152 /* Views */,
+				580C3BD4217CD505002E8152 /* data */,
 				58EC0C5B2156B7EB00F9D1E6 /* Assets.xcassets */,
-				58EC0C5D2156B7EB00F9D1E6 /* LaunchScreen.storyboard */,
 				58EC0C602156B7EB00F9D1E6 /* Info.plist */,
 			);
 			path = ChineseCharacterApp;
@@ -326,7 +356,9 @@
 				58EC0C572156B7EA00F9D1E6 /* HomeViewController.swift in Sources */,
 				586564872164879D0019C39C /* ProfileViewController.swift in Sources */,
 				580B6D7B2176BD3700061F4A /* BrowseViewController.swift in Sources */,
+				580C3BD1217CD25B002E8152 /* DrawingView.swift in Sources */,
 				58B3BCC6215AEA470049A8E5 /* ModulesViewController.swift in Sources */,
+				58B3F88C217CD651003BF210 /* Recognizer.swift in Sources */,
 				580B6D7D2176C08A00061F4A /* CharacterDetailsViewController.swift in Sources */,
 				58FAF4E7216511290029E876 /* ModuleDetailsViewController.swift in Sources */,
 				382E4C01216D76AE00D2A953 /* User.swift in Sources */,

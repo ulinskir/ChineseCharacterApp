@@ -243,7 +243,7 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mao-JJ-pTZ">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mao-JJ-pTZ" customClass="DrawingView" customModule="ChineseCharacterApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="231.33333333333331" width="374" height="373.99999999999994"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -268,6 +268,9 @@
                                                         </fragment>
                                                     </attributedString>
                                                 </state>
+                                                <connections>
+                                                    <action selector="hintButtonTapped:" destination="SGK-gC-YUj" eventType="touchUpInside" id="y65-Hr-NK2"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2KJ-VO-5g2">
                                                 <rect key="frame" x="197" y="0.0" width="177" height="77.333333333333329"/>
@@ -284,6 +287,9 @@
                                                         </fragment>
                                                     </attributedString>
                                                 </state>
+                                                <connections>
+                                                    <action selector="undoButtonTapped:" destination="SGK-gC-YUj" eventType="touchUpInside" id="jez-Dt-3EM"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -301,6 +307,9 @@
                                                 </fragment>
                                             </attributedString>
                                         </state>
+                                        <connections>
+                                            <action selector="submitButtonTapped:" destination="SGK-gC-YUj" eventType="touchUpInside" id="jy1-ff-jUD"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -1524,7 +1533,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Oyv-M6-exy"/>
         <segue reference="fQs-EV-8Cn"/>
-        <segue reference="KRX-p4-rLg"/>
+        <segue reference="auD-8O-ozw"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
