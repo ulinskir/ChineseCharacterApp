@@ -25,7 +25,7 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
-.DS_store
+*.DS_Store
 
 ### Xcode Patch ###
 *.xcodeproj/*
