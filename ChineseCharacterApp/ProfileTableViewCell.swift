@@ -1,0 +1,29 @@
+//
+//  ProfileTableViewCell.swift
+//  ChineseCharacterApp
+//
+//  Created by Risa Ulinski on 10/9/18.
+//  Copyright © 2018 Hamilton College CS Senior Seminar. All rights reserved.
+//
+
+import UIKit
+
+class ProfileTableViewCell: UITableViewCell {
+
+    @IBOutlet weak var profileFieldnameLabel: UILabel!
+    @IBOutlet weak var profileFieldvalueLabel: UILabel!
+    
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+
+}
