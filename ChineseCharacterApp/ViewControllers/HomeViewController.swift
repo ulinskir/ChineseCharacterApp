@@ -9,8 +9,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    
-    @IBOutlet weak var profileButton: UIButton!
+    @IBOutlet weak var button: UIButton!
     
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -23,5 +22,10 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        button.layer.cornerRadius = button.bounds.size.width / 2
+        button.clipsToBounds = true
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0).cgColor
     }
 }
