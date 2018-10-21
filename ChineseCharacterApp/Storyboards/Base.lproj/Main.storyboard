@@ -268,6 +268,9 @@
                                                         </fragment>
                                                     </attributedString>
                                                 </state>
+                                                <connections>
+                                                    <action selector="hintButtonTapped:" destination="SGK-gC-YUj" eventType="touchUpInside" id="y65-Hr-NK2"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2KJ-VO-5g2">
                                                 <rect key="frame" x="197" y="0.0" width="177" height="77.333333333333329"/>
@@ -304,6 +307,9 @@
                                                 </fragment>
                                             </attributedString>
                                         </state>
+                                        <connections>
+                                            <action selector="submitButtonTapped:" destination="SGK-gC-YUj" eventType="touchUpInside" id="jy1-ff-jUD"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
