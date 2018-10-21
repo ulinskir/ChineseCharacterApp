@@ -14,13 +14,16 @@ class DrawCharacterViewController: UIViewController {
     @IBOutlet weak var exitButton: UIButton!
     @IBOutlet weak var optionsButton: UIButton!
     @IBOutlet weak var audioButton: UIButton!
-    @IBOutlet weak var drawingView: UIView!
+    @IBOutlet weak var drawingView: DrawingView!
     @IBOutlet weak var hintButton: UIButton!
     @IBOutlet weak var undoButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
     
     
     
+    @IBAction func undoButtonTapped(_ sender: Any) {
+        drawingView.clearCanvas()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,15 +31,17 @@ class DrawCharacterViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    var fire = false
+    @IBAction func switchChar(_ sender: Any) {
+        //drawingView.char.image = UIImage(named: fire ? "kanji_mizu_water" : "fire")
+        fire = !fire
+        drawingView.clearCanvas()
     }
-    */
+    @IBAction func Recognize(_ sender: Any) {
+        //let instanceOfRecognizer = Recognizer()
+        //let result = instanceOfRecognizer.recognize(source: [(2,5),(10,6),(15,5)], target:[(2,5),(15,5)], offset: 0)
+        //print(result.score)
+    }
+
 
 }
