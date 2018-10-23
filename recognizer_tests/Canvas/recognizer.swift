@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import UIKit
 //import
+//typealias StrokePoint =
 
 // Result is for the scoring component
 typealias Result = (score:Double, source:(Point,Point)?, target: (Point,Point)?, warning: String?, penalties:Int?)
-// what you think it is.
+// what you think it is. Double precision points for increased accuracy
 typealias Point = (x:Double, y:Double)
 
 let kAngleThreshold = Double.pi / 5
@@ -30,6 +32,7 @@ let kOutOfOrderPenalty = 2;
 let kReversePenalty = 2;
 let kHookShapes:[[Point]] = [[(1, 3), (-3, -1)], [(3, 3), (0, -1)]];
 
+
 class util_fn {
     // A set of utility functions
     
@@ -46,7 +49,8 @@ class util_fn {
     let _round = {(point: Point) -> Point in return (round(point.x),round(point.y))}
     // Get the difference in X and Y coordinates
     let subtract = {(point1:Point,point2: Point) -> Point in return (point1.x - point2.x, point1.y - point2.y)}
-}
+    let cg_to_Point = {(cg:CGPoint) -> Point in return (Double(cg.x),Double(cg.y))}
+    }
 let util = util_fn()
 //func
 func angleDiff(angle1: Double, angle2: Double) -> Double {
@@ -203,6 +207,46 @@ func performAlignment (_source:[Point], _target:[Point]) -> Result {
     return result;
 }
 
+private func pathLength(path: [Point]) -> Double {
+    var length:Double = 0
+    for i in 0..<(path.count - 1) {
+        let p1 = path[i]
+        let p2 = path[i+1]
+        let dx = p2.x - p1.x
+        let dy = p2.y - p1.y
+        length += sqrt(dx * dx + dy * dy)
+    }
+    return length
+}
+private func resample(points: [CGPoint], totalPoints: Int) -> [Point] {
+    // Goes from a list of an arbitrary number of unevenly spaced CGPoints to a list of evenly spaced Points (double precision)
+    var initialPoints = points.map(util.cg_to_Point)
+    let interval = pathLength(path:initialPoints) / Double(totalPoints - 1)
+    var totalLength: Double = 0.0
+    var newPoints: [Point] = [initialPoints.first!]
+    
+    for i in 1..<initialPoints.count {
+        let currentLength = sqrt(util.distance2(point1: initialPoints[i-1], point2: initialPoints[i]));
+        
+        if ((totalLength+currentLength) >= interval) {
+            let qx = initialPoints[i-1].x + ((interval - totalLength) / currentLength) * (initialPoints[i].x - initialPoints[i-1].x)
+            let qy = initialPoints[i-1].y + ((interval - totalLength) / currentLength) * (initialPoints[i].y - initialPoints[i-1].y)
+            let q:Point = (qx,qy)
+            newPoints.append(q)
+            initialPoints.insert(q, at: i)
+            totalLength = 0.0
+            
+        } else {
+            totalLength += currentLength
+            }
+    }
+
+    if newPoints.count == totalPoints-1 {
+        newPoints.append(util.cg_to_Point(points.last!))
+    }
+    return newPoints
+}
+
 func scorePairing (source: [Point], target: [Point], is_initial_segment: Bool) -> Double {
     
     // Angle offset
@@ -231,7 +275,7 @@ func scorePairing (source: [Point], target: [Point], is_initial_segment: Bool) -
     return -angle - distance - length;
 //    print("angle:",angle,"distance",distance,"length",length)
 //    return 0.0
-}
+    }
 class Recognizer: NSObject {
     func recognize (source:[Point], target:[Point], offset: Double) -> Result {
         // checks for stroke and reverse stroke
