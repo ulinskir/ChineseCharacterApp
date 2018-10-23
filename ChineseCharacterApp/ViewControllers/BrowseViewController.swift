@@ -80,11 +80,20 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         var cell = collectionView.cellForItem(at: indexPath) as! UICollectionViewCell
         
+        var Charlabel = cell.viewWithTag(1) as! UILabel
+        var Deflabel = cell.viewWithTag(2) as! UILabel
+        
         if module.chineseChars.contains(where: {$0.char == Chars[indexPath.row].char}){
             cell.backgroundColor = UIColor.white
+            Charlabel.textColor = UIColor.black
+            Deflabel.textColor = UIColor.black
+            
             module.chineseChars.removeAll(where: {$0.char == Chars[indexPath.row].char})
         }else{
-            cell.backgroundColor = UIColor.lightGray
+            cell.backgroundColor = UIColor(red:0.54, green:0.07, blue:0.00, alpha:1.0)
+            Charlabel.textColor = UIColor.white
+            Deflabel.textColor = UIColor.white
+            
             module.chineseChars.append(Chars[indexPath.row])
         }
         
@@ -115,9 +124,13 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
         var Deflabel = cell.viewWithTag(2) as! UILabel
         
         if module.chineseChars.contains(where: {$0.char == Chars[indexPath.row].char}){
-            cell.backgroundColor = UIColor.lightGray
+            cell.backgroundColor = UIColor(red:0.54, green:0.07, blue:0.00, alpha:1.0)
+            Charlabel.textColor = UIColor.white
+            Deflabel.textColor = UIColor.white
         }else{
             cell.backgroundColor = UIColor.white
+            Charlabel.textColor = UIColor.black
+            Deflabel.textColor = UIColor.black
         }
         
         Deflabel.text = Chars[indexPath.row].definition
