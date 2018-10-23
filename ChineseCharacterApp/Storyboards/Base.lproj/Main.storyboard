@@ -173,7 +173,8 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="BYZ-38-t0r" kind="show" id="auD-8O-ozw"/>
+                                                    <action selector="exitButtonTapped:" destination="SGK-gC-YUj" eventType="touchUpInside" id="uif-1G-7GV"/>
+                                                    <segue destination="BYZ-38-t0r" kind="show" identifier="DrawHome" id="DPe-GX-24C"/>
                                                 </connections>
                                             </button>
                                             <progressView opaque="NO" contentMode="center" verticalHuggingPriority="750" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="Fkl-ta-TYs">
@@ -351,7 +352,7 @@
         <!--Modules View Controller-->
         <scene sceneID="tsE-xN-AKR">
             <objects>
-                <viewController id="jic-dd-Lb1" customClass="ModulesViewController" customModule="ChineseCharacterApp" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ModulesViewController" id="jic-dd-Lb1" customClass="ModulesViewController" customModule="ChineseCharacterApp" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jDL-Kb-Bwe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -507,6 +508,9 @@
                                                         </fragment>
                                                     </attributedString>
                                                 </state>
+                                                <connections>
+                                                    <action selector="deleteModule:" destination="jic-dd-Lb1" eventType="touchUpInside" id="e8E-EG-SU9"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -811,7 +815,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JoW-9I-Mza" userLabel="master">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JoW-9I-Mza" userLabel="master">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ing-rE-Xoa" userLabel="top bar">
@@ -850,8 +854,12 @@
                                             <constraint firstAttribute="height" constant="75" id="F1d-rD-jve"/>
                                         </constraints>
                                     </stackView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="puppy3" translatesAutoresizingMaskIntoConstraints="NO" id="B6d-Q1-OH3">
-                                        <rect key="frame" x="0.0" y="74.999999999999986" width="414" height="247.66666666666663"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="B6d-Q1-OH3">
+                                        <rect key="frame" x="83.333333333333329" y="74.999999999999986" width="247.66666666666669" height="247.66666666666663"/>
+                                        <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="B6d-Q1-OH3" secondAttribute="height" multiplier="1:1" id="1gg-gl-LdP"/>
+                                        </constraints>
                                     </imageView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hzk-Np-D0p">
                                         <rect key="frame" x="0.0" y="322.66666666666674" width="414" height="495.33333333333326"/>
@@ -919,7 +927,11 @@
                                     </tableView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="Ing-rE-Xoa" firstAttribute="leading" secondItem="JoW-9I-Mza" secondAttribute="leading" id="3z2-MJ-kd9"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ing-rE-Xoa" secondAttribute="trailing" id="5Re-vm-olf"/>
                                     <constraint firstItem="hzk-Np-D0p" firstAttribute="height" secondItem="B6d-Q1-OH3" secondAttribute="height" multiplier="2" id="M9w-Gb-Ga4"/>
+                                    <constraint firstAttribute="trailing" secondItem="hzk-Np-D0p" secondAttribute="trailing" id="R7h-5t-4Tm"/>
+                                    <constraint firstItem="hzk-Np-D0p" firstAttribute="leading" secondItem="JoW-9I-Mza" secondAttribute="leading" id="q9c-MV-B7X"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -1231,7 +1243,7 @@
         <!--ModulesViewController-->
         <scene sceneID="vnJ-ll-50H">
             <objects>
-                <viewController storyboardIdentifier="ModulesViewController" title="ModulesViewController" id="Tfy-da-csh" customClass="CreateModuleViewController" customModule="ChineseCharacterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="ModulesViewController" id="Tfy-da-csh" customClass="CreateModuleViewController" customModule="ChineseCharacterApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dhr-jw-pcc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1542,13 +1554,10 @@
             <point key="canvasLocation" x="-2429" y="352"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="puppy3" width="480" height="303"/>
-    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UTV-w9-o9c"/>
-        <segue reference="3bu-4q-Jxd"/>
-        <segue reference="Gb1-Vw-imE"/>
+        <segue reference="FxD-ch-sY0"/>
+        <segue reference="D7X-3W-474"/>
+        <segue reference="r8Z-Ap-ge2"/>
         <segue reference="QVl-QF-nat"/>
         <segue reference="bpR-eK-p4I"/>
     </inferredMetricsTieBreakers>

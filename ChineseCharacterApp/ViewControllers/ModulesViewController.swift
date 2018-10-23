@@ -31,9 +31,6 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var selectedModule:Module? = nil
     
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //load modules from data???
@@ -48,9 +45,23 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
         for i in mod {
             modules.append(Module(name:"\(i)", chineseChars:[door]))
         }
-
+        
     }
-
+    
+    @IBAction func deleteModule(_ sender: UIButton) {
+        let alert:UIAlertController = UIAlertController(title:"Cancel", message:"Are you sure you want to delete this \(String(describing: selectedModule))?", preferredStyle: .actionSheet)
+        let deleteAction:UIAlertAction = UIAlertAction(title:"Delete", style: .destructive)
+        { (_:UIAlertAction) in
+            print("Delete")
+        }
+        let cancelAction:UIAlertAction = UIAlertAction(title:"Cancel", style: .cancel)
+        { (_:UIAlertAction) in
+            print("Cancel")
+        }
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated:true)
+    }
     
 //----------------------Table Controller functions-------------------------------
     let cellSpacingHeight: CGFloat = 40
