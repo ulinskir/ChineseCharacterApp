@@ -14,11 +14,24 @@ class CharacterDetailsViewController: UIViewController {
     @IBOutlet weak var englishLabel: UILabel!
     @IBOutlet weak var pinyinLabel: UILabel!
     
+    var currModule:Module? = nil
+    var currChar:ChineseChar? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        chineseCharLabel.text = currChar?.char
+        englishLabel.text = currChar?.definition
+        pinyinLabel.text = currChar?.pinyin[0]
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if let destination = segue.destination as? ModuleDetailsViewController {
+            destination.module = currModule
+        }
     }
     
 

@@ -21,7 +21,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        user = User(fullName: "Judy Zhou", password: "123", email: "jzhou1@hamilton.edu")
+        user = User(fullName: "Tosa Rosa", password: "123", email: "BillyBob@hamilton.edu")
         
         userNameLabel.text = "Profile"
     }

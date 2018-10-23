@@ -9,7 +9,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var Profilebutton: UIButton!
     
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -23,9 +23,13 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        button.layer.cornerRadius = button.bounds.size.width / 2
-        button.clipsToBounds = true
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0).cgColor
+        var defaultProfiles = ["Zebra", "Monkey", "Giraffe", "Lion"]
+        let randomNum = Int.random(in: 0 ... 3)
+        print(randomNum)
+        Profilebutton.setImage(UIImage(named: defaultProfiles[randomNum] + ".jpg"), for: .normal)
+        Profilebutton.layer.cornerRadius = Profilebutton.bounds.size.width / 2
+        Profilebutton.clipsToBounds = true
+        Profilebutton.layer.borderWidth = 1
+        Profilebutton.layer.borderColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0).cgColor
     }
 }

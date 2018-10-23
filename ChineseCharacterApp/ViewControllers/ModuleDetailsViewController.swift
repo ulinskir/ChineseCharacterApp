@@ -29,8 +29,6 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     
     var module:Module? = nil
     
-    var selectedChar:ChineseChar? = nil
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         moduleNameLabel.text = (module != nil) ?  module!.name : ""
@@ -63,9 +61,18 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedChar = module?.chineseChars[indexPath.row]
-        print("You tapped cell number \(indexPath.row).")
+        //let selectedChar = module?.chineseChars[indexPath.row]
+        
+        print("You tapped cell number \(indexPath.section).")
         
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if let destination = segue.destination as? CharacterDetailsViewController {
+            destination.currModule = module!
+            let selectedrow = moduleCharactersTableView.indexPathForSelectedRow!.section
+            destination.currChar = module?.chineseChars[selectedrow]
+        }
+    }
 }

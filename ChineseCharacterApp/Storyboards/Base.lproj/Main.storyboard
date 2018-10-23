@@ -23,7 +23,7 @@
                                     <constraint firstAttribute="height" constant="50" id="m90-op-Jhj"/>
                                     <constraint firstAttribute="width" constant="50" id="wdl-fg-ByC"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="puppy3"/>
+                                <state key="normal" title="Button"/>
                                 <connections>
                                     <segue destination="RW8-4f-HLY" kind="show" id="5Wz-qZ-gQP"/>
                                 </connections>
@@ -141,8 +141,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="Profilebutton" destination="XWy-v8-cdm" id="eJU-xR-h0p"/>
                         <outlet property="browseButton" destination="cUH-tc-4zB" id="56X-tf-Yqm"/>
-                        <outlet property="button" destination="XWy-v8-cdm" id="MPJ-W4-Pof"/>
                         <outlet property="modulesButton" destination="kTE-dn-bBi" id="xuW-zT-tT2"/>
                         <outlet property="quickStartButton" destination="A00-sC-hoO" id="7t9-eO-xG7"/>
                         <outlet property="settingsButton" destination="EAz-Fi-d60" id="5DO-Wh-VQu"/>
@@ -545,7 +545,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PSL-tU-iUY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-430" y="335"/>
+            <point key="canvasLocation" x="-345" y="261"/>
         </scene>
         <!--Module Details View Controller-->
         <scene sceneID="LEh-9p-Ubj">
@@ -626,21 +626,35 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tsN-BA-IH4">
                                         <rect key="frame" x="20" y="235" width="374" height="75"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6b5-QS-Ujs">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6b5-QS-Ujs">
                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="Learn New Characters">
-                                                    <color key="titleColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="Learn New Characters">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="15" name="Baskerville"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
                                                 </state>
                                                 <connections>
                                                     <segue destination="SGK-gC-YUj" kind="show" identifier="learnNew" id="en8-Ll-JVs"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kjJ-a1-FSw">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kjJ-a1-FSw">
                                                 <rect key="frame" x="197" y="0.0" width="177" height="55"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="Review Characters">
-                                                    <color key="titleColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="Review Characters">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="15" name="Baskerville"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
                                                 </state>
                                                 <connections>
                                                     <segue destination="SGK-gC-YUj" kind="show" identifier="review" id="QVl-QF-nat"/>
@@ -787,7 +801,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1p-22-xE2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1180" y="185"/>
+            <point key="canvasLocation" x="-1168" y="286"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="9U5-rB-VuI">
@@ -1214,10 +1228,10 @@
             </objects>
             <point key="canvasLocation" x="645" y="-483"/>
         </scene>
-        <!--Create Module View Controller-->
+        <!--ModulesViewController-->
         <scene sceneID="vnJ-ll-50H">
             <objects>
-                <viewController id="Tfy-da-csh" customClass="CreateModuleViewController" customModule="ChineseCharacterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ModulesViewController" title="ModulesViewController" id="Tfy-da-csh" customClass="CreateModuleViewController" customModule="ChineseCharacterApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dhr-jw-pcc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1239,7 +1253,7 @@
                                                     <color key="titleColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="jic-dd-Lb1" kind="show" id="Pkk-On-Vok"/>
+                                                    <segue destination="jic-dd-Lb1" kind="show" identifier="CreateCancel" id="Pkk-On-Vok"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="js8-GR-NII">
@@ -1324,6 +1338,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="cancelCreateModuleButtonPressed:" destination="Tfy-da-csh" eventType="touchUpInside" id="sCr-B7-owI"/>
+                                                    <segue destination="jic-dd-Lb1" kind="show" id="r8Z-Ap-ge2"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pta-7K-hEN">
@@ -1404,7 +1419,7 @@
                                                     <color key="titleColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="BYZ-38-t0r" kind="show" id="1Bs-Jc-xtc"/>
+                                                    <segue destination="Agy-ah-BZl" kind="show" id="3bu-4q-Jxd"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJH-eu-Nof">
@@ -1531,9 +1546,11 @@
         <image name="puppy3" width="480" height="303"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Oyv-M6-exy"/>
-        <segue reference="fQs-EV-8Cn"/>
-        <segue reference="auD-8O-ozw"/>
+        <segue reference="UTV-w9-o9c"/>
+        <segue reference="3bu-4q-Jxd"/>
+        <segue reference="Gb1-Vw-imE"/>
+        <segue reference="QVl-QF-nat"/>
+        <segue reference="bpR-eK-p4I"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

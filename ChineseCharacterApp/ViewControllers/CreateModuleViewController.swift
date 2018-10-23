@@ -22,8 +22,18 @@ class CreateModuleViewController: UIViewController {
     }
     
     @IBAction func cancelCreateModuleButtonPressed(_ sender: Any) {
-        print("cancelled")
-        
+        let alert:UIAlertController = UIAlertController(title:"Cancel", message:"Are you sure you want to cancel?", preferredStyle: .actionSheet)
+        let yesAction:UIAlertAction = UIAlertAction(title:"Yes", style: .destructive)
+        { (_:UIAlertAction) in
+            self.performSegue(withIdentifier: "CreateCancel", sender: self)
+        }
+        let noAction:UIAlertAction = UIAlertAction(title:"No", style: .cancel)
+        { (_:UIAlertAction) in
+            print("No")
+        }
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        self.present(alert, animated:true)
     }
     
     @IBAction func saveModuleButtonPressed(_ sender: Any) {
