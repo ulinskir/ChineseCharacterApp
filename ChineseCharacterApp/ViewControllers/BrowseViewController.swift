@@ -13,7 +13,9 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var browseCollectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    var searching = false
     var Chars = [ChineseChar]()
+    var searchTerm = [ChineseChar]()
     var module = Module()
     
     override func viewDidLoad() {
@@ -57,7 +59,6 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
         print("HELLO")
         
     }
-    
 
     /*
     // MARK: - Navigation
@@ -69,32 +70,26 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     */
     
-    
-    
-    
-    
-    
-    
-    
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         var cell = collectionView.cellForItem(at: indexPath) as! UICollectionViewCell
+        
+        var usingData = searching ? searchTerm : Chars
         
         var Charlabel = cell.viewWithTag(1) as! UILabel
         var Deflabel = cell.viewWithTag(2) as! UILabel
         
-        if module.chineseChars.contains(where: {$0.char == Chars[indexPath.row].char}){
+        if module.chineseChars.contains(where: {$0.char == usingData[indexPath.row].char}){
             cell.backgroundColor = UIColor.white
             Charlabel.textColor = UIColor.black
             Deflabel.textColor = UIColor.black
             
-            module.chineseChars.removeAll(where: {$0.char == Chars[indexPath.row].char})
+            module.chineseChars.removeAll(where: {$0.char == usingData[indexPath.row].char})
         }else{
             cell.backgroundColor = UIColor(red:0.54, green:0.07, blue:0.00, alpha:1.0)
             Charlabel.textColor = UIColor.white
             Deflabel.textColor = UIColor.white
             
-            module.chineseChars.append(Chars[indexPath.row])
+            module.chineseChars.append(usingData[indexPath.row])
         }
         
         print("MODULE: [")
@@ -103,18 +98,14 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
         print("]")
         
-        
-        
     }
-    
-
     
      func numberOfSections(_ collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Chars.count
+        return searching ? searchTerm.count : Chars.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -123,7 +114,9 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
         var Charlabel = cell.viewWithTag(1) as! UILabel
         var Deflabel = cell.viewWithTag(2) as! UILabel
         
-        if module.chineseChars.contains(where: {$0.char == Chars[indexPath.row].char}){
+        var usingData = searching ? searchTerm : Chars
+        
+        if module.chineseChars.contains(where: {$0.char == usingData[indexPath.row].char}){
             cell.backgroundColor = UIColor(red:0.54, green:0.07, blue:0.00, alpha:1.0)
             Charlabel.textColor = UIColor.white
             Deflabel.textColor = UIColor.white
@@ -133,10 +126,23 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
             Deflabel.textColor = UIColor.black
         }
         
-        Deflabel.text = Chars[indexPath.row].definition
-        Charlabel.text = Chars[indexPath.row].char
+        
+        Deflabel.text = usingData[indexPath.row].definition
+        Charlabel.text = usingData[indexPath.row].char
         return cell
     }
 
 }
 
+extension BrowseViewController : UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("TYPING")
+        if searchText == ""{
+            searching = false
+        }else{
+            searchTerm = Chars.filter({$0.definition.lowercased().contains(searchText.lowercased())})
+            searching = true
+        }
+        self.browseCollectionView.reloadData()
+    }
+}
