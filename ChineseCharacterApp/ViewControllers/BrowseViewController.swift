@@ -82,7 +82,7 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
             cell.backgroundColor = UIColor.white
             Charlabel.textColor = UIColor.black
             Deflabel.textColor = UIColor.black
-            
+             
             module.chineseChars.removeAll(where: {$0.char == usingData[indexPath.row].char})
         }else{
             cell.backgroundColor = UIColor(red:0.54, green:0.07, blue:0.00, alpha:1.0)
