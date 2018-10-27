@@ -27,7 +27,7 @@ private func +(a:Point, b:Point) -> Point {
 }
 
 private func -(a:Point, b:Point) -> Point {
-    return (a.x - b.x, a.y - b.y)
+    return Point(x: a.x - b.x, y: a.y - b.y)
 }
 //private func - (a:Double,b:Double) -> Double {
 //    return a - b
