@@ -12,6 +12,9 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
 
     @IBOutlet weak var browseCollectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
+
+    @IBOutlet weak var saveButton: UIButton!
+    
     
     var searching = false
     var Chars = [ChineseChar]()
@@ -131,7 +134,10 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
         Charlabel.text = usingData[indexPath.row].char
         return cell
     }
-
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        print("DUH")
+    }
 }
 
 extension BrowseViewController : UISearchBarDelegate {
@@ -146,3 +152,4 @@ extension BrowseViewController : UISearchBarDelegate {
         self.browseCollectionView.reloadData()
     }
 }
+

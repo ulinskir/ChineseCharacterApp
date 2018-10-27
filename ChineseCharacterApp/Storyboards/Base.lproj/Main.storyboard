@@ -1257,6 +1257,9 @@
                                                     <constraint firstAttribute="width" constant="100" id="m6G-EO-Prv"/>
                                                 </constraints>
                                                 <state key="normal" title="Save as Module"/>
+                                                <connections>
+                                                    <action selector="saveButtonTapped:" destination="8Rv-Bi-lHb" eventType="touchUpInside" id="znY-9V-0x2"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -1284,6 +1287,7 @@
                     </view>
                     <connections>
                         <outlet property="browseCollectionView" destination="4N7-ME-SxF" id="2hv-p3-5fm"/>
+                        <outlet property="saveButton" destination="8P4-mm-uD6" id="1vs-PX-aXV"/>
                         <outlet property="searchBar" destination="gQr-9e-1sg" id="4OU-7q-Mov"/>
                     </connections>
                 </viewController>
@@ -1659,10 +1663,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="FxD-ch-sY0"/>
         <segue reference="D7X-3W-474"/>
-        <segue reference="r8Z-Ap-ge2"/>
-        <segue reference="QVl-QF-nat"/>
+        <segue reference="Oyv-M6-exy"/>
+        <segue reference="fQs-EV-8Cn"/>
         <segue reference="Hak-Or-E2q"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
