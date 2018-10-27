@@ -24,19 +24,19 @@ private func -(a:Point, b:Point) -> Point {
 }
 
 
-func quad_curve (_ p0: Point, _ p1: Point, _ p2: Point) -> ((Int) -> [Point]) {
-    func calculate (n: Int) -> [Point] {
-        var points:[Point] = []
-        for i in 0..<n {
-            // t is parameter for bezier curve
-            let t:Double = Double(i)/Double(n)
-            
-            
-            
-        }
-    }
-    return calculate
-}
+//func quad_curve (_ p0: Point, _ p1: Point, _ p2: Point) -> ((Int) -> [Point]) {
+//    func calculate (n: Int) -> [Point] {
+//        var points:[Point] = []
+//        for i in 0..<n {
+//            // t is parameter for bezier curve
+//            let t:Double = Double(i)/Double(n)
+//
+//
+//
+//        }
+//    }
+//    return calculate
+//}
 
 public extension UIBezierPath {
     convenience init (svgPath: String) {
