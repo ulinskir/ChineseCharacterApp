@@ -15,6 +15,7 @@ class CView: UIView {
     var path:UIBezierPath!
     var touchPoint:CGPoint!
     var startingPoint:CGPoint!
+    var lineJoin:CAShapeLayerLineJoin!
     
     override func layoutSubviews() {
         self.clipsToBounds = true
@@ -22,19 +23,22 @@ class CView: UIView {
         
         lineColor = UIColor.black
         lineWidth = 10
+        lineJoin = CAShapeLayerLineJoin.round
+        
     }
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
+        path = UIBezierPath()
         startingPoint = touch?.location(in: self)
+
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         touchPoint = touch?.location(in: self)
-        
-        path = UIBezierPath()
+
         path.move(to: startingPoint)
         path.addLine(to: touchPoint)
         startingPoint = touchPoint
@@ -42,8 +46,14 @@ class CView: UIView {
         drawShapeLayer()
     }
     
+//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//
+//    }
+    
     func drawShapeLayer() {
         let shapeLayer = CAShapeLayer()
+        shapeLayer.miterLimit = 20
+        shapeLayer.lineJoin = lineJoin
         shapeLayer.path = path.cgPath
         shapeLayer.strokeColor = lineColor.cgColor
         shapeLayer.lineWidth = lineWidth

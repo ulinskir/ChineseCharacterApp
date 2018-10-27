@@ -39,11 +39,21 @@ class ViewController: UIViewController {
         canvasView.clearCanvas()
         
     }
-    @IBAction func Recognize(_ sender: Any) {
-        let instanceOfRecognizer = Recognizer()
-        let result = instanceOfRecognizer.recognize(source: [(2,5),(10,6),(15,5)], target:[(2,5),(15,5)], offset: 0)
-        print(result.score)
-    }
+    var source:[(Int,Int)] = []
+    var target:[(Int,Int)] = []
+
+//    @IBAction func Recognize(_ sender: Any) {
+//        let instanceOfRecognizer = Recognizer()
+//        let result = instanceOfRecognizer.recognize(source: [(2,5),(9,6),(15,5)], target:[(2,5),(15,5)], offset: 0)
+//        print(result.score)
+//        if(result.warning != nil){
+//            print("warnings:",result.warning!)
+//        }
+//        if(result.penalties != nil){
+//            print("penalties:",result.penalties!)
+//        }
+//        
+//    }
     
 }
 

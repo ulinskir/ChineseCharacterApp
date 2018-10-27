@@ -247,6 +247,25 @@ private func resample(points: [CGPoint], totalPoints: Int) -> [Point] {
     return newPoints
 }
 
+/*
+ func svgToBezierPts
+ Takes as param an svg file and returns a list of
+ */
+
+// can't figure out how to write the closure in the parameter, will get back to it. Also still working on converting formulas to swift
+//private func bezierPtsToEquation(bPoints: [Point], totalPoints: Int) -> ReturnType in statements {
+//    // Take as param a list of points. It will be a list of 2, 3 or 4 points. These are the control points for the Bezier curve
+//    // Using these points, return the equation for
+//    switch totalPoints {
+//    case 2:
+//        return  //
+//    case 3:
+//        return // x = (1-t
+//    default:    // Functionally this is case 4, but Swift requires a default
+//        return //
+//    }
+//}
+
 func scorePairing (source: [Point], target: [Point], is_initial_segment: Bool) -> Double {
     
     // Angle offset
