@@ -36,6 +36,7 @@
 		58FAF4E7216511290029E876 /* ModuleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FAF4E6216511290029E876 /* ModuleDetailsViewController.swift */; };
 		92F1DFEC217FA680009652AF /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1DFEB217FA680009652AF /* CollectionViewController.swift */; };
 		92F1DFEF217FA698009652AF /* full_with_defs.json in Resources */ = {isa = PBXBuildFile; fileRef = 92F1DFEE217FA697009652AF /* full_with_defs.json */; };
+		92FEFC072184CA6B0011EBD4 /* ChineseCharacterAppModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92FEFC052184CA6B0011EBD4 /* ChineseCharacterAppModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		58FAF4E6216511290029E876 /* ModuleDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleDetailsViewController.swift; sourceTree = "<group>"; };
 		92F1DFEB217FA680009652AF /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewController.swift; path = ../../../collectionTest/collectionTest/CollectionViewController.swift; sourceTree = "<group>"; };
 		92F1DFEE217FA697009652AF /* full_with_defs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = full_with_defs.json; path = ../../../Downloads/full_with_defs.json; sourceTree = "<group>"; };
+		92FEFC062184CA6B0011EBD4 /* ChineseCharacterAppModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChineseCharacterAppModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +203,7 @@
 				580C3BD4217CD505002E8152 /* data */,
 				58EC0C5B2156B7EB00F9D1E6 /* Assets.xcassets */,
 				58EC0C602156B7EB00F9D1E6 /* Info.plist */,
+				92FEFC052184CA6B0011EBD4 /* ChineseCharacterAppModel.xcdatamodeld */,
 			);
 			path = ChineseCharacterApp;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92FEFC072184CA6B0011EBD4 /* ChineseCharacterAppModel.xcdatamodeld in Sources */,
 				58FAF4E521650C690029E876 /* ChineseChar.swift in Sources */,
 				581494C2216DA9E3000DC3B5 /* CreateModuleViewController.swift in Sources */,
 				58B3BCC4215ABB220049A8E5 /* ColorScheme.swift in Sources */,
@@ -702,6 +706,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		92FEFC052184CA6B0011EBD4 /* ChineseCharacterAppModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				92FEFC062184CA6B0011EBD4 /* ChineseCharacterAppModel.xcdatamodel */,
+			);
+			currentVersion = 92FEFC062184CA6B0011EBD4 /* ChineseCharacterAppModel.xcdatamodel */;
+			path = ChineseCharacterAppModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 58EC0C492156B7EA00F9D1E6 /* Project object */;
 }

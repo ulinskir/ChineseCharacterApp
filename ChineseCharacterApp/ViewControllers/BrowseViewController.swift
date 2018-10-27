@@ -6,6 +6,7 @@
 //  Copyright © 2018 Hamilton College CS Senior Seminar. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -136,7 +137,24 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        print("DUH")
+        var modName = "ModuleTest1"
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let context = appDelegate.persistentContainer.viewContext
+        for ch in module.chineseChars{
+            let newChar = NSEntityDescription.insertNewObject(forEntityName: "ModuleContent", into: context)
+            newChar.setValue(ch.char, forKey: "char")
+            newChar.setValue(modName, forKey: "name")
+            newChar.setValue(0, forKey: "learned")
+            
+            do{
+                try context.save()
+                print("SAVED")
+            }
+            catch{
+                print("FAIL")
+            }
+        }
     }
 }
 
