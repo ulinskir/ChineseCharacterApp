@@ -1659,11 +1659,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="FxD-ch-sY0"/>
         <segue reference="D7X-3W-474"/>
         <segue reference="r8Z-Ap-ge2"/>
         <segue reference="QVl-QF-nat"/>
-        <segue reference="Hak-Or-E2q"/>
+        <segue reference="DPe-GX-24C"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

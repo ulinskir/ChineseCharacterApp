@@ -20,6 +20,9 @@ class DrawCharacterViewController: UIViewController {
     @IBOutlet weak var submitButton: UIButton!
     var backgroundChar: UIImage!
     
+    var progress = 0.0
+    var questions = 25.0
+    
     
     @IBAction func hintButtonTapped(_ sender: Any) {
         drawingView.backgroundColor = UIColor(patternImage: backgroundChar)
@@ -50,6 +53,8 @@ class DrawCharacterViewController: UIViewController {
     @IBAction func submitButtonTapped(_ sender: Any) {
         //Recognize()
         //drawingView.clearCanvas()
+        progress += 0.1
+        progressBar.setProgress(Float(progress/questions), animated: true)
         switchChar()
     }
     
