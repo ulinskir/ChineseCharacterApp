@@ -19,6 +19,7 @@
 		58656483216481E10019C39C /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58656482216481E10019C39C /* Module.swift */; };
 		586564872164879D0019C39C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586564862164879D0019C39C /* ProfileViewController.swift */; };
 		58656489216487F90019C39C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58656488216487F90019C39C /* SettingsTableViewController.swift */; };
+		588A1D432184DFBD00A19ECD /* learningSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588A1D422184DFBD00A19ECD /* learningSession.swift */; };
 		58B3BCC2215AB7910049A8E5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3BCC1215AB7910049A8E5 /* Constants.swift */; };
 		58B3BCC4215ABB220049A8E5 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3BCC3215ABB220049A8E5 /* ColorScheme.swift */; };
 		58B3BCC6215AEA470049A8E5 /* ModulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3BCC5215AEA470049A8E5 /* ModulesViewController.swift */; };
@@ -34,7 +35,6 @@
 		58EC0C752156B7EB00F9D1E6 /* ChineseCharacterAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC0C742156B7EB00F9D1E6 /* ChineseCharacterAppUITests.swift */; };
 		58FAF4E521650C690029E876 /* ChineseChar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FAF4E421650C690029E876 /* ChineseChar.swift */; };
 		58FAF4E7216511290029E876 /* ModuleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FAF4E6216511290029E876 /* ModuleDetailsViewController.swift */; };
-		92F1DFEC217FA680009652AF /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1DFEB217FA680009652AF /* CollectionViewController.swift */; };
 		92F1DFEF217FA698009652AF /* full_with_defs.json in Resources */ = {isa = PBXBuildFile; fileRef = 92F1DFEE217FA697009652AF /* full_with_defs.json */; };
 		92FEFC072184CA6B0011EBD4 /* ChineseCharacterAppModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92FEFC052184CA6B0011EBD4 /* ChineseCharacterAppModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
@@ -69,6 +69,7 @@
 		58656482216481E10019C39C /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		586564862164879D0019C39C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		58656488216487F90019C39C /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		588A1D422184DFBD00A19ECD /* learningSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = learningSession.swift; sourceTree = "<group>"; };
 		58B3BCC1215AB7910049A8E5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		58B3BCC3215ABB220049A8E5 /* ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
 		58B3BCC5215AEA470049A8E5 /* ModulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesViewController.swift; sourceTree = "<group>"; };
@@ -90,8 +91,7 @@
 		58EC0C762156B7EB00F9D1E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58FAF4E421650C690029E876 /* ChineseChar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChineseChar.swift; sourceTree = "<group>"; };
 		58FAF4E6216511290029E876 /* ModuleDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleDetailsViewController.swift; sourceTree = "<group>"; };
-		92F1DFEB217FA680009652AF /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewController.swift; path = ../../../collectionTest/collectionTest/CollectionViewController.swift; sourceTree = "<group>"; };
-		92F1DFEE217FA697009652AF /* full_with_defs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = full_with_defs.json; path = ../../../Downloads/full_with_defs.json; sourceTree = "<group>"; };
+		92F1DFEE217FA697009652AF /* full_with_defs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = full_with_defs.json; path = "/Users/Risa/Documents/College/2018-19/fall/seminar/ChineseCharacterApp/ChineseCharacterApp/../../../Downloads/full_with_defs.json"; sourceTree = "<absolute>"; };
 		92FEFC062184CA6B0011EBD4 /* ChineseCharacterAppModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChineseCharacterAppModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,21 +143,21 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		580C3BD4217CD505002E8152 /* data */ = {
+		580C3BD4217CD505002E8152 /* ControlStructures */ = {
 			isa = PBXGroup;
 			children = (
+				588A1D422184DFBD00A19ECD /* learningSession.swift */,
 				58656482216481E10019C39C /* Module.swift */,
 				382E4C00216D76AE00D2A953 /* User.swift */,
 				58FAF4E421650C690029E876 /* ChineseChar.swift */,
 				58B3BCC1215AB7910049A8E5 /* Constants.swift */,
 			);
-			path = data;
+			path = ControlStructures;
 			sourceTree = "<group>";
 		};
 		58B3BCC0215AB6730049A8E5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				92F1DFEB217FA680009652AF /* CollectionViewController.swift */,
 				58FAF4E6216511290029E876 /* ModuleDetailsViewController.swift */,
 				58656488216487F90019C39C /* SettingsTableViewController.swift */,
 				58EC0C562156B7EA00F9D1E6 /* HomeViewController.swift */,
@@ -200,7 +200,7 @@
 				58B3BCC0215AB6730049A8E5 /* ViewControllers */,
 				580C3BD3217CD4E8002E8152 /* Storyboards */,
 				580C3BD2217CD4B1002E8152 /* Views */,
-				580C3BD4217CD505002E8152 /* data */,
+				580C3BD4217CD505002E8152 /* ControlStructures */,
 				58EC0C5B2156B7EB00F9D1E6 /* Assets.xcassets */,
 				58EC0C602156B7EB00F9D1E6 /* Info.plist */,
 				92FEFC052184CA6B0011EBD4 /* ChineseCharacterAppModel.xcdatamodeld */,
@@ -369,8 +369,8 @@
 				580B6D7B2176BD3700061F4A /* BrowseViewController.swift in Sources */,
 				580C3BD1217CD25B002E8152 /* DrawingView.swift in Sources */,
 				58B3BCC6215AEA470049A8E5 /* ModulesViewController.swift in Sources */,
+				588A1D432184DFBD00A19ECD /* learningSession.swift in Sources */,
 				58B3F88C217CD651003BF210 /* Recognizer.swift in Sources */,
-				92F1DFEC217FA680009652AF /* CollectionViewController.swift in Sources */,
 				580B6D7D2176C08A00061F4A /* CharacterDetailsViewController.swift in Sources */,
 				58FAF4E7216511290029E876 /* ModuleDetailsViewController.swift in Sources */,
 				382E4C01216D76AE00D2A953 /* User.swift in Sources */,

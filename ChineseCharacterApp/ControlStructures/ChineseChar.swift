@@ -15,6 +15,7 @@ class ChineseChar {
     var pinyin: [String]
     var decomposition: String
     var radical: String
+    var level: Int
     
     init(character: String, strks: [String], def: String, pin: [String], decomp: String, rad: String) {
         char = character
@@ -23,5 +24,18 @@ class ChineseChar {
         pinyin = pin
         radical = rad
         decomposition = decomp
+        level = 0
+    }
+}
+
+extension ChineseChar: Equatable {
+    static func == (lhs: ChineseChar, rhs: ChineseChar) -> Bool {
+        return lhs.char == rhs.char
+    }
+}
+
+extension ChineseChar: Hashable {
+    var hashValue: Int {
+        return char.hashValue 
     }
 }
