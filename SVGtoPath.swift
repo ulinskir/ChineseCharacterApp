@@ -36,6 +36,9 @@ private func -(a:Point, b:Point) -> Point {
 private func ^ (a: Double, b: Int) -> Double {
     return pow(a, Double(b))
 }
+private func linear_curve (_ p : [Point], t: Double) -> Point {
+    return ((1 - t) ** p[0]) + (t ** p[1])
+}
 
 func quad_curve(_ p : [Point], t: Double) -> Point {
     return (1 - t) ** (((1 - t) ** p[0]) + ((2 * (1 - t) * t) ** p[1]) + ((t ^ 2) ** p[2]))
