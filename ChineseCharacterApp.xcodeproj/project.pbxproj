@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		187576DD2184FAAE00F9A30F /* recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187576DB2184FAAE00F9A30F /* recognizer.swift */; };
+		187576DE2184FAAE00F9A30F /* SVGtoPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187576DC2184FAAE00F9A30F /* SVGtoPath.swift */; };
 		382E4C01216D76AE00D2A953 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382E4C00216D76AE00D2A953 /* User.swift */; };
 		580B6D7B2176BD3700061F4A /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B6D7A2176BD3700061F4A /* BrowseViewController.swift */; };
 		580B6D7D2176C08A00061F4A /* CharacterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B6D7C2176C08A00061F4A /* CharacterDetailsViewController.swift */; };
@@ -24,7 +26,6 @@
 		58B3BCC6215AEA470049A8E5 /* ModulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3BCC5215AEA470049A8E5 /* ModulesViewController.swift */; };
 		58B3BCC8215AEB8B0049A8E5 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3BCC7215AEB8B0049A8E5 /* Buttons.swift */; };
 		58B3BCCA215AF4460049A8E5 /* DrawCharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3BCC9215AF4460049A8E5 /* DrawCharacterViewController.swift */; };
-		58B3F88C217CD651003BF210 /* Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3F88B217CD651003BF210 /* Recognizer.swift */; };
 		58EC0C552156B7EA00F9D1E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC0C542156B7EA00F9D1E6 /* AppDelegate.swift */; };
 		58EC0C572156B7EA00F9D1E6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC0C562156B7EA00F9D1E6 /* HomeViewController.swift */; };
 		58EC0C5A2156B7EA00F9D1E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58EC0C582156B7EA00F9D1E6 /* Main.storyboard */; };
@@ -54,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		187576DB2184FAAE00F9A30F /* recognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = recognizer.swift; sourceTree = "<group>"; };
+		187576DC2184FAAE00F9A30F /* SVGtoPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGtoPath.swift; sourceTree = "<group>"; };
 		382E4C00216D76AE00D2A953 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		580B6D7A2176BD3700061F4A /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		580B6D7C2176C08A00061F4A /* CharacterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewController.swift; sourceTree = "<group>"; };
@@ -71,7 +74,6 @@
 		58B3BCC5215AEA470049A8E5 /* ModulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesViewController.swift; sourceTree = "<group>"; };
 		58B3BCC7215AEB8B0049A8E5 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		58B3BCC9215AF4460049A8E5 /* DrawCharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawCharacterViewController.swift; sourceTree = "<group>"; };
-		58B3F88B217CD651003BF210 /* Recognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Recognizer.swift; path = ChineseCharacterApp/Recognizer.swift; sourceTree = "<group>"; };
 		58EC0C512156B7EA00F9D1E6 /* ChineseCharacterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChineseCharacterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58EC0C542156B7EA00F9D1E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		58EC0C562156B7EA00F9D1E6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -171,7 +173,8 @@
 				58EC0C682156B7EB00F9D1E6 /* ChineseCharacterAppTests */,
 				58EC0C732156B7EB00F9D1E6 /* ChineseCharacterAppUITests */,
 				58EC0C522156B7EA00F9D1E6 /* Products */,
-				58B3F88B217CD651003BF210 /* Recognizer.swift */,
+				187576DB2184FAAE00F9A30F /* recognizer.swift */,
+				187576DC2184FAAE00F9A30F /* SVGtoPath.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -354,11 +357,12 @@
 				58B3BCC4215ABB220049A8E5 /* ColorScheme.swift in Sources */,
 				581494BE216D7F27000DC3B5 /* CharacterInModuleTableViewCell.swift in Sources */,
 				58EC0C572156B7EA00F9D1E6 /* HomeViewController.swift in Sources */,
+				187576DD2184FAAE00F9A30F /* recognizer.swift in Sources */,
 				586564872164879D0019C39C /* ProfileViewController.swift in Sources */,
+				187576DE2184FAAE00F9A30F /* SVGtoPath.swift in Sources */,
 				580B6D7B2176BD3700061F4A /* BrowseViewController.swift in Sources */,
 				580C3BD1217CD25B002E8152 /* DrawingView.swift in Sources */,
 				58B3BCC6215AEA470049A8E5 /* ModulesViewController.swift in Sources */,
-				58B3F88C217CD651003BF210 /* Recognizer.swift in Sources */,
 				580B6D7D2176C08A00061F4A /* CharacterDetailsViewController.swift in Sources */,
 				58FAF4E7216511290029E876 /* ModuleDetailsViewController.swift in Sources */,
 				382E4C01216D76AE00D2A953 /* User.swift in Sources */,
@@ -545,7 +549,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2252J2K943;
 				INFOPLIST_FILE = ChineseCharacterApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -563,7 +567,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2252J2K943;
 				INFOPLIST_FILE = ChineseCharacterApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import UIKit
 //import
+//typealias StrokePoint =
 
 // Result is for the scoring component
 typealias Result = (score:Double, source:(Point,Point)?, target: (Point,Point)?, warning: String?, penalties:Int?)
-// what you think it is.
+// what you think it is. Double precision points for increased accuracy
 typealias Point = (x:Double, y:Double)
 
 let kAngleThreshold = Double.pi / 5
@@ -30,23 +32,25 @@ let kOutOfOrderPenalty = 2;
 let kReversePenalty = 2;
 let kHookShapes:[[Point]] = [[(1, 3), (-3, -1)], [(3, 3), (0, -1)]];
 
+
 class util_fn {
     // A set of utility functions
     
     // Returns distance squared of 2 points
     func distance2 (point1: Point, point2: Point) -> Double {
-        return norm2(subtract(point1,point2))};
+        return norm2(subtract(point1, point2))};
     // Deepcopy of a point
-    let clone = {(_point:Point) -> Point in return (_point.x,_point.y)}
+    let clone = {(_point:Point) -> Point in return (_point.x, _point.y)}
     
     // Squares a point's coordinates. Basically just there for distance2.
     // Can't do exponents on floats apparently, so this is what we have now. If there is a better way def chage it.
-    let norm2 = {(_point:Point) -> Double in return (_point.x * _point.x) + (_point.y * _point.y) }
+    let norm2 = {(_point: Point) -> Double in return (_point.x * _point.x) + (_point.y * _point.y) }
     // Round both coordinates in a point
     let _round = {(point: Point) -> Point in return (round(point.x),round(point.y))}
     // Get the difference in X and Y coordinates
     let subtract = {(point1:Point,point2: Point) -> Point in return (point1.x - point2.x, point1.y - point2.y)}
-}
+    let cg_to_Point = {(cg:CGPoint) -> Point in return (Double(cg.x),Double(cg.y))}
+    }
 let util = util_fn()
 //func
 func angleDiff(angle1: Double, angle2: Double) -> Double {
@@ -62,8 +66,8 @@ func getAngle(median:[Point]) -> Double {
 }
 func getBounds(median: [Point]) -> [Point] {
     // finds the minimum and maximum x and y of a set of points
-    var _min:Point = (-Double.infinity, -Double.infinity)
-    var _max:Point = (Double.infinity, Double.infinity)
+    var _min:Point = (Double.infinity, Double.infinity)
+    var _max:Point = (-Double.infinity, -Double.infinity)
     
     for point in median {
         _min.x = min(_min.x, point.x);
@@ -81,7 +85,7 @@ func getMidpoint(median: [Point]) -> Point {
 
 func getMinimumLength (pair: [Point]) -> Double {
     // Gets distance between source and target, then adds kMinDistance
-    return sqrt(util.distance2(point1:pair[0], point2:pair[1])) + Double(kMinDistance);
+    return sqrt(util.distance2(point1: pair[0], point2: pair[1])) + Double(kMinDistance);
 }
 
 func hasHook (median: [Point]) -> Bool {
@@ -100,7 +104,7 @@ func match (median: [Point], shape: [Point]) -> Bool {
     // TODO: LOOK OVER THIS WITH ENERGETIC EYES
     if (median.count != shape.count + 1) {return false};
     for i in 0..<shape.count {
-        let angle = angleDiff(angle1: getAngle(median:Array(median[i...i+2])), angle2: getAngle(median:[(0, 0), shape[i]]));
+        let angle = angleDiff(angle1: getAngle(median: Array(median[i...i+2])), angle2: getAngle(median:[(0, 0), shape[i]]));
         if (angle >= kAngleThreshold) {return false};
     }
     return true;
@@ -119,8 +123,8 @@ func performAlignment (_source:[Point], _target:[Point]) -> Result {
     
     // A 0 and a bunch of -(infinity)
     var memo:[[Double]] = [Array(0..<source.count).map(
-        {(j:Int) -> Double in return (j > 0) ? -Double.infinity : 0})];
-        
+    {(j:Int) -> Double in return (j > 0) ? -Double.infinity : 0})];
+    
     // i iterates through target points
     // For every single point in the target, compares to every combination of 2 source points
     for i in 1..<target.count {
@@ -151,9 +155,14 @@ func performAlignment (_source:[Point], _target:[Point]) -> Result {
                 // memo[i - 1][k] is the score of the points up to the previous target point and up to the first source point that is getting checked
                 
                 let score = scorePairing(
-                    source:[source[k], source[j]], target:[target[i - 1], target[i]], is_initial_segment: i == 1);
+                   
+                    source:[source[k], source[j]], target: [target[i - 1], target[i]], is_initial_segment: i == 1);
                 // Compares the two points in the source to two adjacent points of target
-
+                if (score != -Double.infinity) {
+                    print(score)
+                }
+                
+                // Number of source segments being skipped
                 let penalty = (j - k - 1) * Int(kMissedSegmentPenalty);
                 
                 // looking at the previous row of memo, and passing on the best score if it's better than the score for this row
@@ -168,10 +177,10 @@ func performAlignment (_source:[Point], _target:[Point]) -> Result {
         memo.append(row);
     }
     var result:Result = (score: -Double.infinity,
-        source: nil,
-        target: nil,
-        warning: nil,
-        penalties: nil)
+                         source: nil,
+                         target: nil,
+                         warning: nil,
+                         penalties: nil)
     // is either target.count or target.count - 1
     let min_matched = target.count - (hasHook(median:target) ? 1 : 0);
     
@@ -188,49 +197,110 @@ func performAlignment (_source:[Point], _target:[Point]) -> Result {
         if (score > result.score) {
             result = (score:0.0,
                       source:(source[0], source[source.count - 1]),
-            target:(target[0], target[i]),
-            warning:i < target.count - 1 ? "Should hook." : nil,
-            penalties:0);
-
-
+                      target: (target[0], target[i]),
+                      warning: i < target.count - 1 ? "Should hook." : nil,
+                      penalties:0);
             
-//            result.penalties = 0;
-//            result.score = score;
-//            result.source = [source[0], source[source.count - 1]];
-//            result.target = [target[0], target[i]];
-//            result.warning = i < target.count - 1 ? "Should hook." : nil;
+            
         }
     }
     return result;
 }
 
-func scorePairing (source:[Point], target:[Point], is_initial_segment:Bool) -> Double {
+private func pathLength(path: [Point]) -> Double {
+    var length:Double = 0
+    for i in 0..<(path.count - 1) {
+        let p1 = path[i]
+        let p2 = path[i+1]
+        let dx = p2.x - p1.x
+        let dy = p2.y - p1.y
+        length += sqrt(dx * dx + dy * dy)
+    }
+    return length
+}
+private func resample(points: [CGPoint], totalPoints: Int) -> [Point] {
+    // Goes from a list of an arbitrary number of unevenly spaced CGPoints to a list of evenly spaced Points (double precision)
+    var initialPoints = points.map(util.cg_to_Point)
+    let interval = pathLength(path:initialPoints) / Double(totalPoints - 1)
+    var totalLength: Double = 0.0
+    var newPoints: [Point] = [initialPoints.first!]
+    
+    for i in 1..<initialPoints.count {
+        let currentLength = sqrt(util.distance2(point1: initialPoints[i-1], point2: initialPoints[i]));
+        
+        if ((totalLength+currentLength) >= interval) {
+            let qx = initialPoints[i-1].x + ((interval - totalLength) / currentLength) * (initialPoints[i].x - initialPoints[i-1].x)
+            let qy = initialPoints[i-1].y + ((interval - totalLength) / currentLength) * (initialPoints[i].y - initialPoints[i-1].y)
+            let q:Point = (qx,qy)
+            newPoints.append(q)
+            initialPoints.insert(q, at: i)
+            totalLength = 0.0
+            
+        } else {
+            totalLength += currentLength
+            }
+    }
+
+    if newPoints.count == totalPoints-1 {
+        newPoints.append(util.cg_to_Point(points.last!))
+    }
+    return newPoints
+}
+
+/*
+ func svgToBezierPts
+ Takes as param an svg file and returns a list of
+ */
+
+// can't figure out how to write the closure in the parameter, will get back to it. Also still working on converting formulas to swift
+//private func bezierPtsToEquation(bPoints: [Point], totalPoints: Int) -> ReturnType in statements {
+//    // Take as param a list of points. It will be a list of 2, 3 or 4 points. These are the control points for the Bezier curve
+//    // Using these points, return the equation for
+//    switch totalPoints {
+//    case 2:
+//        return  //
+//    case 3:
+//        return // x = (1-t
+//    default:    // Functionally this is case 4, but Swift requires a default
+//        return //
+//    }
+//}
+
+func scorePairing (source: [Point], target: [Point], is_initial_segment: Bool) -> Double {
     
     // Angle offset
     let angle = angleDiff(angle1:getAngle(median:source), angle2:getAngle(median:target));
     
     // Distance between midpoints
+    let targetMidpoint = getMidpoint(median:target)
+
+    let sourceMidpoint = getMidpoint(median:source)
     let distance = sqrt(util.distance2(
-        point1:getMidpoint(median:source), point2:getMidpoint(median:target)));
+        point1: sourceMidpoint, point2:targetMidpoint));
     
     // length ratio with abs(ln(x)) done to make the inputs make sense (just go with it)
     let length = abs(log(
-        getMinimumLength(pair:source) / getMinimumLength(pair:target)));
+        abs(getMinimumLength(pair:source) / getMinimumLength(pair:target))));
+    
+    print("sourceMidpoint: ", sourceMidpoint, "targetMidpoint", targetMidpoint)
     
     // If angle or distance or length are beyond the threshold, returns -infinity
     if (angle > (is_initial_segment ? 1 : 2) * kAngleThreshold ||
         distance > kDistanceThreshold || length > kLengthThreshold) {
+        print("failed_scorePairing")
         return -Double.infinity;
     }
     // Return the negative sum of the differences between angle, distance, and length
-    return -(angle + distance + length);
-}
+    return -angle - distance - length;
+//    print("angle:",angle,"distance",distance,"length",length)
+//    return 0.0
+    }
 class Recognizer: NSObject {
-    func recognize (source:[Point], target:[Point], offset:Double) -> Result {
+    func recognize (source:[Point], target:[Point], offset: Double) -> Result {
         // checks for stroke and reverse stroke
         
         if (offset > kMaxOutOfOrder)
-        {return (score: -Double.infinity,source:nil,target:nil,warning:nil,penalties:nil)};
+        {return (score: -Double.infinity,source: nil,target:nil,warning:nil,penalties:nil)};
         
         // Perform alignment and check score
         var result = performAlignment(_source:source, _target:target);
@@ -242,7 +312,7 @@ class Recognizer: NSObject {
             let alternative = performAlignment(_source:rev_source, _target:target);
             
             // yell at them
-            if (alternative.warning == nil) {
+            if (alternative.score != -Double.infinity) {
                 result = (score: alternative.score,
                           source: alternative.source,
                           target: alternative.target,
