@@ -9,33 +9,54 @@
 import Foundation
 import CoreGraphics
 import UIKit
+import Darwin
+
+infix operator **
 
 // MARK: UIBezierPath
-private func * (a: Point, b:Double)-> Point {
+func ** (a: Point, b:Double)-> Point {
     return (b*a.x,b*a.y)
 }
 
-private func * (a: Double, b:Point)-> Point {
+func ** (a: Double, b:Point)-> Point {
     return (b.x*a,a*b.y)
 }
 
 private func +(a:Point, b:Point) -> Point {
-    return Point(x: a.x + b.x, y: a.y + b.y)
+    return (a.x + b.x, a.y + b.y)
 }
 
 private func -(a:Point, b:Point) -> Point {
-    return Point(x: a.x - b.x, y: a.y - b.y)
+    return (a.x - b.x, a.y - b.y)
+}
+//private func - (a:Double,b:Double) -> Double {
+//    return a - b
+//}
+
+private func ^ (a: Double, b: Int) -> Double {
+    return pow(a, Double(b))
+}
+
+func quad_curve(_ p : [Point], t: Double) -> Point {
+    return (1 - t) ** (((1 - t) ** p[0]) + ((2 * (1 - t) * t) ** p[1]) + ((t ^ 2) ** p[2]))
+}
+func cubic_curve(_ p: [Point], t: Double) -> Point {
+    let tinv:Double = 1-t
+    let a:Point = (tinv ^ 3) ** p[0]
+    let b:Point = ((3 * tinv ^ 2) * t) ** p[1]
+    let c:Point = ((3 * tinv * (t ^ 2)) ** p[2]) + ((t ^ 3) ** p[3])
+    return a + b + c
 }
 
 
-
-func curve (p:[Point]) -> ((Int) -> [Point]) {
+func curve (p:[Point], bezierFunc: @escaping([Point], Double) -> Point) -> ((Int) -> [Point]) {
     func calculate (n: Int) -> [Point] {
         var points:[Point] = []
         for i in 0..<n {
             // t is parameter for bezier curve
             let t:Double = Double(i)/Double(n)
-            points.append((1 - t) * ((1 - t) * p[0] + (2 * (1 - t) * t * p[1]) + (t * t * p[2])))
+            points.append(bezierFunc(p, t))
+            
 
             
             
