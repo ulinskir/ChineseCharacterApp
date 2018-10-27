@@ -11,8 +11,12 @@ import CoreGraphics
 import UIKit
 
 // MARK: UIBezierPath
-private func *(a: Point, b:Double)-> Point {
+private func * (a: Point, b:Double)-> Point {
     return (b*a.x,b*a.y)
+}
+
+private func * (a: Double, b:Point)-> Point {
+    return (b.x*a,a*b.y)
 }
 
 private func +(a:Point, b:Point) -> Point {
@@ -24,16 +28,19 @@ private func -(a:Point, b:Point) -> Point {
 }
 
 
-func quad_curve (_ p0: Point, _ p1: Point, _ p2: Point) -> ((Int) -> [Point]) {
+
+func curve (p:[Point]) -> ((Int) -> [Point]) {
     func calculate (n: Int) -> [Point] {
         var points:[Point] = []
         for i in 0..<n {
             // t is parameter for bezier curve
             let t:Double = Double(i)/Double(n)
-            
+            points.append((1 - t) * ((1 - t) * p[0] + (2 * (1 - t) * t * p[1]) + (t * t * p[2])))
+
             
             
         }
+        return points
     }
     return calculate
 }
