@@ -822,12 +822,13 @@
                         <viewLayoutGuide key="safeArea" id="sil-Ew-yam"/>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="o4s-45-E0J" id="oTy-xX-rrc"/>
                         <outlet property="learnNewCharactersButton" destination="6b5-QS-Ujs" id="kmX-8p-1Ha"/>
                         <outlet property="moduleCharactersTableView" destination="JOt-01-gMc" id="SFQ-pM-zww"/>
                         <outlet property="moduleNameLabel" destination="U0x-Lj-oIr" id="1ep-jU-Gct"/>
                         <outlet property="moreOptionsButton" destination="wFV-nv-chk" id="PUb-0f-ZUw"/>
                         <outlet property="practiceAllCharactersButton" destination="LTn-PN-F63" id="t1c-6i-yKb"/>
-                        <outlet property="practiceOldCharactersButton" destination="kjJ-a1-FSw" id="YER-eE-O1F"/>
+                        <outlet property="reviewOldCharactersButton" destination="kjJ-a1-FSw" id="I33-V1-jua"/>
                         <outlet property="topBarLabel" destination="8fI-14-EAG" id="geu-ck-kaH"/>
                     </connections>
                 </viewController>
