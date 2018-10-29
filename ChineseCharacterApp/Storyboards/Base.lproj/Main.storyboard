@@ -615,7 +615,7 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0x-Lj-oIr">
-                                        <rect key="frame" x="112.66666666666669" y="76" width="189" height="158"/>
+                                        <rect key="frame" x="112.66666666666669" y="76" width="189" height="140"/>
                                         <attributedString key="attributedText">
                                             <fragment content="NAME">
                                                 <attributes>
@@ -628,7 +628,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tsN-BA-IH4">
-                                        <rect key="frame" x="20" y="235" width="374" height="75"/>
+                                        <rect key="frame" x="20" y="217" width="374" height="75"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6b5-QS-Ujs">
                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
@@ -672,8 +672,31 @@
                                             <constraint firstItem="kjJ-a1-FSw" firstAttribute="width" secondItem="6b5-QS-Ujs" secondAttribute="width" id="bn5-FW-phY"/>
                                         </constraints>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="nps-Lu-sJr">
+                                        <rect key="frame" x="118.66666666666669" y="293" width="177" height="75"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LTn-PN-F63">
+                                                <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="Practice All Characters">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="15" name="Baskerville"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="LTn-PN-F63" secondAttribute="bottom" constant="20" id="5fE-Ro-HtS"/>
+                                        </constraints>
+                                    </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGF-Xz-FpQ">
-                                        <rect key="frame" x="0.0" y="311" width="414" height="31.666666666666686"/>
+                                        <rect key="frame" x="0.0" y="369" width="414" height="28"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <attributedString key="attributedText">
                                             <fragment content=" Characters:">
@@ -687,7 +710,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JOt-01-gMc">
-                                        <rect key="frame" x="0.0" y="343.66666666666674" width="414" height="474.33333333333326"/>
+                                        <rect key="frame" x="0.0" y="398" width="414" height="420"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="charCell" rowHeight="174" id="j1C-MF-x32" customClass="CharacterInModuleTableViewCell" customModule="ChineseCharacterApp" customModuleProvider="target">
@@ -776,8 +799,10 @@
                                     <constraint firstAttribute="trailing" secondItem="JOt-01-gMc" secondAttribute="trailing" id="0sg-hY-OTG"/>
                                     <constraint firstItem="BGF-Xz-FpQ" firstAttribute="leading" secondItem="W7F-dN-kI2" secondAttribute="leading" id="1PH-xr-UdT"/>
                                     <constraint firstAttribute="trailing" secondItem="BGF-Xz-FpQ" secondAttribute="trailing" id="1nk-m2-65v"/>
+                                    <constraint firstItem="nps-Lu-sJr" firstAttribute="height" secondItem="FDk-ju-gi6" secondAttribute="height" id="432-mc-ZnL"/>
                                     <constraint firstItem="JOt-01-gMc" firstAttribute="height" secondItem="BGF-Xz-FpQ" secondAttribute="height" multiplier="15" id="LSt-a2-Dc3"/>
                                     <constraint firstItem="FDk-ju-gi6" firstAttribute="leading" secondItem="W7F-dN-kI2" secondAttribute="leading" id="NF1-BJ-TZw"/>
+                                    <constraint firstItem="LTn-PN-F63" firstAttribute="width" secondItem="6b5-QS-Ujs" secondAttribute="width" id="amp-Ha-jL6"/>
                                     <constraint firstItem="BGF-Xz-FpQ" firstAttribute="height" secondItem="U0x-Lj-oIr" secondAttribute="height" multiplier="1/5" id="eXr-nz-fDY"/>
                                     <constraint firstAttribute="trailing" secondItem="tsN-BA-IH4" secondAttribute="trailing" constant="20" id="f8F-B6-oWm"/>
                                     <constraint firstItem="JOt-01-gMc" firstAttribute="leading" secondItem="W7F-dN-kI2" secondAttribute="leading" id="lN2-5k-Kry"/>
@@ -1240,21 +1265,21 @@
                                         </cells>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="Bet-PR-SHj">
-                                        <rect key="frame" x="69.666666666666686" y="743" width="275" height="75"/>
+                                        <rect key="frame" x="44.666666666666657" y="743" width="325" height="75"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NhB-Gm-Ve8">
-                                                <rect key="frame" x="0.0" y="22.666666666666629" width="100" height="30"/>
+                                                <rect key="frame" x="0.0" y="22.666666666666629" width="125" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="F2v-Zz-lpY"/>
+                                                    <constraint firstAttribute="width" constant="125" id="F2v-Zz-lpY"/>
                                                 </constraints>
-                                                <state key="normal" title="Practice"/>
+                                                <state key="normal" title="Practice Selected"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8P4-mm-uD6">
-                                                <rect key="frame" x="175" y="22.666666666666629" width="100" height="30"/>
+                                                <rect key="frame" x="200" y="22.666666666666629" width="125" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="m6G-EO-Prv"/>
+                                                    <constraint firstAttribute="width" constant="125" id="m6G-EO-Prv"/>
                                                 </constraints>
                                                 <state key="normal" title="Save as Module"/>
                                                 <connections>
@@ -1610,10 +1635,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="D7X-3W-474"/>
-        <segue reference="Oyv-M6-exy"/>
-        <segue reference="fQs-EV-8Cn"/>
-        <segue reference="Hak-Or-E2q"/>
+        <segue reference="UTV-w9-o9c"/>
+        <segue reference="3bu-4q-Jxd"/>
+        <segue reference="Gb1-Vw-imE"/>
+        <segue reference="QVl-QF-nat"/>
+        <segue reference="DPe-GX-24C"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

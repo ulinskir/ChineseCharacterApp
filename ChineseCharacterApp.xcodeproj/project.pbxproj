@@ -91,7 +91,7 @@
 		58EC0C762156B7EB00F9D1E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58FAF4E421650C690029E876 /* ChineseChar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChineseChar.swift; sourceTree = "<group>"; };
 		58FAF4E6216511290029E876 /* ModuleDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleDetailsViewController.swift; sourceTree = "<group>"; };
-		92F1DFEE217FA697009652AF /* full_with_defs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = full_with_defs.json; path = "/Users/Risa/Documents/College/2018-19/fall/seminar/ChineseCharacterApp/ChineseCharacterApp/../../../Downloads/full_with_defs.json"; sourceTree = "<absolute>"; };
+		92F1DFEE217FA697009652AF /* full_with_defs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = full_with_defs.json; path = "/Users/Risa/Documents/College/2018-19/fall/seminar/ChineseCharacterApp/ChineseCharacterApp/full_with_defs.json"; sourceTree = "<absolute>"; };
 		92FEFC062184CA6B0011EBD4 /* ChineseCharacterAppModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChineseCharacterAppModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
