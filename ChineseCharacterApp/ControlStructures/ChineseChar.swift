@@ -26,6 +26,16 @@ class ChineseChar {
         decomposition = decomp
         level = 0
     }
+    
+    init(character: String, def: String,  decomp: String, rad: String) {
+        char = character
+        strokes = []
+        definition = def
+        pinyin = []
+        radical = rad
+        decomposition = decomp
+        level = 0
+    }
 }
 
 extension ChineseChar: Equatable {

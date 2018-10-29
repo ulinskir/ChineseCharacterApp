@@ -39,6 +39,8 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         // Load all the characters to display to Chars
         //Open the dictionary file
+        
+        /*
         guard let Dictpath = Bundle.main.path(forResource: "full_with_defs", ofType: "json") else {return}
         let Dicturl = URL(fileURLWithPath: Dictpath)
         
@@ -69,9 +71,24 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
             print(error)
         }
         
-        print("LOADED")
-        print(Chars.count)
-        print("HELLO")
+        */
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Char")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                print(data.value(forKey: "char") as! String)
+                let curChar = ChineseChar(character: (data.value(forKey: "char") as! String), def: (data.value(forKey: "definition") as! String), decomp: data.value(forKey: "decomposition") as! String, rad: data.value(forKey: "radical") as! String)
+                Chars.append(curChar)
+            }
+            
+        } catch {
+            print("Failed")
+        }
         
     }
 
