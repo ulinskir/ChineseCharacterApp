@@ -2,6 +2,11 @@
 //  BrowseViewController.swift
 //  ChineseCharacterApp
 //
+// Displays a collection of all the characters in the app
+// It can be filtered by definition through the search bar
+// Selected characters on this page can be saved as a module or used to
+// start a practice session.
+//
 //  Created by Risa Ulinski on 10/16/18.
 //  Copyright © 2018 Hamilton College CS Senior Seminar. All rights reserved.
 //
@@ -10,9 +15,11 @@ import CoreData
 import UIKit
 
 class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    
+    @IBOutlet weak var searchBar: UISearchBar!
 
     @IBOutlet weak var browseCollectionView: UICollectionView!
-    @IBOutlet weak var searchBar: UISearchBar!
 
     @IBOutlet weak var saveButton: UIButton!
     
@@ -25,8 +32,12 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Set self as the delegate and datasource of browseCollectionView, so that it
+        // can manage the data displays and interactions with it
         self.browseCollectionView.delegate = self
         self.browseCollectionView.dataSource = self
+        
+        // Load all the characters to display to Chars
         //Open the dictionary file
         guard let Dictpath = Bundle.main.path(forResource: "full_with_defs", ofType: "json") else {return}
         let Dicturl = URL(fileURLWithPath: Dictpath)
@@ -64,31 +75,28 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
         
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
+    // When a cell in the collection is selected, if it is not already selected
+    // highlight it and add it to the selected characters list; if it is selected
+    // unhighlight it and remove it from the list
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // get the selected cell
         var cell = collectionView.cellForItem(at: indexPath) as! UICollectionViewCell
         
+        //determine which dataSource to use
         var usingData = searching ? searchTerm : Chars
         
-        var Charlabel = cell.viewWithTag(1) as! UILabel
-        var Deflabel = cell.viewWithTag(2) as! UILabel
+        //get access to the character's labels to use for highlighting
+        let Charlabel = cell.viewWithTag(1) as! UILabel
+        let Deflabel = cell.viewWithTag(2) as! UILabel
         
+        //If character is already selected, deselected it; else, select it
         if module.chineseChars.contains(where: {$0.char == usingData[indexPath.row].char}){
             cell.backgroundColor = UIColor.white
             Charlabel.textColor = UIColor.black
             Deflabel.textColor = UIColor.black
              
             module.chineseChars.removeAll(where: {$0.char == usingData[indexPath.row].char})
-        }else{
+        } else {
             cell.backgroundColor = UIColor(red:0.54, green:0.07, blue:0.00, alpha:1.0)
             Charlabel.textColor = UIColor.white
             Deflabel.textColor = UIColor.white
@@ -104,19 +112,23 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
         
     }
     
-     func numberOfSections(_ collectionView: UICollectionView) -> Int {
+    // there is only 1 section in our collection
+     func numberOfSections(_ in: UICollectionView) -> Int {
         return 1
     }
     
+    //The number of rows to display in the collection: either all characters if there is no search term
+    // or the characters in the filtered list.
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return searching ? searchTerm.count : Chars.count
     }
     
+    // format an appearing character's cell in the colleciton appropriately based on whether it is selected or not
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LabelCell", for: indexPath) as UICollectionViewCell
         
-        var Charlabel = cell.viewWithTag(1) as! UILabel
-        var Deflabel = cell.viewWithTag(2) as! UILabel
+        let Charlabel = cell.viewWithTag(1) as! UILabel
+        let Deflabel = cell.viewWithTag(2) as! UILabel
         
         var usingData = searching ? searchTerm : Chars
         
@@ -136,6 +148,7 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
         return cell
     }
     
+    // Send the selected characters to the save module screen to be saved as a module
     @IBAction func saveButtonTapped(_ sender: Any) {
         var modName = "ModuleTest1"
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -158,6 +171,7 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
 }
 
+// Implements the search bar 
 extension BrowseViewController : UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("TYPING")

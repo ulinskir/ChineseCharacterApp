@@ -19,14 +19,13 @@ class CharacterDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
         chineseCharLabel.text = currChar?.char
         englishLabel.text = currChar?.definition
         pinyinLabel.text = currChar?.pinyin[0]
     }
     
+    // If going back to the module details view, send the current module
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if let destination = segue.destination as? ModuleDetailsViewController {
@@ -34,15 +33,5 @@ class CharacterDetailsViewController: UIViewController {
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
