@@ -31,7 +31,7 @@ class DrawCharacterViewController: UIViewController {
     var progress = 0.0
     var questions = 25.0
     
-    
+    var module:Module? = nil
     var backgroundChar: UIImage!
     
     // When hint button is tapped, give the user the correct hint, based on their
@@ -81,6 +81,8 @@ class DrawCharacterViewController: UIViewController {
         super.viewDidLoad()
         backgroundChar = UIImage(named: fire ? "kanji_mizu_water" : "fire")
         // Do any additional setup after loading the view.
+        
+        
     }
     
     var fire = false

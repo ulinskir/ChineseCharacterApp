@@ -177,7 +177,7 @@
                                                     <segue destination="BYZ-38-t0r" kind="show" identifier="DrawHome" id="DPe-GX-24C"/>
                                                 </connections>
                                             </button>
-                                            <progressView opaque="NO" contentMode="center" verticalHuggingPriority="750" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="Fkl-ta-TYs">
+                                            <progressView opaque="NO" contentMode="center" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fkl-ta-TYs">
                                                 <rect key="frame" x="31.333333333333343" y="0.0" width="311.66666666666663" height="19.333333333333332"/>
                                                 <color key="progressTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </progressView>
@@ -1278,6 +1278,10 @@
                                                     <constraint firstAttribute="width" constant="125" id="F2v-Zz-lpY"/>
                                                 </constraints>
                                                 <state key="normal" title="Practice Selected"/>
+                                                <connections>
+                                                    <action selector="PracticeSelectedPressed:" destination="8Rv-Bi-lHb" eventType="touchUpInside" id="8av-ny-iPl"/>
+                                                    <segue destination="SGK-gC-YUj" kind="show" id="YjR-t4-0aI"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8P4-mm-uD6">
                                                 <rect key="frame" x="200" y="22.666666666666629" width="125" height="30"/>
@@ -1639,11 +1643,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="UTV-w9-o9c"/>
         <segue reference="3bu-4q-Jxd"/>
-        <segue reference="Gb1-Vw-imE"/>
-        <segue reference="QVl-QF-nat"/>
-        <segue reference="DPe-GX-24C"/>
+        <segue reference="Pkk-On-Vok"/>
+        <segue reference="YjR-t4-0aI"/>
+        <segue reference="Hak-Or-E2q"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

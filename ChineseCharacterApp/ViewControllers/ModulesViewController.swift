@@ -118,7 +118,6 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if let destination = segue.destination as? ModuleDetailsViewController {

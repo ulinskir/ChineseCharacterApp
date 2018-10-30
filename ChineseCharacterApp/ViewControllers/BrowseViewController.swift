@@ -37,6 +37,8 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.browseCollectionView.delegate = self
         self.browseCollectionView.dataSource = self
         
+        // If going back to the draw character view, send the current module
+        
         // Load all the characters to display to Chars
         //Open the dictionary file
         
@@ -90,6 +92,13 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
             print("Failed")
         }
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if let destination = segue.destination as? DrawCharacterViewController {
+            destination.module = module
+        }
     }
 
     // When a cell in the collection is selected, if it is not already selected
@@ -185,6 +194,10 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
                 print("FAIL")
             }
         }
+    }
+    
+    @IBAction func PracticeSelectedPressed(_ sender: UIButton) {
+        
     }
 }
 
