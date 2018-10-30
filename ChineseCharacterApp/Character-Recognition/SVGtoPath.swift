@@ -36,20 +36,30 @@ private func -(a:Point, b:Point) -> Point {
 private func ^ (a: Double, b: Int) -> Double {
     return pow(a, Double(b))
 }
-private func linear_curve (_ p : [Point], t: Double) -> Point {
-    return ((1 - t) ** p[0]) + (t ** p[1])
-}
+//private func linear_curve (_ p : [Point], t: Double) -> Point {
+//    return ((1 - t) ** p[0]) + (t ** p[1])
+//}
+//
+//func quad_curve(_ p : [Point], t: Double) -> Point {
+//    return (1 - t) ** (((1 - t) ** p[0]) + ((2 * (1 - t) * t) ** p[1]) + ((t ^ 2) ** p[2]))
+//}
+//
+//func cubic_curve(_ p: [Point], t: Double) -> Point {
+//    let tinv:Double = 1-t
+//    // Formula: sum over i from 0 to 3, (t^i) * (1-t)^i * P_i
+//    return ((tinv ^ 3) ** p[0])
+//           + (((3 * tinv ^ 2) * t) ** p[1])
+//           + ((3 * tinv * (t ^ 2)) ** p[2])
+//           + ((t ^ 3) ** p[3])
+//}
 
-func quad_curve(_ p : [Point], t: Double) -> Point {
-    return (1 - t) ** (((1 - t) ** p[0]) + ((2 * (1 - t) * t) ** p[1]) + ((t ^ 2) ** p[2]))
-}
-func cubic_curve(_ p: [Point], t: Double) -> Point {
-    let tinv:Double = 1-t
-    let a:Point = ((tinv ^ 3) ** p[0])
-                  + (((3 * tinv ^ 2) * t) ** p[1])
-                  + ((3 * tinv * (t ^ 2)) ** p[2])
-                  + ((t ^ 3) ** p[3])
-    return a
+func bezier_curve(_ p: [Point], t: Double) -> Point {
+    let sum:Point = (0,0)
+    j = p.count
+    for i in 0..< {
+       sum += ((1-t) ^ (j-i)) * (t^i) * p[i]
+    }
+    return sum
 }
 
 
