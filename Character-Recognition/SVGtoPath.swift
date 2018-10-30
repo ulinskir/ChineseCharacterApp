@@ -18,6 +18,8 @@ func ** (a: Point, b:Double)-> Point {
     return (b*a.x,b*a.y)
 }
 
+
+
 func ** (a: Double, b:Point)-> Point {
     return (b.x*a,a*b.y)
 }
@@ -29,9 +31,7 @@ private func +(a:Point, b:Point) -> Point {
 private func -(a:Point, b:Point) -> Point {
     return Point(x: a.x - b.x, y: a.y - b.y)
 }
-//private func - (a:Double,b:Double) -> Double {
-//    return a - b
-//}
+
 
 private func ^ (a: Double, b: Int) -> Double {
     return pow(a, Double(b))
@@ -45,10 +45,11 @@ func quad_curve(_ p : [Point], t: Double) -> Point {
 }
 func cubic_curve(_ p: [Point], t: Double) -> Point {
     let tinv:Double = 1-t
-    let a:Point = (tinv ^ 3) ** p[0]
-    let b:Point = ((3 * tinv ^ 2) * t) ** p[1]
-    let c:Point = ((3 * tinv * (t ^ 2)) ** p[2]) + ((t ^ 3) ** p[3])
-    return a + b + c
+    let a:Point = ((tinv ^ 3) ** p[0])
+                  + (((3 * tinv ^ 2) * t) ** p[1])
+                  + ((3 * tinv * (t ^ 2)) ** p[2])
+                  + ((t ^ 3) ** p[3])
+    return a
 }
 
 

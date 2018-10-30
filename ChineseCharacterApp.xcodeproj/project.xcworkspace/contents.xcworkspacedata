@@ -2,6 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:ChineseCharacterApp.xcodeproj">
+      location = "group:../Character-Recognition/Recognizer.swift">
+   </FileRef>
+   <FileRef
+      location = "group:../Character-Recognition/SVGtoPath.swift">
+   </FileRef>
+   <FileRef
+      location = "group:../Character-Recognition">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
