@@ -295,7 +295,12 @@ func scorePairing (source: [Point], target: [Point], is_initial_segment: Bool) -
 //    print("angle:",angle,"distance",distance,"length",length)
 //    return 0.0
     }
-class Recognizer: NSObject {
+public class Recognizer:NSObject {
+    
+//    override convenience init() {
+//        self.init()
+//    }
+    
     func recognize (source:[Point], target:[Point], offset: Double) -> Result {
         // checks for stroke and reverse stroke
         

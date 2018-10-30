@@ -18,6 +18,7 @@ class DrawCharacterViewController: UIViewController {
     @IBOutlet weak var hintButton: UIButton!
     @IBOutlet weak var undoButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var Recognizer: Recognizer!
     var backgroundChar: UIImage!
     
     
@@ -51,9 +52,9 @@ class DrawCharacterViewController: UIViewController {
         //drawingView.clearCanvas()
     }
      func Recognize() {
-//        let instanceOfRecognizer = Character-Recognition/Recognizer()
-//        let result = instanceOfRecognizer.recognize(source: [(2,5),(10,6),(15,5)], target:[(2,5),(15,5)], offset: 0)
-//        print(result.score)
+//        let instanceOfRecognizer = Recognizer()
+        let result = Recognizer.recognize(source: [(2,5),(10,6),(15,5)], target:[(2,5),(15,5)], offset: 0)
+        print(result.score)
     }
 
 

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <Group
+      location = "group:/Users/kkahn/Documents/GitHub/ChineseCharacterApp/ChineseCharacterApp/Character-Recognition"
+      name = "Character-Recognition">
+      <FileRef
+         location = "group:SVGtoPath.swift">
+      </FileRef>
+      <FileRef
+         location = "group:Recognizer.swift">
+      </FileRef>
+   </Group>
    <FileRef
-      location = "group:../Character-Recognition/Recognizer.swift">
-   </FileRef>
-   <FileRef
-      location = "group:../Character-Recognition/SVGtoPath.swift">
-   </FileRef>
-   <FileRef
-      location = "group:../Character-Recognition">
-   </FileRef>
-   <FileRef
-      location = "self:">
+      location = "self:ChineseCharacterApp.xcodeproj">
    </FileRef>
 </Workspace>
