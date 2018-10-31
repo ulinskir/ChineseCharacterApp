@@ -112,16 +112,16 @@ func get_curve_fn (_ p:[Point]) -> ((Int) -> [Point]) {
 }
 
 
-//public class bezierPoints {
-//    convenience init (svgPath: String) {
-//        self.init()
-//        self.points = get_points(from: SVGPath(svgPath))
-//    }
-//    
-//    func get_points(from svgPath: SVGPath) {
-//        
-//    }
-//}
+public class bezierPoints {
+    convenience init (svgPath: String) {
+        self.init()
+        self.points = get_points(from: SVGPath(svgPath))
+    }
+
+    func get_points(from svgPath: SVGPath) {
+
+    }
+}
 public extension UIBezierPath {
     convenience init (svgPath: String) {
         self.init()
