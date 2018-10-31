@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		18EFD5402188D55600C09279 /* Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFD53D2188D39F00C09279 /* Recognizer.swift */; };
+		18EFD5482188F02400C09279 /* SVGtoPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFD53C2188D39F00C09279 /* SVGtoPath.swift */; };
 		382E4C01216D76AE00D2A953 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382E4C00216D76AE00D2A953 /* User.swift */; };
 		580B6D7B2176BD3700061F4A /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B6D7A2176BD3700061F4A /* BrowseViewController.swift */; };
 		580B6D7D2176C08A00061F4A /* CharacterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B6D7C2176C08A00061F4A /* CharacterDetailsViewController.swift */; };
@@ -372,6 +373,7 @@
 				18EFD5402188D55600C09279 /* Recognizer.swift in Sources */,
 				580B6D7D2176C08A00061F4A /* CharacterDetailsViewController.swift in Sources */,
 				58FAF4E7216511290029E876 /* ModuleDetailsViewController.swift in Sources */,
+				18EFD5482188F02400C09279 /* SVGtoPath.swift in Sources */,
 				382E4C01216D76AE00D2A953 /* User.swift in Sources */,
 				58B3BCC8215AEB8B0049A8E5 /* Buttons.swift in Sources */,
 				581494C0216D9944000DC3B5 /* ProfileTableViewCell.swift in Sources */,

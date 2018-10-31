@@ -11,24 +11,22 @@ import CoreGraphics
 import UIKit
 import Darwin
 
-infix operator **
+// Multiplying a Point by a scalar.
+//infix operator **
+//
+//func ** (a: Point, b:Double)-> Point {
+//    return (b*a.x,b*a.y)
+//}
 
-// MARK: UIBezierPath
-func ** (a: Point, b:Double)-> Point {
-    return (b*a.x,b*a.y)
-}
-
-
-
-func ** (a: Double, b:Point)-> Point {
+private func * (a: Double, b:Point)-> Point {
     return (b.x*a,a*b.y)
 }
 
-private func +(a:Point, b:Point) -> Point {
+private func + (a:Point, b:Point) -> Point {
     return (a.x + b.x, a.y + b.y)
 }
 
-private func -(a:Point, b:Point) -> Point {
+private func - (a:Point, b:Point) -> Point {
     return Point(x: a.x - b.x, y: a.y - b.y)
 }
 
@@ -36,6 +34,26 @@ private func -(a:Point, b:Point) -> Point {
 private func ^ (a: Double, b: Int) -> Double {
     return pow(a, Double(b))
 }
+
+private func nCr (_ a: Int, _ b: Int) -> Int {
+    // Choose operator that works when you're choosing from a set less than size 3 ONLY.
+    assert(a >= b && a >= 0 && b >= 0)
+    assert(a <= 3)
+    if b == 0 || a-b==0 {
+        return 1
+    } else {
+        return a
+    }
+}
+//    var prod:Int = 1
+//
+//    // compute (a!)/(b!)
+//    for i in b + 1..<a+1 {
+//        prod *= i
+//    }
+    
+    
+
 //private func linear_curve (_ p : [Point], t: Double) -> Point {
 //    return ((1 - t) ** p[0]) + (t ** p[1])
 //}
@@ -52,34 +70,58 @@ private func ^ (a: Double, b: Int) -> Double {
 //           + ((3 * tinv * (t ^ 2)) ** p[2])
 //           + ((t ^ 3) ** p[3])
 //}
+//func curve (p:[Point], bezierFunc: @escaping([Point], Double) -> Point) -> ((Int) -> [Point]) {
+//    func calculate (n: Int) -> [Point] {
+//        var points:[Point] = []
+//        for i in 0..<n {
+//            // t is parameter for bezier curve
+//            let t:Double = Double(i)/Double(n)
+//            points.append(bezierFunc(p, t))
+//        }
+//        return points
+//    }
+//    return calculate
+//}
 
-func bezier_curve(_ p: [Point], t: Double) -> Point {
-    let sum:Point = (0,0)
-    j = p.count
-    for i in 0..< {
-       sum += ((1-t) ^ (j-i)) * (t^i) * p[i]
+func bezier_curve(_ p: [Point],_ t: Double) -> Point {
+    var sum:Point = (0,0)
+    let j = p.count
+    // Formula: sum from i=0 to j (t^i) * (1-t)^i * P_i
+    for i in 0..<j {
+        // If I wanted to use += I'd have to implement it and that's not worth it.
+        sum = sum + (Double(nCr(j,i)) * (1-t) ^ (j-i)) * (t^i) * p[i]
     }
     return sum
 }
 
-
-func curve (p:[Point], bezierFunc: @escaping([Point], Double) -> Point) -> ((Int) -> [Point]) {
+func get_curve_fn (_ p:[Point]) -> ((Int) -> [Point]) {
+    // Takes a list of points and then returns the function to get a bezier curve over N points.
+    // Glorified curry
+    
+    // This made more sense when it was also getting passed a function but it still works.
     func calculate (n: Int) -> [Point] {
         var points:[Point] = []
         for i in 0..<n {
             // t is parameter for bezier curve
             let t:Double = Double(i)/Double(n)
-            points.append(bezierFunc(p, t))
-            
-
-            
-            
+            points.append(bezier_curve(p, t))
         }
         return points
     }
     return calculate
 }
 
+
+//public class bezierPoints {
+//    convenience init (svgPath: String) {
+//        self.init()
+//        self.points = get_points(from: SVGPath(svgPath))
+//    }
+//    
+//    func get_points(from svgPath: SVGPath) {
+//        
+//    }
+//}
 public extension UIBezierPath {
     convenience init (svgPath: String) {
         self.init()
