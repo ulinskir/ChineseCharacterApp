@@ -72,25 +72,6 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
             print(error)
         }
         
-        /*
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Char")
-        request.returnsObjectsAsFaults = false
-        do {
-            let result = try context.fetch(request)
-            for data in result as! [NSManagedObject] {
-                print(data.value(forKey: "char") as! String)
-                let curChar = ChineseChar(character: (data.value(forKey: "char") as! String), def: (data.value(forKey: "definition") as! String), decomp: data.value(forKey: "decomposition") as! String, rad: data.value(forKey: "radical") as! String)
-                Chars.append(curChar)
-            }
-            
-        } catch {
-            print("Failed")
-        }
-        */
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -175,23 +156,48 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     // Send the selected characters to the save module screen to be saved as a module
     @IBAction func saveButtonTapped(_ sender: Any) {
-        var modName = "ModuleTest1"
+        var modName = "ModuleTest4"
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let context = appDelegate.persistentContainer.viewContext
+        let newMod = NSEntityDescription.insertNewObject(forEntityName: "ModuleContent", into: context)
+        newMod.setValue(modName, forKey: "name")
+        var charsSet = newMod.mutableSetValue(forKey: "chars")
+        
         for ch in module.chineseChars{
-            let newChar = NSEntityDescription.insertNewObject(forEntityName: "ModuleContent", into: context)
-            newChar.setValue(ch.char, forKey: "char")
-            newChar.setValue(modName, forKey: "name")
-            newChar.setValue(0, forKey: "learned")
+            if charExists(char: ch.char) == false
+            {
+                print("add CHAR to DB")
+                let newChar = NSEntityDescription.insertNewObject(forEntityName: "Char", into: context)
+                newChar.setValue(ch.char, forKey: "char")
+                newChar.setValue(ch.definition, forKey: "definition")
+                newChar.setValue(ch.decomposition, forKey:"decomposition")
+                newChar.setValue(0, forKey: "learned")
+                newChar.setValue(ch.radical, forKey: "radical")
+            }
             
             do{
-                try context.save()
-                print("SAVED")
-            }
-            catch{
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Char")
+                fetchRequest.predicate = NSPredicate(format: "char = %@", ch.char)
+                let charInDB = try context.fetch(fetchRequest) as! [Char]
+                if charInDB.count > 1{
+                    print("WHOOPS - TOO MANY")
+                }
+                else{
+                    charsSet.add(charInDB[0])
+                }
+            }catch{
                 print("FAIL")
             }
+            
+        }
+        
+        do{
+            try context.save()
+            print("SAVED")
+        }
+        catch{
+            print("FAIL")
         }
     }
     
@@ -214,3 +220,21 @@ extension BrowseViewController : UISearchBarDelegate {
     }
 }
 
+func charExists(char: String) -> Bool {
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Char")
+    fetchRequest.includesSubentities = false
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = appDelegate.persistentContainer.viewContext
+    
+    var entitiesCount = 0
+    
+    do {
+        entitiesCount = try context.count(for: fetchRequest)
+    }
+    catch {
+        print("error executing fetch request: \(error)")
+    }
+    
+    return entitiesCount > 0
+}

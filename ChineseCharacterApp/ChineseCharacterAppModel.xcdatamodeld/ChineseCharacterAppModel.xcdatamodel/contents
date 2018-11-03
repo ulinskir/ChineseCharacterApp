@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Char" representedClassName="Char" syncable="YES" codeGenerationType="class">
-        <attribute name="char" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="decomposition" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="definition" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="radical" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="char" attributeType="String" syncable="YES"/>
+        <attribute name="decomposition" attributeType="String" syncable="YES"/>
+        <attribute name="definition" attributeType="String" syncable="YES"/>
+        <attribute name="learned" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="radical" attributeType="String" syncable="YES"/>
+        <relationship name="modules" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModuleContent" inverseName="chars" inverseEntity="ModuleContent" syncable="YES"/>
     </entity>
     <entity name="ModuleContent" representedClassName="ModuleContent" syncable="YES" codeGenerationType="class">
-        <attribute name="char" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="learned" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="chars" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Char" inverseName="modules" inverseEntity="Char" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Char" positionX="-36" positionY="9" width="128" height="105"/>
-        <element name="ModuleContent" positionX="0" positionY="72" width="128" height="90"/>
+        <element name="Char" positionX="-36" positionY="9" width="128" height="135"/>
+        <element name="ModuleContent" positionX="0" positionY="72" width="128" height="75"/>
     </elements>
 </model>

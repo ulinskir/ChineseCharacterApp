@@ -63,7 +63,8 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         // Set the text labels to the chinese, english and pinyin respectively
         cell.chineseCharLabel.text = module?.chineseChars[indexPath.row].char
         cell.englishLabel.text = module?.chineseChars[indexPath.row].definition
-        cell.pinyinLabel.text = module?.chineseChars[indexPath.row].pinyin[0]
+        cell.pinyinLabel.text = module?.chineseChars[indexPath.row].pinyin.joined()
+        //cell.pinyinLabel.text = "DON'T KNOW YET"
         cell.clipsToBounds = true
         
         // Return our new cell for display
