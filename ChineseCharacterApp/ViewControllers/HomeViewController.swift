@@ -37,5 +37,8 @@ class HomeViewController: UIViewController {
         if let destination = segue.destination as? ProfileViewController {
             destination.image = defaultProfiles[randomNum]
         }
+        if let destination = segue.destination as? DrawCharacterViewController {
+            destination.module = Module(name: "String", chineseChars: [])
+        }
     }
 }

@@ -74,6 +74,7 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
         
     }
     
+    //Transition to draw character view controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if let destination = segue.destination as? DrawCharacterViewController {
@@ -119,7 +120,7 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     // there is only 1 section in our collection
-     func numberOfSections(_ in: UICollectionView) -> Int {
+    func numberOfSections(in: UICollectionView) -> Int {
         return 1
     }
     

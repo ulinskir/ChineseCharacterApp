@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -244,11 +244,30 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mao-JJ-pTZ" customClass="DrawingView" customModule="ChineseCharacterApp" customModuleProvider="target">
+                                    <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="rT3-MW-9cM">
                                         <rect key="frame" x="0.0" y="231.33333333333331" width="374" height="373.99999999999994"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8P-Ip-9Ia">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="374"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mao-JJ-pTZ" customClass="DrawingView" customModule="ChineseCharacterApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="374"/>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="Mao-JJ-pTZ" secondAttribute="height" multiplier="1:1" id="1WP-Oa-jQU"/>
+                                            <constraint firstItem="Mao-JJ-pTZ" firstAttribute="top" secondItem="rT3-MW-9cM" secondAttribute="top" id="32Q-OO-LtJ"/>
+                                            <constraint firstItem="Mao-JJ-pTZ" firstAttribute="leading" secondItem="rT3-MW-9cM" secondAttribute="leading" id="IzG-a6-7El"/>
+                                            <constraint firstItem="f8P-Ip-9Ia" firstAttribute="leading" secondItem="rT3-MW-9cM" secondAttribute="leading" id="OvN-en-wFb"/>
+                                            <constraint firstAttribute="width" secondItem="rT3-MW-9cM" secondAttribute="height" multiplier="1:1" id="UOq-hc-fPl"/>
+                                            <constraint firstAttribute="trailing" secondItem="Mao-JJ-pTZ" secondAttribute="trailing" id="Wgn-rN-gPd"/>
+                                            <constraint firstItem="f8P-Ip-9Ia" firstAttribute="top" secondItem="rT3-MW-9cM" secondAttribute="top" id="dkn-Bz-0tZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="f8P-Ip-9Ia" secondAttribute="trailing" id="lT5-7J-Hzr"/>
+                                            <constraint firstAttribute="bottom" secondItem="f8P-Ip-9Ia" secondAttribute="bottom" id="ug6-Ia-xBO"/>
+                                            <constraint firstAttribute="bottom" secondItem="Mao-JJ-pTZ" secondAttribute="bottom" id="zL3-k7-6II"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="12b-2s-pXi">
@@ -317,7 +336,6 @@
                                     <constraint firstItem="M3K-T2-L1C" firstAttribute="height" secondItem="GKh-JP-gER" secondAttribute="height" id="A1N-As-tF4"/>
                                     <constraint firstItem="12b-2s-pXi" firstAttribute="width" secondItem="vHh-47-1mm" secondAttribute="width" id="DdX-e8-zIN"/>
                                     <constraint firstItem="GKh-JP-gER" firstAttribute="height" secondItem="vHh-47-1mm" secondAttribute="height" multiplier="4" id="DnI-K8-6C4"/>
-                                    <constraint firstItem="Mao-JJ-pTZ" firstAttribute="width" secondItem="vHh-47-1mm" secondAttribute="width" id="JpE-1n-IIK"/>
                                     <constraint firstItem="HpH-JT-OCo" firstAttribute="height" secondItem="vHh-47-1mm" secondAttribute="height" multiplier="4" id="LFh-SM-tpd"/>
                                     <constraint firstItem="GKh-JP-gER" firstAttribute="width" secondItem="vHh-47-1mm" secondAttribute="width" id="PnM-6B-gjN"/>
                                     <constraint firstItem="HpH-JT-OCo" firstAttribute="width" secondItem="vHh-47-1mm" secondAttribute="width" id="Ysb-1T-WnJ"/>
@@ -336,6 +354,7 @@
                     </view>
                     <connections>
                         <outlet property="audioButton" destination="4r7-Y9-727" id="fP9-fM-M3z"/>
+                        <outlet property="backgroundCharLabel" destination="f8P-Ip-9Ia" id="rWq-Wt-FBj"/>
                         <outlet property="drawingView" destination="Mao-JJ-pTZ" id="31t-xU-JF3"/>
                         <outlet property="exitButton" destination="tDQ-1C-tBn" id="D29-eV-MFj"/>
                         <outlet property="hintButton" destination="DOG-0M-qHB" id="7Wz-jx-ZVD"/>
@@ -1646,7 +1665,7 @@
         <segue reference="3bu-4q-Jxd"/>
         <segue reference="Pkk-On-Vok"/>
         <segue reference="YjR-t4-0aI"/>
-        <segue reference="Hak-Or-E2q"/>
+        <segue reference="DPe-GX-24C"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

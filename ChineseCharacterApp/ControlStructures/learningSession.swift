@@ -14,15 +14,37 @@ import Foundation
 class LearningSesion {
     var charsToPractice: [ChineseChar]
     var charsAlreadyPracticed: [Int : Double]
+    var level: Int
+    var current: Int
     
     init() {
         charsToPractice = []
         charsAlreadyPracticed = [:]
+        level = 0
+        current = 0
     }
     
     init(charsToPractice:[ChineseChar]) {
         self.charsToPractice = charsToPractice
         charsAlreadyPracticed = [:]
+        level = 0
+        current = 0
+
+    }
+    
+    init(charsToPractice:[ChineseChar], level: Int) {
+        self.charsToPractice = charsToPractice
+        charsAlreadyPracticed = [:]
+        self.level = level
+        current = 0
+
+    }
+    
+    func getCurrentChar() -> ChineseChar? {
+        if current > 0 && current < charsToPractice.count {
+            return charsToPractice[current]
+        }
+        return nil
     }
     
     func progress() -> Double {

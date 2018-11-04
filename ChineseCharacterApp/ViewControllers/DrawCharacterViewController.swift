@@ -21,6 +21,7 @@ class DrawCharacterViewController: UIViewController {
     @IBOutlet weak var audioButton: UIButton! // Stretch goal-> get audio for characters
     
     @IBOutlet weak var drawingView: DrawingView! // a canvas to draw characters on
+    @IBOutlet weak var backgroundCharLabel: UILabel!
     
     // Controls for the drawing view
     @IBOutlet weak var hintButton: UIButton!
@@ -28,19 +29,18 @@ class DrawCharacterViewController: UIViewController {
     
     @IBOutlet weak var submitButton: UIButton!
     
-    var progress = 0.0
-    var questions = 25.0
-    
     var module:Module? = nil
+    var ls:LearningSesion? = nil
     var backgroundChar: UIImage!
     
     // When hint button is tapped, give the user the correct hint, based on their
     // level for the current character
     // TO DO: implement this
     @IBAction func hintButtonTapped(_ sender: Any) {
-        drawingView.backgroundColor = UIColor(patternImage: backgroundChar)
+        //drawingView.backgroundColor = UIColor(patternImage: backgroundChar)
+        displayChar()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.drawingView.backgroundColor = UIColor.white
+            self.backgroundCharLabel.text = ""
         }
     }
     
@@ -72,17 +72,14 @@ class DrawCharacterViewController: UIViewController {
     @IBAction func submitButtonTapped(_ sender: Any) {
         //Recognize()
         //drawingView.clearCanvas()
-        progress += 4
-        progressBar.setProgress(Float(progress/questions), animated: true)
+        progressBar.setProgress(Float(ls!.progress()), animated: true)
         switchChar()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        backgroundChar = UIImage(named: fire ? "kanji_mizu_water" : "fire")
-        // Do any additional setup after loading the view.
-        
-        
+        //backgroundChar = UIImage(named: fire ? "kanji_mizu_water" : "fire")
+        ls = LearningSesion(charsToPractice: module!.chineseChars,level: 0)
     }
     
     var fire = false
@@ -90,6 +87,18 @@ class DrawCharacterViewController: UIViewController {
         backgroundChar = UIImage(named: fire ? "kanji_mizu_water" : "fire")
         fire = !fire
         //drawingView.clearCanvas()
+    }
+    
+    func displayChar() {
+        let char = ls!.getCurrentChar()
+        var charChar: String
+        charChar = "门"
+        backgroundCharLabel.text = charChar
+        let size: CGFloat = drawingView.frame.size.width
+        backgroundCharLabel.font = backgroundCharLabel.font.withSize(size)
+
+        print(backgroundCharLabel.text)
+        
     }
     
     func Recognize() {
