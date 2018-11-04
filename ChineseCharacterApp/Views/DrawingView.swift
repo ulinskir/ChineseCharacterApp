@@ -17,6 +17,7 @@ class DrawingView: UIView {
     var path:UIBezierPath!
     var touchPoint:CGPoint!
     var startingPoint:CGPoint!
+    var lastPoint:CGPoint!
     
     override func layoutSubviews() {
         self.clipsToBounds = true
@@ -40,6 +41,13 @@ class DrawingView: UIView {
         path.move(to: startingPoint)
         path.addLine(to: touchPoint)
         startingPoint = touchPoint
+        
+        drawShapeLayer()
+    }
+    
+    func drawChar(_ svg: String) {
+        path = UIBezierPath(svgPath: svg)
+        lineColor = UIColor.blue
         
         drawShapeLayer()
     }

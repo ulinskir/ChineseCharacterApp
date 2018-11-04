@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		184D2EA9218F73E6008E31B2 /* Match_Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184D2EA8218F73E6008E31B2 /* Match_Main.swift */; };
+		184D2EAB218F7702008E31B2 /* Resample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184D2EAA218F7702008E31B2 /* Resample.swift */; };
 		18EFD5402188D55600C09279 /* Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFD53D2188D39F00C09279 /* Recognizer.swift */; };
 		18EFD5482188F02400C09279 /* SVGtoPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFD53C2188D39F00C09279 /* SVGtoPath.swift */; };
 		382E4C01216D76AE00D2A953 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382E4C00216D76AE00D2A953 /* User.swift */; };
@@ -57,6 +58,7 @@
 
 /* Begin PBXFileReference section */
 		184D2EA8218F73E6008E31B2 /* Match_Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match_Main.swift; sourceTree = "<group>"; };
+		184D2EAA218F7702008E31B2 /* Resample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resample.swift; sourceTree = "<group>"; };
 		18EFD53C2188D39F00C09279 /* SVGtoPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGtoPath.swift; sourceTree = "<group>"; };
 		18EFD53D2188D39F00C09279 /* Recognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recognizer.swift; sourceTree = "<group>"; };
 		382E4C00216D76AE00D2A953 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				18EFD53C2188D39F00C09279 /* SVGtoPath.swift */,
 				184D2EA8218F73E6008E31B2 /* Match_Main.swift */,
 				18EFD53D2188D39F00C09279 /* Recognizer.swift */,
+				184D2EAA218F7702008E31B2 /* Resample.swift */,
 			);
 			name = "Character-Recognition";
 			path = "/Users/kkahn/Documents/GitHub/ChineseCharacterApp/ChineseCharacterApp/Character-Recognition";
@@ -374,6 +377,7 @@
 				580C3BD1217CD25B002E8152 /* DrawingView.swift in Sources */,
 				58B3BCC6215AEA470049A8E5 /* ModulesViewController.swift in Sources */,
 				18EFD5402188D55600C09279 /* Recognizer.swift in Sources */,
+				184D2EAB218F7702008E31B2 /* Resample.swift in Sources */,
 				580B6D7D2176C08A00061F4A /* CharacterDetailsViewController.swift in Sources */,
 				58FAF4E7216511290029E876 /* ModuleDetailsViewController.swift in Sources */,
 				18EFD5482188F02400C09279 /* SVGtoPath.swift in Sources */,

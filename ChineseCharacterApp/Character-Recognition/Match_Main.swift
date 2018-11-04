@@ -7,11 +7,19 @@
 //
 
 import Foundation
+import CoreGraphics
 
-func preprocess_source(source:[CGPoint]) -> [Point] {
-    return resample(source, 128)
+
+
+func source_process_points(_ source:[CGPoint]) -> [Point] {
+    let source_prep = Source_prep()
+    return source_prep.resample(source, 128)
 }
 
-func preprocess_target(source:String) -> [Point] {
-    return 
+
+func target_points(_ target:String) -> [Point] {
+    let bezierPointsInstance = bezierPoints()
+    return bezierPointsInstance.get_points(from: target)
 }
+
+

@@ -45,43 +45,7 @@ private func nCr (_ a: Int, _ b: Int) -> Int {
         return a
     }
 }
-//    var prod:Int = 1
-//
-//    // compute (a!)/(b!)
-//    for i in b + 1..<a+1 {
-//        prod *= i
-//    }
-    
-    
 
-//private func linear_curve (_ p : [Point], t: Double) -> Point {
-//    return ((1 - t) ** p[0]) + (t ** p[1])
-//}
-//
-//func quad_curve(_ p : [Point], t: Double) -> Point {
-//    return (1 - t) ** (((1 - t) ** p[0]) + ((2 * (1 - t) * t) ** p[1]) + ((t ^ 2) ** p[2]))
-//}
-//
-//func cubic_curve(_ p: [Point], t: Double) -> Point {
-//    let tinv:Double = 1-t
-//    // Formula: sum over i from 0 to 3, (t^i) * (1-t)^i * P_i
-//    return ((tinv ^ 3) ** p[0])
-//           + (((3 * tinv ^ 2) * t) ** p[1])
-//           + ((3 * tinv * (t ^ 2)) ** p[2])
-//           + ((t ^ 3) ** p[3])
-//}
-//func curve (p:[Point], bezierFunc: @escaping([Point], Double) -> Point) -> ((Int) -> [Point]) {
-//    func calculate (n: Int) -> [Point] {
-//        var points:[Point] = []
-//        for i in 0..<n {
-//            // t is parameter for bezier curve
-//            let t:Double = Double(i)/Double(n)
-//            points.append(bezierFunc(p, t))
-//        }
-//        return points
-//    }
-//    return calculate
-//}
 
 func bezier_curve(_ p: [Point],_ t: Double) -> [Point] {
     var sum:[Point] = [p.first!]
@@ -174,8 +138,14 @@ public class SVGPath {
     private var coords: Coordinates = .absolute
     private var increment: Int = 2
     private var numbers = ""
+    private var SVGscale: CGFloat = 1
     
-    public init (_ string: String) {
+    convenience init (_ string: String) {
+        self.init(string, 1.0)
+    }
+    
+    public init (_ string: String, _ scale: CGFloat) {
+        SVGscale = scale
         for char in string {
             switch char {
             case "M": use(.absolute, 2, move)
