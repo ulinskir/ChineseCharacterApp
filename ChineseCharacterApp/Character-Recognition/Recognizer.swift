@@ -218,7 +218,7 @@ private func pathLength(path: [Point]) -> Double {
     }
     return length
 }
-private func resample(points: [CGPoint], totalPoints: Int) -> [Point] {
+private func resample(_ points: [CGPoint],_ totalPoints: Int) -> [Point] {
     // Goes from a list of an arbitrary number of unevenly spaced CGPoints to a list of evenly spaced Points (double precision)
     var initialPoints = points.map(util.cg_to_Point)
     let interval = pathLength(path:initialPoints) / Double(totalPoints - 1)
@@ -246,6 +246,7 @@ private func resample(points: [CGPoint], totalPoints: Int) -> [Point] {
     }
     return newPoints
 }
+
 
 /*
  func svgToBezierPts

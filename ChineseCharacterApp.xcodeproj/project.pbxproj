@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		184D2EA9218F73E6008E31B2 /* Match_Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184D2EA8218F73E6008E31B2 /* Match_Main.swift */; };
 		18EFD5402188D55600C09279 /* Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFD53D2188D39F00C09279 /* Recognizer.swift */; };
 		18EFD5482188F02400C09279 /* SVGtoPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFD53C2188D39F00C09279 /* SVGtoPath.swift */; };
 		382E4C01216D76AE00D2A953 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382E4C00216D76AE00D2A953 /* User.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		184D2EA8218F73E6008E31B2 /* Match_Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match_Main.swift; sourceTree = "<group>"; };
 		18EFD53C2188D39F00C09279 /* SVGtoPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGtoPath.swift; sourceTree = "<group>"; };
 		18EFD53D2188D39F00C09279 /* Recognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recognizer.swift; sourceTree = "<group>"; };
 		382E4C00216D76AE00D2A953 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				18EFD53C2188D39F00C09279 /* SVGtoPath.swift */,
+				184D2EA8218F73E6008E31B2 /* Match_Main.swift */,
 				18EFD53D2188D39F00C09279 /* Recognizer.swift */,
 			);
 			name = "Character-Recognition";
@@ -378,6 +381,7 @@
 				58B3BCC8215AEB8B0049A8E5 /* Buttons.swift in Sources */,
 				581494C0216D9944000DC3B5 /* ProfileTableViewCell.swift in Sources */,
 				581494BA216D5D15000DC3B5 /* ModulesTableViewCell.swift in Sources */,
+				184D2EA9218F73E6008E31B2 /* Match_Main.swift in Sources */,
 				58B3BCC2215AB7910049A8E5 /* Constants.swift in Sources */,
 				58656489216487F90019C39C /* SettingsTableViewController.swift in Sources */,
 				58656483216481E10019C39C /* Module.swift in Sources */,

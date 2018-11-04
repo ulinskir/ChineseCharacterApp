@@ -113,15 +113,12 @@ func get_curve_fn (_ p:[Point]) -> ((Int) -> [Point]) {
 
 
 public class bezierPoints {
-    convenience init (svgPath: String) {
-        self.init()
-        //self.points = get_points(from: SVGPath(svgPath))
-    }
     private func to_point(_ CG:[CGPoint]) -> [Point] {
         return CG.map({(pt:CGPoint) -> Point in return (Double(pt.x),Double(pt.y))})
     }
 
-    func get_points(from svgPath: SVGPath) -> [Point]{
+    func get_points(from svgData: String) -> [Point]{
+        let svgPath = SVGPath(svgData)
         let NUM_POINTS_IN_PATH:Double = 64
         var p: [Point] = []
         var cg: [CGPoint] = []
