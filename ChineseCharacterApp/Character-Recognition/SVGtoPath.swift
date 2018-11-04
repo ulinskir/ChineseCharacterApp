@@ -105,9 +105,9 @@ public class bezierPoints {
     }
 }
 public extension UIBezierPath {
-    convenience init (svgPath: String) {
+    convenience init (svgPath: String, scale: CGFloat){//, scale:CGFloat) {
         self.init()
-        applyCommands(from: SVGPath(svgPath))
+        applyCommands(from: SVGPath(svgPath, scale))
     }
 }
 
@@ -180,7 +180,7 @@ public class SVGPath {
     }
     
     private func finishLastCommand () {
-        for command in take(SVGPath.parseNumbers(numbers), increment: increment, coords: coords, last: commands.last, callback: builder) {
+        for command in take(SVGPath.parseNumbersApplyScale(numbers, SVGscale), increment: increment, coords: coords, last: commands.last, callback: builder) {
             commands.append(coords == .relative ? command.relative(to: commands.last) : command)
         }
         numbers = ""
@@ -193,7 +193,7 @@ private let locale = Locale(identifier: "en_US")
 
 
 public extension SVGPath {
-    class func parseNumbers (_ numbers: String) -> [CGFloat] {
+    class func parseNumbersApplyScale (_ numbers: String, _ scale:CGFloat) -> [CGFloat] {
         var all:[String] = []
         var curr = ""
         var last = ""
@@ -216,7 +216,7 @@ public extension SVGPath {
         
         all.append(curr)
         
-        return all.map { CGFloat(truncating: NSDecimalNumber(string: $0, locale: locale)) }
+        return all.map { scale * CGFloat(truncating: NSDecimalNumber(string: $0, locale: locale)) }
     }
 }
 
