@@ -83,13 +83,13 @@ private func nCr (_ a: Int, _ b: Int) -> Int {
 //    return calculate
 //}
 
-func bezier_curve(_ p: [Point],_ t: Double) -> Point {
-    var sum:Point = (0,0)
+func bezier_curve(_ p: [Point],_ t: Double) -> [Point] {
+    var sum:[Point] = [p.first!]
     let j = p.count
     // Formula: sum from i=0 to j (t^i) * (1-t)^i * P_i
     for i in 0..<j {
         // If I wanted to use += I'd have to implement it and that's not worth it.
-        sum = sum + (Double(nCr(j,i)) * (1-t) ^ (j-i)) * (t^i) * p[i]
+        sum.append((Double(nCr(j,i)) * (1-t) ^ (j-i)) * (t^i) * p[i])
     }
     return sum
 }
@@ -104,7 +104,7 @@ func get_curve_fn (_ p:[Point]) -> ((Int) -> [Point]) {
         for i in 0..<n {
             // t is parameter for bezier curve
             let t:Double = Double(i)/Double(n)
-            points.append(bezier_curve(p, t))
+            points += (bezier_curve(p, t))
         }
         return points
     }
@@ -115,11 +115,32 @@ func get_curve_fn (_ p:[Point]) -> ((Int) -> [Point]) {
 public class bezierPoints {
     convenience init (svgPath: String) {
         self.init()
-        self.points = get_points(from: SVGPath(svgPath))
+        //self.points = get_points(from: SVGPath(svgPath))
+    }
+    private func to_point(_ CG:[CGPoint]) -> [Point] {
+        return CG.map({(pt:CGPoint) -> Point in return (Double(pt.x),Double(pt.y))})
     }
 
-    func get_points(from svgPath: SVGPath) {
-
+    func get_points(from svgPath: SVGPath) -> [Point]{
+        let NUM_POINTS_IN_PATH:Double = 64
+        var p: [Point] = []
+        var cg: [CGPoint] = []
+        var curr:CGPoint = CGPoint(x:0,y:0)
+        assert(svgPath.commands.first!.type == .move)
+        for command in svgPath.commands {
+            switch command.type {
+                case .move: break
+                case .line: cg = [curr, command.point]
+                case .quadCurve: cg = [curr, command.control1,command.point]
+                case .cubeCurve: cg = [curr, command.control1,command.control2,command.point]
+                case .close: return p + to_point([curr])
+            }
+            if command.type != .move {
+                p += bezier_curve(to_point(cg), NUM_POINTS_IN_PATH)            }
+            //p = [curr, command.control1,command.control1,command.point].filter({$0 != nil}).map({(pt:CGPoint) -> Point in return (Double(pt.x),Double(pt.y))})
+            curr = command.point
+        }
+        return [(0,0)]
     }
 }
 public extension UIBezierPath {
