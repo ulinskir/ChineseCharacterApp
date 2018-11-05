@@ -178,8 +178,7 @@ class DrawCharacterViewController: UIViewController {
         var charChar: String
         charChar = "门"
         backgroundCharLabel.text = charChar
-        let size: CGFloat = drawingView.frame.size.width
-        backgroundCharLabel.font = backgroundCharLabel.font.withSize(size)
+        backgroundCharLabel.font = backgroundCharLabel.font.withSize(drawingView.frame.size.height)
     }
     
     func Recognize() {
