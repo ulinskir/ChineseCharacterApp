@@ -21,13 +21,30 @@ class DrawCharacterViewController: UIViewController {
     @IBOutlet weak var audioButton: UIButton! // Stretch goal-> get audio for characters
     
     @IBOutlet weak var drawingView: DrawingView! // a canvas to draw characters on
-    @IBOutlet weak var backgroundCharLabel: UILabel!
+    @IBOutlet weak var backgroundCharLabel: UILabel! // for level 0 to display the curr char
     
     // Controls for the drawing view
     @IBOutlet weak var hintButton: UIButton!
     @IBOutlet weak var undoButton: UIButton!
     
     @IBOutlet weak var submitButton: UIButton!
+    
+    
+    @IBOutlet weak var topView1: UIStackView!
+    @IBOutlet weak var topView2: UIStackView!
+    
+    //top view 1
+    @IBOutlet weak var chineseCharTop1: UILabel!
+    @IBOutlet weak var englishTop1: UILabel!
+    @IBOutlet weak var pinyinTop1: UILabel!
+    @IBOutlet weak var audioTop1: UIButton!
+    
+    //top view 2
+    @IBOutlet weak var englishTop2: UILabel!
+    @IBOutlet weak var pinyinTop2: UILabel!
+    @IBOutlet weak var audioTop2: UIButton!
+    
+    
     
     var module:Module? = nil
     var ls:LearningSesion? = nil
@@ -37,10 +54,22 @@ class DrawCharacterViewController: UIViewController {
     // level for the current character
     // TO DO: implement this
     @IBAction func hintButtonTapped(_ sender: Any) {
-        //drawingView.backgroundColor = UIColor(patternImage: backgroundChar)
-        displayChar()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.backgroundCharLabel.text = ""
+            print("time up")
+        }
+        
+        switch ls!.level {
+        case 0:
+            // if level is 0,
+            print("0")
+        case 1:
+            print("1")
+        case 2:
+            print("2")
+        case 3:
+            print("3")
+        default:
+            print("undefined level")
         }
     }
     
@@ -73,13 +102,18 @@ class DrawCharacterViewController: UIViewController {
         //Recognize()
         //drawingView.clearCanvas()
         progressBar.setProgress(Float(ls!.progress()), animated: true)
-        switchChar()
+        //switchChar()
+        ls!.level += 1
+        setupCharDisplay()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //backgroundChar = UIImage(named: fire ? "kanji_mizu_water" : "fire")
         ls = LearningSesion(charsToPractice: module!.chineseChars,level: 0)
+        setupCharDisplay()
+        
+
     }
     
     var fire = false
@@ -88,17 +122,63 @@ class DrawCharacterViewController: UIViewController {
         fire = !fire
         //drawingView.clearCanvas()
     }
+    func setupCharDisplay() {
+       /* guard let char = ls!.getCurrentChar() else {
+            print("no char")
+            return
+        }*/
+        let char = ChineseChar(character: "门", strks: [""], def: "Door", pin: ["Men"], decomp: "", rad: "")
+        switch ls!.level {
+        case 0:
+            // if level is 0, display entire character in the background of the
+            setLabelsInTop2(char: char)
+            displayCharInView()
+        case 1:
+            hideCharInView()
+            setLabelsInTop1(char: char)
+            print("1")
+        case 2:
+            hideCharInView()
+            setLabelsInTop1(char: char)
+            print("2")
+        case 3:
+            hideCharInView()
+            setLabelsInTop2(char: char)
+            print("3")
+        default:
+            print("error: undefined level")
+        }
+    }
     
-    func displayChar() {
-        let char = ls!.getCurrentChar()
+    func setLabelsInTop1(char:ChineseChar) {
+        englishTop1.text = char.definition
+        englishTop1.font = englishTop1.font.withSize(englishTop1.frame.height * 0.9)
+        chineseCharTop1.text = char.char
+        chineseCharTop1.font = chineseCharTop1.font.withSize(topView1.frame.size.height * 0.85)
+        pinyinTop1.text = char.pinyin[0]
+        pinyinTop1.font = pinyinTop1.font.withSize(pinyinTop1.frame.height * 0.8)
+        topView1.isHidden = false
+        topView2.isHidden = true
+    }
+    
+    func setLabelsInTop2(char:ChineseChar) {
+        englishTop2.text = char.definition
+        englishTop2.font = englishTop2.font.withSize(englishTop2.frame.height * 0.9)
+        pinyinTop2.text = char.pinyin[0]
+        pinyinTop2.font = pinyinTop2.font.withSize(pinyinTop2.frame.height * 0.8)
+        topView1.isHidden = true
+        topView2.isHidden = false
+    }
+    func hideCharInView() {
+        backgroundCharLabel.text = ""
+    }
+    
+    func displayCharInView() {
+        //let char = ls!.getCurrentChar()
         var charChar: String
         charChar = "门"
         backgroundCharLabel.text = charChar
-        let size: CGFloat = drawingView.frame.size.width
-        backgroundCharLabel.font = backgroundCharLabel.font.withSize(size)
-
-        print(backgroundCharLabel.text)
-        
+        backgroundCharLabel.font = backgroundCharLabel.font.withSize(drawingView.frame.size.height)
     }
     
     func Recognize() {
