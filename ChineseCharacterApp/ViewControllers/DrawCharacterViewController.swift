@@ -21,7 +21,7 @@ class DrawCharacterViewController: UIViewController {
     @IBOutlet weak var audioButton: UIButton! // Stretch goal-> get audio for characters
     
     @IBOutlet weak var drawingView: DrawingView! // a canvas to draw characters on
-    @IBOutlet weak var backgroundCharLabel: UILabel!
+    @IBOutlet weak var backgroundCharLabel: UILabel! // for level 0 to display the curr char
     
     // Controls for the drawing view
     @IBOutlet weak var hintButton: UIButton!
@@ -38,9 +38,23 @@ class DrawCharacterViewController: UIViewController {
     // TO DO: implement this
     @IBAction func hintButtonTapped(_ sender: Any) {
         //drawingView.backgroundColor = UIColor(patternImage: backgroundChar)
-        displayChar()
+        displayCharInView()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.backgroundCharLabel.text = ""
+        }
+        
+        switch ls!.level {
+        case 0:
+            // if level is 0, display entire character
+            displayCharInView()
+        case 1:
+            print("1")
+        case 2:
+            print("2")
+        case 3:
+            print("3")
+        default:
+            print("undefined level")
         }
     }
     
@@ -80,6 +94,8 @@ class DrawCharacterViewController: UIViewController {
         super.viewDidLoad()
         //backgroundChar = UIImage(named: fire ? "kanji_mizu_water" : "fire")
         ls = LearningSesion(charsToPractice: module!.chineseChars,level: 0)
+        
+
     }
     
     var fire = false
@@ -88,17 +104,29 @@ class DrawCharacterViewController: UIViewController {
         fire = !fire
         //drawingView.clearCanvas()
     }
-    
-    func displayChar() {
-        let char = ls!.getCurrentChar()
+    func setupCharDisplay() {
+        switch ls!.level {
+        case 0:
+            // if level is 0, display entire character in the background of the
+            displayCharInView()
+        case 1:
+            print("1")
+        case 2:
+            print("2")
+        case 3:
+            print("3")
+        default:
+            print("error: undefined level")
+        }
+    }
+
+    func displayCharInView() {
+        //let char = ls!.getCurrentChar()
         var charChar: String
         charChar = "门"
         backgroundCharLabel.text = charChar
         let size: CGFloat = drawingView.frame.size.width
         backgroundCharLabel.font = backgroundCharLabel.font.withSize(size)
-
-        print(backgroundCharLabel.text)
-        
     }
     
     func Recognize() {
