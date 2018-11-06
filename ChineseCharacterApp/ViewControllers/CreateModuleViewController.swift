@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreData
+
 
 class CreateModuleViewController: UIViewController {
 
@@ -40,4 +42,24 @@ class CreateModuleViewController: UIViewController {
         
     }
     
+}
+
+func ModuleNameExists(name: String) -> Bool{
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ModuleContent")
+    fetchRequest.includesSubentities = false
+    fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = appDelegate.persistentContainer.viewContext
+    
+    var entitiesCount = 0
+    
+    do {
+        entitiesCount = try context.count(for: fetchRequest)
+    }
+    catch {
+        print("error executing fetch request: \(error)")
+    }
+    
+    return entitiesCount > 0
 }

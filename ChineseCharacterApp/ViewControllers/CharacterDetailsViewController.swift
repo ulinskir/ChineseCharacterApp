@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class CharacterDetailsViewController: UIViewController {
 
@@ -34,4 +35,17 @@ class CharacterDetailsViewController: UIViewController {
     }
     
 
+}
+
+func deleteModule(module : Module){
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = appDelegate.persistentContainer.viewContext
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ModuleContent")
+    fetchRequest.predicate = NSPredicate(format: "name = %@", module.name)
+    
+    if let result = try? context.fetch(fetchRequest) {
+        for object in result {
+            context.delete(object as! NSManagedObject)
+        }
+    }
 }
