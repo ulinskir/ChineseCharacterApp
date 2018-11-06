@@ -80,6 +80,9 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
         if let destination = segue.destination as? DrawCharacterViewController {
             destination.module = module
         }
+        if let destination = segue.destination as? CreateModuleViewController {
+            destination.module = module
+        }
     }
 
     // When a cell in the collection is selected, if it is not already selected
@@ -157,49 +160,7 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     // Send the selected characters to the save module screen to be saved as a module
     @IBAction func saveButtonTapped(_ sender: Any) {
-        var modName = "ModuleTest4"
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        let context = appDelegate.persistentContainer.viewContext
-        let newMod = NSEntityDescription.insertNewObject(forEntityName: "ModuleContent", into: context)
-        newMod.setValue(modName, forKey: "name")
-        var charsSet = newMod.mutableSetValue(forKey: "chars")
-        
-        for ch in module.chineseChars{
-            if charExists(char: ch.char) == false
-            {
-                print("add CHAR to DB")
-                let newChar = NSEntityDescription.insertNewObject(forEntityName: "Char", into: context)
-                newChar.setValue(ch.char, forKey: "char")
-                newChar.setValue(ch.definition, forKey: "definition")
-                newChar.setValue(ch.decomposition, forKey:"decomposition")
-                newChar.setValue(0, forKey: "learned")
-                newChar.setValue(ch.radical, forKey: "radical")
-            }
-            
-            do{
-                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Char")
-                fetchRequest.predicate = NSPredicate(format: "char = %@", ch.char)
-                let charInDB = try context.fetch(fetchRequest) as! [Char]
-                if charInDB.count > 1{
-                    print("WHOOPS - TOO MANY")
-                }
-                else{
-                    charsSet.add(charInDB[0])
-                }
-            }catch{
-                print("FAIL")
-            }
-            
-        }
-        
-        do{
-            try context.save()
-            print("SAVED")
-        }
-        catch{
-            print("FAIL")
-        }
     }
     
     @IBAction func PracticeSelectedPressed(_ sender: UIButton) {
@@ -224,6 +185,7 @@ extension BrowseViewController : UISearchBarDelegate {
 func charExists(char: String) -> Bool {
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Char")
     fetchRequest.includesSubentities = false
+    fetchRequest.predicate = NSPredicate(format: "char = %@", char)
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = appDelegate.persistentContainer.viewContext
@@ -237,5 +199,7 @@ func charExists(char: String) -> Bool {
         print("error executing fetch request: \(error)")
     }
     
+    print("ENTITIES:")
+    print(entitiesCount)
     return entitiesCount > 0
 }
