@@ -1006,6 +1006,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="1tS-Mf-Py4" secondAttribute="height" multiplier="2:3" id="9HQ-9R-gQN"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <state key="normal" title="←">
                                                     <color key="titleColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -1795,7 +1796,7 @@
         <segue reference="3bu-4q-Jxd"/>
         <segue reference="Gb1-Vw-imE"/>
         <segue reference="en8-Ll-JVs"/>
-        <segue reference="DPe-GX-24C"/>
+        <segue reference="KRX-p4-rLg"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

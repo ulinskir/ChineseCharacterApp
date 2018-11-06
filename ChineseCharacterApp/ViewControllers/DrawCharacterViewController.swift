@@ -100,28 +100,21 @@ class DrawCharacterViewController: UIViewController {
     // TO DO: implement this
     @IBAction func submitButtonTapped(_ sender: Any) {
         //Recognize()
-        //drawingView.clearCanvas()
+        displayCharInView()
         progressBar.setProgress(Float(ls!.progress()), animated: true)
-        //switchChar()
-        ls!.level += 1
-        setupCharDisplay()
+        //ls!.level += 1
+        //setupCharDisplay()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //backgroundChar = UIImage(named: fire ? "kanji_mizu_water" : "fire")
-        ls = LearningSesion(charsToPractice: module!.chineseChars,level: 0)
+        ls = LearningSesion(charsToPractice: module!.chineseChars,level: 1)
         setupCharDisplay()
         
 
     }
     
-    var fire = false
-    func switchChar() {
-        backgroundChar = UIImage(named: fire ? "kanji_mizu_water" : "fire")
-        fire = !fire
-        //drawingView.clearCanvas()
-    }
     func setupCharDisplay() {
        /* guard let char = ls!.getCurrentChar() else {
             print("no char")
