@@ -16,6 +16,7 @@ class CreateModuleViewController: UIViewController {
     @IBOutlet weak var newModuleAuthor: UITextField!
     @IBOutlet weak var newModuleDescription: UITextView!
     
+    var module: Module? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +38,73 @@ class CreateModuleViewController: UIViewController {
         alert.addAction(noAction)
         self.present(alert, animated:true)
     }
+    func saveModule() {
+        var modName = newModuleName.text
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let context = appDelegate.persistentContainer.viewContext
+        let newMod = NSEntityDescription.insertNewObject(forEntityName: "ModuleContent", into: context)
+        newMod.setValue(modName, forKey: "name")
+        var charsSet = newMod.mutableSetValue(forKey: "chars")
+        
+        for ch in module!.chineseChars{
+            print(ch.char)
+            if charExists(char: ch.char) == false
+            {
+                print("add CHAR to DB")
+                let newChar = NSEntityDescription.insertNewObject(forEntityName: "Char", into: context)
+                newChar.setValue(ch.char, forKey: "char")
+                newChar.setValue(ch.definition, forKey: "definition")
+                newChar.setValue(ch.decomposition, forKey:"decomposition")
+                newChar.setValue(0, forKey: "learned")
+                newChar.setValue(ch.radical, forKey: "radical")
+                do{
+                    print("Save")
+                    try context.save()
+                }
+                catch{
+                    print(error)
+                }
+            }
+            
+            do{
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Char")
+                fetchRequest.predicate = NSPredicate(format: "char = %@", ch.char)
+                let charInDB = try context.fetch(fetchRequest) as! [Char]
+                print("IN DB")
+                print(charInDB.count)
+                if charInDB.count > 1{
+                    print("WHOOPS - TOO MANY")
+                }
+                else if charInDB.count > 0{
+                    charsSet.add(charInDB[0])
+                }
+                else{
+                    print("NONE")
+                }
+            }catch{
+                print("FAIL")
+            }
+            
+        }
+        
+        do{
+            try context.save()
+            print("SAVED")
+        }
+        catch{
+            print("FAIL")
+        }
+    }
     
     @IBAction func saveModuleButtonPressed(_ sender: Any) {
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? ModulesViewController {
+            saveModule()
+        }
     }
     
 }

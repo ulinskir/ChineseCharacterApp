@@ -44,11 +44,8 @@ class DrawCharacterViewController: UIViewController {
     @IBOutlet weak var pinyinTop2: UILabel!
     @IBOutlet weak var audioTop2: UIButton!
     
-    
-    
     var module:Module? = nil
     var ls:LearningSesion? = nil
-    var backgroundChar: UIImage!
     
     // When hint button is tapped, give the user the correct hint, based on their
     // level for the current character
@@ -100,28 +97,21 @@ class DrawCharacterViewController: UIViewController {
     // TO DO: implement this
     @IBAction func submitButtonTapped(_ sender: Any) {
         //Recognize()
-        //drawingView.clearCanvas()
+        displayCharInView()
         progressBar.setProgress(Float(ls!.progress()), animated: true)
-        //switchChar()
-        ls!.level += 1
-        setupCharDisplay()
+        //ls!.level += 1
+        //setupCharDisplay()
+        //submitButton.setTitle("Done", for: UIControl.State)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //backgroundChar = UIImage(named: fire ? "kanji_mizu_water" : "fire")
         ls = LearningSesion(charsToPractice: module!.chineseChars,level: 0)
+        setFontSizes()
         setupCharDisplay()
-        
-
     }
     
-    var fire = false
-    func switchChar() {
-        backgroundChar = UIImage(named: fire ? "kanji_mizu_water" : "fire")
-        fire = !fire
-        //drawingView.clearCanvas()
-    }
     func setupCharDisplay() {
        /* guard let char = ls!.getCurrentChar() else {
             print("no char")
@@ -152,23 +142,17 @@ class DrawCharacterViewController: UIViewController {
     
     func setLabelsInTop1(char:ChineseChar) {
         englishTop1.text = char.definition
-        englishTop1.font = englishTop1.font.withSize(englishTop1.frame.height * 0.9)
         chineseCharTop1.text = char.char
-        chineseCharTop1.font = chineseCharTop1.font.withSize(topView1.frame.size.height * 0.85)
         pinyinTop1.text = char.pinyin[0]
-        pinyinTop1.font = pinyinTop1.font.withSize(pinyinTop1.frame.height * 0.8)
-        topView1.isHidden = false
-        topView2.isHidden = true
+        showTop1()
     }
     
     func setLabelsInTop2(char:ChineseChar) {
         englishTop2.text = char.definition
-        englishTop2.font = englishTop2.font.withSize(englishTop2.frame.height * 0.9)
         pinyinTop2.text = char.pinyin[0]
-        pinyinTop2.font = pinyinTop2.font.withSize(pinyinTop2.frame.height * 0.8)
-        topView1.isHidden = true
-        topView2.isHidden = false
+        showTop2()
     }
+    
     func hideCharInView() {
         backgroundCharLabel.text = ""
     }
@@ -178,7 +162,25 @@ class DrawCharacterViewController: UIViewController {
         var charChar: String
         charChar = "门"
         backgroundCharLabel.text = charChar
+    }
+    
+    func showTop1() {
+        topView1.isHidden = false
+        topView2.isHidden = true
+    }
+    
+    func showTop2() {
+        topView1.isHidden = true
+        topView2.isHidden = false
+    }
+    
+    func setFontSizes() {
         backgroundCharLabel.font = backgroundCharLabel.font.withSize(drawingView.frame.size.height)
+        englishTop2.font = englishTop2.font.withSize(englishTop2.frame.height * 0.9)
+        pinyinTop2.font = pinyinTop2.font.withSize(pinyinTop2.frame.height * 0.8)
+        pinyinTop1.font = pinyinTop1.font.withSize(pinyinTop1.frame.height * 0.8)
+        englishTop1.font = englishTop1.font.withSize(englishTop1.frame.height * 0.9)
+        chineseCharTop1.font = chineseCharTop1.font.withSize(topView1.frame.size.height * 0.85)
     }
     
     func Recognize() {
