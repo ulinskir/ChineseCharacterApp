@@ -99,25 +99,43 @@ class DrawCharacterViewController: UIViewController {
         //Recognize()
         displayCharInView()
         progressBar.setProgress(Float(ls!.progress()), animated: true)
+        submitButton.setTitle("Continre", for: [])
+
         //ls!.level += 1
         //setupCharDisplay()
         //submitButton.setTitle("Done", for: UIControl.State)
     }
     
+    func checkUserChar() {
+        displayCharInView()
+        ls!.charPracticed(score: 0)
+        progressBar.setProgress(Float(ls!.progress()), animated: true)
+        submitButton.setTitle("Continue", for: [])
+    }
+    
+    func loadNextChar() {
+        if !ls!.sessionFinished() {
+            setupCharDisplay()
+            submitButton.setTitle("Check", for: [])
+        } else {
+            submitButton.setTitle("Done", for: [])
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //backgroundChar = UIImage(named: fire ? "kanji_mizu_water" : "fire")
         ls = LearningSesion(charsToPractice: module!.chineseChars,level: 0)
         setFontSizes()
-        setupCharDisplay()
+        loadNextChar()
     }
     
     func setupCharDisplay() {
-       /* guard let char = ls!.getCurrentChar() else {
+       guard let char = ls!.getCurrentChar() else {
             print("no char")
             return
-        }*/
-        let char = ChineseChar(character: "门", strks: [""], def: "Door", pin: ["Men"], decomp: "", rad: "")
+        }
+        //let char = ChineseChar(character: "门", strks: [""], def: "Door", pin: ["Men"], decomp: "", rad: "")
         switch ls!.level {
         case 0:
             // if level is 0, display entire character in the background of the
@@ -158,10 +176,10 @@ class DrawCharacterViewController: UIViewController {
     }
     
     func displayCharInView() {
-        //let char = ls!.getCurrentChar()
-        var charChar: String
-        charChar = "门"
-        backgroundCharLabel.text = charChar
+        let char = ls!.getCurrentChar()
+        //var charChar = char?.char
+        //charChar = "门"
+        backgroundCharLabel.text = char?.char
     }
     
     func showTop1() {

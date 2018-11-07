@@ -54,12 +54,14 @@ class LearningSesion {
         return Double(self.charsAlreadyPracticed.count) / Double(self.charsToPractice.count)
     }
     
-    func charPracticed(index:Int, score:Double) {
-        charsAlreadyPracticed[index] = score
+    func charPracticed(score:Double) {
+        charsAlreadyPracticed[current] = score
+        current += 1
         //TO DO: determine if score is failing and if so make user practice it again
     }
     
-    func sessionFinished() {
-        //TO DO: update all characters to account for new score information
+    func sessionFinished() -> Bool {
+        return charsToPractice.count == current
     }
+    //TO DO: update all characters to account for new score information when session is finished
 }
