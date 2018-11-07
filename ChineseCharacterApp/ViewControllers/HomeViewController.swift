@@ -38,7 +38,49 @@ class HomeViewController: UIViewController {
             destination.image = defaultProfiles[randomNum]
         }
         if let destination = segue.destination as? DrawCharacterViewController {
-            destination.module = Module(name: "String", chineseChars: [])
+            var allChars = loadCharsFromJSON()
+            var subsetChars: [ChineseChar] = []
+            for _ in 0...6 {
+                let randomIndex = Int(arc4random_uniform(UInt32(allChars!.count)))
+                subsetChars.append(allChars!.remove(at: randomIndex))
+            }
+            destination.module = Module(name: "String", chineseChars: subsetChars)
         }
     }
+    
+    func loadCharsFromJSON() -> [ChineseChar]? {
+        //Open the dictionary file
+        var Chars = [ChineseChar]()
+        guard let Dictpath = Bundle.main.path(forResource: "full_with_defs", ofType: "json") else {return nil}
+        let Dicturl = URL(fileURLWithPath: Dictpath)
+        
+        //Get the contents of the dictionary file into the Chars array as object...obj.strokes wil; be an empty list
+        do {
+            let data = try Data(contentsOf: Dicturl)
+            let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+            
+            guard let array = json as? [Any] else {return nil}
+            
+            for char in array{
+                guard let charDict = char as? [String: Any] else {return nil}
+                guard let definition = charDict["definition"] as? String else {print("Missing Def"); return nil}
+                guard let hanzi = charDict["character"] as? String else {print("Missing Char"); return nil}
+                guard let strokes = charDict["strokes"] as? [String] else {print("Missing strokes"); return nil}
+                guard let pinyin = charDict["pinyin"] as? [String] else {print("Missing Pinyin"); return nil}
+                guard let decomposition = charDict["decomposition"] as? String else {print("Missing Decomposition"); return nil}
+                guard let radical = charDict["radical"] as? String else {print("Missing Radical"); return nil}
+                
+                
+                let curChar = ChineseChar(character: hanzi, strks: strokes, def: definition, pin: pinyin, decomp: decomposition, rad: radical)
+                Chars.append(curChar)
+            }
+            
+            return Chars
+        }
+        catch{
+            print(error)
+            return nil
+        }
+    }
+
 }

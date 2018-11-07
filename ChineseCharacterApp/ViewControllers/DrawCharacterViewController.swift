@@ -101,6 +101,9 @@ class DrawCharacterViewController: UIViewController {
             print("hi")
             checkUserChar()
             ls!.level += 1
+            if (ls!.level > 3) {
+                ls!.level = 0
+            }
         } else if submitButton.titleLabel!.text == "Continue"{
             loadNextChar()
         } else {

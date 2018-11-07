@@ -37,11 +37,14 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.browseCollectionView.delegate = self
         self.browseCollectionView.dataSource = self
         
-        // If going back to the draw character view, send the current module
-        
         // Load all the characters to display to Chars
+        loadCharsFromJSON()
+
+    }
+    
+    func loadCharsFromJSON() {
         //Open the dictionary file
-        
+
         guard let Dictpath = Bundle.main.path(forResource: "full_with_defs", ofType: "json") else {return}
         let Dicturl = URL(fileURLWithPath: Dictpath)
         
@@ -71,7 +74,6 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
         catch{
             print(error)
         }
-        
     }
     
     //Transition to draw character view controller
