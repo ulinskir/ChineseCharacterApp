@@ -17,9 +17,10 @@ func source_process_points(_ source:[CGPoint]) -> [Point] {
 }
 
 
-func target_points(_ target:String) -> [Point] {
+func target_points(_ target:String, src_edges:Edges, dest_edges:Edges) -> [Point] {
+    let scale_fn = SVGConverter().make_canvas_dimension_converter(from: src_edges, to: dest_edges)
     let bezierPointsInstance = bezierPoints()
-    return bezierPointsInstance.get_points(from: target)
+    return bezierPointsInstance.get_points(from: target, scale: scale_fn)
 }
 
 

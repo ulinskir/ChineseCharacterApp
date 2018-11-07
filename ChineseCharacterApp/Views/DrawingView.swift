@@ -45,13 +45,7 @@ class DrawingView: UIView {
         drawShapeLayer()
     }
     
-    func drawChar(_ svg: String, _ scale: CGFloat) {
-        path = UIBezierPath(svgPath: svg, scale: scale)//, scale:scale)
-        lineColor = UIColor.blue
-        path.fill()
-        
-        drawShapeLayer()
-    }
+
     
     func drawShapeLayer() {
         let shapeLayer = CAShapeLayer()

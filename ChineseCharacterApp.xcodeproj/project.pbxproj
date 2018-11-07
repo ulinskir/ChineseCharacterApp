@@ -123,8 +123,8 @@
 		18EFD53E2188D39F00C09279 /* Character-Recognition */ = {
 			isa = PBXGroup;
 			children = (
-				18EFD53C2188D39F00C09279 /* SVGtoPath.swift */,
 				184D2EA8218F73E6008E31B2 /* Match_Main.swift */,
+				18EFD53C2188D39F00C09279 /* SVGtoPath.swift */,
 				18EFD53D2188D39F00C09279 /* Recognizer.swift */,
 				184D2EAA218F7702008E31B2 /* Resample.swift */,
 			);

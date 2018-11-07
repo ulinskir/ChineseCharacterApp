@@ -11,6 +11,8 @@ import CoreGraphics
 import UIKit
 import Darwin
 
+typealias Edges = (north:Double, south:Double, east:Double, west:Double)
+
 // Multiplying a Point by a scalar.
 //infix operator **
 //
@@ -33,6 +35,25 @@ private func - (a:Point, b:Point) -> Point {
 
 private func ^ (a: Double, b: Int) -> Double {
     return pow(a, Double(b))
+}
+
+class SVGConverter {
+    func make_canvas_dimension_converter(from:Edges, to: Edges) -> (Point) -> Point {
+        
+        let src_canvasSize = max(from.south - from.north, from.west - from.east)
+        let dest_canvasSize = min(to.south - to.north, to.west - to.east)
+        
+        let src_midpoint: Point = (Double(from.east + from.west) / 2, Double(from.south + from.north) / 2)
+        let dest_midpoint: Point = (Double(to.east + to.west) / 2, Double(to.south + to.north) / 2)
+        
+        let scalar:Double = Double(src_canvasSize) / Double(dest_canvasSize)
+        
+        func converter(_ src_point:Point) -> Point {
+            return (scalar * (src_point - src_midpoint) + dest_midpoint)
+        }
+        
+        return converter
+    }
 }
 
 private func nCr (_ a: Int, _ b: Int) -> Int {
@@ -81,12 +102,14 @@ public class bezierPoints {
         return CG.map({(pt:CGPoint) -> Point in return (Double(pt.x),Double(pt.y))})
     }
 
-    func get_points(from svgData: String) -> [Point]{
-        let svgPath = SVGPath(svgData)
+    func get_points(from svgData: String, scale: @escaping((Double,Double) -> (Double, Double))) -> [Point]{
+        let svgPath = SVGPath(svgData, scale)
         let NUM_POINTS_IN_PATH:Double = 64
+        
         var p: [Point] = []
         var cg: [CGPoint] = []
         var curr:CGPoint = CGPoint(x:0,y:0)
+        
         assert(svgPath.commands.first!.type == .move)
         for command in svgPath.commands {
             switch command.type {
@@ -105,7 +128,7 @@ public class bezierPoints {
     }
 }
 public extension UIBezierPath {
-    convenience init (svgPath: String, scale: CGFloat){//, scale:CGFloat) {
+    convenience init (svgPath: String, scale: @escaping (Double,Double) -> (Double, Double)){//, scale:CGFloat) {
         self.init()
         applyCommands(from: SVGPath(svgPath, scale))
     }
@@ -139,13 +162,14 @@ public class SVGPath {
     private var increment: Int = 2
     private var numbers = ""
     private var SVGscale: CGFloat = 1
+    private var adjustScale: (Point) -> Point
     
     convenience init (_ string: String) {
-        self.init(string, 1.0)
+        self.init(string, {a in return a})
     }
     
-    public init (_ string: String, _ scale: CGFloat) {
-        SVGscale = scale
+    init (_ string: String,_ scaleFn: @escaping ((Point) -> (Point))) {
+        adjustScale = scaleFn
         for char in string {
             switch char {
             case "M": use(.absolute, 2, move)
@@ -180,7 +204,14 @@ public class SVGPath {
     }
     
     private func finishLastCommand () {
-        for command in take(SVGPath.parseNumbersApplyScale(numbers, SVGscale), increment: increment, coords: coords, last: commands.last, callback: builder) {
+        let unscaledNumbers = SVGPath.parseNumbers(numbers)
+        var scaledNumbers:[CGFloat] = []
+        for i in stride(from: 0, to: unscaledNumbers.count, by: 2) {
+            let next = adjustScale((Double(unscaledNumbers[i]), Double(unscaledNumbers[i+1])))
+            scaledNumbers += [CGFloat(next.x),CGFloat(next.y)]
+        }
+        
+        for command in take(scaledNumbers, increment: increment, coords: coords, last: commands.last, callback: builder) {
             commands.append(coords == .relative ? command.relative(to: commands.last) : command)
         }
         numbers = ""
@@ -193,7 +224,7 @@ private let locale = Locale(identifier: "en_US")
 
 
 public extension SVGPath {
-    class func parseNumbersApplyScale (_ numbers: String, _ scale:CGFloat) -> [CGFloat] {
+    class func parseNumbers (_ numbers: String) -> [CGFloat] {
         var all:[String] = []
         var curr = ""
         var last = ""
@@ -216,7 +247,7 @@ public extension SVGPath {
         
         all.append(curr)
         
-        return all.map { scale * CGFloat(truncating: NSDecimalNumber(string: $0, locale: locale)) }
+        return all.map { CGFloat(truncating: NSDecimalNumber(string: $0, locale: locale)) }
     }
 }
 
