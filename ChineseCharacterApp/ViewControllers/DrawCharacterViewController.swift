@@ -142,6 +142,12 @@ class DrawCharacterViewController: UIViewController {
         super.viewDidLoad()
         ls = LearningSesion(charsToPractice: module!.chineseChars,level: 0)
         print(module!.chineseChars)
+        englishTop1.lineBreakMode = .byWordWrapping 
+        englishTop1.numberOfLines = 0
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         setFontSizes()
         setupCharDisplay()
     }
@@ -209,12 +215,13 @@ class DrawCharacterViewController: UIViewController {
     }
     
     func setFontSizes() {
-        backgroundCharLabel.font = backgroundCharLabel.font.withSize(drawingView.frame.size.height)
-        englishTop2.font = englishTop2.font.withSize(englishTop2.frame.height * 0.9)
+        backgroundCharLabel.font = backgroundCharLabel.font.withSize(drawingView.frame.size.height*0.9)
+        chineseCharTop1.font = chineseCharTop1.font.withSize(topView1.frame.size.height * 0.75)
+        /*englishTop2.font = englishTop2.font.withSize(englishTop2.frame.height * 0.9)
         pinyinTop2.font = pinyinTop2.font.withSize(pinyinTop2.frame.height * 0.8)
         pinyinTop1.font = pinyinTop1.font.withSize(pinyinTop1.frame.height * 0.8)
         englishTop1.font = englishTop1.font.withSize(englishTop1.frame.height * 0.9)
-        chineseCharTop1.font = chineseCharTop1.font.withSize(topView1.frame.size.height * 0.85)
+        */
     }
     
     func Recognize() {
