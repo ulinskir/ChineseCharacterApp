@@ -14,6 +14,7 @@ class CharacterDetailsViewController: UIViewController {
     @IBOutlet weak var chineseCharLabel: UILabel!
     @IBOutlet weak var englishLabel: UILabel!
     @IBOutlet weak var pinyinLabel: UILabel!
+    @IBOutlet weak var charDisplayLabel: UILabel!
     
     var currModule:Module? = nil
     var currChar:ChineseChar? = nil
@@ -23,7 +24,9 @@ class CharacterDetailsViewController: UIViewController {
         
         chineseCharLabel.text = currChar?.char
         englishLabel.text = currChar?.definition
-        pinyinLabel.text = currChar?.pinyin[0]
+        pinyinLabel.text = currChar!.pinyin.count > 0 ? currChar?.pinyin[0] : "none"
+        charDisplayLabel.text = currChar?.char
+        charDisplayLabel.font = charDisplayLabel.font.withSize(charDisplayLabel.frame.size.height)
     }
     
     // If going back to the module details view, send the current module

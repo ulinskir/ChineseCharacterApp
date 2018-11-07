@@ -82,7 +82,7 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     {
         if let destination = segue.destination as? CharacterDetailsViewController {
             destination.currModule = module!
-            let selectedrow = moduleCharactersTableView.indexPathForSelectedRow!.section
+            let selectedrow = moduleCharactersTableView.indexPathForSelectedRow!.row
             destination.currChar = module?.chineseChars[selectedrow]
         }
         else if let destination = segue.destination as? DrawCharacterViewController {
