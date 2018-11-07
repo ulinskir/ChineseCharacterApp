@@ -41,7 +41,7 @@ class LearningSesion {
     }
     
     func getCurrentChar() -> ChineseChar? {
-        if current > 0 && current < charsToPractice.count {
+        if current >= 0 && current < charsToPractice.count {
             return charsToPractice[current]
         }
         return nil

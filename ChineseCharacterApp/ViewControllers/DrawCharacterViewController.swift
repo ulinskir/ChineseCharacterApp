@@ -97,37 +97,50 @@ class DrawCharacterViewController: UIViewController {
     // TO DO: implement this
     @IBAction func submitButtonTapped(_ sender: Any) {
         //Recognize()
-        displayCharInView()
-        progressBar.setProgress(Float(ls!.progress()), animated: true)
-        submitButton.setTitle("Continre", for: [])
-
-        //ls!.level += 1
-        //setupCharDisplay()
-        //submitButton.setTitle("Done", for: UIControl.State)
+        if submitButton.titleLabel!.text == "Check" {
+            print("hi")
+            checkUserChar()
+            ls!.level += 1
+        } else if submitButton.titleLabel!.text == "Continue"{
+            loadNextChar()
+        } else {
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
+            self.present(newViewController, animated: true, completion: nil)
+        }
     }
     
     func checkUserChar() {
         displayCharInView()
         ls!.charPracticed(score: 0)
         progressBar.setProgress(Float(ls!.progress()), animated: true)
-        submitButton.setTitle("Continue", for: [])
+        //submitButton.setTitle("Continue", for: [.normal])
+        
+        setSubmitButtonTitle(title: "Continue")
     }
     
     func loadNextChar() {
+        drawingView.clearCanvas()
         if !ls!.sessionFinished() {
             setupCharDisplay()
-            submitButton.setTitle("Check", for: [])
+            setSubmitButtonTitle(title: "Check")
+            //submitButton.setTitle("Check", for: [.normal])
         } else {
-            submitButton.setTitle("Done", for: [])
+            setSubmitButtonTitle(title: "Done")
+            //submitButton.setTitle("Done", for: [.normal])
         }
     }
     
+    func setSubmitButtonTitle(title:String) {
+        submitButton.setAttributedTitle(NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.red]), for: [.normal])
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ls = LearningSesion(charsToPractice: module!.chineseChars,level: 0)
+        print(module!.chineseChars)
         setFontSizes()
-        loadNextChar()
+        setupCharDisplay()
     }
     
     func setupCharDisplay() {
@@ -161,13 +174,13 @@ class DrawCharacterViewController: UIViewController {
     func setLabelsInTop1(char:ChineseChar) {
         englishTop1.text = char.definition
         chineseCharTop1.text = char.char
-        pinyinTop1.text = char.pinyin[0]
+        pinyinTop1.text = char.pinyin.count > 0 ? char.pinyin[0] : "none"
         showTop1()
     }
     
     func setLabelsInTop2(char:ChineseChar) {
         englishTop2.text = char.definition
-        pinyinTop2.text = char.pinyin[0]
+        pinyinTop2.text = char.pinyin.count > 0 ? char.pinyin[0] : "none"
         showTop2()
     }
     

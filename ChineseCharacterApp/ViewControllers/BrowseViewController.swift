@@ -174,7 +174,7 @@ extension BrowseViewController : UISearchBarDelegate {
         print("TYPING")
         if searchText == ""{
             searching = false
-        }else{
+        } else{
             searchTerm = Chars.filter({$0.definition.lowercased().contains(searchText.lowercased())})
             searching = true
         }
