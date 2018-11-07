@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -578,7 +578,7 @@
                                         </constraints>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pYK-po-uQS">
-                                        <rect key="frame" x="40" y="75" width="283" height="497"/>
+                                        <rect key="frame" x="40" y="75" width="283" height="572"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="separatorColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                         <color key="sectionIndexColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -623,74 +623,43 @@
                                             <outlet property="delegate" destination="jic-dd-Lb1" id="pK0-Xo-Fi0"/>
                                         </connections>
                                     </tableView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="s6p-TD-eLV" userLabel="bottom bar">
-                                        <rect key="frame" x="0.0" y="572" width="363" height="75"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XbO-4F-coI">
-                                                <rect key="frame" x="0.0" y="0.0" width="181" height="75"/>
-                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                <state key="normal">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="Add">
-                                                            <attributes>
-                                                                <color key="NSColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <font key="NSFont" size="18" name="Baskerville"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="Tfy-da-csh" kind="show" id="FxD-ch-sY0"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q4L-zc-KBI">
-                                                <rect key="frame" x="182" y="0.0" width="181" height="75"/>
-                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                <state key="normal">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="Delete">
-                                                            <attributes>
-                                                                <color key="NSColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <font key="NSFont" size="18" name="Baskerville"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                </state>
-                                                <connections>
-                                                    <action selector="deleteModule:" destination="jic-dd-Lb1" eventType="touchUpInside" id="e8E-EG-SU9"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Mx5-26-sfJ" firstAttribute="leading" secondItem="Aj8-aE-vpB" secondAttribute="leading" id="BGs-Ww-f8T"/>
-                                    <constraint firstAttribute="trailing" secondItem="s6p-TD-eLV" secondAttribute="trailing" id="I4h-uS-7iq"/>
+                                    <constraint firstAttribute="trailing" secondItem="Mx5-26-sfJ" secondAttribute="trailing" id="Bzx-L6-SgQ"/>
                                     <constraint firstItem="pYK-po-uQS" firstAttribute="leading" secondItem="Aj8-aE-vpB" secondAttribute="leading" constant="40" id="Vd6-dS-110"/>
                                     <constraint firstItem="Mx5-26-sfJ" firstAttribute="leading" secondItem="Aj8-aE-vpB" secondAttribute="leading" id="YZG-8L-7xy"/>
-                                    <constraint firstItem="s6p-TD-eLV" firstAttribute="leading" secondItem="Aj8-aE-vpB" secondAttribute="leading" id="cfc-04-vqh"/>
-                                    <constraint firstAttribute="trailing" secondItem="Mx5-26-sfJ" secondAttribute="trailing" id="hD1-CH-sI9"/>
-                                    <constraint firstAttribute="trailing" secondItem="Mx5-26-sfJ" secondAttribute="trailing" id="ppI-zz-lon"/>
                                     <constraint firstAttribute="trailing" secondItem="pYK-po-uQS" secondAttribute="trailing" constant="40" id="s5J-0l-XRF"/>
-                                    <constraint firstItem="s6p-TD-eLV" firstAttribute="height" secondItem="Mx5-26-sfJ" secondAttribute="height" id="tiA-mZ-5zB"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dba-WM-hzj">
+                                <rect key="frame" x="293" y="597" width="45" height="45"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="XWY-s4-Eax"/>
+                                    <constraint firstAttribute="width" secondItem="dba-WM-hzj" secondAttribute="height" multiplier="1:1" id="YJD-NK-nRi"/>
+                                    <constraint firstAttribute="height" constant="45" id="cPY-My-1mZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Aj8-aE-vpB" firstAttribute="leading" secondItem="kcp-AE-JNB" secondAttribute="leading" id="BvS-6T-Elj"/>
                             <constraint firstItem="kcp-AE-JNB" firstAttribute="bottom" secondItem="Aj8-aE-vpB" secondAttribute="bottom" id="Q2c-KS-Udz"/>
                             <constraint firstItem="Aj8-aE-vpB" firstAttribute="top" secondItem="kcp-AE-JNB" secondAttribute="top" id="Wkv-Kk-PD3"/>
-                            <constraint firstItem="kcp-AE-JNB" firstAttribute="trailing" secondItem="Aj8-aE-vpB" secondAttribute="trailing" id="r13-68-3gY"/>
+                            <constraint firstItem="kcp-AE-JNB" firstAttribute="trailing" secondItem="dba-WM-hzj" secondAttribute="trailing" constant="25" id="fA4-Kw-mdN"/>
+                            <constraint firstItem="kcp-AE-JNB" firstAttribute="bottom" secondItem="dba-WM-hzj" secondAttribute="bottom" constant="25" id="ih0-n2-fUO"/>
+                            <constraint firstItem="Aj8-aE-vpB" firstAttribute="leading" secondItem="jDL-Kb-Bwe" secondAttribute="leading" id="lr8-1N-Oq5"/>
+                            <constraint firstAttribute="trailing" secondItem="Aj8-aE-vpB" secondAttribute="trailing" id="sky-iX-pKQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kcp-AE-JNB"/>
                     </view>
                     <connections>
-                        <outlet property="addModuleButton" destination="XbO-4F-coI" id="RlN-D8-hWw"/>
-                        <outlet property="deleteModuleButton" destination="q4L-zc-KBI" id="vcl-82-4li"/>
+                        <outlet property="addModuleButton" destination="dba-WM-hzj" id="FfR-U2-J71"/>
                         <outlet property="modulesTableView" destination="pYK-po-uQS" id="do6-41-MeR"/>
                         <outlet property="modulesTitleLabel" destination="6s9-g6-HYl" id="Osu-st-YK2"/>
                         <outlet property="moreOptionsButton" destination="CAi-5E-afy" id="pg1-CW-ybq"/>
@@ -699,7 +668,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PSL-tU-iUY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-345" y="261"/>
+            <point key="canvasLocation" x="-346.39999999999998" y="260.41979010494754"/>
         </scene>
         <!--Module Details View Controller-->
         <scene sceneID="LEh-9p-Ubj">
@@ -1421,25 +1390,43 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="Bet-PR-SHj">
                                         <rect key="frame" x="25" y="572" width="325" height="75"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NhB-Gm-Ve8">
-                                                <rect key="frame" x="0.0" y="22.5" width="125" height="30"/>
-                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NhB-Gm-Ve8">
+                                                <rect key="frame" x="0.0" y="23" width="125" height="29"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="125" id="F2v-Zz-lpY"/>
                                                 </constraints>
-                                                <state key="normal" title="Practice Selected"/>
+                                                <state key="normal">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="Practice Selected">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="15" name="Baskerville"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </state>
                                                 <connections>
                                                     <action selector="PracticeSelectedPressed:" destination="8Rv-Bi-lHb" eventType="touchUpInside" id="8av-ny-iPl"/>
                                                     <segue destination="SGK-gC-YUj" kind="show" id="YjR-t4-0aI"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8P4-mm-uD6">
-                                                <rect key="frame" x="200" y="22.5" width="125" height="30"/>
-                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8P4-mm-uD6">
+                                                <rect key="frame" x="200" y="23" width="125" height="29"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="125" id="m6G-EO-Prv"/>
                                                 </constraints>
-                                                <state key="normal" title="Save as Module"/>
+                                                <state key="normal">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="Save as Module">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="15" name="Baskerville"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </state>
                                                 <connections>
                                                     <action selector="saveButtonTapped:" destination="8Rv-Bi-lHb" eventType="touchUpInside" id="znY-9V-0x2"/>
                                                     <segue destination="Tfy-da-csh" kind="show" id="4Fz-Xz-ddx"/>
@@ -1583,7 +1570,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A0u-LJ-Ocp">
                                                 <rect key="frame" x="0.0" y="0.0" width="136" height="75"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <state key="normal" title="Cancel">
                                                     <color key="titleColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -1594,7 +1581,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pta-7K-hEN">
                                                 <rect key="frame" x="179" y="0.0" width="136" height="75"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <state key="normal" title="Save">
                                                     <color key="titleColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -1795,11 +1782,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="FxD-ch-sY0"/>
-        <segue reference="3bu-4q-Jxd"/>
-        <segue reference="2sk-zc-gLd"/>
-        <segue reference="YjR-t4-0aI"/>
-        <segue reference="Hak-Or-E2q"/>
+        <segue reference="D7X-3W-474"/>
+        <segue reference="Oyv-M6-exy"/>
+        <segue reference="fQs-EV-8Cn"/>
+        <segue reference="KRX-p4-rLg"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

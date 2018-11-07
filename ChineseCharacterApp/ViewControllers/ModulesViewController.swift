@@ -27,7 +27,6 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //bottom bar items - module management
     @IBOutlet weak var addModuleButton: UIButton!
-    @IBOutlet weak var deleteModuleButton: UIButton!
     
     
     var selectedModule:Module? = nil
@@ -39,6 +38,11 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.modulesTableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         modulesTableView.delegate = self
         modulesTableView.dataSource = self
+        
+        addModuleButton.layer.cornerRadius = addModuleButton.bounds.size.height / 2
+        addModuleButton.clipsToBounds = true
+        addModuleButton.layer.borderWidth = 1
+        addModuleButton.layer.borderColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0).cgColor
         
         //Commenting out fake Modules
         //let mod = ["names", "colors", "numbers", "food", "family", "emotions", "sports", "weather", "interests", "school", "shopping", "travel", "places"]
