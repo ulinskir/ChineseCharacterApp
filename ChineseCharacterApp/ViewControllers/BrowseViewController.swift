@@ -45,7 +45,7 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     func loadCharsFromJSON() {
         //Open the dictionary file
 
-        guard let Dictpath = Bundle.main.path(forResource: "full_with_defs", ofType: "json") else {return}
+        guard let Dictpath = Bundle.main.path(forResource: "full_with_dots", ofType: "json") else {return}
         let Dicturl = URL(fileURLWithPath: Dictpath)
         
         //Get the contents of the dictionary file into the Chars array as object...obj.strokes wil; be an empty list
@@ -59,13 +59,14 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
                 guard let charDict = char as? [String: Any] else {return}
                 guard let definition = charDict["definition"] as? String else {print("Missing Def"); return}
                 guard let hanzi = charDict["character"] as? String else {print("Missing Char"); return}
-                guard let strokes = charDict["strokes"] as? [String] else {print("Missing strokes"); return}
+                guard let pts = charDict["points"] as? [[[Int]]] else {print("Missing Points"); return}
                 guard let pinyin = charDict["pinyin"] as? [String] else {print("Missing Pinyin"); return}
                 guard let decomposition = charDict["decomposition"] as? String else {print("Missing Decomposition"); return}
                 guard let radical = charDict["radical"] as? String else {print("Missing Radical"); return}
                 
                 
-                let curChar = ChineseChar(character: hanzi, strks: strokes, def: definition, pin: pinyin, decomp: decomposition, rad: radical)
+                print("GOT PTS")
+                let curChar = ChineseChar(character: hanzi, pts: pts, def: definition, pin: pinyin, decomp: decomposition, rad: radical)
                 Chars.append(curChar)
             }
             

@@ -90,10 +90,10 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
                             
                             //When we find the correct char in the JSON
                             if hanzi == char.char{
-                                guard let strokes = charDict["strokes"] as? [String] else {print("Missing strokes"); return}
+                                guard let points = charDict["points"] as? [[[Int]]] else {print("Missing points"); return}
                                 guard let pinyin = charDict["pinyin"] as? [String] else {print("Missing Pinyin"); return}
                                 //Get the extra info we need from the JSON and add the current char to the curChars array
-                                curChars.append(ChineseChar(character: hanzi, strks: strokes, def: char.definition as! String, pin: pinyin, decomp: char.decomposition as! String, rad: char.radical as! String))
+                                curChars.append(ChineseChar(character: hanzi, pts: points, def: char.definition as! String, pin: pinyin, decomp: char.decomposition as! String, rad: char.radical as! String))
                                 
                                 //Stop looking through the JSON
                                 break lookJson
