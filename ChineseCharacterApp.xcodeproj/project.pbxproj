@@ -33,6 +33,8 @@
 		58EC0C5F2156B7EB00F9D1E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58EC0C5D2156B7EB00F9D1E6 /* LaunchScreen.storyboard */; };
 		58EC0C6A2156B7EB00F9D1E6 /* ChineseCharacterAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC0C692156B7EB00F9D1E6 /* ChineseCharacterAppTests.swift */; };
 		58EC0C752156B7EB00F9D1E6 /* ChineseCharacterAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC0C742156B7EB00F9D1E6 /* ChineseCharacterAppUITests.swift */; };
+		58F352752194AF4100137A0E /* DynamicFontSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F352742194AF4100137A0E /* DynamicFontSizeExtension.swift */; };
+		58F352772194D38D00137A0E /* LessonFinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F352762194D38D00137A0E /* LessonFinishedViewController.swift */; };
 		58FAF4E521650C690029E876 /* ChineseChar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FAF4E421650C690029E876 /* ChineseChar.swift */; };
 		58FAF4E7216511290029E876 /* ModuleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FAF4E6216511290029E876 /* ModuleDetailsViewController.swift */; };
 		92C6A5C2218FEC6B0070E77A /* full_with_defs.json in Resources */ = {isa = PBXBuildFile; fileRef = 92C6A5C1218FEC6B0070E77A /* full_with_defs.json */; };
@@ -89,6 +91,8 @@
 		58EC0C702156B7EB00F9D1E6 /* ChineseCharacterAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChineseCharacterAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		58EC0C742156B7EB00F9D1E6 /* ChineseCharacterAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChineseCharacterAppUITests.swift; sourceTree = "<group>"; };
 		58EC0C762156B7EB00F9D1E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		58F352742194AF4100137A0E /* DynamicFontSizeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFontSizeExtension.swift; sourceTree = "<group>"; };
+		58F352762194D38D00137A0E /* LessonFinishedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonFinishedViewController.swift; sourceTree = "<group>"; };
 		58FAF4E421650C690029E876 /* ChineseChar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChineseChar.swift; sourceTree = "<group>"; };
 		58FAF4E6216511290029E876 /* ModuleDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleDetailsViewController.swift; sourceTree = "<group>"; };
 		92C6A5C1218FEC6B0070E77A /* full_with_defs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = full_with_defs.json; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 		580C3BD2217CD4B1002E8152 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				58F352742194AF4100137A0E /* DynamicFontSizeExtension.swift */,
 				58B3BCC3215ABB220049A8E5 /* ColorScheme.swift */,
 				58B3BCC7215AEB8B0049A8E5 /* Buttons.swift */,
 				581494BF216D9944000DC3B5 /* ProfileTableViewCell.swift */,
@@ -158,6 +163,7 @@
 		58B3BCC0215AB6730049A8E5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				58F352762194D38D00137A0E /* LessonFinishedViewController.swift */,
 				58FAF4E6216511290029E876 /* ModuleDetailsViewController.swift */,
 				58656488216487F90019C39C /* SettingsTableViewController.swift */,
 				58EC0C562156B7EA00F9D1E6 /* HomeViewController.swift */,
@@ -361,9 +367,11 @@
 			files = (
 				92FEFC072184CA6B0011EBD4 /* ChineseCharacterAppModel.xcdatamodeld in Sources */,
 				58FAF4E521650C690029E876 /* ChineseChar.swift in Sources */,
+				58F352772194D38D00137A0E /* LessonFinishedViewController.swift in Sources */,
 				581494C2216DA9E3000DC3B5 /* CreateModuleViewController.swift in Sources */,
 				58B3BCC4215ABB220049A8E5 /* ColorScheme.swift in Sources */,
 				581494BE216D7F27000DC3B5 /* CharacterInModuleTableViewCell.swift in Sources */,
+				58F352752194AF4100137A0E /* DynamicFontSizeExtension.swift in Sources */,
 				58EC0C572156B7EA00F9D1E6 /* HomeViewController.swift in Sources */,
 				586564872164879D0019C39C /* ProfileViewController.swift in Sources */,
 				580B6D7B2176BD3700061F4A /* BrowseViewController.swift in Sources */,

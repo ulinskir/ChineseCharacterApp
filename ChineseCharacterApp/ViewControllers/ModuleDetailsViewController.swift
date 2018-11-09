@@ -14,6 +14,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -21,6 +22,7 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var topBarLabel: UILabel!
     @IBOutlet weak var moreOptionsButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
     
     //Labels
     @IBOutlet weak var moduleNameLabel: UILabel!
@@ -87,6 +89,22 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         }
         else if let destination = segue.destination as? DrawCharacterViewController {
             destination.module = module
+        }
+        else if sender as? UIButton == deleteButton {
+            deleteModule(module: module!)
+        }
+    }
+    
+    func deleteModule(module : Module){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ModuleContent")
+        fetchRequest.predicate = NSPredicate(format: "name = %@", module.name)
+        
+        if let result = try? context.fetch(fetchRequest) {
+            for object in result {
+                context.delete(object as! NSManagedObject)
+            }
         }
     }
 }

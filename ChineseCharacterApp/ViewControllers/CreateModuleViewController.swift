@@ -39,7 +39,10 @@ class CreateModuleViewController: UIViewController {
         self.present(alert, animated:true)
     }
     func saveModule() {
-        var modName = newModuleName.text
+        let modName = newModuleName.text
+        if moduleNameExists(name: modName!) {
+            return
+        }
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let context = appDelegate.persistentContainer.viewContext
@@ -98,18 +101,26 @@ class CreateModuleViewController: UIViewController {
     }
     
     @IBAction func saveModuleButtonPressed(_ sender: Any) {
-        
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? ModulesViewController {
+        if !moduleNameExists(name: newModuleName.text!) {
             saveModule()
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "ModulesViewController") as! ModulesViewController
+            self.present(newViewController, animated: true, completion: nil)
+        }
+        else {
+            //do something
         }
     }
     
+   /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? ModulesViewController {
+            saveModule()
+        }
+    }*/
+    
 }
 
-func ModuleNameExists(name: String) -> Bool{
+func moduleNameExists(name: String) -> Bool{
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ModuleContent")
     fetchRequest.includesSubentities = false
     fetchRequest.predicate = NSPredicate(format: "name = %@", name)
