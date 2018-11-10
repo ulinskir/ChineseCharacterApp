@@ -35,3 +35,7 @@ xcuserdata/
 /*.gcno
 
 # End of https://www.gitignore.io/api/xcode
+ChineseCharacterApp/Character-Recognition/HTML_svg.txt
+ChineseCharacterApp/Character-Recognition/strokes.txt
+Font_images/char1.png
+Font_images/Webp.net-resizeimage.jpg
