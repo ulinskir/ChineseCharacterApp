@@ -38,7 +38,9 @@ class CreateModuleViewController: UIViewController {
         alert.addAction(noAction)
         self.present(alert, animated:true)
     }
+    
     func saveModule() {
+        print("SAVING MODULE")
         var modName = newModuleName.text
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
