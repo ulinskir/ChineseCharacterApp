@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:ChineseCharacterApp.xcodeproj">
+      location = "group:/Users/tparker/Documents/GitHub/ChineseCharacterApp/ChineseCharacterApp/Character-Recognition">
+   </FileRef>
+   <FileRef
+      location = "group:../ChineseCharacterApp/Character-Recognition/convert_points.swift">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
