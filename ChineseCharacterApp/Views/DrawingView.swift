@@ -45,6 +45,7 @@ class DrawingView: UIView {
         drawShapeLayer()
     }
     
+    func drawChar()
 
     
     func drawShapeLayer() {

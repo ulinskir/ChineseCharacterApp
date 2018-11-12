@@ -22,5 +22,3 @@ func target_points(_ target:String, src_edges:Edges, dest_edges:Edges) -> [Point
     let bezierPointsInstance = bezierPoints()
     return bezierPointsInstance.get_points(from: target, scale: scale_fn)
 }
-
-
