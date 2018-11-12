@@ -96,7 +96,7 @@ func get_curve_fn (_ p:[Point]) -> ((Int) -> [Point]) {
     return calculate
 }
 
-
+// bez
 public class bezierPoints {
     private func to_point(_ CG:[CGPoint]) -> [Point] {
         return CG.map({(pt:CGPoint) -> Point in return (Double(pt.x),Double(pt.y))})
