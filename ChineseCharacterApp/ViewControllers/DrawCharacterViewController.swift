@@ -20,6 +20,7 @@ class DrawCharacterViewController: UIViewController {
     // Character information
     @IBOutlet weak var audioButton: UIButton! // Stretch goal-> get audio for characters
     
+    @IBOutlet weak var masterDrawingView: UIView!
     @IBOutlet weak var drawingView: DrawingView! // a canvas to draw characters on
     @IBOutlet weak var backgroundCharLabel: UILabel! // for level 0 to display the curr char
     
@@ -52,6 +53,7 @@ class DrawCharacterViewController: UIViewController {
     // TO DO: implement this
     @IBAction func hintButtonTapped(_ sender: Any) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.drawPointOnCanvas(x: Double(self.drawingView.frame.width / 2), y:  Double(self.drawingView.frame.width / 2))
             print("time up")
         }
         
@@ -149,17 +151,19 @@ class DrawCharacterViewController: UIViewController {
         englishTop1.numberOfLines = 0
         
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         setFontSizes()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         setupCharDisplay()
     }
     
-    override open var shouldAutorotate: Bool {
-        return false
+    func drawPointOnCanvas(x:Double,y:Double) {
+        let pointRadius = drawingView.frame.height / 16
+        let pointUIImage = UIImage(named: "hintPoint")
+        let imageView = UIImageView(image: pointUIImage!)
+        imageView.frame = CGRect(x: x, y: y, width: Double(pointRadius), height: Double(pointRadius))
+        masterDrawingView.addSubview(imageView)
     }
     
     func setupCharDisplay() {
