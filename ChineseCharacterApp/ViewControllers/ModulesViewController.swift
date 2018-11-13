@@ -44,14 +44,6 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
         addModuleButton.layer.borderWidth = 1
         addModuleButton.layer.borderColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0).cgColor
         
-        //Commenting out fake Modules
-        //let mod = ["names", "colors", "numbers", "food", "family", "emotions", "sports", "weather", "interests", "school", "shopping", "travel", "places"]
-        //let door = ChineseChar(character: "a", strks: [""], def: "door", pin: ["pin"], decomp: "d-o-o-r", rad: "sure")
-        
-        //for i in mod {
-        //    modules.append(Module(name:"\(i)", chineseChars:[door]))
-        //}
-        
         //Get the Database
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
