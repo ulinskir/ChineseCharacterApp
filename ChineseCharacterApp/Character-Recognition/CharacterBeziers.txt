@@ -1,0 +1,16 @@
+Based off the right char here:
+https://holysmack.files.wordpress.com/2014/01/namnu.png?w=549&h=268
+
+ctx.beginPath();
+ctx.moveTo(402 + xoff, 40 + yoff);
+ctx.bezierCurveTo(388 + xoff, 94 + yoff, 354 + xoff, 148 + yoff, 359 + xoff, 150 + yoff);
+ctx.bezierCurveTo(379 + xoff, 158 + yoff, 504 + xoff, 216 + yoff, 489 + xoff, 215 + yoff);
+ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(324 + xoff, 97 + yoff);
+ctx.bezierCurveTo(309 + xoff, 97 + yoff, 518 + xoff, 97 + yoff, 503 + xoff, 97 + yoff);
+ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(468 + xoff, 76 + yoff);
+ctx.bezierCurveTo(462 + xoff, 146 + yoff, 419 + xoff, 201 + yoff, 330 + xoff, 220 + yoff);
+ctx.stroke();

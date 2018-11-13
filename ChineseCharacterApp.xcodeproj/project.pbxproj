@@ -97,6 +97,7 @@
 		58FAF4E6216511290029E876 /* ModuleDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleDetailsViewController.swift; sourceTree = "<group>"; };
 		92C6A5C1218FEC6B0070E77A /* full_with_defs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = full_with_defs.json; sourceTree = "<group>"; };
 		92FEFC062184CA6B0011EBD4 /* ChineseCharacterAppModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChineseCharacterAppModel.xcdatamodel; sourceTree = "<group>"; };
+		96330A91219A22B3003E6A2F /* Character-Recognition */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Character-Recognition"; path = "/Users/tparker/Documents/GitHub/ChineseCharacterApp/ChineseCharacterApp/Character-Recognition"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +202,7 @@
 		58EC0C532156B7EA00F9D1E6 /* ChineseCharacterApp */ = {
 			isa = PBXGroup;
 			children = (
+				96330A91219A22B3003E6A2F /* Character-Recognition */,
 				92C6A5C1218FEC6B0070E77A /* full_with_defs.json */,
 				58EC0C542156B7EA00F9D1E6 /* AppDelegate.swift */,
 				58B3BCC0215AB6730049A8E5 /* ViewControllers */,
