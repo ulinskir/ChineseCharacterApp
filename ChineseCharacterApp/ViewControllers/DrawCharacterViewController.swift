@@ -52,10 +52,19 @@ class DrawCharacterViewController: UIViewController {
     // level for the current character
     // TO DO: implement this
     @IBAction func hintButtonTapped(_ sender: Any) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.drawPointOnCanvas(x: Double(self.drawingView.frame.width / 2), y:  Double(self.drawingView.frame.width / 2))
-            print("time up")
+        print(self.drawingView.frame.width)
+        let char = ls!.getCurrentChar()!
+        if drawingView.strokes.count < char.points.count {
+            //self.drawPointOnCanvas(x: Double(self.drawingView.frame.width / 2), y:  Double(self.drawingView.frame.width / 2))
+            let scaleFactor =  Double(self.drawingView.frame.width/295)
+            let points = char.points[drawingView.strokes.count][0]
+            self.drawPointOnCanvas(x: Double(points[0]) * scaleFactor, y:  Double(points[1]) * scaleFactor)
         }
+        else {
+            print("all strokes finished")
+        }
+        //self.drawPointOnCanvas(x: Double(self.drawingView.frame.width / 2), y:  Double(self.drawingView.frame.width / 2))
+        print()
         
         switch ls!.level {
         case 0:
@@ -106,6 +115,7 @@ class DrawCharacterViewController: UIViewController {
             if (ls!.level > 3) {
                 ls!.level = 0
             }
+            return
         } else if submitButton.titleLabel!.text == "Continue"{
             loadNextChar()
         } else {
@@ -164,6 +174,10 @@ class DrawCharacterViewController: UIViewController {
         let imageView = UIImageView(image: pointUIImage!)
         imageView.frame = CGRect(x: x, y: y, width: Double(pointRadius), height: Double(pointRadius))
         masterDrawingView.addSubview(imageView)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            imageView.removeFromSuperview()
+            print("time up")
+        }
     }
     
     func setupCharDisplay() {
@@ -184,10 +198,12 @@ class DrawCharacterViewController: UIViewController {
         case 2:
             hideCharInView()
             setLabelsInTop1(char: char)
+            hintButton.isEnabled = false
             print("2")
         case 3:
             hideCharInView()
             setLabelsInTop2(char: char)
+            hintButton.isEnabled = false
             print("3")
         default:
             print("error: undefined level")
