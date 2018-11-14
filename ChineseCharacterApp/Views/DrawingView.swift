@@ -17,6 +17,7 @@ class DrawingView: UIView {
     var path:UIBezierPath!
     var touchPoint:CGPoint!
     var startingPoint:CGPoint!
+    var points:[[Point]]
     
     override func layoutSubviews() {
         self.clipsToBounds = true
@@ -30,15 +31,18 @@ class DrawingView: UIView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         startingPoint = touch?.location(in: self)
+        path = UIBezierPath()
+        path.move(to: startingPoint)
+        points.append([])
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         touchPoint = touch?.location(in: self)
         
-        path = UIBezierPath()
-        path.move(to: startingPoint)
+        
         path.addLine(to: touchPoint)
+        points[-1].append((Double(touchPoint.x), Double(touchPoint.y)))
         startingPoint = touchPoint
         
         drawShapeLayer()
@@ -60,6 +64,7 @@ class DrawingView: UIView {
             self.layer.sublayers = nil
             self.setNeedsDisplay()
         }
+        points = []
     }
     
     /*

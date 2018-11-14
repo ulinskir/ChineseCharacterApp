@@ -97,6 +97,9 @@ class DrawCharacterViewController: UIViewController {
     // TO DO: implement this
     @IBAction func submitButtonTapped(_ sender: Any) {
         //Recognize()
+        let matcher = Matcher()
+        //insert target here
+        matcher.full_matcher(source:drawingView.points, target:[])
         if submitButton.titleLabel!.text == "Check" {
             print("hi")
             checkUserChar()
