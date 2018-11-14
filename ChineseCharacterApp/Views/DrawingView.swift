@@ -17,6 +17,7 @@ class DrawingView: UIView {
     var touchPoint:CGPoint!
     var startingPoint:CGPoint!
     var strokes = [UIBezierPath]()
+    var stroke_number = 0
     
     override func layoutSubviews() {
         self.clipsToBounds = true
@@ -29,10 +30,12 @@ class DrawingView: UIView {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         strokes.append(path)
         path = UIBezierPath()
+        stroke_number += 1
         print("ENDED")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("This is stroke: " , stroke_number)
         let touch = touches.first
         startingPoint = touch?.location(in: self)
         print(startingPoint)
@@ -66,6 +69,7 @@ class DrawingView: UIView {
             //self.layer.sublayers?.remove(at: layer.sublayers!.count - 1)
             self.layer.sublayers = nil
             self.setNeedsDisplay()
+            stroke_number = 0
             strokes = []
         }
     }
