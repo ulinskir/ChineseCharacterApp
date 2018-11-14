@@ -53,7 +53,6 @@ class DrawCharacterViewController: UIViewController {
     // level for the current character
     // TO DO: implement this
     @IBAction func hintButtonTapped(_ sender: Any) {
-        print(self.drawingView.frame.width)
         guard let char = ls!.getCurrentChar() else {
             print("no char")
             return
@@ -168,16 +167,21 @@ class DrawCharacterViewController: UIViewController {
         if first {
             print("view did layout subviews")
             first = false
-            setFontSizes()
-            setupCharDisplay()
+            
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setFontSizes()
+        setupCharDisplay()
+    }
+    
     func drawPointOnCanvas(x:Double,y:Double) {
-        let pointRadius = drawingView.frame.height / 16
+        let pointRadius = Double(drawingView.frame.height / 16)
         let pointUIImage = UIImage(named: "hintPoint")
         let imageView = UIImageView(image: pointUIImage!)
-        imageView.frame = CGRect(x: x, y: y, width: Double(pointRadius), height: Double(pointRadius))
+        imageView.frame = CGRect(x: x - pointRadius, y: y - pointRadius, width: (pointRadius), height: (pointRadius))
         masterDrawingView.addSubview(imageView)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             imageView.removeFromSuperview()
@@ -250,11 +254,11 @@ class DrawCharacterViewController: UIViewController {
     
     func setFontSizes() {
         backgroundCharLabel.font = backgroundCharLabel.font.withSize(drawingView.frame.size.height*0.9)
-        chineseCharTop1.font = chineseCharTop1.font.withSize(topView1.frame.size.height * 0.75)
+        chineseCharTop1.font = chineseCharTop1.font.withSize(topView1.frame.size.height * 0.7)
         englishTop1.fitTextToBounds()
         englishTop2.fitTextToBounds()
-        englishTop2.font = englishTop2.font.withSize(englishTop2.frame.height * 0.9)
-        pinyinTop2.font = pinyinTop2.font.withSize(pinyinTop2.frame.height * 0.8)
+        englishTop2.font = englishTop2.font.withSize(englishTop2.frame.height * 0.8)
+        pinyinTop2.font = pinyinTop2.font.withSize(pinyinTop2.frame.height * 0.7)
         pinyinTop1.font = pinyinTop1.font.withSize(pinyinTop1.frame.height * 0.6)
         englishTop1.font = englishTop1.font.withSize(englishTop1.frame.height * 0.6)
     }

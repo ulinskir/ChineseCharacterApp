@@ -66,6 +66,7 @@ class DrawingView: UIView {
             //self.layer.sublayers?.remove(at: layer.sublayers!.count - 1)
             self.layer.sublayers = nil
             self.setNeedsDisplay()
+            strokes = []
         }
     }
     
