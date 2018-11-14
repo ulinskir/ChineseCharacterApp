@@ -17,7 +17,7 @@ class DrawingView: UIView {
     var path:UIBezierPath!
     var touchPoint:CGPoint!
     var startingPoint:CGPoint!
-    var points:[[Point]]
+    var points:[[Point]] = []
     
     override func layoutSubviews() {
         self.clipsToBounds = true

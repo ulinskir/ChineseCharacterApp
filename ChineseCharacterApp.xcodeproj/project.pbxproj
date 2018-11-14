@@ -13,7 +13,6 @@
 		1876C324219CAF290097470B /* Match_Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1876C31C219CAF290097470B /* Match_Main.swift */; };
 		1876C326219CAF290097470B /* Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1876C31E219CAF290097470B /* Recognizer.swift */; };
 		1876C327219CAF290097470B /* CharacterBeziers.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1876C31F219CAF290097470B /* CharacterBeziers.txt */; };
-		1876C328219CAF290097470B /* convert_points.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1876C320219CAF290097470B /* convert_points.swift */; };
 		382E4C01216D76AE00D2A953 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382E4C00216D76AE00D2A953 /* User.swift */; };
 		580B6D7B2176BD3700061F4A /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B6D7A2176BD3700061F4A /* BrowseViewController.swift */; };
 		580B6D7D2176C08A00061F4A /* CharacterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B6D7C2176C08A00061F4A /* CharacterDetailsViewController.swift */; };
@@ -32,7 +31,6 @@
 		58B3BCC6215AEA470049A8E5 /* ModulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3BCC5215AEA470049A8E5 /* ModulesViewController.swift */; };
 		58B3BCC8215AEB8B0049A8E5 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3BCC7215AEB8B0049A8E5 /* Buttons.swift */; };
 		58B3BCCA215AF4460049A8E5 /* DrawCharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3BCC9215AF4460049A8E5 /* DrawCharacterViewController.swift */; };
-		58B3F88C217CD651003BF210 /* Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3F88B217CD651003BF210 /* Recognizer.swift */; };
 		58EC0C552156B7EA00F9D1E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC0C542156B7EA00F9D1E6 /* AppDelegate.swift */; };
 		58EC0C572156B7EA00F9D1E6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC0C562156B7EA00F9D1E6 /* HomeViewController.swift */; };
 		58EC0C5A2156B7EA00F9D1E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58EC0C582156B7EA00F9D1E6 /* Main.storyboard */; };
@@ -72,7 +70,6 @@
 		1876C31C219CAF290097470B /* Match_Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Match_Main.swift; sourceTree = "<group>"; };
 		1876C31E219CAF290097470B /* Recognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recognizer.swift; sourceTree = "<group>"; };
 		1876C31F219CAF290097470B /* CharacterBeziers.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CharacterBeziers.txt; sourceTree = "<group>"; };
-		1876C320219CAF290097470B /* convert_points.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = convert_points.swift; sourceTree = "<group>"; };
 		382E4C00216D76AE00D2A953 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		580B6D7A2176BD3700061F4A /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		580B6D7C2176C08A00061F4A /* CharacterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewController.swift; sourceTree = "<group>"; };
@@ -91,7 +88,6 @@
 		58B3BCC5215AEA470049A8E5 /* ModulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesViewController.swift; sourceTree = "<group>"; };
 		58B3BCC7215AEB8B0049A8E5 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		58B3BCC9215AF4460049A8E5 /* DrawCharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawCharacterViewController.swift; sourceTree = "<group>"; };
-		58B3F88B217CD651003BF210 /* Recognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recognizer.swift; sourceTree = "<group>"; };
 		58EC0C512156B7EA00F9D1E6 /* ChineseCharacterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChineseCharacterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58EC0C542156B7EA00F9D1E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		58EC0C562156B7EA00F9D1E6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -147,7 +143,6 @@
 				1876C31C219CAF290097470B /* Match_Main.swift */,
 				1876C31E219CAF290097470B /* Recognizer.swift */,
 				1876C31F219CAF290097470B /* CharacterBeziers.txt */,
-				1876C320219CAF290097470B /* convert_points.swift */,
 			);
 			name = "Character-Recognition";
 			path = "ChineseCharacterApp/Views/Character-Recognition";
@@ -214,7 +209,6 @@
 				58EC0C682156B7EB00F9D1E6 /* ChineseCharacterAppTests */,
 				58EC0C732156B7EB00F9D1E6 /* ChineseCharacterAppUITests */,
 				58EC0C522156B7EA00F9D1E6 /* Products */,
-				58B3F88B217CD651003BF210 /* Recognizer.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -413,9 +407,7 @@
 				1876C324219CAF290097470B /* Match_Main.swift in Sources */,
 				58B3BCC6215AEA470049A8E5 /* ModulesViewController.swift in Sources */,
 				588A1D432184DFBD00A19ECD /* learningSession.swift in Sources */,
-				58B3F88C217CD651003BF210 /* Recognizer.swift in Sources */,
 				580B6D7D2176C08A00061F4A /* CharacterDetailsViewController.swift in Sources */,
-				1876C328219CAF290097470B /* convert_points.swift in Sources */,
 				58FAF4E7216511290029E876 /* ModuleDetailsViewController.swift in Sources */,
 				1876C322219CAF290097470B /* Resample.swift in Sources */,
 				382E4C01216D76AE00D2A953 /* User.swift in Sources */,
