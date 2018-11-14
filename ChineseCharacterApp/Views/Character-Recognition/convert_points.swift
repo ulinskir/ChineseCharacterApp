@@ -1,6 +1,6 @@
 convert_points.swift
 
-typealias Edges (north:NSDecimalNumber, south:NSDecimalNumber, east:NSDecimalNumber, west:NSDecimalNumber)
+typealias Edges = (north:NSDecimalNumber, south:NSDecimalNumber, east:NSDecimalNumber, west:NSDecimalNumber)
 
 class make_fn {
 	func make_canvas_dimension_converter(from:Edges, to: Edges) -> (Point) -> Point {

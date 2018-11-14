@@ -67,6 +67,10 @@ class DrawingView: UIView {
         points = []
     }
     
+    func getPoints() -> [[Point]] {
+        return points
+    }
+    
     /*
      // Only override draw() if you perform custom drawing.
      // An empty implementation adversely affects performance during animation.
