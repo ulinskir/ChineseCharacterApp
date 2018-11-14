@@ -90,7 +90,7 @@ class DrawCharacterViewController: UIViewController {
     // When exit button is tapped, display popup to make sure the user wants to
     // quit the current learning session
     @IBAction func exitButtonTapped(_ sender: UIButton) {
-        let alert:UIAlertController = UIAlertController(title:"Cancel", message:"Are you sure you want to cancel?", preferredStyle: .actionSheet)
+        let alert:UIAlertController = UIAlertController(title:"", message:"Are you sure you want to quit? Your progress will not be saved.", preferredStyle: .alert)
         let yesAction:UIAlertAction = UIAlertAction(title:"Yes", style: .destructive)
         { (_:UIAlertAction) in
             self.performSegue(withIdentifier: "DrawHome", sender: self)
