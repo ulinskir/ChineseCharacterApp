@@ -45,11 +45,11 @@ class DrawCharacterViewController: UIViewController {
     var ls:LearningSesion? = nil
     var first = true
     
-    @IBOutlet weak var startScreen: UIView!
+    @IBOutlet weak var startButton: UIButton!
     
     @IBAction func startLesson(_ sender: Any) {
         setupCharDisplay()
-        startScreen.isHidden = true
+        startButton.isHidden = true
     }
     
     
