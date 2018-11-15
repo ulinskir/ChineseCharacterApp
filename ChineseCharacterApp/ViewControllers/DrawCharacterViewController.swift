@@ -47,13 +47,16 @@ class DrawCharacterViewController: UIViewController {
     
     var module:Module? = nil
     var ls:LearningSesion? = nil
+    var first = true
     
     // When hint button is tapped, give the user the correct hint, based on their
     // level for the current character
     // TO DO: implement this
     @IBAction func hintButtonTapped(_ sender: Any) {
-        print(self.drawingView.frame.width)
-        let char = ls!.getCurrentChar()!
+        guard let char = ls!.getCurrentChar() else {
+            print("no char")
+            return
+        }
         if drawingView.strokes.count < char.points.count {
             //self.drawPointOnCanvas(x: Double(self.drawingView.frame.width / 2), y:  Double(self.drawingView.frame.width / 2))
             let scaleFactor =  Double(self.drawingView.frame.width/295)
@@ -115,7 +118,6 @@ class DrawCharacterViewController: UIViewController {
             if (ls!.level > 3) {
                 ls!.level = 0
             }
-            return
         } else if submitButton.titleLabel!.text == "Continue"{
             loadNextChar()
         } else {
@@ -129,8 +131,6 @@ class DrawCharacterViewController: UIViewController {
         displayCharInView()
         ls!.charPracticed(score: 0)
         progressBar.setProgress(Float(ls!.progress()), animated: true)
-        //submitButton.setTitle("Continue", for: [.normal])
-        
         setSubmitButtonTitle(title: "Continue")
     }
     
@@ -164,15 +164,25 @@ class DrawCharacterViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        if first {
+            print("view did layout subviews")
+            first = false
+            
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         setFontSizes()
         setupCharDisplay()
     }
     
     func drawPointOnCanvas(x:Double,y:Double) {
-        let pointRadius = drawingView.frame.height / 16
+        let pointRadius = Double(drawingView.frame.height / 16)
         let pointUIImage = UIImage(named: "hintPoint")
         let imageView = UIImageView(image: pointUIImage!)
-        imageView.frame = CGRect(x: x, y: y, width: Double(pointRadius), height: Double(pointRadius))
+        imageView.frame = CGRect(x: x - pointRadius/2, y: y - pointRadius/2, width: (pointRadius), height: (pointRadius))
+        //imageView.frame = CGRect(x: x , y: y, width: (pointRadius), height: (pointRadius))
         masterDrawingView.addSubview(imageView)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             imageView.removeFromSuperview()
@@ -185,7 +195,6 @@ class DrawCharacterViewController: UIViewController {
             print("no char")
             return
         }
-        //let char = ChineseChar(character: "门", strks: [""], def: "Door", pin: ["Men"], decomp: "", rad: "")
         switch ls!.level {
         case 0:
             // if level is 0, display entire character in the background of the
@@ -246,14 +255,13 @@ class DrawCharacterViewController: UIViewController {
     
     func setFontSizes() {
         backgroundCharLabel.font = backgroundCharLabel.font.withSize(drawingView.frame.size.height*0.9)
-        chineseCharTop1.font = chineseCharTop1.font.withSize(topView1.frame.size.height * 0.75)
+        chineseCharTop1.font = chineseCharTop1.font.withSize(topView1.frame.size.height * 0.7)
         englishTop1.fitTextToBounds()
         englishTop2.fitTextToBounds()
-        /*englishTop2.font = englishTop2.font.withSize(englishTop2.frame.height * 0.9)
-        pinyinTop2.font = pinyinTop2.font.withSize(pinyinTop2.frame.height * 0.8)
-        pinyinTop1.font = pinyinTop1.font.withSize(pinyinTop1.frame.height * 0.8)
-        englishTop1.font = englishTop1.font.withSize(englishTop1.frame.height * 0.9)
-        */
+        englishTop2.font = englishTop2.font.withSize(englishTop2.frame.height * 0.8)
+        pinyinTop2.font = pinyinTop2.font.withSize(pinyinTop2.frame.height * 0.7)
+        pinyinTop1.font = pinyinTop1.font.withSize(pinyinTop1.frame.height * 0.6)
+        englishTop1.font = englishTop1.font.withSize(englishTop1.frame.height * 0.6)
     }
     
     func Recognize() {

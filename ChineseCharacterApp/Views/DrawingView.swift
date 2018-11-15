@@ -70,6 +70,7 @@ class DrawingView: UIView {
             self.layer.sublayers = nil
             self.setNeedsDisplay()
             stroke_number = 0
+            strokes = []
         }
     }
     
