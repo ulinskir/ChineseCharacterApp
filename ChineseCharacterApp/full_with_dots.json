@@ -4,7 +4,16 @@
 {"character":"二","definition":"two; twice","pinyin":["èr"],"decomposition":"⿱一一","radical":"二","matches":[[0],[1]], "points": [[[53,63], [240,63]], [[28,232],[266,232]]]},
 {"character":"三","definition":"three","pinyin":["sān"],"decomposition":"⿱一二","radical":"一","matches":[[0],[1],[1]], "points": [[[48 , 54], [247 , 54]], [[66 , 145],[229 , 145]], [[28 , 245],[267 , 245]]]},
 {"character":"四","definition":"four","pinyin":["sì"],"decomposition":"⿴囗儿","radical":"囗","matches":[[0],[0],[1],[1],[0]], "points": [[[47 , 45], [47 , 262]], [[41 , 49],[245 , 263]], [[116 , 57],[77 , 190]], [[175 , 58],[225 , 178]], [[58 , 239],[236 , 240]]]},
-{"character":"五","definition":"five; surname","pinyin":["wǔ"],"decomposition":"⿴二？","radical":"二","matches":[[0],null,null,[0]], "points": [[[39 , 49], [254 , 48]], [[137 , 51],[98 , 237]], [[53 , 133],[212 , 236]], [[30 , 247],[264 , 248]]]}
+{"character":"五","definition":"five; surname","pinyin":["wǔ"],"decomposition":"⿴二？","radical":"二","matches":[[0],null,null,[0]], "points": [[[39 , 49], [254 , 48]], [[137 , 51],[98 , 237]], [[53 , 133],[212 , 236]], [[30 , 247],[264 , 248]]]},
+{"character":"六","definition":"six","pinyin":["liù"],"decomposition":"⿱亠八","radical":"八","matches":[[0],[0],[1],[1]], "points" : [[[118 , 34], [167 , 77]], [[30 , 104], [263 , 104]], [[108 , 147],[37 , 257]],[[183 , 145],[252 , 258]]]},
+{"character":"七","definition":"seven","pinyin":["qī"],"decomposition":"⿻一乚","radical":"一","matches":[[0],[1]],"points": [[[27 , 142], [265 , 97]], [[125 , 25], [248 , 199]]]},
+{"character":"八","definition":"eight; all around, all sides","pinyin":["bā"],"decomposition":"？","radical":"八","matches":[null,null], "points" : [[[110 , 47],[35 , 254]], [[173 , 37],[262 , 254]]]},
+{"character":"九","definition":"nine","pinyin":["jiǔ"],"decomposition":"⿻丿乙","radical":"乙","matches":[[0],[1]], "points" : [[[44 , 92],[260 , 198]], [[120 , 25],[31 , 256]]]},
+{"character":"十","definition":"ten, tenth; complete; perfect","pinyin":["shí"],"decomposition":"⿻一丨","radical":"十","matches":[[0],[1]], "points" : [[[30 , 118],[264 , 121]], [[146 , 24],[147 , 266]]]},
+{"character":"日","definition":"sun; day; daytime","pinyin":["rì"],"decomposition":"⿴口一","radical":"日","matches":[[0],[0],[1],[0]], "points" : [[[73 , 37],[77 , 263]], [[84 , 44],[223 , 265]], [[84 , 139],[211 , 138]], [[85 , 237],[212 , 236]]]},
+{"character":"月","definition":"moon; month","pinyin":["yuè"],"decomposition":"⿵冂二","radical":"月","matches":[[0],[0],[1],[1]], "points" : [[[85 , 34],[57 , 262]], [[96 , 43],[173 , 256]], [[98 , 105],[210 , 106]], [[97 , 173],[210 , 173]]]},
+{"character":"口","definition":"mouth; entrance, gate, opening","pinyin":["kǒu"],"decomposition":"⿱冂一","radical":"口","matches":[[0],[0],[1]], "points" : [[[59 , 55],[59 , 261]], [[69 , 65],[234 , 263]], [[68 , 236],[224 , 238]]]},
+{"character":"忄","definition":"heart; mind; soul","pinyin":["xīn"],"decomposition":"⿻八丨","radical":"忄","matches":[[0],[0],[1]], "points" : [[[52 , 76],[34 , 155]], [[86 , 25],[85 , 267]], [[116 , 74],[136 , 135]]]},
+{"character":"亻","definition":"man, person; people","pinyin":["rén"],"decomposition":"？","radical":"亻","matches":[null,null], "points" : [[[122 , 31],[29 , 144]], [[87 , 104], [89 , 266]]]}
 ]
-
 
