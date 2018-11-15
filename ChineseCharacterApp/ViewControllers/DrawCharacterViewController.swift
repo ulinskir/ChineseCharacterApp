@@ -44,6 +44,7 @@ class DrawCharacterViewController: UIViewController {
     var module:Module? = nil
     var ls:LearningSesion? = nil
     var first = true
+    var level = 1
     
     @IBOutlet weak var startButton: UIButton!
     
