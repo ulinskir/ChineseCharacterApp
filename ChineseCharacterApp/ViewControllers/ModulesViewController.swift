@@ -41,8 +41,6 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         addModuleButton.layer.cornerRadius = addModuleButton.bounds.size.height / 2
         addModuleButton.clipsToBounds = true
-        addModuleButton.layer.borderWidth = 1
-        addModuleButton.layer.borderColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0).cgColor
         
         //Get the Database
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

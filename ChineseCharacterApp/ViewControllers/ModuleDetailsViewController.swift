@@ -37,9 +37,21 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     //Other
     var module:Module? = nil //the module to display
     
+    //Practice Level View
+    @IBOutlet weak var practiceLevelView: UIView!
+    
+    //Practice Level buttons
+    @IBOutlet weak var levelOne: UIButton!
+    @IBOutlet weak var levelTwo: UIButton!
+    @IBOutlet weak var levelThree: UIButton!
+    
+    var level = 1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         moduleNameLabel.text = (module != nil) ?  module!.name : ""
+        
+        practiceLevelView.isHidden = true
         
         //TO DO: if no characters are learned yet, disable reviewOldCharactersButton
         //TO DO: if all characters are learned, disable learnNewCharactersButton
@@ -53,6 +65,24 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         }
         return 0    }
     
+    @IBAction func practiceLevelPopup(_ sender: Any) {
+        practiceLevelView.isHidden = false
+    }
+    
+    @IBAction func levelOneClicked(_ sender: Any) {
+        level = 1
+        self.performSegue(withIdentifier: "ModuleDraw", sender: self)
+    }
+    
+    @IBAction func levelTwoClicked(_ sender: Any) {
+        level = 2
+        self.performSegue(withIdentifier: "ModuleDraw", sender: self)
+    }
+    
+    @IBAction func levelThreeClicked(_ sender: Any) {
+        level = 3
+        self.performSegue(withIdentifier: "ModuleDraw", sender: self)
+    }
     
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -87,6 +117,7 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         }
         else if let destination = segue.destination as? DrawCharacterViewController {
             destination.module = module
+            destination.level = level
         }
         else if sender as? UIButton == deleteButton {
             deleteMessage(module: module!)

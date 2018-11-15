@@ -122,12 +122,21 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
             print(ch.char + " : " + ch.definition)
         }
         print("]")
+        
         if module.chineseChars.count > 0 {
             saveButton.isEnabled = true
             practiceSelectedButton.isEnabled = true
+            saveButton.backgroundColor = UIColor.groupTableViewBackground
+            saveButton.setTitleColor(UIColor(red:0.54, green:0.07, blue:0.00, alpha:1.0), for: .normal)
+            practiceSelectedButton.backgroundColor = UIColor.groupTableViewBackground
+            practiceSelectedButton.setTitleColor(UIColor(red:0.54, green:0.07, blue:0.00, alpha:1.0), for: .normal)
         } else {
             saveButton.isEnabled = false
             practiceSelectedButton.isEnabled = false
+            saveButton.backgroundColor = UIColor.darkGray
+            saveButton.setTitleColor(UIColor.black, for: .disabled)
+            practiceSelectedButton.backgroundColor = UIColor.darkGray
+            practiceSelectedButton.setTitleColor(UIColor.black, for: .disabled)
         }
     }
     
