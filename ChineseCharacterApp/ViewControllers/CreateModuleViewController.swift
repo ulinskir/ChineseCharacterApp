@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 
-class CreateModuleViewController: UIViewController {
+class CreateModuleViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var newModuleName: UITextField!
     @IBOutlet weak var newModuleAuthor: UITextField!
@@ -20,6 +20,7 @@ class CreateModuleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        newModuleName.delegate = self
 
         // Do any additional setup after loading the view.
     }
@@ -119,6 +120,10 @@ class CreateModuleViewController: UIViewController {
         }
     }*/
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        newModuleName.resignFirstResponder()
+        return false
+    }
 }
 
 func moduleNameExists(name: String) -> Bool{
