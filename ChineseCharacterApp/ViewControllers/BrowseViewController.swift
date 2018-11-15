@@ -21,6 +21,7 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var browseCollectionView: UICollectionView!
 
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var practiceSelectedButton: UIButton!
     
     var searching = false
     var Chars = [ChineseChar]()
@@ -29,7 +30,8 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        practiceSelectedButton.isEnabled = false
+        saveButton.isEnabled = false
         // Set self as the delegate and datasource of browseCollectionView, so that it
         // can manage the data displays and interactions with it
         self.browseCollectionView.delegate = self
@@ -120,7 +122,13 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
             print(ch.char + " : " + ch.definition)
         }
         print("]")
-        
+        if module.chineseChars.count > 0 {
+            saveButton.isEnabled = true
+            practiceSelectedButton.isEnabled = true
+        } else {
+            saveButton.isEnabled = false
+            practiceSelectedButton.isEnabled = false
+        }
     }
     
     // there is only 1 section in our collection

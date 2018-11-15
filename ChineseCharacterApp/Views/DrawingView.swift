@@ -38,7 +38,7 @@ class DrawingView: UIView {
         print("This is stroke: " , stroke_number)
         let touch = touches.first
         startingPoint = touch?.location(in: self)
-        print(startingPoint)
+        print(Int(startingPoint.x + 0.5),",",Int(startingPoint.y + 0.5))
     }
     
     

@@ -13,14 +13,11 @@ import UIKit
 
 class DrawCharacterViewController: UIViewController {
 
-    @IBOutlet var tapToStart: UITapGestureRecognizer!
     //top bar items
     @IBOutlet weak var progressBar: UIProgressView! //progress bar to display progress in the current learning session
     @IBOutlet weak var exitButton: UIButton! //button to exit current learning session
     
     // Character information
-    @IBOutlet weak var audioButton: UIButton! // Stretch goal-> get audio for characters
-    
     @IBOutlet weak var masterDrawingView: UIView!
     @IBOutlet weak var drawingView: DrawingView! // a canvas to draw characters on
     @IBOutlet weak var backgroundCharLabel: UILabel! // for level 0 to display the curr char
@@ -39,12 +36,10 @@ class DrawCharacterViewController: UIViewController {
     @IBOutlet weak var chineseCharTop1: UILabel!
     @IBOutlet weak var englishTop1: UILabel!
     @IBOutlet weak var pinyinTop1: UILabel!
-    @IBOutlet weak var audioTop1: UIButton!
     
     //top view 2
     @IBOutlet weak var englishTop2: UILabel!
     @IBOutlet weak var pinyinTop2: UILabel!
-    @IBOutlet weak var audioTop2: UIButton!
     
     var module:Module? = nil
     var ls:LearningSesion? = nil
@@ -53,8 +48,8 @@ class DrawCharacterViewController: UIViewController {
     @IBOutlet weak var startScreen: UIView!
     
     @IBAction func startLesson(_ sender: Any) {
-        startScreen.isHidden = true
         setupCharDisplay()
+        startScreen.isHidden = true
     }
     
     
@@ -123,7 +118,7 @@ class DrawCharacterViewController: UIViewController {
         if submitButton.titleLabel!.text == "Check" {
             print("hi")
             checkUserChar()
-            ls!.level += 1
+            //ls!.level += 1
             if (ls!.level > 3) {
                 ls!.level = 0
             }
@@ -165,9 +160,8 @@ class DrawCharacterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ls = LearningSesion(charsToPractice: module!.chineseChars,level: 0)
-        print(module!.chineseChars)
-        englishTop1.lineBreakMode = .byWordWrapping 
-        englishTop1.numberOfLines = 0
+        topView1.isHidden = true
+        topView2.isHidden = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -182,7 +176,6 @@ class DrawCharacterViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setFontSizes()
-        setupCharDisplay()
     }
     
     func drawPointOnCanvas(x:Double,y:Double) {
