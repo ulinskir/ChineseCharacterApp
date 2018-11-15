@@ -40,7 +40,7 @@ class HomeViewController: UIViewController {
         if let destination = segue.destination as? DrawCharacterViewController {
             var allChars = loadCharsFromJSON()
             var subsetChars: [ChineseChar] = []
-            for _ in 0...1 {
+            for _ in 0...4 {
                 let randomIndex = Int(arc4random_uniform(UInt32(allChars!.count)))
                 subsetChars.append(allChars!.remove(at: randomIndex))
             }
