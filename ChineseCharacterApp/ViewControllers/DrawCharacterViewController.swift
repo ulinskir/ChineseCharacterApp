@@ -181,7 +181,8 @@ class DrawCharacterViewController: UIViewController {
         let pointRadius = Double(drawingView.frame.height / 16)
         let pointUIImage = UIImage(named: "hintPoint")
         let imageView = UIImageView(image: pointUIImage!)
-        imageView.frame = CGRect(x: x - pointRadius, y: y - pointRadius, width: (pointRadius), height: (pointRadius))
+        imageView.frame = CGRect(x: x - pointRadius/2, y: y - pointRadius/2, width: (pointRadius), height: (pointRadius))
+        //imageView.frame = CGRect(x: x , y: y, width: (pointRadius), height: (pointRadius))
         masterDrawingView.addSubview(imageView)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             imageView.removeFromSuperview()
