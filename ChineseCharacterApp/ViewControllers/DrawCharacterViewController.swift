@@ -13,6 +13,7 @@ import UIKit
 
 class DrawCharacterViewController: UIViewController {
 
+    @IBOutlet var tapToStart: UITapGestureRecognizer!
     //top bar items
     @IBOutlet weak var progressBar: UIProgressView! //progress bar to display progress in the current learning session
     @IBOutlet weak var exitButton: UIButton! //button to exit current learning session
