@@ -2,7 +2,8 @@
 //  DrawCharacterViewController.swift
 //  ChineseCharacterApp
 //
-//  
+//  Takes a module (and level?) to create a learning session which allows
+//  the user to draw each character in the module.
 //
 //  Created by Risa Ulinski on 9/25/18.
 //  Copyright © 2018 Hamilton College CS Senior Seminar. All rights reserved.
