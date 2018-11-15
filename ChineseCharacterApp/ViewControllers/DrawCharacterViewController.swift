@@ -2,7 +2,7 @@
 //  DrawCharacterViewController.swift
 //  ChineseCharacterApp
 //
-//  A
+//  
 //
 //  Created by Risa Ulinski on 9/25/18.
 //  Copyright © 2018 Hamilton College CS Senior Seminar. All rights reserved.
@@ -15,7 +15,6 @@ class DrawCharacterViewController: UIViewController {
     //top bar items
     @IBOutlet weak var progressBar: UIProgressView! //progress bar to display progress in the current learning session
     @IBOutlet weak var exitButton: UIButton! //button to exit current learning session
-    @IBOutlet weak var optionsButton: UIButton! //TO DO: figure out what this does
     
     // Character information
     @IBOutlet weak var audioButton: UIButton! // Stretch goal-> get audio for characters
@@ -31,8 +30,8 @@ class DrawCharacterViewController: UIViewController {
     @IBOutlet weak var submitButton: UIButton!
     
     
-    @IBOutlet weak var topView1: UIStackView!
-    @IBOutlet weak var topView2: UIStackView!
+    @IBOutlet weak var topView1: UIStackView! //view for levels 1 and 2
+    @IBOutlet weak var topView2: UIStackView! //view for levels 0 and 3
     
     //top view 1
     @IBOutlet weak var chineseCharTop1: UILabel!
@@ -150,7 +149,7 @@ class DrawCharacterViewController: UIViewController {
     }
     
     func setSubmitButtonTitle(title:String) {
-        submitButton.setAttributedTitle(NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.red]), for: [.normal])
+        submitButton.setAttributedTitle(NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:0.54, green:0.07, blue:0.00, alpha:1.0)]), for: [.normal])
     }
     
     override func viewDidLoad() {
