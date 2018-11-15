@@ -28,7 +28,7 @@ class CreateModuleViewController: UIViewController, UITextFieldDelegate, UITextV
     }
     
     @IBAction func cancelCreateModuleButtonPressed(_ sender: Any) {
-        let alert:UIAlertController = UIAlertController(title:"Cancel", message:"Are you sure you want to cancel?", preferredStyle: .actionSheet)
+        let alert:UIAlertController = UIAlertController(title:"Cancel", message:"Are you sure you want to cancel?", preferredStyle: .alert)
         let yesAction:UIAlertAction = UIAlertAction(title:"Yes", style: .destructive)
         { (_:UIAlertAction) in
             self.performSegue(withIdentifier: "CreateCancel", sender: self)

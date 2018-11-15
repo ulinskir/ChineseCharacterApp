@@ -160,7 +160,7 @@ class DrawCharacterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ls = LearningSesion(charsToPractice: module!.chineseChars,level: 0)
+        ls = LearningSesion(charsToPractice: module!.chineseChars,level: level)
         topView1.isHidden = true
         topView2.isHidden = true
     }
