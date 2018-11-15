@@ -50,6 +50,14 @@ class DrawCharacterViewController: UIViewController {
     var ls:LearningSesion? = nil
     var first = true
     
+    @IBOutlet weak var startScreen: UIView!
+    
+    @IBAction func startLesson(_ sender: Any) {
+        startScreen.isHidden = true
+        setupCharDisplay()
+    }
+    
+    
     // When hint button is tapped, give the user the correct hint, based on their
     // level for the current character
     // TO DO: implement this
@@ -160,7 +168,6 @@ class DrawCharacterViewController: UIViewController {
         print(module!.chineseChars)
         englishTop1.lineBreakMode = .byWordWrapping 
         englishTop1.numberOfLines = 0
-        
     }
     
     override func viewDidLayoutSubviews() {
