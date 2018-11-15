@@ -28,8 +28,6 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var moduleNameLabel: UILabel!
     
     //Start Practice Session Buttons
-    @IBOutlet weak var learnNewCharactersButton: UIButton!
-    @IBOutlet weak var reviewOldCharactersButton: UIButton!
     @IBOutlet weak var practiceAllCharactersButton: UIButton!
     
     //Table to display characters
@@ -91,11 +89,26 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
             destination.module = module
         }
         else if sender as? UIButton == deleteButton {
-            deleteModule(module: module!)
+            deleteMessage(module: module!)
         }
     }
+
+    func deleteMessage(module : Module) {
+        let alert:UIAlertController = UIAlertController(title:"", message:"Are you sure you want to delete this module?", preferredStyle: .alert)
+        let yesAction:UIAlertAction = UIAlertAction(title:"Yes", style: .destructive)
+        { (_:UIAlertAction) in
+            self.deleteModule(module: module)
+        }
+        let noAction:UIAlertAction = UIAlertAction(title:"No", style: .cancel)
+        { (_:UIAlertAction) in
+            print("No")
+        }
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        self.present(alert, animated:true)
+    }
     
-    func deleteModule(module : Module){
+    func deleteModule(module : Module) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ModuleContent")
@@ -106,5 +119,6 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
                 context.delete(object as! NSManagedObject)
             }
         }
+        self.performSegue(withIdentifier: "ModulesView", sender: self)
     }
 }

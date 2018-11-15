@@ -17,12 +17,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XWy-v8-cdm">
-                                <rect key="frame" x="305" y="64" width="50" height="50"/>
+                            <button opaque="NO" contentMode="scaleAspectFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XWy-v8-cdm">
+                                <rect key="frame" x="270" y="64" width="85" height="85"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" button="YES" playsSound="YES"/>
+                                </accessibility>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="m90-op-Jhj"/>
-                                    <constraint firstAttribute="width" constant="50" id="wdl-fg-ByC"/>
+                                    <constraint firstAttribute="height" constant="75" id="m90-op-Jhj"/>
+                                    <constraint firstAttribute="width" constant="75" id="wdl-fg-ByC"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <segue destination="RW8-4f-HLY" kind="show" id="5Wz-qZ-gQP"/>
@@ -131,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-396" y="-483"/>
+            <point key="canvasLocation" x="-396" y="-483.25123152709364"/>
         </scene>
         <!--Lesson Finished View Controller-->
         <scene sceneID="dAk-2O-RjE">
@@ -673,7 +677,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fI-14-EAG">
-                                                <rect key="frame" x="49.999999999999986" y="0.0" width="217.66666666666663" height="75"/>
+                                                <rect key="frame" x="50.000000000000014" y="0.0" width="235.33333333333337" height="75"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <color key="tintColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <attributedString key="attributedText">
@@ -688,21 +692,22 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wFV-nv-chk">
-                                                <rect key="frame" x="267.66666666666669" y="0.0" width="107.33333333333331" height="75"/>
+                                                <rect key="frame" x="285.33333333333331" y="0.0" width="89.666666666666686" height="75"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <color key="tintColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal">
                                                     <attributedString key="attributedTitle">
-                                                        <fragment content="delete">
+                                                        <fragment content="🗑️">
                                                             <attributes>
-                                                                <font key="NSFont" size="18" name="Baskerville"/>
+                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                <font key="NSFont" size="18" name="AppleColorEmoji"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="jic-dd-Lb1" kind="show" id="Rrw-Uz-Td4"/>
+                                                    <segue destination="jic-dd-Lb1" kind="show" identifier="ModulesView" id="BCo-1M-AOZ"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -863,6 +868,7 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <accessibility key="accessibilityConfiguration" identifier="ModuleDetails"/>
                         <constraints>
                             <constraint firstItem="W7F-dN-kI2" firstAttribute="top" secondItem="sil-Ew-yam" secondAttribute="top" id="DN7-ng-Dma"/>
                             <constraint firstItem="sil-Ew-yam" firstAttribute="trailing" secondItem="W7F-dN-kI2" secondAttribute="trailing" id="LKd-Da-UHd"/>
@@ -1282,7 +1288,7 @@
                                                 <rect key="frame" x="0.0" y="20.333333333333343" width="335" height="39"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -1299,7 +1305,7 @@
                                                 <rect key="frame" x="0.0" y="20.333333333333368" width="335" height="38.666666666666657"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="name"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="name"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -1520,12 +1526,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4Fz-Xz-ddx"/>
-        <segue reference="sRP-YC-7oU"/>
+        <segue reference="E9S-4Q-PWA"/>
         <segue reference="D7X-3W-474"/>
-        <segue reference="Pkk-On-Vok"/>
-        <segue reference="YjR-t4-0aI"/>
-        <segue reference="Hak-Or-E2q"/>
+        <segue reference="BCo-1M-AOZ"/>
+        <segue reference="GgL-F9-OIm"/>
+        <segue reference="DPe-GX-24C"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
