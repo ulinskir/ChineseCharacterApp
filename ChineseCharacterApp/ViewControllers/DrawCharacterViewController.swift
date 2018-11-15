@@ -48,6 +48,11 @@ class DrawCharacterViewController: UIViewController {
     
     @IBOutlet weak var startButton: UIButton!
     
+    @IBOutlet weak var checkViewPopup: UIView!
+    @IBOutlet weak var noButton: UIButton!
+    @IBOutlet weak var yesButton: UIButton!
+    
+    
     @IBAction func startLesson(_ sender: Any) {
         setupCharDisplay()
         startButton.isHidden = true
@@ -71,9 +76,6 @@ class DrawCharacterViewController: UIViewController {
         else {
             print("all strokes finished")
         }
-        //self.drawPointOnCanvas(x: Double(self.drawingView.frame.width / 2), y:  Double(self.drawingView.frame.width / 2))
-        print()
-        
         switch ls!.level {
         case 0:
             // if level is 0,
@@ -116,27 +118,28 @@ class DrawCharacterViewController: UIViewController {
     // TO DO: implement this
     @IBAction func submitButtonTapped(_ sender: Any) {
         //Recognize()
-        if submitButton.titleLabel!.text == "Check" {
-            print("hi")
-            checkUserChar()
-            //ls!.level += 1
-            if (ls!.level > 3) {
-                ls!.level = 0
-            }
-        } else if submitButton.titleLabel!.text == "Continue"{
-            loadNextChar()
-        } else {
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
-            self.present(newViewController, animated: true, completion: nil)
-        }
+        checkUserChar()
     }
+    
+    @IBAction func noButtonTapped(_ sender: UIButton) {
+        let failedChar = ls!.charsToPractice.remove(at: ls!.current)
+        ls!.charsToPractice.insert(failedChar, at: ls!.charsToPractice.endIndex)
+        loadNextChar()
+        checkViewPopup.isHidden = true
+    }
+    
+    @IBAction func yesButtonTapped(_ sender: UIButton) {
+        ls!.charPracticed(score: 1)
+        progressBar.setProgress(Float(ls!.progress()), animated: true)
+        loadNextChar()
+        checkViewPopup.isHidden = true
+    }
+    
     
     func checkUserChar() {
         displayCharInView()
-        ls!.charPracticed(score: 0)
-        progressBar.setProgress(Float(ls!.progress()), animated: true)
-        setSubmitButtonTitle(title: "Continue")
+        checkViewPopup.isHidden = false
+        //setSubmitButtonTitle(title: "Continue")
     }
     
     func loadNextChar() {
@@ -144,13 +147,10 @@ class DrawCharacterViewController: UIViewController {
         if !ls!.sessionFinished() {
             setupCharDisplay()
             setSubmitButtonTitle(title: "Check")
-            //submitButton.setTitle("Check", for: [.normal])
         } else {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "lessonFinishedViewController") as! LessonFinishedViewController
             self.present(newViewController, animated: true, completion: nil)
-            //setSubmitButtonTitle(title: "Done")
-            //submitButton.setTitle("Done", for: [.normal])
         }
     }
     
@@ -163,6 +163,7 @@ class DrawCharacterViewController: UIViewController {
         ls = LearningSesion(charsToPractice: module!.chineseChars,level: level)
         topView1.isHidden = true
         topView2.isHidden = true
+        checkViewPopup.isHidden = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -198,14 +199,14 @@ class DrawCharacterViewController: UIViewController {
             return
         }
         switch ls!.level {
-        case 0:
+        case 1:
             // if level is 0, display entire character in the background of the
             setLabelsInTop2(char: char)
             displayCharInView()
-        case 1:
+        case 0:
             hideCharInView()
             setLabelsInTop1(char: char)
-            print("1")
+            print("0")
         case 2:
             hideCharInView()
             setLabelsInTop1(char: char)
