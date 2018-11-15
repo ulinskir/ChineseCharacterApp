@@ -56,7 +56,7 @@ class DrawCharacterViewController: UIViewController {
         }
         
         if(ls!.getCurrentChar() != nil) {
-            let strokes = ["M 402 40 C 388 94 354 148 359 150 C 379 158 499 216 489 215", "M 324 97 C 309 97 499 97 499 97", "M 468 76 C 462 146 419 201 330 220"]
+            let strokes = ["M 337 94 C 322 90 237 56 214 40", "M 339 141 C 324 137 244 105 221 89"]
 //            let strokes = ls!.getCurrentChar()?.strokes
             for stroke in strokes {
                 drawingView.drawChar(stroke:stroke, scale:SVGConverter().make_canvas_dimension_converter(from:(0,500,500,0), to:(0,335,335,0)))
@@ -110,9 +110,11 @@ class DrawCharacterViewController: UIViewController {
         let currScreenDimensions: Edges = (0,270,270,0)
         
         let matcher = Matcher()
-        let targetSvgs = ls!.getCurrentChar()?.strokes
-        let targetStrokePoints = matcher.processTargetPoints(targetSvgs!, destDimensions:currScreenDimensions)
+//        let targetSvgs = ls!.getCurrentChar()?.strokes
+        let targetSvgs = ["M 337 94 C 322 90 237 56 214 40", "M 339 141 C 324 137 244 105 221 89"]
+        let targetStrokePoints = matcher.processTargetPoints(targetSvgs, destDimensions:currScreenDimensions)
         //insert target here
+        let source = drawingView.getPoints()
         let result = matcher.full_matcher(source:drawingView.getPoints(), target:targetStrokePoints)
         print(result)
         if submitButton.titleLabel!.text == "Check" {

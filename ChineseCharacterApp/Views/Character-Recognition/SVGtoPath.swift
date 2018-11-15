@@ -106,7 +106,7 @@ public class bezierPoints {
 
     func get_points(from svgData: String, scale: @escaping((Double,Double) -> (Double, Double))) -> [Point]{
         let svgPath = SVGPath(svgData, scale)
-        let NUM_POINTS_IN_PATH:Double = 64
+        let NUM_POINTS_IN_PATH:Double = 3
         
         var p: [Point] = []
         var cg: [CGPoint] = []
@@ -126,7 +126,7 @@ public class bezierPoints {
             //p = [curr, command.control1,command.control1,command.point].filter({$0 != nil}).map({(pt:CGPoint) -> Point in return (Double(pt.x),Double(pt.y))})
             curr = command.point
         }
-        return [(0,0)]
+        return p
     }
 }
 public extension UIBezierPath {
@@ -208,9 +208,9 @@ public class SVGPath {
     private func finishLastCommand () {
         let unscaledNumbers = SVGPath.parseNumbers(numbers)
         var scaledNumbers:[CGFloat] = []
-        for i in stride(from: 0, to: unscaledNumbers.count - 1, by: 2) {
-            let next = adjustScale((Double(unscaledNumbers[i]), Double(unscaledNumbers[i+1])))
-            scaledNumbers += [CGFloat(next.x),CGFloat(next.y)]
+        for i in stride(from: 0, to: unscaledNumbers.count, by: 1) {
+            let next = adjustScale((Double(unscaledNumbers[i]), 2))
+            scaledNumbers += [CGFloat(next.x)]
         }
         
         for command in take(scaledNumbers, increment: increment, coords: coords, last: commands.last, callback: builder) {

@@ -21,9 +21,9 @@ private func pathLength(path: [Point]) -> Double {
     return length
 }
 class Source_prep {
-func resample(_ points: [CGPoint],_ totalPoints: Int) -> [Point] {
+func resample(_ points: [Point],_ totalPoints: Int) -> [Point] {
     // Goes from a list of an arbitrary number of unevenly spaced CGPoints to a list of evenly spaced Points (double precision)
-    var initialPoints = points.map(util.cg_to_Point)
+    var initialPoints = points
     let interval = pathLength(path:initialPoints) / Double(totalPoints - 1)
     var totalLength: Double = 0.0
     var newPoints: [Point] = [initialPoints.first!]
@@ -45,7 +45,7 @@ func resample(_ points: [CGPoint],_ totalPoints: Int) -> [Point] {
     }
     
     if newPoints.count == totalPoints-1 {
-        newPoints.append(util.cg_to_Point(points.last!))
+        newPoints.append(points.last!)
     }
     return newPoints
 }

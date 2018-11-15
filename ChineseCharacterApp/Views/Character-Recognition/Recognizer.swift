@@ -245,12 +245,12 @@ func scorePairing (source: [Point], target: [Point], is_initial_segment: Bool) -
     let length = abs(log(
         abs(getMinimumLength(pair:source) / getMinimumLength(pair:target))));
     
-    print("sourceMidpoint: ", sourceMidpoint, "targetMidpoint", targetMidpoint)
+//    print("sourceMidpoint: ", sourceMidpoint, "targetMidpoint", targetMidpoint)
     
     // If angle or distance or length are beyond the threshold, returns -infinity
     if (angle > (is_initial_segment ? 1 : 2) * kAngleThreshold ||
         distance > kDistanceThreshold || length > kLengthThreshold) {
-        print("failed_scorePairing")
+//        print("failed_scorePairing")
         return -Double.infinity;
     }
     // Return the negative sum of the differences between angle, distance, and length
@@ -266,6 +266,12 @@ public class Recognizer:NSObject {
     
     func recognize (source:[Point], target:[Point], offset: Double) -> Result {
         // checks for stroke and reverse stroke
+//        print("source", source.first!, "to", source.last!)
+        print("target", target)
+        if((util.distance2(point1:source.first!, point2:target.first!) < 10) &&
+            util.distance2(point1:source.last!, point2:target.last!) < 10) {
+            return(score:3, source:nil, target:nil, warning:nil, penalties:nil, rightDirection:true)
+        }
         
         if (offset > kMaxOutOfOrder)
         {return (score: -Double.infinity,source: nil,target:nil,warning:nil,penalties:nil, rightDirection:false)};
