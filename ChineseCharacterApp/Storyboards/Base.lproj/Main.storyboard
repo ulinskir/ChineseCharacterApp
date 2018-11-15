@@ -1085,7 +1085,7 @@
                                         <rect key="frame" x="0.0" y="75" width="375" height="75"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="barTintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                         <connections>
                                             <outlet property="delegate" destination="8Rv-Bi-lHb" id="UiT-Qg-V0c"/>
                                         </connections>
@@ -1282,7 +1282,7 @@
                                                 <rect key="frame" x="0.0" y="20.333333333333343" width="335" height="39"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -1299,7 +1299,7 @@
                                                 <rect key="frame" x="0.0" y="20.333333333333368" width="335" height="38.666666666666657"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="name"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -1312,11 +1312,11 @@
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="optional" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="m0X-8g-IT0">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="m0X-8g-IT0">
                                                 <rect key="frame" x="0.0" y="20.333333333333371" width="315" height="155.33333333333334"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                             </textView>
                                         </subviews>
                                     </stackView>
@@ -1520,11 +1520,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="4Fz-Xz-ddx"/>
         <segue reference="sRP-YC-7oU"/>
         <segue reference="D7X-3W-474"/>
         <segue reference="Pkk-On-Vok"/>
-        <segue reference="GgL-F9-OIm"/>
-        <segue reference="7oJ-Yq-3VV"/>
+        <segue reference="YjR-t4-0aI"/>
+        <segue reference="Hak-Or-E2q"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

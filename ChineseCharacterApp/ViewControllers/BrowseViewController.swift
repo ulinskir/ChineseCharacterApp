@@ -16,13 +16,11 @@ import UIKit
 
 class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    
     @IBOutlet weak var searchBar: UISearchBar!
 
     @IBOutlet weak var browseCollectionView: UICollectionView!
 
     @IBOutlet weak var saveButton: UIButton!
-    
     
     var searching = false
     var Chars = [ChineseChar]()
@@ -182,6 +180,10 @@ extension BrowseViewController : UISearchBarDelegate {
             searching = true
         }
         self.browseCollectionView.reloadData()
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
 
