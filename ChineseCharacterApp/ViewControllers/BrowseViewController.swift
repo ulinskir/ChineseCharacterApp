@@ -182,8 +182,8 @@ extension BrowseViewController : UISearchBarDelegate {
         self.browseCollectionView.reloadData()
     }
     
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
     }
 }
 
