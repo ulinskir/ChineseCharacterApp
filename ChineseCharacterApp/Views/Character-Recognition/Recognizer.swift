@@ -12,7 +12,7 @@ import UIKit
 //typealias StrokePoint =
 
 // Result is for the scoring component
-typealias Result = (score:Double, source:(Point,Point)?, target: (Point,Point)?, warning: String?, penalties:Int?)
+typealias Result = (score:Double, source:(Point,Point)?, target: (Point,Point)?, warning: String?, penalties:Int?, rightDirection:Bool)
 // what you think it is. Double precision points for increased accuracy
 typealias Point = (x:Double, y:Double)
 
@@ -180,7 +180,8 @@ func performAlignment (_source:[Point], _target:[Point]) -> Result {
                          source: nil,
                          target: nil,
                          warning: nil,
-                         penalties: nil)
+                         penalties: nil,
+                         rightDirection: true)
     // is either target.count or target.count - 1
     let min_matched = target.count - (hasHook(median:target) ? 1 : 0);
     
@@ -199,7 +200,8 @@ func performAlignment (_source:[Point], _target:[Point]) -> Result {
                       source:(source[0], source[source.count - 1]),
                       target: (target[0], target[i]),
                       warning: i < target.count - 1 ? "Should hook." : nil,
-                      penalties:0);
+                      penalties:0,
+                      rightDirection: true);
             
             
         }
@@ -266,7 +268,7 @@ public class Recognizer:NSObject {
         // checks for stroke and reverse stroke
         
         if (offset > kMaxOutOfOrder)
-        {return (score: -Double.infinity,source: nil,target:nil,warning:nil,penalties:nil)};
+        {return (score: -Double.infinity,source: nil,target:nil,warning:nil,penalties:nil, rightDirection:false)};
         
         // Perform alignment and check score
         var result = performAlignment(_source:source, _target:target);
@@ -283,7 +285,8 @@ public class Recognizer:NSObject {
                           source: alternative.source,
                           target: alternative.target,
                           warning: "Reversed Stroke",
-                          penalties: alternative.penalties! + 1)
+                          penalties: alternative.penalties! + 1,
+                          rightDirection: false)
             }
         }
         result.score -= abs(offset) * Double(kOutOfOrderPenalty);
