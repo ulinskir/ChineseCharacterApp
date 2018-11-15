@@ -22,6 +22,14 @@ func processSourcePoints(_ source:[CGPoint]) -> [Point] {
 let instanceOfRecognizer = Recognizer()
 
 class Matcher {
+    func get_hints(_ target:[String], destDimensions:Edges) -> [Point]{
+        var hints:[Point] = []
+        let targetPoints = processTargetPoints(target, destDimensions: destDimensions)
+        for stroke in targetPoints {
+            hints.append(stroke[0])
+        }
+        return hints
+    }
     
     func processTargetPoints(_ target:[String], destDimensions:Edges) -> [[Point]] {//,_ src_edges:Edges,_ dest_edges:Edges) -> [Point] {
         // Parses list of SVG paths to bezier curves, and samples them to create a list of strokes.
