@@ -125,8 +125,15 @@ class CreateModuleViewController: UIViewController, UITextFieldDelegate, UITextV
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         newModuleName.resignFirstResponder()
         newModuleAuthor.resignFirstResponder()
-        newModuleDescription.resignFirstResponder()
         return false
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            newModuleDescription.resignFirstResponder()
+            return false
+        }
+        return true
     }
 }
 
