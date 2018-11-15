@@ -39,14 +39,21 @@ class DrawingView: UIView {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         touchPoint = touch?.location(in: self)
+        print(touchPoint)
         
         
         path.addLine(to: touchPoint)
-        points[-1].append((Double(touchPoint.x), Double(touchPoint.y)))
+        points[points.count - 1].append((Double(touchPoint.x), Double(touchPoint.y)))
         startingPoint = touchPoint
         
         drawShapeLayer()
     }
+    
+    func drawChar(stroke:String, scale:@escaping (Point) -> Point) {
+        func scale2 (x:Point) -> Point {return x}
+        path = UIBezierPath(svgPath: stroke, scale: scale)
+        drawShapeLayer()
+}
     
     func drawShapeLayer() {
         let shapeLayer = CAShapeLayer()

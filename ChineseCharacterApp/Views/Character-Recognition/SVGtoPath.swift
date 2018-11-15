@@ -40,16 +40,18 @@ private func ^ (a: Double, b: Int) -> Double {
 class SVGConverter {
     func make_canvas_dimension_converter(from:Edges, to: Edges) -> (Point) -> Point {
         
-        let src_canvasSize = max(from.south - from.north, from.west - from.east)
-        let dest_canvasSize = min(to.south - to.north, to.west - to.east)
+        let src_canvasSize = max(abs(from.south - from.north), abs(from.west - from.east))
+        let dest_canvasSize = min(abs(to.south - to.north), abs(to.west - to.east))
         
         let src_midpoint: Point = (Double(from.east + from.west) / 2, Double(from.south + from.north) / 2)
         let dest_midpoint: Point = (Double(to.east + to.west) / 2, Double(to.south + to.north) / 2)
         
-        let scalar:Double = Double(src_canvasSize) / Double(dest_canvasSize)
+//        Ratio of new canvas to old canvas
+        let scalar:Double = Double(dest_canvasSize) / Double(src_canvasSize)
         
         func converter(_ src_point:Point) -> Point {
-            return (scalar * (src_point - src_midpoint) + dest_midpoint)
+            return (scalar*src_point.x, scalar*src_point.y)
+//            return (scalar * (src_point - src_midpoint) + dest_midpoint)
         }
         
         return converter
@@ -206,7 +208,7 @@ public class SVGPath {
     private func finishLastCommand () {
         let unscaledNumbers = SVGPath.parseNumbers(numbers)
         var scaledNumbers:[CGFloat] = []
-        for i in stride(from: 0, to: unscaledNumbers.count, by: 2) {
+        for i in stride(from: 0, to: unscaledNumbers.count - 1, by: 2) {
             let next = adjustScale((Double(unscaledNumbers[i]), Double(unscaledNumbers[i+1])))
             scaledNumbers += [CGFloat(next.x),CGFloat(next.y)]
         }

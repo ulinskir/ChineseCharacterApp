@@ -55,6 +55,15 @@ class DrawCharacterViewController: UIViewController {
             print("time up")
         }
         
+        if(ls!.getCurrentChar() != nil) {
+            let strokes = ["M 402 40 C 388 94 354 148 359 150 C 379 158 499 216 489 215", "M 324 97 C 309 97 499 97 499 97", "M 468 76 C 462 146 419 201 330 220"]
+//            let strokes = ls!.getCurrentChar()?.strokes
+            for stroke in strokes {
+                drawingView.drawChar(stroke:stroke, scale:SVGConverter().make_canvas_dimension_converter(from:(0,500,500,0), to:(0,335,335,0)))
+            }
+            
+        }
+        
         switch ls!.level {
         case 0:
             // if level is 0,
