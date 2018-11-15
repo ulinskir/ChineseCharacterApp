@@ -114,6 +114,7 @@ class DrawCharacterViewController: UIViewController {
         let targetStrokePoints = matcher.processTargetPoints(targetSvgs!, destDimensions:currScreenDimensions)
         //insert target here
         let result = matcher.full_matcher(source:drawingView.getPoints(), target:targetStrokePoints)
+        print(result)
         if submitButton.titleLabel!.text == "Check" {
             print("hi")
             checkUserChar()
