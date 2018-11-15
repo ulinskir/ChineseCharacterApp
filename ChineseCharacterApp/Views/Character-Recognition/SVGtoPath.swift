@@ -72,9 +72,9 @@ private func nCr (_ a: Int, _ b: Int) -> Int {
 
 func bezier_curve(_ p: [Point],_ t: Double) -> [Point] {
     var sum:[Point] = [p.first!]
-    let j = p.count
+    let j = p.count - 1
     // Formula: sum from i=0 to j (t^i) * (1-t)^i * P_i
-    for i in 0..<j {
+    for i in 0...j {
         // If I wanted to use += I'd have to implement it and that's not worth it.
         sum.append((Double(nCr(j,i)) * (1-t) ^ (j-i)) * (t^i) * p[i])
     }
