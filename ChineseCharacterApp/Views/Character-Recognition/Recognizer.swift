@@ -17,7 +17,7 @@ typealias Result = (score:Double, source:(Point,Point)?, target: (Point,Point)?,
 typealias Point = (x:Double, y:Double)
 
 let kAngleThreshold = Double.pi / 5
-let kDistanceThreshold = 0.3;
+let kDistanceThreshold = 25.0;
 let kLengthThreshold = 1.5;
 
 // Number of segments you're actually allowed to skip
@@ -90,6 +90,8 @@ func getMinimumLength (pair: [Point]) -> Double {
 
 func hasHook (median: [Point]) -> Bool {
     // determine if the stroke is supposed to have a hook?
+    // We;re going to bypass this for now
+    return false
     if (median.count < 3) {return false};
     
     if (median.count > 3) {return true};
@@ -248,8 +250,8 @@ func scorePairing (source: [Point], target: [Point], is_initial_segment: Bool) -
 //    print("sourceMidpoint: ", sourceMidpoint, "targetMidpoint", targetMidpoint)
     
     // If angle or distance or length are beyond the threshold, returns -infinity
-    if (angle > (is_initial_segment ? 1 : 2) * kAngleThreshold ||
-        distance > kDistanceThreshold || length > kLengthThreshold) {
+    if (angle > (is_initial_segment ? 1 : 2) * kAngleThreshold || length > kLengthThreshold || distance > kDistanceThreshold){
+//        ){// length > kLengthThreshold) {
 //        print("failed_scorePairing")
         return -Double.infinity;
     }
@@ -270,7 +272,7 @@ public class Recognizer:NSObject {
         print("target", target)
         if((util.distance2(point1:source.first!, point2:target.first!) < 10) &&
             util.distance2(point1:source.last!, point2:target.last!) < 10) {
-            return(score:3, source:nil, target:nil, warning:nil, penalties:nil, rightDirection:true)
+            return(score:3, source:nil, target:nil, warning:nil, penalties:nil, rightDirection:false)
         }
         
         if (offset > kMaxOutOfOrder)
@@ -281,7 +283,7 @@ public class Recognizer:NSObject {
         
         // if it sucks, see if they did the stroke in reverse
         if (result.score == -Double.infinity) {
-            var rev_source = source;
+            var rev_source = source
             rev_source.reverse()
             let alternative = performAlignment(_source:rev_source, _target:target);
             
@@ -292,7 +294,7 @@ public class Recognizer:NSObject {
                           target: alternative.target,
                           warning: "Reversed Stroke",
                           penalties: alternative.penalties! + 1,
-                          rightDirection: false)
+                          rightDirection: true)
             }
         }
         result.score -= abs(offset) * Double(kOutOfOrderPenalty);

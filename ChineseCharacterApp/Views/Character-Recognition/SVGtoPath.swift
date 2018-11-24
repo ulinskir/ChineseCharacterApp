@@ -12,6 +12,8 @@ import UIKit
 import Darwin
 
 typealias Edges = (north:Double, south:Double, east:Double, west:Double)
+let NUM_POINTS_IN_PATH:Int = 32
+
 
 // Multiplying a Point by a scalar.
 //infix operator **
@@ -70,28 +72,33 @@ private func nCr (_ a: Int, _ b: Int) -> Int {
 }
 
 
-func bezier_curve(_ p: [Point],_ t: Double) -> [Point] {
-    var sum:[Point] = [p.first!]
+func bezier_curve(_ p: [Point],_ t: Double) -> Point {
+    var sum:Point = p.first!
+    if true {
+        return pow(1-t, 3) * p[0] + (3 * pow(1 - t, 2) * t * p[1]) + (3 * (1-t) * t*t * p[2] + pow(t,3) * p[3])
+    }
     let j = p.count - 1
     // Formula: sum from i=0 to j (t^i) * (1-t)^i * P_i
     for i in 0...j {
         // If I wanted to use += I'd have to implement it and that's not worth it.
-        sum.append((Double(nCr(j,i)) * (1-t) ^ (j-i)) * (t^i) * p[i])
+        sum = sum + ((Double(nCr(j,i)) * (1-t) ^ (j-i)) * (t^i) * p[i])
     }
     return sum
 }
 
 func get_curve_fn (_ p:[Point]) -> ((Int) -> [Point]) {
+ 
     // Takes a list of points and then returns the function to get a bezier curve over N points.
     // Glorified curry
     
     // This made more sense when it was also getting passed a function but it still works.
     func calculate (n: Int) -> [Point] {
         var points:[Point] = []
+
         for i in 0..<n {
             // t is parameter for bezier curve
-            let t:Double = Double(i)/Double(n)
-            points += (bezier_curve(p, t))
+            let t:Double = Double(i)/Double(n - 1)
+            points.append(bezier_curve(p, t))
         }
         return points
     }
@@ -106,7 +113,6 @@ public class bezierPoints {
 
     func get_points(from svgData: String, scale: @escaping((Double,Double) -> (Double, Double))) -> [Point]{
         let svgPath = SVGPath(svgData, scale)
-        let NUM_POINTS_IN_PATH:Double = 3
         
         var p: [Point] = []
         var cg: [CGPoint] = []
@@ -122,7 +128,10 @@ public class bezierPoints {
                 case .close: return p + to_point([curr])
             }
             if command.type != .move {
-                p += bezier_curve(to_point(cg), NUM_POINTS_IN_PATH)            }
+                let curve_calc = get_curve_fn(to_point(cg))
+                p += curve_calc(NUM_POINTS_IN_PATH)
+            }
+//                p.append(bezier_curve(to_point(cg), NUM_POINTS_IN_PATH))            }
             //p = [curr, command.control1,command.control1,command.point].filter({$0 != nil}).map({(pt:CGPoint) -> Point in return (Double(pt.x),Double(pt.y))})
             curr = command.point
         }

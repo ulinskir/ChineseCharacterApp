@@ -52,21 +52,28 @@ class Matcher {
         
         // loop through strokes in the character
         var remainingTargets = target
+        var foundStroke = false
         
         for i in 0..<source.count {
-            for j in 0..<target.count {
-                // maybe resample here
-                let curr = instanceOfRecognizer.recognize(source:processSourcePoints(source[i]), target:target[j], offset:0)
+            foundStroke = false
+            if(remainingTargets.count > 0) {
                 
-                if (curr.score != -Double.infinity){    // If the stroke matches
-                    result.append((true, j==0, curr.rightDirection))
-                    remainingTargets.remove(at:j)
-                    break
+            
+            
+                for j in 0..<remainingTargets.count {
+                    // maybe resample here
+                    let curr = instanceOfRecognizer.recognize(source:processSourcePoints(source[i]), target:target[j], offset:0)
+                    
+                    if (curr.score != -Double.infinity){    // If the stroke matches
+                        result.append((true, j==0, curr.rightDirection))
+                        foundStroke = true
+                        remainingTargets.remove(at:j)
+                        break
+                    }
                 }
+                if(!foundStroke) {result.append((false, false, false))}
             }
-            result.append((false, false, false))
-
-        }
+        } 
         return result
     }
 }

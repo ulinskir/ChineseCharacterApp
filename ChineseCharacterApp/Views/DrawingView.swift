@@ -39,6 +39,7 @@ class DrawingView: UIView {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         touchPoint = touch?.location(in: self)
+        print(touchPoint)
         
         
         path.addLine(to: touchPoint)

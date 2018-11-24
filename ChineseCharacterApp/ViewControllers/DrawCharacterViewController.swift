@@ -107,7 +107,7 @@ class DrawCharacterViewController: UIViewController {
     @IBAction func submitButtonTapped(_ sender: Any) {
         //Recognize()
         // Edges: (north, south, east, west)
-        let currScreenDimensions: Edges = (0,270,270,0)
+        let currScreenDimensions: Edges = (0,335,335,0)
         
         let matcher = Matcher()
 //        let targetSvgs = ls!.getCurrentChar()?.strokes
@@ -115,7 +115,7 @@ class DrawCharacterViewController: UIViewController {
         let targetStrokePoints = matcher.processTargetPoints(targetSvgs, destDimensions:currScreenDimensions)
         //insert target here
         let source = drawingView.getPoints()
-        let result = matcher.full_matcher(source:drawingView.getPoints(), target:targetStrokePoints)
+        let result = matcher.full_matcher(source:source, target:targetStrokePoints)
         print(result)
         if submitButton.titleLabel!.text == "Check" {
             print("hi")
