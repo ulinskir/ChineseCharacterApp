@@ -74,7 +74,7 @@ private func nCr (_ a: Int, _ b: Int) -> Int {
 
 func bezier_curve(_ p: [Point],_ t: Double) -> Point {
     var sum:Point = p.first!
-    if true {
+    if (p.count==4) {
         return pow(1-t, 3) * p[0] + (3 * pow(1 - t, 2) * t * p[1]) + (3 * (1-t) * t*t * p[2] + pow(t,3) * p[3])
     }
     let j = p.count - 1

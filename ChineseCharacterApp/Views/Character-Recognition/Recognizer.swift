@@ -24,7 +24,7 @@ let kLengthThreshold = 1.5;
 let kMaxMissedSegments = 1;
 let kMaxOutOfOrder:Double = 2;
 
-// letant for how much distance in desired stroke location is allowable
+// constant for how much distance in desired stroke location is allowable
 let kMinDistance = 1 / 16;
 
 let kMissedSegmentPenalty = 1.0;
@@ -270,10 +270,10 @@ public class Recognizer:NSObject {
         // checks for stroke and reverse stroke
 //        print("source", source.first!, "to", source.last!)
         print("target", target)
-        if((util.distance2(point1:source.first!, point2:target.first!) < 10) &&
-            util.distance2(point1:source.last!, point2:target.last!) < 10) {
-            return(score:3, source:nil, target:nil, warning:nil, penalties:nil, rightDirection:false)
-        }
+//        if((util.distance2(point1:source.first!, point2:target.first!) < 10) &&
+//            util.distance2(point1:source.last!, point2:target.last!) < 10) {
+//            return(score:0, source:nil, target:nil, warning:nil, penalties:nil, rightDirection:false)
+//        }
         
         if (offset > kMaxOutOfOrder)
         {return (score: -Double.infinity,source: nil,target:nil,warning:nil,penalties:nil, rightDirection:false)};
@@ -294,7 +294,7 @@ public class Recognizer:NSObject {
                           target: alternative.target,
                           warning: "Reversed Stroke",
                           penalties: alternative.penalties! + 1,
-                          rightDirection: true)
+                          rightDirection: false)
             }
         }
         result.score -= abs(offset) * Double(kOutOfOrderPenalty);

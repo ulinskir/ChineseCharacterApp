@@ -12,6 +12,8 @@ import XCTest
 class ChineseCharacterAppTests: XCTestCase {
 
     override func setUp() {
+//        let ice = ["M 337 94 C 322 90 237 56 214 40", "M 339 141 C 324 137 244 105 221 89"]
+
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
@@ -19,9 +21,29 @@ class ChineseCharacterAppTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
+    func test_matcher_same_inputs() {
+        let ice = ["M 337 94 C 322 90 237 56 214 40", "M 339 141 C 324 137 244 105 221 89"]
+
+        let _matcher = Matcher()
+        let src = _matcher.processTargetPoints(ice, destDimensions: (0,335,335,0))
+        let res = _matcher.full_matcher(source:src,target:src)
+        for stroke in res {
+            XCTAssert(stroke == (true,true,true))
+        }
+        
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
+    func test_recognizer() {
+        let ice = ["M 337 94 C 322 90 237 56 214 40", "M 339 141 C 324 137 244 105 221 89"]
+
+        let _rec = Recognizer()
+        let _matcher = Matcher()
+        let src = _matcher.processTargetPoints(ice, destDimensions: (0,335,335,0))
+        for stroke in src {
+            let res = _rec.recognize(source:stroke, target: stroke, offset: 0)
+            XCTAssert(res.score != -Double.infinity)
+        }
     }
 
     func testPerformanceExample() {

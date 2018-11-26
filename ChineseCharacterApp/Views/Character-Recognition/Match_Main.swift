@@ -14,11 +14,10 @@ typealias StrokeResult = (completed:Bool, rightOrder:Bool, rightDirection:Bool)
 let src_edges:Edges = (0,500,500,0)
 let dest_edges:Edges = (0,335,335,0)
 let RESAMPLE_VAL = 64
+let RESAMPLING = false
 
-func processSourcePoints(_ source:[Point]) -> [Point] {
-    let source_prep = Source_prep()
-    return source_prep.resample(source, RESAMPLE_VAL)
-}
+
+
 
 let instanceOfRecognizer = Recognizer()
 
@@ -30,6 +29,12 @@ class Matcher {
             hints.append(stroke[0])
         }
         return hints
+    }
+    func processSourcePoints(_ source:[Point]) -> [Point] {
+        if(!RESAMPLING) { return source }
+        
+        let source_prep = Source_prep()
+        return source_prep.resample(source, RESAMPLE_VAL)
     }
     
     func processTargetPoints(_ target:[String], destDimensions:Edges) -> [[Point]] {//,_ src_edges:Edges,_ dest_edges:Edges) -> [Point] {
@@ -57,12 +62,13 @@ class Matcher {
         for i in 0..<source.count {
             foundStroke = false
             if(remainingTargets.count > 0) {
+
                 
             
             
                 for j in 0..<remainingTargets.count {
                     // maybe resample here
-                    let curr = instanceOfRecognizer.recognize(source:processSourcePoints(source[i]), target:target[j], offset:0)
+                    let curr = instanceOfRecognizer.recognize(source:processSourcePoints(source[i]), target:remainingTargets[j], offset:0)
                     
                     if (curr.score != -Double.infinity){    // If the stroke matches
                         result.append((true, j==0, curr.rightDirection))
@@ -71,6 +77,7 @@ class Matcher {
                         break
                     }
                 }
+                
                 if(!foundStroke) {result.append((false, false, false))}
             }
         } 
