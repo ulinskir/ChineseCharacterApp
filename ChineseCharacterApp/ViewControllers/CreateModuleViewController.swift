@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 
-class CreateModuleViewController: UIViewController {
+class CreateModuleViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
     @IBOutlet weak var newModuleName: UITextField!
     @IBOutlet weak var newModuleAuthor: UITextField!
@@ -20,12 +20,15 @@ class CreateModuleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        newModuleName.delegate = self
+        newModuleAuthor.delegate = self
+        newModuleDescription.delegate = self
 
         // Do any additional setup after loading the view.
     }
     
     @IBAction func cancelCreateModuleButtonPressed(_ sender: Any) {
-        let alert:UIAlertController = UIAlertController(title:"Cancel", message:"Are you sure you want to cancel?", preferredStyle: .actionSheet)
+        let alert:UIAlertController = UIAlertController(title:"Cancel", message:"Are you sure you want to cancel?", preferredStyle: .alert)
         let yesAction:UIAlertAction = UIAlertAction(title:"Yes", style: .destructive)
         { (_:UIAlertAction) in
             self.performSegue(withIdentifier: "CreateCancel", sender: self)
@@ -38,6 +41,7 @@ class CreateModuleViewController: UIViewController {
         alert.addAction(noAction)
         self.present(alert, animated:true)
     }
+    
     func saveModule() {
         let modName = newModuleName.text
         if moduleNameExists(name: modName!) {
@@ -118,6 +122,19 @@ class CreateModuleViewController: UIViewController {
         }
     }*/
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        newModuleName.resignFirstResponder()
+        newModuleAuthor.resignFirstResponder()
+        return false
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            newModuleDescription.resignFirstResponder()
+            return false
+        }
+        return true
+    }
 }
 
 func moduleNameExists(name: String) -> Bool{

@@ -10,16 +10,16 @@ import Foundation
 
 class ChineseChar {
     var char : String
-    var strokes : [String]
+    var points : [[[Int]]]
     var definition : String
     var pinyin: [String]
     var decomposition: String
     var radical: String
     var level: Int
     
-    init(character: String, strks: [String], def: String, pin: [String], decomp: String, rad: String) {
+    init(character: String, pts: [[[Int]]], def: String, pin: [String], decomp: String, rad: String) {
         char = character
-        strokes = strks
+        points = pts
         definition = def
         pinyin = pin
         radical = rad
@@ -29,7 +29,7 @@ class ChineseChar {
     
     init(character: String, def: String,  decomp: String, rad: String) {
         char = character
-        strokes = []
+        points = []
         definition = def
         pinyin = []
         radical = rad

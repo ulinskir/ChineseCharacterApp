@@ -40,7 +40,7 @@ class HomeViewController: UIViewController {
         if let destination = segue.destination as? DrawCharacterViewController {
             var allChars = loadCharsFromJSON()
             var subsetChars: [ChineseChar] = []
-            for _ in 0...6 {
+            for _ in 0...4 {
                 let randomIndex = Int(arc4random_uniform(UInt32(allChars!.count)))
                 subsetChars.append(allChars!.remove(at: randomIndex))
             }
@@ -51,7 +51,7 @@ class HomeViewController: UIViewController {
     func loadCharsFromJSON() -> [ChineseChar]? {
         //Open the dictionary file
         var Chars = [ChineseChar]()
-        guard let Dictpath = Bundle.main.path(forResource: "full_with_defs", ofType: "json") else {return nil}
+        guard let Dictpath = Bundle.main.path(forResource: "full_with_dots", ofType: "json") else {return nil}
         let Dicturl = URL(fileURLWithPath: Dictpath)
         
         //Get the contents of the dictionary file into the Chars array as object...obj.strokes wil; be an empty list
@@ -65,13 +65,13 @@ class HomeViewController: UIViewController {
                 guard let charDict = char as? [String: Any] else {return nil}
                 guard let definition = charDict["definition"] as? String else {print("Missing Def"); return nil}
                 guard let hanzi = charDict["character"] as? String else {print("Missing Char"); return nil}
-                guard let strokes = charDict["strokes"] as? [String] else {print("Missing strokes"); return nil}
+                guard let pts = charDict["points"] as? [[[Int]]] else {print("Missing Points"); return nil}
                 guard let pinyin = charDict["pinyin"] as? [String] else {print("Missing Pinyin"); return nil}
                 guard let decomposition = charDict["decomposition"] as? String else {print("Missing Decomposition"); return nil}
                 guard let radical = charDict["radical"] as? String else {print("Missing Radical"); return nil}
                 
                 
-                let curChar = ChineseChar(character: hanzi, strks: strokes, def: definition, pin: pinyin, decomp: decomposition, rad: radical)
+                let curChar = ChineseChar(character: hanzi, pts: pts, def: definition, pin: pinyin, decomp: decomposition, rad: radical)
                 Chars.append(curChar)
             }
             

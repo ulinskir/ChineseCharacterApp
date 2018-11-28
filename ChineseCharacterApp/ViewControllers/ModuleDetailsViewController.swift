@@ -28,8 +28,6 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var moduleNameLabel: UILabel!
     
     //Start Practice Session Buttons
-    @IBOutlet weak var learnNewCharactersButton: UIButton!
-    @IBOutlet weak var reviewOldCharactersButton: UIButton!
     @IBOutlet weak var practiceAllCharactersButton: UIButton!
     
     //Table to display characters
@@ -39,9 +37,21 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     //Other
     var module:Module? = nil //the module to display
     
+    //Practice Level View
+    @IBOutlet weak var practiceLevelView: UIView!
+    
+    //Practice Level buttons
+    @IBOutlet weak var levelOne: UIButton!
+    @IBOutlet weak var levelTwo: UIButton!
+    @IBOutlet weak var levelThree: UIButton!
+    
+    var level = 1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         moduleNameLabel.text = (module != nil) ?  module!.name : ""
+        
+        practiceLevelView.isHidden = true
         
         //TO DO: if no characters are learned yet, disable reviewOldCharactersButton
         //TO DO: if all characters are learned, disable learnNewCharactersButton
@@ -55,6 +65,24 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         }
         return 0    }
     
+    @IBAction func practiceLevelPopup(_ sender: Any) {
+        practiceLevelView.isHidden = false
+    }
+    
+    @IBAction func levelOneClicked(_ sender: Any) {
+        level = 1
+        self.performSegue(withIdentifier: "ModuleDraw", sender: self)
+    }
+    
+    @IBAction func levelTwoClicked(_ sender: Any) {
+        level = 2
+        self.performSegue(withIdentifier: "ModuleDraw", sender: self)
+    }
+    
+    @IBAction func levelThreeClicked(_ sender: Any) {
+        level = 3
+        self.performSegue(withIdentifier: "ModuleDraw", sender: self)
+    }
     
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -89,13 +117,29 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         }
         else if let destination = segue.destination as? DrawCharacterViewController {
             destination.module = module
+            destination.level = level
         }
         else if sender as? UIButton == deleteButton {
-            deleteModule(module: module!)
+            deleteMessage(module: module!)
         }
     }
+
+    func deleteMessage(module : Module) {
+        let alert:UIAlertController = UIAlertController(title:"", message:"Are you sure you want to delete this module?", preferredStyle: .alert)
+        let yesAction:UIAlertAction = UIAlertAction(title:"Yes", style: .destructive)
+        { (_:UIAlertAction) in
+            self.deleteModule(module: module)
+        }
+        let noAction:UIAlertAction = UIAlertAction(title:"No", style: .cancel)
+        { (_:UIAlertAction) in
+            print("No")
+        }
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        self.present(alert, animated:true)
+    }
     
-    func deleteModule(module : Module){
+    func deleteModule(module : Module) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ModuleContent")
@@ -106,5 +150,11 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
                 context.delete(object as! NSManagedObject)
             }
         }
+        do {
+            try context.save()
+        }catch{
+            print("DID NOT SAVE")
+        }
+        self.performSegue(withIdentifier: "ModulesView", sender: self)
     }
 }

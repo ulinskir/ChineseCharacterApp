@@ -41,15 +41,13 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         addModuleButton.layer.cornerRadius = addModuleButton.bounds.size.height / 2
         addModuleButton.clipsToBounds = true
-        addModuleButton.layer.borderWidth = 1
-        addModuleButton.layer.borderColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0).cgColor
         
         //Get the Database
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         
         //Get the JSON file
-        guard let Dictpath = Bundle.main.path(forResource: "full_with_defs", ofType: "json") else {return}
+        guard let Dictpath = Bundle.main.path(forResource: "full_with_dots", ofType: "json") else {return}
         let Dicturl = URL(fileURLWithPath: Dictpath)
         
         //Get all of the Modules
@@ -82,10 +80,10 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
                             
                             //When we find the correct char in the JSON
                             if hanzi == char.char{
-                                guard let strokes = charDict["strokes"] as? [String] else {print("Missing strokes"); return}
                                 guard let pinyin = charDict["pinyin"] as? [String] else {print("Missing Pinyin"); return}
+                                guard let points = charDict["points"] as? [[[Int]]] else {print("Missing points"); return}
                                 //Get the extra info we need from the JSON and add the current char to the curChars array
-                                curChars.append(ChineseChar(character: hanzi, strks: strokes, def: char.definition as! String, pin: pinyin, decomp: char.decomposition as! String, rad: char.radical as! String))
+                                curChars.append(ChineseChar(character: hanzi, pts: points, def: char.definition as! String, pin: pinyin, decomp: char.decomposition as! String, rad: char.radical as! String))
                                 
                                 //Stop looking through the JSON
                                 break lookJson
@@ -205,3 +203,4 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
 } // end ModulesViewController class
+
