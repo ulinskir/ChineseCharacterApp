@@ -16,13 +16,12 @@ import UIKit
 
 class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    
     @IBOutlet weak var searchBar: UISearchBar!
 
     @IBOutlet weak var browseCollectionView: UICollectionView!
 
     @IBOutlet weak var saveButton: UIButton!
-    
+    @IBOutlet weak var practiceSelectedButton: UIButton!
     
     var searching = false
     var Chars = [ChineseChar]()
@@ -31,7 +30,8 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        practiceSelectedButton.isEnabled = false
+        saveButton.isEnabled = false
         // Set self as the delegate and datasource of browseCollectionView, so that it
         // can manage the data displays and interactions with it
         self.browseCollectionView.delegate = self
@@ -45,7 +45,7 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     func loadCharsFromJSON() {
         //Open the dictionary file
 
-        guard let Dictpath = Bundle.main.path(forResource: "full_with_defs", ofType: "json") else {return}
+        guard let Dictpath = Bundle.main.path(forResource: "full_with_dots", ofType: "json") else {return}
         let Dicturl = URL(fileURLWithPath: Dictpath)
         
         //Get the contents of the dictionary file into the Chars array as object...obj.strokes wil; be an empty list
@@ -59,13 +59,14 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
                 guard let charDict = char as? [String: Any] else {return}
                 guard let definition = charDict["definition"] as? String else {print("Missing Def"); return}
                 guard let hanzi = charDict["character"] as? String else {print("Missing Char"); return}
-                guard let strokes = charDict["strokes"] as? [String] else {print("Missing strokes"); return}
+                guard let pts = charDict["points"] as? [[[Int]]] else {print("Missing Points"); return}
                 guard let pinyin = charDict["pinyin"] as? [String] else {print("Missing Pinyin"); return}
                 guard let decomposition = charDict["decomposition"] as? String else {print("Missing Decomposition"); return}
                 guard let radical = charDict["radical"] as? String else {print("Missing Radical"); return}
                 
                 
-                let curChar = ChineseChar(character: hanzi, strks: strokes, def: definition, pin: pinyin, decomp: decomposition, rad: radical)
+                print("GOT PTS")
+                let curChar = ChineseChar(character: hanzi, pts: pts, def: definition, pin: pinyin, decomp: decomposition, rad: radical)
                 Chars.append(curChar)
             }
             
@@ -122,6 +123,21 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
         print("]")
         
+        if module.chineseChars.count > 0 {
+            saveButton.isEnabled = true
+            practiceSelectedButton.isEnabled = true
+            saveButton.backgroundColor = UIColor.groupTableViewBackground
+            saveButton.setTitleColor(UIColor(red:0.54, green:0.07, blue:0.00, alpha:1.0), for: .normal)
+            practiceSelectedButton.backgroundColor = UIColor.groupTableViewBackground
+            practiceSelectedButton.setTitleColor(UIColor(red:0.54, green:0.07, blue:0.00, alpha:1.0), for: .normal)
+        } else {
+            saveButton.isEnabled = false
+            practiceSelectedButton.isEnabled = false
+            saveButton.backgroundColor = UIColor.darkGray
+            saveButton.setTitleColor(UIColor.black, for: .disabled)
+            practiceSelectedButton.backgroundColor = UIColor.darkGray
+            practiceSelectedButton.setTitleColor(UIColor.black, for: .disabled)
+        }
     }
     
     // there is only 1 section in our collection
@@ -181,6 +197,10 @@ extension BrowseViewController : UISearchBarDelegate {
             searching = true
         }
         self.browseCollectionView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
     }
 }
 
