@@ -17,7 +17,23 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "strokeCell", for: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "strokeCell", for: indexPath) as! StrokeCollectionViewCell
+        guard let char = ls!.getCurrentChar() else {
+            print("no char")
+            return cell
+        }
+        let scaleFactor =  Double(cell.strokeView.frame.width/295)
+        let rowNumber : Int = indexPath.row
+        let points = char.points[rowNumber][0]
+        let x = Double(points[0]) * scaleFactor
+        let y = Double(points[1]) * scaleFactor
+        let pointRadius = Double(drawingView.frame.height / 16)
+        let pointUIImage = UIImage(named: "hintPoint")
+        let imageView = UIImageView(image: pointUIImage!)
+        imageView.frame = CGRect(x: x - pointRadius/2, y: y - pointRadius/2, width: (pointRadius), height: (pointRadius))
+        //imageView.frame = CGRect(x: x , y: y, width: (pointRadius), height: (pointRadius))
+        cell.strokeView.addSubview(imageView)
+
         
         return cell
     }
@@ -75,6 +91,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     @IBAction func hintButtonTapped(_ sender: Any) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             print("time up")
+            
         }
         
         if(ls!.getCurrentChar() != nil) {
