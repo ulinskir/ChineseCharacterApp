@@ -23,6 +23,17 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var practiceSelectedButton: UIButton!
     
+    //Practice Level View
+    @IBOutlet weak var practiceLevelView: UIView!
+    
+    //Practice Level buttons
+    @IBOutlet weak var levelOne: UIButton!
+    @IBOutlet weak var levelTwo: UIButton!
+    @IBOutlet weak var levelThree: UIButton!
+    
+    //default level is 1
+    var level = 1
+    
     var searching = false
     var Chars = [ChineseChar]()
     var searchTerm = [ChineseChar]()
@@ -39,7 +50,27 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         // Load all the characters to display to Chars
         loadCharsFromJSON()
+        
+        practiceLevelView.isHidden = true
+    }
+    
+    @IBAction func practiceLevelPopup(_ sender: Any) {
+        practiceLevelView.isHidden = false
+    }
+    
+    @IBAction func levelOneClicked(_ sender: Any) {
+        level = 1
+        self.performSegue(withIdentifier: "ModuleDraw", sender: self)
+    }
 
+    @IBAction func levelTwoClicked(_ sender: Any) {
+        level = 2
+        self.performSegue(withIdentifier: "ModuleDraw", sender: self)
+    }
+    
+    @IBAction func levelThreeClicked(_ sender: Any) {
+        level = 3
+        self.performSegue(withIdentifier: "ModuleDraw", sender: self)
     }
     
     func loadCharsFromJSON() {
@@ -82,6 +113,7 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     {
         if let destination = segue.destination as? DrawCharacterViewController {
             destination.module = module
+            destination.level = level
         }
         if let destination = segue.destination as? CreateModuleViewController {
             destination.module = module
@@ -178,10 +210,6 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     // Send the selected characters to the save module screen to be saved as a module
     @IBAction func saveButtonTapped(_ sender: Any) {
-        
-    }
-    
-    @IBAction func PracticeSelectedPressed(_ sender: UIButton) {
         
     }
 }
