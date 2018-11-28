@@ -36,34 +36,33 @@ class DrawingView: UIView {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("This is stroke: " , stroke_number)
         let touch = touches.first
         startingPoint = touch?.location(in: self)
         path = UIBezierPath()
-        print(Int(startingPoint.x + 0.5),",",Int(startingPoint.y + 0.5))
-    }
-    
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first
-        touchPoint = touch?.location(in: self)
-        
         path.move(to: startingPoint)
         points.append([])
     }
     
+    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first
+        /*let touch = touches.first
         touchPoint = touch?.location(in: self)
-        print(touchPoint)
         
+        path.move(to: startingPoint)
+        points.append([])*/
         
-        path.addLine(to: touchPoint)
-        points[points.count - 1].append((Double(touchPoint.x), Double(touchPoint.y)))
-        startingPoint = touchPoint
-        
-        drawShapeLayer()
+         let touch = touches.first
+         touchPoint = touch?.location(in: self)
+         print(touchPoint)
+         
+         
+         path.addLine(to: touchPoint)
+         points[points.count - 1].append((Double(touchPoint.x), Double(touchPoint.y)))
+         startingPoint = touchPoint
+         
+         drawShapeLayer()
     }
+
     
     func drawChar(stroke:String, scale:@escaping (Point) -> Point) {
         func scale2 (x:Point) -> Point {return x}
