@@ -26,6 +26,10 @@ class CharacterDetailsViewController: UIViewController {
         englishLabel.text = currChar?.definition
         pinyinLabel.text = currChar!.pinyin.count > 0 ? currChar?.pinyin[0] : "none"
         charDisplayLabel.text = currChar?.char
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         charDisplayLabel.font = charDisplayLabel.font.withSize(charDisplayLabel.frame.size.height)
     }
     
