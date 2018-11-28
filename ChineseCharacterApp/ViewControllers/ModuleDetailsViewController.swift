@@ -150,6 +150,11 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
                 context.delete(object as! NSManagedObject)
             }
         }
+        do {
+            try context.save()
+        }catch{
+            print("DID NOT SAVE")
+        }
         self.performSegue(withIdentifier: "ModulesView", sender: self)
     }
 }
