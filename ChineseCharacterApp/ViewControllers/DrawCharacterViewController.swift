@@ -12,31 +12,7 @@
 import UIKit
 
 class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "strokeCell", for: indexPath) as! StrokeCollectionViewCell
-        guard let char = ls!.getCurrentChar() else {
-            print("no char")
-            return cell
-        }
-        let scaleFactor =  Double(cell.strokeView.frame.width/295)
-        let rowNumber : Int = indexPath.row
-        let points = char.points[rowNumber][0]
-        let x = Double(points[0]) * scaleFactor
-        let y = Double(points[1]) * scaleFactor
-        let pointRadius = Double(drawingView.frame.height / 16)
-        let pointUIImage = UIImage(named: "hintPoint")
-        let imageView = UIImageView(image: pointUIImage!)
-        imageView.frame = CGRect(x: x - pointRadius/2, y: y - pointRadius/2, width: (pointRadius), height: (pointRadius))
-        //imageView.frame = CGRect(x: x , y: y, width: (pointRadius), height: (pointRadius))
-        cell.strokeView.addSubview(imageView)
 
-        
-        return cell
-    }
     
 
     //top bar items
@@ -265,6 +241,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             print("no char")
             return
         }
+        strokeComparisonCollectionView.reloadData()
         switch ls!.level {
         case 1:
             // if level is 0, display entire character in the background of the
@@ -340,5 +317,33 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         print(result.score)
     }
 
-
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(ls!.getCurrentChar()!.points.count)
+        return ls!.getCurrentChar()!.points.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "strokeCell", for: indexPath) as! StrokeCollectionViewCell
+        guard let char = ls!.getCurrentChar() else {
+            print("no char")
+            return cell
+        }
+        let scaleFactor =  Double(cell.strokeView.frame.width/295)
+        let rowNumber : Int = indexPath.row
+        cell.strokeLabel.text = String(rowNumber)
+        let points = char.points[rowNumber][0]
+        let x = Double(points[0]) * scaleFactor
+        let y = Double(points[1]) * scaleFactor
+        let pointRadius = Double(cell.strokeView.frame.height / 16)
+        let pointUIImage = UIImage(named: "hintPoint")
+        let imageView = UIImageView(image: pointUIImage!)
+        imageView.frame = CGRect(x: x - pointRadius/2, y: y - pointRadius/2, width: (pointRadius), height: (pointRadius))
+        //imageView.frame = CGRect(x: x , y: y, width: (pointRadius), height: (pointRadius))
+        cell.strokeView.addSubview(imageView)
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let rowNumber = indexPath.row
+        backgroundCharLabel.text = String(rowNumber)
+    }
 }

@@ -196,7 +196,7 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
             cell.backgroundColor = UIColor(red:0.54, green:0.07, blue:0.00, alpha:1.0)
             Charlabel.textColor = UIColor.white
             Deflabel.textColor = UIColor.white
-        }else{
+        } else{
             cell.backgroundColor = UIColor.white
             Charlabel.textColor = UIColor.black
             Deflabel.textColor = UIColor.black
