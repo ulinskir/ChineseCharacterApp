@@ -11,7 +11,17 @@
 
 import UIKit
 
-class DrawCharacterViewController: UIViewController {
+class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "strokeCell", for: indexPath) as UICollectionViewCell
+        
+        return cell
+    }
+    
 
     //top bar items
     @IBOutlet weak var progressBar: UIProgressView! //progress bar to display progress in the current learning session
@@ -202,6 +212,8 @@ class DrawCharacterViewController: UIViewController {
         topView1.isHidden = true
         topView2.isHidden = true
         checkViewPopup.isHidden = true
+        strokeComparisonCollectionView.delegate = self
+        strokeComparisonCollectionView.dataSource = self
     }
     
     override func viewDidLayoutSubviews() {
