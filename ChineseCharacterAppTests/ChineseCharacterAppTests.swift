@@ -28,7 +28,7 @@ class ChineseCharacterAppTests: XCTestCase {
         let src = _matcher.processTargetPoints(ice, destDimensions: (0,335,335,0))
         let res = _matcher.full_matcher(source:[[(0,0),(5,5)],src[1]],target:src)
         print(res)
-        XCTAssert(res[1][1] ==true, "second stroke not found when first stroke is wrong")
+        XCTAssert(res[1].completed == true, "second stroke not found when first stroke is wrong")
         
     }
 
