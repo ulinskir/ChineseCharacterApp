@@ -49,9 +49,9 @@ class DrawCharacterViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     
     @IBOutlet weak var checkViewPopup: UIView!
-    @IBOutlet weak var noButton: UIButton!
-    @IBOutlet weak var yesButton: UIButton!
+    @IBOutlet weak var continueButton: UIButton!
     
+    @IBOutlet weak var strokeComparisonCollectionView: UICollectionView!
     
     @IBAction func startLesson(_ sender: Any) {
         setupCharDisplay()
