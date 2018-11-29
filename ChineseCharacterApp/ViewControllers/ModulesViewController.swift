@@ -47,7 +47,7 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
         let context = appDelegate.persistentContainer.viewContext
         
         //Get the JSON file
-        guard let Dictpath = Bundle.main.path(forResource: "full_with_dots", ofType: "json") else {return}
+        guard let Dictpath = Bundle.main.path(forResource: "dictionary", ofType: "json") else {return}
         let Dicturl = URL(fileURLWithPath: Dictpath)
         
         //Get all of the Modules
@@ -82,8 +82,9 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
                             if hanzi == char.char{
                                 guard let pinyin = charDict["pinyin"] as? [String] else {print("Missing Pinyin"); return}
                                 guard let points = charDict["points"] as? [[[Int]]] else {print("Missing points"); return}
+                                guard let strokes = charDict["strokes"] as? [String] else {print("Missing Strokes"); return}
                                 //Get the extra info we need from the JSON and add the current char to the curChars array
-                                curChars.append(ChineseChar(character: hanzi, pts: points, def: char.definition as! String, pin: pinyin, decomp: char.decomposition as! String, rad: char.radical as! String))
+                                curChars.append(ChineseChar(character: hanzi, pts: points, def: char.definition as! String, pin: pinyin, decomp: char.decomposition as! String, rad: char.radical as! String, strkes: strokes))
                                 
                                 //Stop looking through the JSON
                                 break lookJson

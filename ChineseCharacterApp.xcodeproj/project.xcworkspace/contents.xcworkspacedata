@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/Risa/Documents/College/2018-19/fall/seminar/ChineseCharacterApp/Character-Recognition">
-   </FileRef>
-   <FileRef
-      location = "self:">
+      location = "self:ChineseCharacterApp.xcodeproj">
    </FileRef>
 </Workspace>
