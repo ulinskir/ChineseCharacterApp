@@ -40,7 +40,7 @@ class HomeViewController: UIViewController {
         if let destination = segue.destination as? DrawCharacterViewController {
             var allChars = loadCharsFromJSON()
             var subsetChars: [ChineseChar] = []
-            for _ in 0...4 {
+            for _ in 0...2 {
                 let randomIndex = Int(arc4random_uniform(UInt32(allChars!.count)))
                 subsetChars.append(allChars!.remove(at: randomIndex))
             }
@@ -51,7 +51,7 @@ class HomeViewController: UIViewController {
     func loadCharsFromJSON() -> [ChineseChar]? {
         //Open the dictionary file
         var Chars = [ChineseChar]()
-        guard let Dictpath = Bundle.main.path(forResource: "full_with_dots", ofType: "json") else {return nil}
+        guard let Dictpath = Bundle.main.path(forResource: "dictionary", ofType: "json") else {return nil}
         let Dicturl = URL(fileURLWithPath: Dictpath)
         
         //Get the contents of the dictionary file into the Chars array as object...obj.strokes wil; be an empty list
@@ -69,9 +69,10 @@ class HomeViewController: UIViewController {
                 guard let pinyin = charDict["pinyin"] as? [String] else {print("Missing Pinyin"); return nil}
                 guard let decomposition = charDict["decomposition"] as? String else {print("Missing Decomposition"); return nil}
                 guard let radical = charDict["radical"] as? String else {print("Missing Radical"); return nil}
+                guard let strokes = charDict["strokes"] as? [String] else {print("Missing Strokes"); return nil}
                 
                 
-                let curChar = ChineseChar(character: hanzi, pts: pts, def: definition, pin: pinyin, decomp: decomposition, rad: radical)
+                let curChar = ChineseChar(character: hanzi, pts: pts, def: definition, pin: pinyin, decomp: decomposition, rad: radical, strks: strokes)
                 Chars.append(curChar)
             }
             

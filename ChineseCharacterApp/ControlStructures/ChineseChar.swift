@@ -16,8 +16,9 @@ class ChineseChar {
     var decomposition: String
     var radical: String
     var level: Int
+    var strokes: [String]
     
-    init(character: String, pts: [[[Int]]], def: String, pin: [String], decomp: String, rad: String) {
+    init(character: String, pts: [[[Int]]], def: String, pin: [String], decomp: String, rad: String, strks: [String]) {
         char = character
         points = pts
         definition = def
@@ -25,6 +26,7 @@ class ChineseChar {
         radical = rad
         decomposition = decomp
         level = 0
+        strokes = strks
     }
     
     init(character: String, def: String,  decomp: String, rad: String) {
@@ -35,6 +37,7 @@ class ChineseChar {
         radical = rad
         decomposition = decomp
         level = 0
+        strokes = []
     }
 }
 
