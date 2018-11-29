@@ -56,9 +56,9 @@ class DrawCharacterViewController: UIViewController {
         }
         
         if(ls!.getCurrentChar() != nil) {
-            let strokes = ["M 337 94 C 322 90 237 56 214 40", "M 339 141 C 324 137 244 105 221 89"]
+            let strokes = ls?.getCurrentChar()!.strokes
 //            let strokes = ls!.getCurrentChar()?.strokes
-            for stroke in strokes {
+            for stroke in strokes! {
                 drawingView.drawChar(stroke:stroke, scale:SVGConverter().make_canvas_dimension_converter(from:(0,500,500,0), to:(0,335,335,0)))
             }
             

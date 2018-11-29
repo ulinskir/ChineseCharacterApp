@@ -54,7 +54,6 @@ class Matcher {
         
         var result:[(StrokeResult)] = []
         
-        
         // loop through strokes in the character
         var remainingTargets = target
         var foundStroke = false
