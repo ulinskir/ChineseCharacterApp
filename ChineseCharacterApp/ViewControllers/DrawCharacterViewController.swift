@@ -70,14 +70,14 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             
         }
         
-        if(ls!.getCurrentChar() != nil) {
+        /*if(ls!.getCurrentChar() != nil) {
             let strokes = ["M 337 94 C 322 90 237 56 214 40", "M 339 141 C 324 137 244 105 221 89"]
 //            let strokes = ls!.getCurrentChar()?.strokes
             for stroke in strokes {
                 drawingView.drawChar(stroke:stroke, scale:SVGConverter().make_canvas_dimension_converter(from:(0,500,500,0), to:(0,335,335,0)))
             }
             
-        }
+        }*/
         
         guard let char = ls!.getCurrentChar() else {
             print("no char")
@@ -138,8 +138,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         let currScreenDimensions: Edges = (0,335,335,0)
         
         let matcher = Matcher()
-//        let targetSvgs = ls!.getCurrentChar()?.strokes
-        let targetSvgs = ["M 337 94 C 322 90 237 56 214 40", "M 339 141 C 324 137 244 105 221 89"]
+        let targetSvgs = ls!.getCurrentChar()!.strokes
         let targetStrokePoints = matcher.processTargetPoints(targetSvgs, destDimensions:currScreenDimensions)
         //insert target here
         let source = drawingView.getPoints()
@@ -247,11 +246,11 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             // if level is 0, display entire character in the background of the
             setLabelsInTop2(char: char)
             displayCharInView()
-        case 0:
+        case 2:
             hideCharInView()
             setLabelsInTop1(char: char)
             print("0")
-        case 2:
+        case 0:
             hideCharInView()
             setLabelsInTop1(char: char)
             hintButton.isEnabled = false
