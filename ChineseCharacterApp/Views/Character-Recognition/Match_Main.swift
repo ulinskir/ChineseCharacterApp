@@ -9,10 +9,10 @@
 import Foundation
 import CoreGraphics
 
-typealias StrokeResult = (completed:Bool, rightOrder:Bool, rightDirection:Bool)
+typealias StrokeResult = (completed:Bool, rightDirection:Bool, matchingIndex:Int, rightOrder:Bool?)
 
-let src_edges:Edges = (0,500,500,0)
-let dest_edges:Edges = (0,335,335,0)
+let srcEdges:Edges = (0,500,500,0)
+let destEdges:Edges = (0,335,335,0)
 let RESAMPLE_VAL = 64
 let RESAMPLING = false
 
@@ -39,11 +39,11 @@ class Matcher {
     
     func processTargetPoints(_ target:[String], destDimensions:Edges) -> [[Point]] {//,_ src_edges:Edges,_ dest_edges:Edges) -> [Point] {
         // Parses list of SVG paths to bezier curves, and samples them to create a list of strokes.
-        let scale_fn = SVGConverter().make_canvas_dimension_converter(from: src_edges, to: dest_edges)
+        let scaleFn = SVGConverter().make_canvas_dimension_converter(from: srcEdges, to: destEdges)
         let bezierPointsInstance = bezierPoints()
         var points:[[Point]] = []
         for i in 0..<target.count {
-            points.append(bezierPointsInstance.get_points(from: target[i], scale: scale_fn))
+            points.append(bezierPointsInstance.get_points(from: target[i], scale: scaleFn))
         }
         print(points)
         return points
@@ -57,29 +57,46 @@ class Matcher {
         // loop through strokes in the character
         var remainingTargets = target
         var foundStroke = false
+        var errorStrokes:Int = 0
+        var foundStrokes:[StrokeResult?] = []
+        for _ in 0..<target.count {
+            foundStrokes.append(nil)
+        }
+        func is_in_order(j:Int) {
+            
+        }
         
-        for i in 0..<source.count {
+        for srcIndex in 0..<source.count {
             foundStroke = false
             if(remainingTargets.count > 0) {
-
-                
-            
-            
                 for j in 0..<remainingTargets.count {
                     // maybe resample here
-                    let curr = instanceOfRecognizer.recognize(source:processSourcePoints(source[i]), target:remainingTargets[j], offset:0)
+                    let curr = instanceOfRecognizer.recognize(source:processSourcePoints(source[srcIndex]), target:remainingTargets[j], offset:0)
                     
-                    if (curr.score != -Double.infinity){    // If the stroke matches
-                        result.append((true, j==0, curr.rightDirection))
+                    if (curr.score != -Double.infinity){
+                        // If the stroke matches
+                        
+                        result.append((true, curr.rightDirection, srcIndex, j==0))
+                        foundStrokes[j] = result.last!
                         foundStroke = true
                         remainingTargets.remove(at:j)
                         break
                     }
                 }
                 
-                if(!foundStroke) {result.append((false, false, false))}
+                if(!foundStroke) {errorStrokes += 1}
             }
-        } 
+        }
+        
+        for i in 0..<foundStrokes.count {
+            if(foundStrokes[i] != nil) {
+            let srcIndex = foundStrokes[i]!.matchingIndex
+            foundStrokes[i]!.rightOrder = srcIndex - errorStrokes < i
+            
+            }
+            
+        }
+        
         return result
     }
 }
