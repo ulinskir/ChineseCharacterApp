@@ -269,7 +269,7 @@ public class Recognizer:NSObject {
     func recognize (source:[Point], target:[Point], offset: Double) -> Result {
         // checks for stroke and reverse stroke
 //        print("source", source.first!, "to", source.last!)
-        print("target", target)
+//        print("target", target)
 //        if((util.distance2(point1:source.first!, point2:target.first!) < 10) &&
 //            util.distance2(point1:source.last!, point2:target.last!) < 10) {
 //            return(score:0, source:nil, target:nil, warning:nil, penalties:nil, rightDirection:false)
@@ -298,6 +298,7 @@ public class Recognizer:NSObject {
             }
         }
         result.score -= abs(offset) * Double(kOutOfOrderPenalty);
+        print(result)
         return result;
     }
 }

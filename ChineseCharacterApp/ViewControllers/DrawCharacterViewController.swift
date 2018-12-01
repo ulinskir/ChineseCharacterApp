@@ -111,8 +111,8 @@ class DrawCharacterViewController: UIViewController {
         
         let matcher = Matcher()
 //        let targetSvgs = ls!.getCurrentChar()?.strokes
-        let targetSvgs = ["M 337 94 C 322 90 237 56 214 40", "M 339 141 C 324 137 244 105 221 89"]
-        let targetStrokePoints = matcher.processTargetPoints(targetSvgs, destDimensions:currScreenDimensions)
+        let targetSvgs = ls?.getCurrentChar()!.strokes
+        let targetStrokePoints = matcher.processTargetPoints(targetSvgs!, destDimensions:currScreenDimensions)
         //insert target here
         let source = drawingView.getPoints()
         let result = matcher.full_matcher(source:source, target:targetStrokePoints)

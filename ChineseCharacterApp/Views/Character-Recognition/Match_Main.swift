@@ -9,7 +9,8 @@
 import Foundation
 import CoreGraphics
 
-typealias StrokeResult = (completed:Bool, rightDirection:Bool, matchingIndex:Int, rightOrder:Bool?)
+typealias StrokeResult = (completed:Bool, rightDirection:Bool, rightOrder:Bool)
+typealias FoundStroke = (rightDirection:Bool, orderDrawn:Int, targetIndex: Int, smoothedOrder:Int)
 
 let srcEdges:Edges = (0,500,500,0)
 let destEdges:Edges = (0,335,335,0)
@@ -50,53 +51,80 @@ class Matcher {
     }
 
 // Target is a list of points, but source needs to be resampled maybe, but also IDK if resmpling is necessary
-    func full_matcher(source:[[Point]], target:[[Point]]) -> [StrokeResult] {
+    func full_matcher(source:[[Point]], target:[[Point]]) -> ([StrokeResult], Int) {
         
-        var result:[(StrokeResult)] = []
-        
+        var strokeInfo:[(StrokeResult)] = []
+        typealias remTarg = (points:[Point], completed:Bool)
         // loop through strokes in the character
-        var remainingTargets = target
+        var remainingTargets:[remTarg] = target.map({(a:[Point]) -> remTarg in return (a, false)})
         var foundStroke = false
+        var numPrevFoundStrokes = 0
         var errorStrokes:Int = 0
-        var foundStrokes:[StrokeResult?] = []
-        for _ in 0..<target.count {
-            foundStrokes.append(nil)
-        }
-        func is_in_order(j:Int) {
-            
-        }
+        var foundStrokes:[FoundStroke] = []
+        
+//        func is_in_order(j:Int) {
+//        }
         
         for srcIndex in 0..<source.count {
             foundStroke = false
-            if(remainingTargets.count > 0) {
-                for j in 0..<remainingTargets.count {
+            if(numPrevFoundStrokes < remainingTargets.count) {
+                for targetIndex in 0..<remainingTargets.count {
                     // maybe resample here
-                    let curr = instanceOfRecognizer.recognize(source:processSourcePoints(source[srcIndex]), target:remainingTargets[j], offset:0)
+                    let currTarget = remainingTargets[targetIndex]
+                    if(!currTarget.completed){
+                        
+                    
+                    let curr = instanceOfRecognizer.recognize(source:processSourcePoints(source[srcIndex]), target:currTarget.points, offset:0)
                     
                     if (curr.score != -Double.infinity){
                         // If the stroke matches
                         
-                        result.append((true, curr.rightDirection, srcIndex, j==0))
-                        foundStrokes[j] = result.last!
+//                        result.append((true, curr.rightDirection, srcIndex, j==0))
+                        foundStrokes.append((curr.rightDirection, numPrevFoundStrokes, targetIndex, -1))
+//                        foundStrokes[j] = result.last!
                         foundStroke = true
-                        remainingTargets.remove(at:j)
+                        remainingTargets[targetIndex].completed = true
+                        numPrevFoundStrokes += 1
+
                         break
-                    }
+                        }}
+                    
+                    
                 }
                 
                 if(!foundStroke) {errorStrokes += 1}
-            }
-        }
+            }}
+            print("found strokes:", numPrevFoundStrokes)
         
-        for i in 0..<foundStrokes.count {
-            if(foundStrokes[i] != nil) {
-            let srcIndex = foundStrokes[i]!.matchingIndex
-            foundStrokes[i]!.rightOrder = srcIndex - errorStrokes < i
-            
+            var sorted:[FoundStroke] = foundStrokes
+            sorted.sort (by:{(a:FoundStroke, b:FoundStroke) -> Bool in
+                return (a.targetIndex < b.targetIndex)
+            })
+//            var paired = sorted
+            for i in 0..<sorted.count {
+                sorted[i].smoothedOrder = i
             }
-            
-        }
+            for _ in 0..<target.count {
+                strokeInfo.append((false,false,false))
+            }
         
-        return result
+            for i in 0..<sorted.count {
+                strokeInfo[sorted[i].targetIndex] = (true, sorted[i].rightDirection, sorted[i].smoothedOrder >= sorted[i].orderDrawn)
+            }
+        
+        
+        
+        
+        
+//        for i in 0..<foundStrokes.count {
+//            if(foundStrokes[i] != nil) {
+//            let srcIndex = foundStrokes[i]!.matchingIndex
+//            foundStrokes[i]!.rightOrder = srcIndex - errorStrokes < i
+//
+//            }
+        
+        
+        
+        return (strokeInfo, errorStrokes)
     }
 }
