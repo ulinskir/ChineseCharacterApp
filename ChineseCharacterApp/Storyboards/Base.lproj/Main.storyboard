@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,17 +20,53 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="2rr-A2-wPb">
                                 <rect key="frame" x="30" y="94" width="315" height="644"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tt9-yA-QiO">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qlj-Ns-k0Z">
                                         <rect key="frame" x="0.0" y="0.0" width="315" height="296.66666666666669"/>
-                                        <string key="text">字符 
-Zìfú</string>
-                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="51"/>
-                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="110"/>
-                                        </variation>
-                                    </label>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="73" placeholderIntrinsicHeight="50" text="" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8CW-Rl-0tQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="315" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="2d5-Tq-dl9"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="51"/>
+                                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="118"/>
+                                                </variation>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="汉字" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tt9-yA-QiO">
+                                                <rect key="frame" x="0.0" y="50.000000000000007" width="315" height="118.66666666666669"/>
+                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="81"/>
+                                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="110"/>
+                                                </variation>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Hanzi" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IRN-aP-T5n">
+                                                <rect key="frame" x="0.0" y="168.66666666666669" width="315" height="78"/>
+                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="68"/>
+                                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="118"/>
+                                                </variation>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="73" placeholderIntrinsicHeight="50" text="" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmH-Qj-Rxc">
+                                                <rect key="frame" x="0.0" y="246.66666666666669" width="315" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="gX7-il-fpk"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="51"/>
+                                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="118"/>
+                                                </variation>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUH-tc-4zB" customClass="HomeViewButton" customModule="ChineseCharacterApp">
                                         <rect key="frame" x="0.0" y="313.66666666666669" width="315" height="98.666666666666686"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -77,8 +113,8 @@ Zìfú</string>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="A00-sC-hoO" firstAttribute="height" secondItem="cUH-tc-4zB" secondAttribute="height" id="2pM-jq-r56"/>
-                                    <constraint firstItem="cUH-tc-4zB" firstAttribute="height" secondItem="tt9-yA-QiO" secondAttribute="height" multiplier="1/3" id="BAH-dv-QO5"/>
                                     <constraint firstItem="kTE-dn-bBi" firstAttribute="height" secondItem="cUH-tc-4zB" secondAttribute="height" id="JSy-bg-33p"/>
+                                    <constraint firstItem="cUH-tc-4zB" firstAttribute="height" secondItem="qlj-Ns-k0Z" secondAttribute="height" multiplier="1/3" id="pqi-Mn-Rxy"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -537,10 +573,10 @@ Zìfú</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Aj8-aE-vpB" userLabel="master">
-                                <rect key="frame" x="0.0" y="44" width="363.33333333333331" height="734"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Mx5-26-sfJ" userLabel="top bar">
-                                        <rect key="frame" x="0.0" y="0.0" width="363.33333333333331" height="75"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qfi-r6-Da4">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="75"/>
@@ -593,7 +629,7 @@ Zìfú</string>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CAi-5E-afy">
-                                                <rect key="frame" x="350" y="0.0" width="13.333333333333314" height="75"/>
+                                                <rect key="frame" x="350" y="0.0" width="25" height="75"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="CAi-5E-afy" secondAttribute="height" multiplier="13:25" id="5cq-bL-bjs"/>
@@ -616,17 +652,17 @@ Zìfú</string>
                                         </constraints>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pYK-po-uQS">
-                                        <rect key="frame" x="40" y="75" width="283.33333333333331" height="659"/>
+                                        <rect key="frame" x="40" y="75" width="295" height="659"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="separatorColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                         <color key="sectionIndexColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="sectionIndexBackgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="modulesTableCell" rowHeight="109" id="ZYj-Mf-3yz" customClass="ModulesTableViewCell" customModule="ChineseCharacterApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="283.33333333333331" height="109"/>
+                                                <rect key="frame" x="0.0" y="28" width="295" height="109"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZYj-Mf-3yz" id="a9u-Wi-ibx">
-                                                    <rect key="frame" x="0.0" y="0.0" width="283.33333333333331" height="109"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="295" height="109"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Module Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="SPW-WA-aaZ">
@@ -668,7 +704,7 @@ Zìfú</string>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dba-WM-hzj">
-                                <rect key="frame" x="293.33333333333331" y="708" width="45" height="45"/>
+                                <rect key="frame" x="305" y="708" width="45" height="45"/>
                                 <color key="backgroundColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="XWY-s4-Eax"/>
@@ -775,9 +811,9 @@ Zìfú</string>
                                             <constraint firstAttribute="height" constant="75" id="nCe-JI-ori"/>
                                         </constraints>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0x-Lj-oIr">
-                                        <rect key="frame" x="113.66666666666667" y="76" width="147.66666666666663" height="140"/>
-                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="50"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0x-Lj-oIr">
+                                        <rect key="frame" x="93" y="76" width="189" height="140"/>
+                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="64"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular-widthClass=regular">
@@ -914,13 +950,7 @@ Zìfú</string>
                                     <constraint firstAttribute="trailing" secondItem="LTn-PN-F63" secondAttribute="trailing" constant="100" id="jJD-l6-Xpw"/>
                                     <constraint firstItem="JOt-01-gMc" firstAttribute="leading" secondItem="W7F-dN-kI2" secondAttribute="leading" id="lN2-5k-Kry"/>
                                     <constraint firstItem="LTn-PN-F63" firstAttribute="leading" secondItem="W7F-dN-kI2" secondAttribute="leading" constant="100" id="mAv-nV-cYc"/>
-                                    <constraint firstItem="U0x-Lj-oIr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="W7F-dN-kI2" secondAttribute="leading" constant="20" id="p3H-Eg-s6p">
-                                        <variation key="heightClass=regular-widthClass=regular" constant="40"/>
-                                    </constraint>
                                     <constraint firstAttribute="trailing" secondItem="FDk-ju-gi6" secondAttribute="trailing" id="rwk-Bl-SJ2"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="U0x-Lj-oIr" secondAttribute="trailing" constant="20" id="s0J-nh-aQd">
-                                        <variation key="heightClass=regular-widthClass=regular" constant="40"/>
-                                    </constraint>
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3fF-cY-p5I">
@@ -1521,9 +1551,6 @@ Zìfú</string>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Module Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ev-dt-GIr">
                                                 <rect key="frame" x="0.0" y="19.666666666666661" width="335" height="39.333333333333343"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="Jju-eI-tcX"/>
-                                                </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -1785,11 +1812,10 @@ Zìfú</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="UTV-w9-o9c"/>
         <segue reference="E9S-4Q-PWA"/>
         <segue reference="3bu-4q-Jxd"/>
-        <segue reference="Gb1-Vw-imE"/>
-        <segue reference="wSm-cm-9kX"/>
+        <segue reference="Oyv-M6-exy"/>
+        <segue reference="fQs-EV-8Cn"/>
         <segue reference="Hak-Or-E2q"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
