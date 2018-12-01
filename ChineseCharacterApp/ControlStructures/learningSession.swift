@@ -16,6 +16,7 @@ class LearningSesion {
     var charsAlreadyPracticed: [Int : Double]
     var level: Int
     var current: Int
+    var currentResult: [StrokeResult]? = nil
     
     init() {
         charsToPractice = []

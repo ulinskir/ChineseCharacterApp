@@ -55,141 +55,92 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     @IBOutlet weak var strokeComparisonCollectionView: UICollectionView! // displays stroke by stroke results for the user to click through
     
     
-    /*
-        When the user taps the start button, load the first character and hide the start button
-     */
+    // When the user taps the start button, load the first character and hide the start button
     @IBAction func startLesson(_ sender: Any) {
         setupCharDisplay()
         startButton.isHidden = true
     }
     
+ //------------------------------ USER DRAWING INTERACTION BUTTONS -----------------------------//
     
-    // When hint button is tapped, give the user the correct hint, based on their
-    // level for the current character
-    // TO DO: implement this
+    // When hint button is tapped, display a dot on the drawingView corresponding to the
+    // start of the next stroke to be drawn
+    // NOTE: It is only guarenteed to be the correct next stroke if the user hasn't drawn strokes
+    //       out of order.
+    //       Hint is only enabled on levels 1 and 2
     @IBAction func hintButtonTapped(_ sender: Any) {
-        /*if(ls!.getCurrentChar() != nil) {
-            let strokes = ["M 337 94 C 322 90 237 56 214 40", "M 339 141 C 324 137 244 105 221 89"]
-//            let strokes = ls!.getCurrentChar()?.strokes
-            for stroke in strokes {
-                drawingView.drawChar(stroke:stroke, scale:SVGConverter().make_canvas_dimension_converter(from:(0,500,500,0), to:(0,335,335,0)))
-            }
-            
-        }*/
-        
         guard let char = ls!.getCurrentChar() else {
+            // make sure there is a current character in the learning session
             print("no char")
             return
         }
         if drawingView.strokes.count < char.points.count {
-            //self.drawPointOnCanvas(x: Double(self.drawingView.frame.width / 2), y:  Double(self.drawingView.frame.width / 2))
+            // if there are still strokes to draw, display the hint
+            // first scale the start point from a 295 pt view to the current view size
             let scaleFactor =  Double(self.drawingView.frame.width/295)
             let points = char.points[drawingView.strokes.count][0]
+            // then draw it on the screen
             self.drawPointOnCanvas(x: Double(points[0]) * scaleFactor, y:  Double(points[1]) * scaleFactor)
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                // after 2 seconds remove it
                 self.imageView.removeFromSuperview()
-                print("time up")
-            }
-        }
-        else {
-            print("all strokes finished")
+                }
         }
     }
     
-    // When undo is tapped, clear the screen
-    // TO DO: make this clear only the most recent stroke
+    // When clear is tapped, clear the screen of any user drawn lines
     @IBAction func undoButtonTapped(_ sender: Any) {
         drawingView.clearCanvas()
     }
     
-    // When exit button is tapped, display popup to make sure the user wants to
-    // quit the current learning session
-    @IBAction func exitButtonTapped(_ sender: UIButton) {
-        let alert:UIAlertController = UIAlertController(title:"", message:"Are you sure you want to quit? Your progress will not be saved.", preferredStyle: .alert)
-        let yesAction:UIAlertAction = UIAlertAction(title:"Yes", style: .destructive)
-        { (_:UIAlertAction) in
-            self.performSegue(withIdentifier: "DrawHome", sender: self)
-        }
-        let noAction:UIAlertAction = UIAlertAction(title:"No", style: .cancel)
-        { (_:UIAlertAction) in
-            print("No")
-        }
-        alert.addAction(yesAction)
-        alert.addAction(noAction)
-        self.present(alert, animated:true)
-    }
-    
-    // When the character has been submitted by the user, ???
-    // TO DO: implement this
+    // When the character has been submitted by the user,
+    //  - send the matcher the screen dimensions and use it to check the user's char against the
+    //    correct char
+    //  - load the check char popup
     @IBAction func submitButtonTapped(_ sender: Any) {
-        //Recognize()
-        // Edges: (north, south, east, west)
-        if self.imageView.isDescendant(of: masterDrawingView) {
-            self.imageView.removeFromSuperview()
-        }
-        let currScreenDimensions: Edges = (0,335,335,0)
+        // Set up and run the matcher
+        let dim = Double(self.drawingView.frame.width) // get the size of the drawing view
+        let currScreenDimensions: Edges = (0,dim,dim,0) // send it to the matcher
         
         let matcher = Matcher()
         let targetSvgs = ls!.getCurrentChar()!.strokes
         let targetStrokePoints = matcher.processTargetPoints(targetSvgs, destDimensions:currScreenDimensions)
-        //insert target here
+        //insert target here?????
         let source = drawingView.getPoints()
-        let result = matcher.full_matcher(source:source, target:targetStrokePoints)
-        print(result)
-        if submitButton.titleLabel!.text == "Check" {
-            print("hi")
-            checkUserChar()
-            ls!.level += 1
-            if (ls!.level > 3) {
-                ls!.level = 0
-            }
-        } else if submitButton.titleLabel!.text == "Continue"{
-            loadNextChar()
-        } else {
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
-            self.present(newViewController, animated: true, completion: nil)
-        }
+        // save the result to the learning session
+        ls!.currentResult = matcher.full_matcher(source:source, target:targetStrokePoints)
+        print(ls!.currentResult)
+        
+        // Set up and load the check character popup
         checkUserChar()
     }
     
+//------------------------------ USER CHECKING INTERACTION BUTTONS -----------------------------//
+
+    //TO DO: Determine metric for correctness of user's char
+    func isCharRight() -> Bool {
+        return true
+    }
+    
+    // miss-named, actually continue button tapped
+    // If char is right save results to learning session and move to the next character
+    // else insert char at the end of the learning sessions list of characters to be precticed
+    // and move to the next char
     @IBAction func noButtonTapped(_ sender: UIButton) {
-        let failedChar = ls!.charsToPractice.remove(at: ls!.current)
-        ls!.charsToPractice.insert(failedChar, at: ls!.charsToPractice.endIndex)
-        loadNextChar()
-        checkViewPopup.isHidden = true
-    }
-    
-    @IBAction func yesButtonTapped(_ sender: UIButton) {
-        ls!.charPracticed(score: 1)
-        progressBar.setProgress(Float(ls!.progress()), animated: true)
-        loadNextChar()
-        checkViewPopup.isHidden = true
-    }
-    
-    
-    func checkUserChar() {
-        displayCharInView()
-        checkViewPopup.isHidden = false
-        //setSubmitButtonTitle(title: "Continue")
-    }
-    
-    func loadNextChar() {
-        drawingView.clearCanvas()
-        if !ls!.sessionFinished() {
-            setupCharDisplay()
-            setSubmitButtonTitle(title: "Check")
+        if isCharRight() {
+            ls!.charPracticed(score: 1)
+            progressBar.setProgress(Float(ls!.progress()), animated: true)
         } else {
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "lessonFinishedViewController") as! LessonFinishedViewController
-            self.present(newViewController, animated: true, completion: nil)
+            let failedChar = ls!.charsToPractice.remove(at: ls!.current)
+            ls!.charsToPractice.insert(failedChar, at: ls!.charsToPractice.endIndex)
         }
+        loadNextChar()
+        checkViewPopup.isHidden = true
     }
     
-    func setSubmitButtonTitle(title:String) {
-        submitButton.setAttributedTitle(NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:0.54, green:0.07, blue:0.00, alpha:1.0)]), for: [.normal])
-    }
     
+//------------------------------ APP LIFECYCLE METHODS -----------------------------//
+
     override func viewDidLoad() {
         super.viewDidLoad()
         ls = LearningSesion(charsToPractice: module!.chineseChars,level: level)
@@ -200,29 +151,59 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         strokeComparisonCollectionView.dataSource = self
     }
     
+    // Once the view is loaded and views have the correct dimensions, set the font sizes appropiately
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setFontSizes()
     }
     
+    
+//------------------------------ FUNCTIONS FOR SETTING UP DISPLAYS -----------------------------//
+    
+    // If there is another character in the learning session load it
+    // else move to the lesson finished screen
+    func loadNextChar() {
+        drawingView.clearCanvas()   // remove any user drawing from the drawing view
+        if !ls!.sessionFinished() {
+            setupCharDisplay()
+        } else {
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "lessonFinishedViewController") as! LessonFinishedViewController
+            self.present(newViewController, animated: true, completion: nil)
+        }
+    }
+    
+    // Sets up the check user char popup
+    func checkUserChar() {
+        displayCharInView()
+        checkViewPopup.isHidden = false
+        //setSubmitButtonTitle(title: "Continue")
+    }
+    
+    // Draws a red bullseye with size 1/16th of the drawing view at a given point
     func drawPointOnCanvas(x:Double,y:Double) {
         let pointRadius = Double(drawingView.frame.height / 16)
         let pointUIImage = UIImage(named: "hintPoint")
         imageView = UIImageView(image: pointUIImage)
         imageView!.frame = CGRect(x: x - pointRadius/2, y: y - pointRadius/2, width: (pointRadius), height: (pointRadius))
         masterDrawingView.addSubview(imageView)
- 
     }
     
+    // If there is a character to practice in the learning session display it appropiately for the given level
     func setupCharDisplay() {
        guard let char = ls!.getCurrentChar() else {
-            print("no char")
+            // if there is no char do nothing
             return
         }
+        // if there is still a hint dot displayed, remove it
         if self.imageView != nil && self.imageView.isDescendant(of: masterDrawingView) {
             self.imageView.removeFromSuperview()
         }
+        
+        // initialize the stroke comparision view with the new strokes
         strokeComparisonCollectionView.reloadData()
+        
+        // Set up the 
         switch ls!.level {
         case 1:
             // if level is 0, display entire character in the background of the
@@ -291,12 +272,6 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         pinyinTop1.font = pinyinTop1.font.withSize(pinyinTop1.frame.height * 0.6)
         englishTop1.font = englishTop1.font.withSize(englishTop1.frame.height * 0.6)
     }
-    
-    func Recognize() {
-        let instanceOfRecognizer = Recognizer()
-        let result = instanceOfRecognizer.recognize(source: [(2,5),(10,6),(15,5)], target:[(2,5),(15,5)], offset: 0)
-        print(result.score)
-    }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print(ls!.getCurrentChar()!.points.count)
@@ -337,5 +312,22 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         let scaleFactor =  Double(self.drawingView.frame.width/295)
         let points = char.points[rowNumber][0]
         self.drawPointOnCanvas(x: Double(points[0]) * scaleFactor, y:  Double(points[1]) * scaleFactor)
-            }
+    }
+    
+    // When exit button is tapped, display popup to make sure the user wants to
+    // quit the current learning session
+    @IBAction func exitButtonTapped(_ sender: UIButton) {
+        let alert:UIAlertController = UIAlertController(title:"", message:"Are you sure you want to quit? Your progress will not be saved.", preferredStyle: .alert)
+        let yesAction:UIAlertAction = UIAlertAction(title:"Yes", style: .destructive)
+        { (_:UIAlertAction) in
+            self.performSegue(withIdentifier: "DrawHome", sender: self)
+        }
+        let noAction:UIAlertAction = UIAlertAction(title:"No", style: .cancel)
+        { (_:UIAlertAction) in
+            print("No")
+        }
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        self.present(alert, animated:true)
+    }
 }
