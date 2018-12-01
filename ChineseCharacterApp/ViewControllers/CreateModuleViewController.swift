@@ -24,9 +24,7 @@ class CreateModuleViewController: UIViewController, UITextFieldDelegate, UITextV
         newModuleAuthor.delegate = self
         newModuleDescription.delegate = self
         
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: Selector("endEditing:")))
-
-        // Do any additional setup after loading the view.
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
     }
     
     @IBAction func cancelCreateModuleButtonPressed(_ sender: Any) {
