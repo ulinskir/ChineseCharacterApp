@@ -11,7 +11,7 @@
 
 import UIKit
 
-class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
+class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
 
     
     @IBOutlet weak var startButton: UIButton! //tapped to start the learning session
@@ -46,7 +46,8 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     var module:Module? = nil        // the module being practiced, if applicable
     var ls:LearningSesion? = nil    // a learning session to track the current character and progress
     var level = 1                   // The level to practice on, defaults to 1
-    var imageView: UIImageView!     // used to diplay hint dots
+    
+    var imageView = UIImageView(image: UIImage(named: "hintPoint"))    // used to diplay hint dots
     
     
     @IBOutlet weak var checkViewPopup: UIView!  // a popup window that allows the usesr to navigate
@@ -80,7 +81,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             let scaleFactor =  Double(self.drawingView.frame.width/295)
             let points = char.points[drawingView.strokes.count][0]
             // then draw it on the screen
-            self.drawPointOnCanvas(x: Double(points[0]) * scaleFactor, y:  Double(points[1]) * scaleFactor)
+            self.drawPointOnCanvas(x: Double(points[0]) * scaleFactor, y:  Double(points[1]) * scaleFactor, view: masterDrawingView, point: imageView)
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 // after 2 seconds remove it
                 self.imageView.removeFromSuperview()
@@ -181,12 +182,10 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     // Draws a red bullseye with size 1/16th of the drawing view at a given point
-    func drawPointOnCanvas(x:Double,y:Double) {
-        let pointRadius = Double(drawingView.frame.height / 16)
-        let pointUIImage = UIImage(named: "hintPoint")
-        imageView = UIImageView(image: pointUIImage)
-        imageView!.frame = CGRect(x: x - pointRadius/2, y: y - pointRadius/2, width: (pointRadius), height: (pointRadius))
-        masterDrawingView.addSubview(imageView)
+    func drawPointOnCanvas(x:Double,y:Double,view:UIView, point: UIImageView) {
+        let pointRadius = Double(view.frame.height / 16)
+        point.frame = CGRect(x: x - pointRadius/2, y: y - pointRadius/2, width: (pointRadius), height: (pointRadius))
+        view.addSubview(imageView)
     }
     
     // If there is a character to practice in the learning session display it appropiately for the given level
@@ -196,7 +195,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             return
         }
         // if there is still a hint dot displayed, remove it
-        if self.imageView != nil && self.imageView.isDescendant(of: masterDrawingView) {
+        if self.imageView.isDescendant(of: masterDrawingView) {
             self.imageView.removeFromSuperview()
         }
         
@@ -280,24 +279,32 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         return max(drawingView.strokes.count,  ls!.getCurrentChar()!.points.count)
     }
     
-    // Set up the collection view cell to show the
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let itemWidth = collectionView.bounds.height - 10
+        let itemHeight = collectionView.bounds.height - 10
+        return CGSize(width: itemWidth, height: itemHeight)
+    }
+    
+    // Set up the collection view cell at indexpath to show the correct stroke
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "strokeCell", for: indexPath) as! StrokeCollectionViewCell
+        // Check to make sure there is a char
         guard let char = ls!.getCurrentChar() else {
             print("no char")
             return cell
         }
-        let scaleFactor =  Double(cell.strokeView.frame.width/295)
+        let dim = cell.frame.height
+        cell.strokeView.layer.borderWidth = 1
+        cell.strokeView.layer.borderColor = UIColor.black.cgColor
+        //cell.strokeView.frame = CGRect(x: 0, y:0, width: dim, height: dim)
+        let scaleFactor =  Double(dim/295)
         let rowNumber : Int = indexPath.row
-        cell.strokeLabel.text = String(rowNumber)
+        cell.strokeLabel.font = cell.strokeLabel.font.withSize(dim)
+        cell.strokeLabel.text = String(char.char)
         let points = char.points[rowNumber][0]
         let x = Double(points[0]) * scaleFactor
         let y = Double(points[1]) * scaleFactor
-        let pointRadius = Double(cell.strokeView.frame.height / 16)
-        let pointUIImage = UIImage(named: "hintPoint")
-        let imageView = UIImageView(image: pointUIImage!)
-        imageView.frame = CGRect(x: x - pointRadius/2, y: y - pointRadius/2, width: (pointRadius), height: (pointRadius))
-        cell.strokeView.addSubview(imageView)
+        drawPointOnCanvas(x: x, y: y, view: cell.strokeView, point: cell.strokeDot)
         return cell
     }
     
@@ -314,7 +321,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         }
         let scaleFactor =  Double(self.drawingView.frame.width/295)
         let points = char.points[rowNumber][0]
-        self.drawPointOnCanvas(x: Double(points[0]) * scaleFactor, y:  Double(points[1]) * scaleFactor)
+        self.drawPointOnCanvas(x: Double(points[0]) * scaleFactor, y:  Double(points[1]) * scaleFactor, view: masterDrawingView, point: imageView)
     }
     
     // When exit button is tapped, display popup to make sure the user wants to

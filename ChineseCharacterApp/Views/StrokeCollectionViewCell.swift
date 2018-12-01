@@ -12,4 +12,5 @@ class StrokeCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var strokeLabel: UILabel!
     @IBOutlet weak var strokeView: UIView!
+    @IBOutlet weak var strokeDot: UIImageView!
 }
