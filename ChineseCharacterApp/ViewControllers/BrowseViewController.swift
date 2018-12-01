@@ -52,9 +52,13 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
         loadCharsFromJSON()
         
         practiceLevelView.isHidden = true
-        
-//        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+    
         self.searchBar.endEditing(true);
+    }
+    
+    @objc func dismissKeyboard()
+    {
+        view.endEditing(true)
     }
     
     @IBAction func practiceLevelPopup(_ sender: Any) {
@@ -74,6 +78,10 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBAction func levelThreeClicked(_ sender: Any) {
         level = 3
         self.performSegue(withIdentifier: "ModuleDraw", sender: self)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     func loadCharsFromJSON() {
