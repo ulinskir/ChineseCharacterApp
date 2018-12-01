@@ -53,7 +53,7 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         practiceLevelView.isHidden = true
         
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+//        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         self.searchBar.endEditing(true);
     }
     
@@ -222,12 +222,16 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
 extension BrowseViewController : UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("TYPING")
-        if searchText == ""{
+        if searchText == "" || searchBar.text == nil {
             searching = false
-            searchBar.perform(#selector(self.resignFirstResponder), with: nil, afterDelay: 0.1)
         } else{
             searchTerm = Chars.filter({$0.definition.lowercased().contains(searchText.lowercased())})
             searching = true
+        }
+        
+        if searchBar.text == nil || searchBar.text == ""
+        {
+            searchBar.perform(#selector(self.resignFirstResponder), with: nil, afterDelay: 0.1)
         }
         
         self.browseCollectionView.reloadData()
