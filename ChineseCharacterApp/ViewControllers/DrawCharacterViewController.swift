@@ -47,6 +47,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     var ls:LearningSesion? = nil
     var first = true
     var level = 1
+    var imageView: UIImageView!
     
     @IBOutlet weak var startButton: UIButton!
     
@@ -65,11 +66,6 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     // level for the current character
     // TO DO: implement this
     @IBAction func hintButtonTapped(_ sender: Any) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            print("time up")
-            
-        }
-        
         /*if(ls!.getCurrentChar() != nil) {
             let strokes = ["M 337 94 C 322 90 237 56 214 40", "M 339 141 C 324 137 244 105 221 89"]
 //            let strokes = ls!.getCurrentChar()?.strokes
@@ -88,22 +84,13 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             let scaleFactor =  Double(self.drawingView.frame.width/295)
             let points = char.points[drawingView.strokes.count][0]
             self.drawPointOnCanvas(x: Double(points[0]) * scaleFactor, y:  Double(points[1]) * scaleFactor)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.imageView.removeFromSuperview()
+                print("time up")
+            }
         }
         else {
             print("all strokes finished")
-        }
-        switch ls!.level {
-        case 0:
-            // if level is 0,
-            print("0")
-        case 1:
-            print("1")
-        case 2:
-            print("2")
-        case 3:
-            print("3")
-        default:
-            print("undefined level")
         }
     }
     
@@ -135,6 +122,9 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     @IBAction func submitButtonTapped(_ sender: Any) {
         //Recognize()
         // Edges: (north, south, east, west)
+        if self.imageView.isDescendant(of: masterDrawingView) {
+            self.imageView.removeFromSuperview()
+        }
         let currScreenDimensions: Edges = (0,335,335,0)
         
         let matcher = Matcher()
@@ -225,20 +215,19 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     func drawPointOnCanvas(x:Double,y:Double) {
         let pointRadius = Double(drawingView.frame.height / 16)
         let pointUIImage = UIImage(named: "hintPoint")
-        let imageView = UIImageView(image: pointUIImage!)
-        imageView.frame = CGRect(x: x - pointRadius/2, y: y - pointRadius/2, width: (pointRadius), height: (pointRadius))
-        //imageView.frame = CGRect(x: x , y: y, width: (pointRadius), height: (pointRadius))
+        imageView = UIImageView(image: pointUIImage)
+        imageView!.frame = CGRect(x: x - pointRadius/2, y: y - pointRadius/2, width: (pointRadius), height: (pointRadius))
         masterDrawingView.addSubview(imageView)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            imageView.removeFromSuperview()
-            print("time up")
-        }
+ 
     }
     
     func setupCharDisplay() {
        guard let char = ls!.getCurrentChar() else {
             print("no char")
             return
+        }
+        if self.imageView != nil && self.imageView.isDescendant(of: masterDrawingView) {
+            self.imageView.removeFromSuperview()
         }
         strokeComparisonCollectionView.reloadData()
         switch ls!.level {
@@ -342,7 +331,18 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if self.imageView.isDescendant(of: masterDrawingView) {
+            self.imageView.removeFromSuperview()
+        }
         let rowNumber = indexPath.row
-        backgroundCharLabel.text = String(rowNumber)
-    }
+        //backgroundCharLabel.text = String(rowNumber)
+        guard let char = ls!.getCurrentChar()
+            else {
+                print("no char")
+                return
+        }
+        let scaleFactor =  Double(self.drawingView.frame.width/295)
+        let points = char.points[rowNumber][0]
+        self.drawPointOnCanvas(x: Double(points[0]) * scaleFactor, y:  Double(points[1]) * scaleFactor)
+            }
 }
