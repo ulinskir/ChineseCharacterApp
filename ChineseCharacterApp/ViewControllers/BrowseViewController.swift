@@ -52,6 +52,9 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
         loadCharsFromJSON()
         
         practiceLevelView.isHidden = true
+        
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        self.searchBar.endEditing(true);
     }
     
     @IBAction func practiceLevelPopup(_ sender: Any) {
