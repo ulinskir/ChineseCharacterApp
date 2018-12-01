@@ -277,10 +277,10 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     // for each stroke the user drew, create a box in the collection view
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print(ls!.getCurrentChar()!.points.count)
-        return drawingView.strokes.count
+        return max(drawingView.strokes.count,  ls!.getCurrentChar()!.points.count)
     }
     
-    // Set up the collection view cell to show the 
+    // Set up the collection view cell to show the
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "strokeCell", for: indexPath) as! StrokeCollectionViewCell
         guard let char = ls!.getCurrentChar() else {
@@ -297,7 +297,6 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         let pointUIImage = UIImage(named: "hintPoint")
         let imageView = UIImageView(image: pointUIImage!)
         imageView.frame = CGRect(x: x - pointRadius/2, y: y - pointRadius/2, width: (pointRadius), height: (pointRadius))
-        //imageView.frame = CGRect(x: x , y: y, width: (pointRadius), height: (pointRadius))
         cell.strokeView.addSubview(imageView)
         return cell
     }
