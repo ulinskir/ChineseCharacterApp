@@ -16,6 +16,8 @@ let srcEdges:Edges = (0,500,500,0)
 let destEdges:Edges = (0,335,335,0)
 let RESAMPLE_VAL = 64
 let RESAMPLING = false
+let SIMPLE_ORDER_CHECK:Bool = true
+let COMPOUND_ORDER_CHECK:Bool = true
 
 
 
@@ -51,19 +53,26 @@ class Matcher {
     }
 
 // Target is a list of points, but source needs to be resampled maybe, but also IDK if resmpling is necessary
-    func full_matcher(source:[[Point]], target:[[Point]]) -> ([StrokeResult], Int) {
+    func full_matcher(source:[[Point]], target:[[Point]]) -> ([StrokeResult], [Int]) {
         
         var strokeInfo:[(StrokeResult)] = []
+        var strokeInfoSimpleOrder:[StrokeResult] = []
+
         typealias remTarg = (points:[Point], completed:Bool)
         // loop through strokes in the character
         var remainingTargets:[remTarg] = target.map({(a:[Point]) -> remTarg in return (a, false)})
         var foundStroke = false
         var numPrevFoundStrokes = 0
-        var errorStrokes:Int = 0
+        var errorStrokes:[Int] = []
         var foundStrokes:[FoundStroke] = []
         
 //        func is_in_order(j:Int) {
 //        }
+        for _ in 0..<target.count {
+            strokeInfo.append((false,false,false))
+            strokeInfoSimpleOrder.append((false,false,false))
+            
+        }
         
         for srcIndex in 0..<source.count {
             foundStroke = false
@@ -81,18 +90,18 @@ class Matcher {
                         
 //                        result.append((true, curr.rightDirection, srcIndex, j==0))
                         foundStrokes.append((curr.rightDirection, numPrevFoundStrokes, targetIndex, -1))
+                        strokeInfoSimpleOrder[targetIndex] = ((true, curr.rightDirection, srcIndex==targetIndex))
 //                        foundStrokes[j] = result.last!
                         foundStroke = true
                         remainingTargets[targetIndex].completed = true
                         numPrevFoundStrokes += 1
+                        }
+                    }
 
-                        break
-                        }}
-                    
-                    
+                        
                 }
                 
-                if(!foundStroke) {errorStrokes += 1}
+                if(!foundStroke) {errorStrokes.append(srcIndex)}
             }}
             print("found strokes:", numPrevFoundStrokes)
         
@@ -104,9 +113,7 @@ class Matcher {
             for i in 0..<sorted.count {
                 sorted[i].smoothedOrder = i
             }
-            for _ in 0..<target.count {
-                strokeInfo.append((false,false,false))
-            }
+        
         
             for i in 0..<sorted.count {
                 strokeInfo[sorted[i].targetIndex] = (true, sorted[i].rightDirection, sorted[i].smoothedOrder >= sorted[i].orderDrawn)
@@ -124,7 +131,12 @@ class Matcher {
 //            }
         
         
-        
-        return (strokeInfo, errorStrokes)
+        if(COMPOUND_ORDER_CHECK) {
+            for i in 0..<strokeInfo.count {
+                strokeInfo[i].rightOrder = strokeInfo[i].rightOrder && strokeInfoSimpleOrder[i].rightOrder
+            }
+            return (strokeInfo, errorStrokes)
+        }
+        return (SIMPLE_ORDER_CHECK ? strokeInfoSimpleOrder : strokeInfo, errorStrokes)
     }
 }
