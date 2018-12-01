@@ -19,13 +19,10 @@ let RESAMPLING = false
 let SIMPLE_ORDER_CHECK:Bool = true
 let COMPOUND_ORDER_CHECK:Bool = true
 
-
-
-
 let instanceOfRecognizer = Recognizer()
 
 class Matcher {
-    func get_hints(_ target:[String], destDimensions:Edges) -> [Point]{
+    func get_hints(_ target:[String], destDimensions:Edges) -> [Point] {
         var hints:[Point] = []
         let targetPoints = processTargetPoints(target, destDimensions: destDimensions)
         for stroke in targetPoints {
@@ -98,7 +95,7 @@ class Matcher {
                         }
                     }
 
-                        
+                    
                 }
                 
                 if(!foundStroke) {errorStrokes.append(srcIndex)}
