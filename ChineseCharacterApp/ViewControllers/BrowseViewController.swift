@@ -80,10 +80,6 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.performSegue(withIdentifier: "ModuleDraw", sender: self)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
     func loadCharsFromJSON() {
         //Open the dictionary file
 
