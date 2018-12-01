@@ -14,23 +14,23 @@ import UIKit
 class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
 
     
+    @IBOutlet weak var startButton: UIButton! //tapped to start the learning session
 
     //top bar items
     @IBOutlet weak var progressBar: UIProgressView! //progress bar to display progress in the current learning session
     @IBOutlet weak var exitButton: UIButton! //button to exit current learning session
     
-    // Character information
+    // Character drawing screen
     @IBOutlet weak var masterDrawingView: UIView!
     @IBOutlet weak var drawingView: DrawingView! // a canvas to draw characters on
     @IBOutlet weak var backgroundCharLabel: UILabel! // for level 0 to display the curr char
     
-    // Controls for the drawing view
+    // Controls for the user
     @IBOutlet weak var hintButton: UIButton!
     @IBOutlet weak var undoButton: UIButton!
-    
     @IBOutlet weak var submitButton: UIButton!
     
-    
+    //Display current character information
     @IBOutlet weak var topView1: UIStackView! //view for levels 1 and 2
     @IBOutlet weak var topView2: UIStackView! //view for levels 0 and 3
     
@@ -43,19 +43,21 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     @IBOutlet weak var englishTop2: UILabel!
     @IBOutlet weak var pinyinTop2: UILabel!
     
-    var module:Module? = nil
-    var ls:LearningSesion? = nil
-    var first = true
-    var level = 1
-    var imageView: UIImageView!
+    var module:Module? = nil        // the module being practiced, if applicable
+    var ls:LearningSesion? = nil    // a learning session to track the current character and progress
+    var level = 1                   // The level to practice on, defaults to 1
+    var imageView: UIImageView!     // used to diplay hint dots
     
-    @IBOutlet weak var startButton: UIButton!
     
-    @IBOutlet weak var checkViewPopup: UIView!
-    @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var checkViewPopup: UIView!  // a popup window that allows the usesr to navigate
+                                                // their results on a character
     
-    @IBOutlet weak var strokeComparisonCollectionView: UICollectionView!
+    @IBOutlet weak var strokeComparisonCollectionView: UICollectionView! // displays stroke by stroke results for the user to click through
     
+    
+    /*
+        When the user taps the start button, load the first character and hide the start button
+     */
     @IBAction func startLesson(_ sender: Any) {
         setupCharDisplay()
         startButton.isHidden = true
@@ -196,15 +198,6 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         checkViewPopup.isHidden = true
         strokeComparisonCollectionView.delegate = self
         strokeComparisonCollectionView.dataSource = self
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if first {
-            print("view did layout subviews")
-            first = false
-            
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
