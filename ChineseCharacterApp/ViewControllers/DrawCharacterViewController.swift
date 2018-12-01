@@ -203,31 +203,25 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         // initialize the stroke comparision view with the new strokes
         strokeComparisonCollectionView.reloadData()
         
-        // Set up the 
+        // Set up the view with the new char based on the level
         switch ls!.level {
         case 1:
-            // if level is 0, display entire character in the background of the
+            // if level is 1, display entire character in the background of the drawing view
             setLabelsInTop2(char: char)
             displayCharInView()
         case 2:
             hideCharInView()
             setLabelsInTop1(char: char)
-            print("0")
-        case 0:
-            hideCharInView()
-            setLabelsInTop1(char: char)
-            hintButton.isEnabled = false
-            print("2")
         case 3:
             hideCharInView()
             setLabelsInTop2(char: char)
             hintButton.isEnabled = false
-            print("3")
         default:
             print("error: undefined level")
         }
     }
     
+    // Set the labels in the top1 view-- the view that has the chinese in it
     func setLabelsInTop1(char:ChineseChar) {
         englishTop1.text = char.definition
         chineseCharTop1.text = char.char
@@ -235,33 +229,37 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         showTop1()
     }
     
+    // Set the labels in the top2 view-- the view that doen't have the chinese in it
     func setLabelsInTop2(char:ChineseChar) {
         englishTop2.text = char.definition
         pinyinTop2.text = char.pinyin.count > 0 ? char.pinyin[0] : "none"
         showTop2()
     }
     
+    // Hide the background char
     func hideCharInView() {
         backgroundCharLabel.text = ""
     }
     
+    // Show the char in drawing view
     func displayCharInView() {
         let char = ls!.getCurrentChar()
-        //var charChar = char?.char
-        //charChar = "门"
         backgroundCharLabel.text = char?.char
     }
     
+    // Show the top1 and hide top2
     func showTop1() {
         topView1.isHidden = false
         topView2.isHidden = true
     }
     
+    // Show the top2 and hide top1
     func showTop2() {
         topView1.isHidden = true
         topView2.isHidden = false
     }
     
+    //Set the font sizes based on the view dimensions
     func setFontSizes() {
         backgroundCharLabel.font = backgroundCharLabel.font.withSize(drawingView.frame.size.height*0.9)
         chineseCharTop1.font = chineseCharTop1.font.withSize(topView1.frame.size.height * 0.7)
@@ -273,11 +271,16 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         englishTop1.font = englishTop1.font.withSize(englishTop1.frame.height * 0.6)
     }
 
+    
+//------------------------------ FUNCTIONS FOR STROKE COLLECTION VIEW -----------------------------//
+
+    // for each stroke the user drew, create a box in the collection view
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print(ls!.getCurrentChar()!.points.count)
-        return ls!.getCurrentChar()!.points.count
+        return drawingView.strokes.count
     }
     
+    // Set up the collection view cell to show the 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "strokeCell", for: indexPath) as! StrokeCollectionViewCell
         guard let char = ls!.getCurrentChar() else {
@@ -298,6 +301,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         cell.strokeView.addSubview(imageView)
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if self.imageView.isDescendant(of: masterDrawingView) {
             self.imageView.removeFromSuperview()
