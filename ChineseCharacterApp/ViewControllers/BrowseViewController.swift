@@ -224,10 +224,12 @@ extension BrowseViewController : UISearchBarDelegate {
         print("TYPING")
         if searchText == ""{
             searching = false
+            searchBar.perform(#selector(self.resignFirstResponder), with: nil, afterDelay: 0.1)
         } else{
             searchTerm = Chars.filter({$0.definition.lowercased().contains(searchText.lowercased())})
             searching = true
         }
+        
         self.browseCollectionView.reloadData()
     }
     
