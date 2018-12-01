@@ -52,8 +52,8 @@ class make_ctx:
     def write_list(self, file):
         # For each stroke in the list, joins with spaces, to form a list of SVG paths
         # Write SVG paths to the file.
-        file.write(str('"' + [' '.join([str(val) for val in stroke_str][1:-1] _ '"')
-                            for stroke_str in self._strokes]))
+        file.write(str([" ".join([str(val) for val in stroke_str][1:-1])
+                            for stroke_str in self._strokes]).replace("'",'"'))
         file.write('\n')
 
 def main():
