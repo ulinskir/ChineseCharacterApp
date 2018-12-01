@@ -775,9 +775,9 @@ Zìfú</string>
                                             <constraint firstAttribute="height" constant="75" id="nCe-JI-ori"/>
                                         </constraints>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0x-Lj-oIr">
-                                        <rect key="frame" x="93" y="76" width="189" height="140"/>
-                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="64"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0x-Lj-oIr">
+                                        <rect key="frame" x="113.66666666666667" y="76" width="147.66666666666663" height="140"/>
+                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="50"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular-widthClass=regular">
@@ -914,7 +914,13 @@ Zìfú</string>
                                     <constraint firstAttribute="trailing" secondItem="LTn-PN-F63" secondAttribute="trailing" constant="100" id="jJD-l6-Xpw"/>
                                     <constraint firstItem="JOt-01-gMc" firstAttribute="leading" secondItem="W7F-dN-kI2" secondAttribute="leading" id="lN2-5k-Kry"/>
                                     <constraint firstItem="LTn-PN-F63" firstAttribute="leading" secondItem="W7F-dN-kI2" secondAttribute="leading" constant="100" id="mAv-nV-cYc"/>
+                                    <constraint firstItem="U0x-Lj-oIr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="W7F-dN-kI2" secondAttribute="leading" constant="20" id="p3H-Eg-s6p">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                                    </constraint>
                                     <constraint firstAttribute="trailing" secondItem="FDk-ju-gi6" secondAttribute="trailing" id="rwk-Bl-SJ2"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="U0x-Lj-oIr" secondAttribute="trailing" constant="20" id="s0J-nh-aQd">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                                    </constraint>
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3fF-cY-p5I">
@@ -1515,6 +1521,9 @@ Zìfú</string>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Module Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ev-dt-GIr">
                                                 <rect key="frame" x="0.0" y="19.666666666666661" width="335" height="39.333333333333343"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="Jju-eI-tcX"/>
+                                                </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -1776,10 +1785,11 @@ Zìfú</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="UTV-w9-o9c"/>
         <segue reference="E9S-4Q-PWA"/>
         <segue reference="3bu-4q-Jxd"/>
-        <segue reference="Pkk-On-Vok"/>
-        <segue reference="Kul-4p-UBS"/>
+        <segue reference="Gb1-Vw-imE"/>
+        <segue reference="wSm-cm-9kX"/>
         <segue reference="Hak-Or-E2q"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
