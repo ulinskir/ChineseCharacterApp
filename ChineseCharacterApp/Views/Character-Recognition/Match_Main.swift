@@ -39,7 +39,7 @@ class Matcher {
     
     func processTargetPoints(_ target:[String], destDimensions:Edges) -> [[Point]] {//,_ src_edges:Edges,_ dest_edges:Edges) -> [Point] {
         // Parses list of SVG paths to bezier curves, and samples them to create a list of strokes.
-        let scale_fn = SVGConverter().make_canvas_dimension_converter(from: src_edges, to: dest_edges)
+        let scale_fn = SVGConverter().make_canvas_dimension_converter(from: src_edges, to: destDimensions)
         let bezierPointsInstance = bezierPoints()
         var points:[[Point]] = []
         for i in 0..<target.count {

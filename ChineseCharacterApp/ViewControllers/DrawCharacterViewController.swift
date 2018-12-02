@@ -109,6 +109,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         
         let matcher = Matcher()
         let targetSvgs = ls!.getCurrentChar()!.strokes
+        print(targetSvgs)
         let targetStrokePoints = matcher.processTargetPoints(targetSvgs, destDimensions:currScreenDimensions)
         //insert target here?????
         let source = drawingView.getPoints()

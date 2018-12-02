@@ -112,6 +112,7 @@ public class bezierPoints {
     }
 
     func get_points(from svgData: String, scale: @escaping((Double,Double) -> (Double, Double))) -> [Point]{
+        print("svgdata:", svgData)
         let svgPath = SVGPath(svgData, scale)
         
         var p: [Point] = []
