@@ -12,7 +12,7 @@ import UIKit
 import Darwin
 
 typealias Edges = (north:Double, south:Double, east:Double, west:Double)
-let NUM_POINTS_IN_PATH:Int = 32
+let NUM_POINTS_IN_PATH:Int = 64
 
 
 // Multiplying a Point by a scalar.

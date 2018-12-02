@@ -74,6 +74,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             // make sure there is a current character in the learning session
             print("no char")
             return
+
         }
         for stroke in char.strokes {
 //            let scaleFactor =  Double(self.drawingView.frame.width/295)
@@ -114,7 +115,9 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         //insert target here?????
         let source = drawingView.getPoints()
         // save the result to the learning session
-        ls!.currentResult = matcher.full_matcher(source:source, target:targetStrokePoints)
+        typealias matcherResult = (targetScores: [StrokeResult], Errors: [Int])
+        let res:matcherResult = matcher.full_matcher(source:source, target:targetStrokePoints)
+        ls!.currentResult = res.targetScores
         print(ls!.currentResult)
         
         // Set up and load the check character popup

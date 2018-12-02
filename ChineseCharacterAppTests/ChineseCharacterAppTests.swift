@@ -20,6 +20,17 @@ class ChineseCharacterAppTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
+    func testFirst_doesnt_match() {
+        let ice = ["M 337 94 C 322 90 237 56 214 40", "M 339 141 C 324 137 244 105 221 89"]
+        
+        let _matcher = Matcher()
+        let src = _matcher.processTargetPoints(ice, destDimensions: (0,335,335,0))
+        let res = _matcher.full_matcher(source:[[(0,0),(5,5)],src[1]],target:src)
+        print(res)
+        XCTAssert(res[1].completed == true, "second stroke not found when first stroke is wrong")
+        
+    }
 
     func test_matcher_same_inputs() {
         let ice = ["M 337 94 C 322 90 237 56 214 40", "M 339 141 C 324 137 244 105 221 89"]
@@ -30,9 +41,6 @@ class ChineseCharacterAppTests: XCTestCase {
         for stroke in res {
             XCTAssert(stroke == (true,true,true))
         }
-        
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     func test_recognizer() {
         let ice = ["M 337 94 C 322 90 237 56 214 40", "M 339 141 C 324 137 244 105 221 89"]
