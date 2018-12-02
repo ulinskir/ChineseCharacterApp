@@ -75,18 +75,22 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             print("no char")
             return
         }
-        if drawingView.strokes.count < char.points.count {
-            // if there are still strokes to draw, display the hint
-            // first scale the start point from a 295 pt view to the current view size
-            let scaleFactor =  Double(self.drawingView.frame.width/295)
-            let points = char.points[drawingView.strokes.count][0]
-            // then draw it on the screen
-            self.drawPointOnCanvas(x: Double(points[0]) * scaleFactor, y:  Double(points[1]) * scaleFactor, view: masterDrawingView, point: imageView)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                // after 2 seconds remove it
-                self.imageView.removeFromSuperview()
-                }
+        for stroke in char.strokes {
+//            let scaleFactor =  Double(self.drawingView.frame.width/295)
+            drawingView.drawChar(stroke: stroke, scale: SVGConverter().make_canvas_dimension_converter(from: (0,500,500,0), to: (0,335,335,0)))
         }
+//        if drawingView.strokes.count < char.points.count {
+//            // if there are still strokes to draw, display the hint
+//            // first scale the start point from a 295 pt view to the current view size
+//            let scaleFactor =  Double(self.drawingView.frame.width/295)
+//            let points = char.points[drawingView.strokes.count][0]
+//            // then draw it on the screen
+//            self.drawPointOnCanvas(x: Double(points[0]) * scaleFactor, y:  Double(points[1]) * scaleFactor, view: masterDrawingView, point: imageView)
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                // after 2 seconds remove it
+//                self.imageView.removeFromSuperview()
+//                }
+//        }
     }
     
     // When clear is tapped, clear the screen of any user drawn lines
