@@ -1,3 +1,4 @@
+// don't use spaces in the character defs, as they will get stripped out. However, the character defs are just for reference to match the outputs to the right characters.
 #character_def_1
 
 function drawShape(ctx, xoff, yoff) {
@@ -15,7 +16,7 @@ ctx.beginPath();
 ctx.moveTo(178 + xoff, 234 + yoff);
 ctx.bezierCurveTo(164 + xoff, 239 + yoff, 243 + xoff, 41 + yoff, 245 + xoff, 84 + yoff);
 
-// if you want a straight line, just replace BezierCurveTo with lineTo
+// if you want a straight line, just replace BezierCurveTo with lineTo. It will give a straight line to the last two arguments of ctx.lineTo
 
 ctx.lineTo(261 + xoff, 448 + yoff, 344 + xoff, 62 + yoff, 371 + xoff, 127 + yoff);
 ctx.stroke();
