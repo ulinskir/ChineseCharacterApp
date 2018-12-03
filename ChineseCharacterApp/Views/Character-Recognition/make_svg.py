@@ -1,7 +1,7 @@
 import sys
 import re
 
-ONE_CHAR = True
+ONE_CHAR = False
 def scale(points):
     # Scales from a ((0,0), (500,600)) canvas to a 500x500 canvas
     # if your project reuires you to understand my code, get
@@ -25,8 +25,12 @@ def points_to_SVG(str):
 
 class make_ctx:
     def __init__(self):
-        self._stroke_num = 0
         self._strokes = []
+
+    def __str__(self):
+        return self.char_list_str()
+
+
 
     def curr(self):
         return self._strokes[-1]
@@ -40,6 +44,12 @@ class make_ctx:
     def moveTo(self, x, y):
         self._strokes.append(["M", x, y])
 
+    def lineTo(self, *argv):
+        self.curr().append('L')
+        for arg in argv[-2:]:
+            assert(arg < 500)
+            self.curr().append(arg)
+
     def bezierCurveTo(self, *argv):
         self.curr().append('C')
         for i,arg in enumerate(argv):
@@ -50,40 +60,87 @@ class make_ctx:
 
             self.curr().append(arg)
 
-    def write_list(self, file):
+    def char_list_str(self):
         # For each stroke in the list, joins with spaces, to form a list of SVG paths
         # Write SVG paths to the file.
-        file.write(str([" ".join([str(val) for val in stroke_str])
+        result = ""
+        result += (str([" ".join([str(val) for val in stroke_str])
                             for stroke_str in self._strokes]).replace("'",'"'))
-        file.write('\n')
+        result += ('\n')
+        return result
 
-def make_one_char():
+    def clear(self):
+        self._strokes = []
+
+
+# def make_one_char():
+#     args = sys.argv
+
+#     src_filename = args[1]
+#     dest_filename = 'strokes.txt'
+#     with open(src_filename, 'r') as src_file:
+#         with open(dest_filename, 'a') as dest_file:
+#             lines = [line[:-2] + '\n' for line in src_file.readlines()]
+#             svg_list = make_ctx()
+#             for line in lines:
+
+#                 #Cleansing input
+#                 if not re.match('^\s*ctx[.](moveTo|bezierCurveTo|lineTo)', line):
+#                     continue
+#                 eval(line, {'ctx':svg_list, 'xoff':0, 'yoff':0})
+
+#                 # Evaluate a call of a ctx method with ctx as '
+#             dest_file.write(str(svg_list))
+
+
+
+def make_all_chars():
     args = sys.argv
+    svg_list = make_ctx()
 
     src_filename = args[1]
     dest_filename = 'strokes.txt'
+
+    def clearBuffer(title=''):
+        title = title.strip().replace('#','', 1)
+        if(str(svg_list) != '[]\n'):
+            dest_file.write(str(svg_list))
+        if(title != ''):
+            dest_file.write(title + ':\n')
+
+        svg_list.clear()
     with open(src_filename, 'r') as src_file:
         with open(dest_filename, 'a') as dest_file:
-            lines = [line[:-2] + '\n' for line in src_file.readlines()]
-            svg_list = make_ctx()
+            lines = src_file.readlines()
             for line in lines:
-
-                #Cleansing input
-                if not re.match('^\s*ctx[.](moveTo|bezierCurveTo)', line):
+                stripped = line.strip()
+                if len(stripped) < 1:
                     continue
 
-                # Evaluate a call of a ctx method with ctx as '
-                eval(line, {'ctx':svg_list, 'xoff':0, 'yoff':0})
-            svg_list.write_list(dest_file)
+                elif stripped[0] == '#':
+                    clearBuffer(stripped)
+                
+                else:
+                    formatted_line = stripped.replace(';', '')
+                    if not re.match('^\s*ctx[.](moveTo|bezierCurveTo|lineTo)', formatted_line):
+                        continue
+                    eval(formatted_line, {'ctx':svg_list, 'xoff':0, 'yoff':0})
+            clearBuffer()
+
+
+
+
+
+
 
 def main():
-    if(ONE_CHAR):
-        make_one_char()
-    else:
-        make_all_chars()
+    make_all_chars()
+    # if(ONE_CHAR):
+    #     make_one_char()
+    # else:
+    #     make_all_chars()
 
-def make_all_chars:
-    pass
+
 
 if __name__ == '__main__':
     main()
