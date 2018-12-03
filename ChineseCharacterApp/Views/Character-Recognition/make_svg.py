@@ -1,6 +1,7 @@
 import sys
 import re
 
+ONE_CHAR = True
 def scale(points):
     # Scales from a ((0,0), (500,600)) canvas to a 500x500 canvas
     # if your project reuires you to understand my code, get
@@ -52,11 +53,11 @@ class make_ctx:
     def write_list(self, file):
         # For each stroke in the list, joins with spaces, to form a list of SVG paths
         # Write SVG paths to the file.
-        file.write(str([" ".join([str(val) for val in stroke_str][1:-1])
+        file.write(str([" ".join([str(val) for val in stroke_str])
                             for stroke_str in self._strokes]).replace("'",'"'))
         file.write('\n')
 
-def main():
+def make_one_char():
     args = sys.argv
 
     src_filename = args[1]
@@ -74,6 +75,15 @@ def main():
                 # Evaluate a call of a ctx method with ctx as '
                 eval(line, {'ctx':svg_list, 'xoff':0, 'yoff':0})
             svg_list.write_list(dest_file)
+
+def main():
+    if(ONE_CHAR):
+        make_one_char()
+    else:
+        make_all_chars()
+
+def make_all_chars:
+    pass
 
 if __name__ == '__main__':
     main()
