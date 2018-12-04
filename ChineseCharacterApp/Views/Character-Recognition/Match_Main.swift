@@ -46,19 +46,34 @@ class Matcher {
         for i in 0..<target.count {
             points.append(bezierPointsInstance.get_points(from: target[i], scale: scaleFn))
         }
-        print(points)
+//        print(points[0])
         return points
     }
 
 // Target is a list of points, but source needs to be resampled maybe, but also IDK if resmpling is necessary
-    func full_matcher(source:[[Point]], target:[[Point]]) -> ([StrokeResult], [Int]) {
+    func full_matcher(source:[[Point]],target:[[Point]]) -> ([StrokeResult], [Int]) {
+        var targetList:[[Point]] = target
+        for stroke in 0..<targetList.count {
+            var toKill:[Int] = []
+            var killed = 0
+            for i in 1..<targetList[stroke].count {
+                if targetList[stroke][i] == targetList[stroke][i-1] {
+                    toKill.append(i)
+                }
+                
+            }
+            for index in toKill {
+                targetList[stroke].remove(at:index - killed)
+                killed += 1
+            }
+        }
         
         var strokeInfo:[(StrokeResult)] = []
         var strokeInfoSimpleOrder:[StrokeResult] = []
 
         typealias remTarg = (points:[Point], completed:Bool)
         // loop through strokes in the character
-        var remainingTargets:[remTarg] = target.map({(a:[Point]) -> remTarg in return (a, false)})
+        var remainingTargets:[remTarg] = targetList.map({(a:[Point]) -> remTarg in return (a, false)})
         var foundStroke = false
         var numPrevFoundStrokes = 0
         var errorStrokes:[Int] = []
@@ -66,10 +81,9 @@ class Matcher {
         
 //        func is_in_order(j:Int) {
 //        }
-        for _ in 0..<target.count {
+        for _ in 0..<targetList.count {
             strokeInfo.append((false,false,false))
             strokeInfoSimpleOrder.append((false,false,false))
-            
         }
         
         for srcIndex in 0..<source.count {
@@ -111,8 +125,6 @@ class Matcher {
             for i in 0..<sorted.count {
                 sorted[i].smoothedOrder = i
             }
-        
-        
             for i in 0..<sorted.count {
                 strokeInfo[sorted[i].targetIndex] = (true, sorted[i].rightDirection, sorted[i].smoothedOrder >= sorted[i].orderDrawn)
             }

@@ -16,9 +16,9 @@ typealias Result = (score:Double, source:(Point,Point)?, target: (Point,Point)?,
 // what you think it is. Double precision points for increased accuracy
 typealias Point = (x:Double, y:Double)
 
-let kAngleThreshold = Double.pi / 5
-let kDistanceThreshold = 25.0;
-let kLengthThreshold = 5.0;
+let kAngleThreshold = Double.pi / 4
+let kDistanceThreshold = 40.0;
+let kLengthThreshold = 10.0
 
 // Number of segments you're actually allowed to skip
 let kMaxMissedSegments = 1;
