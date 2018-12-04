@@ -1,4 +1,5 @@
-[  {"character":"一","definition":"one; a, an; alone","pinyin":["yī"],"decomposition":"？","radical":"一","matches":[null],"points": [[[29,144], [265,144]]],"strokes":["M 51 249 L 448 248"]},
+[
+{"character":"一","definition":"one; a, an; alone","pinyin":["yī"],"decomposition":"？","radical":"一","matches":[null],"points": [[[29,144], [265,144]]],"strokes":["M 51 249 L 448 248"]},
     {"character":"二","definition":"two; twice","pinyin":["èr"],"decomposition":"⿱一一","radical":"二","matches":[[0],[1]], "points": [[[53,63], [240,63]], [[28,232],[266,232]]],"strokes":["M 95 113 L 410 113", "M 53 395 L 446 395"]},
     {"character":"三","definition":"three","pinyin":["sān"],"decomposition":"⿱一二","radical":"一","matches":[[0],[1],[1]], "points": [[[48 , 54], [247 , 54]], [[66 , 145],[229 , 145]], [[28 , 245],[267 , 245]]],"strokes":["M 85 97 L 417 97", "M 115 252 L 388 253", "M 51 418 L 449 418"]},
     {"character":"四","definition":"four","pinyin":["sì"],"decomposition":"⿴囗儿","radical":"囗","matches":[[0],[0],[1],[1],[0]], "points": [[[47 , 45], [47 , 262]], [[41 , 49],[245 , 263]], [[116 , 57],[77 , 190]], [[175 , 58],[225 , 178]], [[58 , 239],[236 , 240]]],"strokes":["M 82 88 L 84 440", "M 81 88 L 416 87 L 417 437", "M 201 90 C 204 200 209 269 138 321", "M 300 92 C 304 327 272 303 373 304", "M 82 410 L 419 411"]},
@@ -13,3 +14,4 @@
     {"character":"口","definition":"mouth; entrance, gate, opening","pinyin":["kǒu"],"decomposition":"⿱冂一","radical":"口","matches":[[0],[0],[1]], "points" : [[[59 , 55],[59 , 261]], [[69 , 65],[234 , 263]], [[68 , 236],[224 , 238]]],"strokes":["M 104 112 C 104 97 103 450 103 435", "M 105 115 C 90 115 398 116 398 115 C 398 100 397 448 397 433", "M 104 405 C 89 405 411 405 396 405"]},
     {"character":"忄","definition":"heart; mind; soul","pinyin":["xīn"],"decomposition":"⿻八丨","radical":"忄","matches":[[0],[0],[1]], "points" : [[[52 , 76],[34 , 155]], [[86 , 25],[85 , 267]], [[116 , 74],[136 , 135]]],"strokes":["M 89 135 C 95 135 66 276 63 261", "M 147 49 C 147 34 146 466 146 451", "M 195 130 C 190 116 238 239 230 230"]},
     {"character":"亻","definition":"man, person; people","pinyin":["rén"],"decomposition":"？","radical":"亻","matches":[null,null], "points" : [[[122 , 31],[29 , 144]], [[87 , 104], [89 , 266]]],"strokes":["M 208 57 C 197 100 80 234 53 248", "M 148 153 C 148 138 149 471 149 456"]}
+]

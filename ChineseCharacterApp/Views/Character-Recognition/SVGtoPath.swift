@@ -134,8 +134,8 @@ public class bezierPoints {
             if command.type != .move {
                 let curve_calc = get_curve_fn(to_point(cg))
                 p += curve_calc(NUM_POINTS_IN_PATH)
-                }
             }
+            
 //                p.append(bezier_curve(to_point(cg), NUM_POINTS_IN_PATH))            }
             //p = [curr, command.control1,command.control1,command.point].filter({$0 != nil}).map({(pt:CGPoint) -> Point in return (Double(pt.x),Double(pt.y))})
             curr = command.point
@@ -143,6 +143,7 @@ public class bezierPoints {
         return p
     }
 }
+
 public extension UIBezierPath {
     convenience init (svgPath: String, scale: @escaping (Double,Double) -> (Double, Double)){//, scale:CGFloat) {
         self.init()
