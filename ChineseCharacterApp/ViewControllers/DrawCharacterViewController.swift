@@ -119,7 +119,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         let res:matcherResult = matcher.full_matcher(source:source, target:targetStrokePoints)
         ls!.currentResult = res.targetScores
         print(ls!.currentResult)
-        print(matcher.get_level(results: res.targetScores))
+        print("error level", matcher.get_level(results: res.targetScores))
         
         // Set up and load the check character popup
         checkUserChar()

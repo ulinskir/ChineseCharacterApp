@@ -18,6 +18,7 @@ let RESAMPLE_VAL = 64
 let RESAMPLING = false
 let SIMPLE_ORDER_CHECK:Bool = true
 let COMPOUND_ORDER_CHECK:Bool = true
+let FIVE_LEVELS = true
 
 let instanceOfRecognizer = Recognizer()
 
@@ -50,6 +51,7 @@ class Matcher {
         return points
     }
     func get_level(results:[StrokeResult]) -> Int {
+        
         var order = true
         var completed = true
         var direction = true
@@ -61,6 +63,9 @@ class Matcher {
                 order = (order && result.rightOrder)
             }
             else {
+                if(FIVE_LEVELS) {
+                    return 4
+                }
                 completed = false
             }
         }
@@ -69,7 +74,7 @@ class Matcher {
         let directionError = !direction
         
         
-        errorLevel += charError ? 3 : 0
+        errorLevel += charError ? 4 : 0
         errorLevel += orderError ? 2 : 0
         errorLevel += directionError ? 1 : 0
         return errorLevel
