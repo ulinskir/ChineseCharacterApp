@@ -12,7 +12,7 @@ import UIKit
 import Darwin
 
 typealias Edges = (north:Double, south:Double, east:Double, west:Double)
-let NUM_POINTS_IN_PATH:Int = 64
+let NUM_CURVE_POINTS:Int = 64
 
 
 // Multiplying a Point by a scalar.
@@ -114,7 +114,19 @@ public class bezierPoints {
         return CG.map({(pt:CGPoint) -> Point in return (Double(pt.x),Double(pt.y))})
     }
 
+
     func get_points(from svgData: String, scale: @escaping((Double,Double) -> (Double, Double))) -> [Point]{
+        var numPoints:Int = 64
+
+        // Approximate length of lines that seem to be working.
+        let goodLength:Int = 320
+        let lineDistance:Double = scale((goodLength, 0)).x / numPoints
+        let util = util_fn()
+
+
+
+
+
         print("svgdata:", svgData)
         let svgPath = SVGPath(svgData, scale)
         
@@ -126,16 +138,18 @@ public class bezierPoints {
         for command in svgPath.commands {
             switch command.type {
                 case .move: break
-                case .line: cg = [curr, command.point]
+                case .line: cg = [curr, command.point]; numPoints = Int(
+                    sqrt(util.distance2(
+                        point1: to_point(curr),
+                        point2: to_point(command.point))))
                 case .quadCurve: cg = [curr, command.control1,command.point]
-                case .cubeCurve: cg = [curr, command.control1,command.control2,command.point]
+                case .cubeCurve: cg = [curr, command.control1,command.control2,command.point]; numPoints = NUM_CURVE_POINTS
                 case .close: return p + to_point([curr])
             }
             if command.type != .move {
                 let curve_calc = get_curve_fn(to_point(cg))
-                p += curve_calc(NUM_POINTS_IN_PATH)
-            }
-            
+                p += curve_calc(numPoints)
+            }            
 //                p.append(bezier_curve(to_point(cg), NUM_POINTS_IN_PATH))            }
             //p = [curr, command.control1,command.control1,command.point].filter({$0 != nil}).map({(pt:CGPoint) -> Point in return (Double(pt.x),Double(pt.y))})
             curr = command.point
