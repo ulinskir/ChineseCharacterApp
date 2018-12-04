@@ -49,6 +49,31 @@ class Matcher {
 //        print(points[0])
         return points
     }
+    func get_level(results:[StrokeResult]) -> Int {
+        var order = true
+        var completed = true
+        var direction = true
+        var errorLevel = 0
+        
+        for result in results {
+            if(result.completed) {
+                direction = (direction && result.rightDirection)
+                order = (order && result.rightOrder)
+            }
+            else {
+                completed = false
+            }
+        }
+        let orderError = !order
+        let charError = !completed
+        let directionError = !direction
+        
+        
+        errorLevel += charError ? 3 : 0
+        errorLevel += orderError ? 2 : 0
+        errorLevel += directionError ? 1 : 0
+        return errorLevel
+    }
 
 // Target is a list of points, but source needs to be resampled maybe, but also IDK if resmpling is necessary
     func full_matcher(source:[[Point]],target:[[Point]]) -> ([StrokeResult], [Int]) {
