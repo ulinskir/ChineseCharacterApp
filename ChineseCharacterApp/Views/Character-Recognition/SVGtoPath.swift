@@ -74,6 +74,9 @@ private func nCr (_ a: Int, _ b: Int) -> Int {
 
 func bezier_curve(_ p: [Point],_ t: Double) -> Point {
     var sum:Point = p.first!
+    if(p.count == 2) {
+        return p[0] + t * (p[1].x - p[0].x, p[1].y - p[0].y)
+    }
     if (p.count==4) {
         return pow(1-t, 3) * p[0] + (3 * pow(1 - t, 2) * t * p[1]) + (3 * (1-t) * t*t * p[2] + pow(t,3) * p[3])
     }
@@ -131,6 +134,7 @@ public class bezierPoints {
             if command.type != .move {
                 let curve_calc = get_curve_fn(to_point(cg))
                 p += curve_calc(NUM_POINTS_IN_PATH)
+                }
             }
 //                p.append(bezier_curve(to_point(cg), NUM_POINTS_IN_PATH))            }
             //p = [curr, command.control1,command.control1,command.point].filter({$0 != nil}).map({(pt:CGPoint) -> Point in return (Double(pt.x),Double(pt.y))})
