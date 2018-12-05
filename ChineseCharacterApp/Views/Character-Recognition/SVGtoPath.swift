@@ -145,7 +145,7 @@ public class bezierPoints {
             }
             if command.type != .move {
                 let curve_calc = get_curve_fn(to_point(cg))
-                p += curve_calc(numPoints / svgPath.commands.count)
+                p += curve_calc(NUM_CURVE_POINTS)
             }            
 //                p.append(bezier_curve(to_point(cg), NUM_POINTS_IN_PATH))            }
             //p = [curr, command.control1,command.control1,command.point].filter({$0 != nil}).map({(pt:CGPoint) -> Point in return (Double(pt.x),Double(pt.y))})

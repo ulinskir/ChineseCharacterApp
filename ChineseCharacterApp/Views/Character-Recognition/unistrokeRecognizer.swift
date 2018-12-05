@@ -52,7 +52,7 @@ Exceptions
 - EmptyTemplates: No templates array provided
 - TooFewPoints:   Too few points for input path points
 */
-public enum StrokeErrors: ErrorType {
+public enum StrokeErrors: Swift.Error {
 	case MatchNotFound
 	case EmptyTemplates
 	case TooFewPoints
@@ -69,7 +69,7 @@ public class SwiftUnistroke {
 	
 	- returns: the instance of the recognizer
 	*/
-	public init(points: [StrokePoint]) {
+	public init(_ points: [StrokePoint]) {
 		self.points = points
 	}
 	
@@ -104,9 +104,9 @@ public class SwiftUnistroke {
 		for template in templates {
 			var templateDistance: Double
 			if useProtractor == true {
-				templateDistance = StrokePoint.optimalCosineDistance(template.vector, v2: vector)
+                templateDistance = StrokePoint.optimalCosineDistance(v1: template.vector, v2: vector)
 			} else {
-				templateDistance = StrokePoint.distanceAtBestAngle(points, strokeTemplate: template.points, fromAngle:  -StrokeConsts.angleRange, toAngle: StrokeConsts.angleRange, threshold: StrokeConsts.anglePrecision)
+				templateDistance = StrokePoint.distanceAtBestAngle(points, strokeTemplate: template.points, fAng:  -StrokeConsts.angleRange, tAng: StrokeConsts.angleRange, threshold: StrokeConsts.anglePrecision)
 			}
 			if templateDistance < bestDistance {
 				bestDistance = templateDistance
@@ -151,7 +151,7 @@ public class SwiftUnistrokeTemplate : SwiftUnistroke {
 		initializedPoints = StrokePoint.scale(initializedPoints, toSize: StrokeConsts.squareSize)
 		initializedPoints = StrokePoint.translate(initializedPoints, to: StrokePoint.zeroPoint())
 		self.vector = StrokePoint.vectorize(initializedPoints)
-		super.init(points: initializedPoints)
+		super.init(initializedPoints)
 	}
 	
 	
@@ -207,8 +207,8 @@ public struct StrokePoint {
 	
 	- returns: CGPoint version of the object
 	*/
-	public func toPoint() -> CGPoint {
-		return CGPointMake(CGFloat(self.x), CGFloat(self.y))
+	public func toPoint () -> CGPoint {
+        return CGPoint(x:self.x, y:self.y)
 	}
 	
 	/**
@@ -217,7 +217,7 @@ public struct StrokePoint {
 	- returns: An origin based StrokePoint
 	*/
 	public static func zeroPoint() -> StrokePoint {
-		return StrokePoint(point: CGPointZero)
+        return StrokePoint(point: CGPoint(x:0.0,y:0.0))
 	}
 	
 	/**
@@ -271,10 +271,10 @@ public struct StrokeConsts {
 *  This class represent a mutable edge (rect) instance.
 */
 public struct Edge {
-	private var minX: Double
-	private var minY: Double
-	private var maxX: Double
-	private var maxY: Double
+	fileprivate var minX: Double
+	fileprivate var minY: Double
+	fileprivate var maxX: Double
+	fileprivate var maxY: Double
 	
 	/**
 	Initialize a new edges rect with passed minX,maxX,minY,maxY values
@@ -315,7 +315,7 @@ extension Double {
 	- returns: radian
 	*/
 	public func toRadians() -> Double {
-		let res = self * M_PI / 180.0
+		let res = self * Double.pi / 180.0
 		return res
 	}
 	
@@ -330,9 +330,9 @@ extension StrokePoint {
 	
 	- returns: length of the segment
 	*/
-	public static func pathLength(points: [StrokePoint]) -> Double {
+	public static func pathLength(_ points: [StrokePoint]) -> Double {
 		var totalDistance:Double = 0.0
-		for var idx = 1; idx < points.count; ++idx {
+		for idx in 1..<points.count {
 			totalDistance += points[idx-1].distanceTo(points[idx])
 		}
 		return totalDistance
@@ -348,8 +348,9 @@ extension StrokePoint {
 	*/
 	public static func pathDistance(path1: [StrokePoint], path2: [StrokePoint]) -> Double {
 		var d: Double = 0.0
-		for (var idx = 0; idx < path1.count; ++idx) {
-			d += path1[idx].distanceTo(path2[idx])
+        let path1resampled = path1.count > path2.count ? resample(path1, totalPoints: path2.count) : path1
+		for idx in 0..<path1resampled.count {
+            d += path2[idx].distanceTo(path2[idx])
 		}
 		return (d / Double(path1.count))
 	}
@@ -361,7 +362,7 @@ extension StrokePoint {
 	
 	- returns: centroid point
 	*/
-	public static func centroid(points: [StrokePoint]) -> StrokePoint {
+	public static func centroid(_ points: [StrokePoint]) -> StrokePoint {
 		var centroidPoint = StrokePoint.zeroPoint()
 		for point in points {
 			centroidPoint.x = centroidPoint.x + point.x
@@ -380,10 +381,10 @@ extension StrokePoint {
 	
 	- returns: the rect (as BoundingRect) which contains all the points
 	*/
-	public static func boundingBox(points: [StrokePoint]) -> BoundingRect {
+	public static func boundingBox(_ points: [StrokePoint]) -> BoundingRect {
 		var edge = Edge(minX: +Double.infinity, maxX: -Double.infinity, minY: +Double.infinity, maxY: -Double.infinity)
 		for point in points {
-			edge.addPoint(point)
+            edge.addPoint(value: point)
 		}
 		let rect = BoundingRect(x: edge.minX, y: edge.minY, w: (edge.maxX - edge.minX), h: (edge.maxY - edge.minY) )
 		return rect
@@ -396,7 +397,7 @@ extension StrokePoint {
 	
 	- returns: distance
 	*/
-	public func distanceTo(point: StrokePoint) -> Double {
+	public func distanceTo(_ point: StrokePoint) -> Double {
 		let dx = point.x - self.x
 		let dy = point.y - self.y
 		return sqrt( dx * dx + dy * dy )
@@ -410,7 +411,7 @@ extension StrokePoint {
 	
 	- returns: rotated points path
 	*/
-	public static func rotate(points: [StrokePoint], byRadians radians: Double) -> [StrokePoint] {
+	public static func rotate(_ points: [StrokePoint], byRadians radians: Double) -> [StrokePoint] {
 		let centroid = StrokePoint.centroid(points)
 		let cosvalue = cos(radians)
 		let sinvalue = sin(radians)
@@ -431,7 +432,7 @@ extension StrokePoint {
 	
 	- returns: scaled path points
 	*/
-	public static func scale(points: [StrokePoint], toSize size: Double) -> [StrokePoint] {
+	public static func scale(_ points: [StrokePoint], toSize size: Double) -> [StrokePoint] {
 		let boundingBox = StrokePoint.boundingBox(points)
 		var newPoints: [StrokePoint] = []
 		for point in points {
@@ -450,7 +451,7 @@ extension StrokePoint {
 	
 	- returns: translated path points
 	*/
-	public static func translate(points: [StrokePoint], to pt: StrokePoint) -> [StrokePoint] {
+	public static func translate(_ points: [StrokePoint], to pt: StrokePoint) -> [StrokePoint] {
 		let centroidPoint = StrokePoint.centroid(points)
 		var newPoints: [StrokePoint] = []
 		for point in points {
@@ -469,7 +470,7 @@ extension StrokePoint {
 	
 	- returns: a vector array of doubles
 	*/
-	public static func vectorize(points: [StrokePoint]) -> [Double] {
+	public static func vectorize(_ points: [StrokePoint]) -> [Double] {
 		var sum: Double = 0.0
 		var vector: [Double] = []
 		for point in points {
@@ -478,7 +479,7 @@ extension StrokePoint {
 			sum += (point.x * point.x) + (point.y * point.y)
 		}
 		let magnitude = sqrt(sum)
-		for (var i = 0; i < vector.count; ++i) {
+        for i in 0..<vector.count {
 			vector[i] = vector[i] / magnitude
 		}
 		return vector
@@ -497,7 +498,7 @@ extension StrokePoint {
 	public static func optimalCosineDistance(v1: [Double], v2: [Double]) -> Double {
 		var a: Double = 0.0
 		var b: Double = 0.0
-		for (var i = 0; i < v1.count; i+=2) {
+        for i in stride(from:0, to: v1.count, by: 2){
 			a += v1[i] * v2[i] + v1[i+1] * v2[i+1]
 			b += v1[i] * v2[i+1] - v1[i+1] * v2[i]
 		}
@@ -518,7 +519,9 @@ extension StrokePoint {
 	
 	- returns: min distance
 	*/
-	public static func distanceAtBestAngle(points: [StrokePoint], strokeTemplate: [StrokePoint], var fromAngle: Double, var toAngle: Double, threshold: Double) -> Double {
+    public static func distanceAtBestAngle(_ points: [StrokePoint], strokeTemplate: [StrokePoint], fAng: Double, tAng: Double, threshold: Double) -> Double {
+        var fromAngle = fAng
+        var toAngle = tAng
 		var x1 = StrokeConsts.Phi * fromAngle + (1.0 - StrokeConsts.Phi) * toAngle
 		var f1 = StrokePoint.distanceAtAngle(points, strokeTemplate: strokeTemplate, radians: x1)
 		
@@ -552,9 +555,9 @@ extension StrokePoint {
 	
 	- returns: distance at given angle between path points
 	*/
-	public static func distanceAtAngle(points: [StrokePoint], strokeTemplate: [StrokePoint], radians: Double) -> Double {
+	public static func distanceAtAngle(_ points: [StrokePoint], strokeTemplate: [StrokePoint], radians: Double) -> Double {
 		let newPoints = StrokePoint.rotate(points, byRadians: radians)
-		return StrokePoint.pathDistance(newPoints, path2: strokeTemplate)
+        return StrokePoint.pathDistance(path1: newPoints, path2: strokeTemplate)
 	}
 	
 	/**
@@ -564,7 +567,7 @@ extension StrokePoint {
 	
 	- returns: rotation indicative angle of the path
 	*/
-	public static func indicativeAngle(points: [StrokePoint]) -> Double {
+	public static func indicativeAngle(_ points: [StrokePoint]) -> Double {
 		let centroid = StrokePoint.centroid(points)
 		return atan2(centroid.y - points.first!.y, centroid.x - points.first!.x)
 	}
@@ -577,22 +580,31 @@ extension StrokePoint {
 	
 	- returns: resampled points array
 	*/
-	private static func resample(points: [StrokePoint], totalPoints: Int) -> [StrokePoint] {
+fileprivate static func resample(_ points: [StrokePoint], totalPoints: Int) -> [StrokePoint] {
 		var initialPoints = points
 		let interval = StrokePoint.pathLength(initialPoints) / Double(totalPoints - 1)
 		var totalLength: Double = 0.0
 		var newPoints: [StrokePoint] = [points.first!]
-		for var i = 1; i < initialPoints.count; ++i {
+    
+    
+		for i in 1..<initialPoints.count {
+            
 			let currentLength = initialPoints[i-1].distanceTo(initialPoints[i])
-			if ( (totalLength+currentLength) >= interval) {
+            
+			if ((totalLength+currentLength) >= interval) {
+                
 				let qx = initialPoints[i-1].x + ((interval - totalLength) / currentLength) * (initialPoints[i].x - initialPoints[i-1].x)
 				let qy = initialPoints[i-1].y + ((interval - totalLength) / currentLength) * (initialPoints[i].y - initialPoints[i-1].y)
 				let q = StrokePoint(x: qx, y: qy)
-				newPoints.append(q)
-				initialPoints.insert(q, atIndex: i)
+				
+                newPoints.append(q)
+				initialPoints.insert(q, at: i)
 				totalLength = 0.0
+                
 			} else {
+                
 				totalLength += currentLength
+                
 			}
 		}
 		if newPoints.count == totalPoints-1 {

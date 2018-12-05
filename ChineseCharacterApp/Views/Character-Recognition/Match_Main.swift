@@ -19,8 +19,31 @@ let RESAMPLING = false
 let SIMPLE_ORDER_CHECK:Bool = true
 let COMPOUND_ORDER_CHECK:Bool = true
 let FIVE_LEVELS = true
+let REC_2 = true
+let MAX_DISTANCE:Double = 25
+
 
 let instanceOfRecognizer = Recognizer()
+
+func is_right_direction(source:[Point],target:[Point]) -> Bool {
+    return util.distance2(point1: source.first!, point2: target.first!) + util.distance2(point1: source.last!, point2: target.last!) <
+        util.distance2(point1: source.first!, point2: target.last!) + util.distance2(point1:source.last!, point2:target.first!)
+}
+
+func recog_ez(source:[Point], target:[Point]) -> (Bool,Bool) {
+    let distance = MAX_DISTANCE * MAX_DISTANCE
+    
+    if(util.distance2(point1: source.first!, point2: target.first!) < distance
+        && util.distance2(point1: source.last!, point2: target.last!) < distance) {
+        return (true,true)
+    }
+    
+    if (util.distance2(point1: source.first!, point2: target.last!) < distance
+        && util.distance2(point1:source.last!, point2:target.first!) < distance){
+        return (true,false)
+    }
+    return (false,false)
+}
 
 class Matcher {
     func get_hints(_ target:[String], destDimensions:Edges) -> [Point] {
@@ -33,9 +56,10 @@ class Matcher {
     }
     func processSourcePoints(_ source:[Point]) -> [Point] {
         if(!RESAMPLING) { return source }
+        return source
         
-        let source_prep = Source_prep()
-        return source_prep.resample(source, RESAMPLE_VAL)
+//        let source_prep = Source_prep()
+//        return source_prep.resample(source, RESAMPLE_VAL)
     }
     
     func processTargetPoints(_ target:[String], destDimensions:Edges) -> [[Point]] {//,_ src_edges:Edges,_ dest_edges:Edges) -> [Point] {
@@ -97,7 +121,40 @@ class Matcher {
         }
         return targetList
     }
-
+    
+    func run_recognize_2(source:SwiftUnistroke, target:[SwiftUnistrokeTemplate], sourcePt:[Point], targetPt:[[Point]]) -> FoundStroke?
+    {
+        if(target.count == 0) {
+            return nil
+        }
+        
+        var goodTargets = target
+        do{
+            let (template, _) = try source.recognizeIn(templates: target, useProtractor: false)
+            
+            if (template != nil) {
+                let targetIndex = Int(template!.name)!
+                let (completed, direction) = recog_ez(source: sourcePt, target: targetPt[targetIndex])
+                if(completed) {
+                    return (direction, -1, targetIndex, -1)
+                } else {
+                    for i in 0..<goodTargets.count {
+                        if goodTargets[i].name == template!.name {
+                            goodTargets.remove(at: i)
+                            break
+                        }
+                    }
+                    return run_recognize_2(source: source, target: goodTargets, sourcePt: sourcePt, targetPt: targetPt)
+                    }
+                //                        foundStrokes[j] = result.last!
+                
+                
+            }} catch {
+                print(error.localizedDescription)
+        }
+        return nil
+    }
+    
 // Target is a list of points, but source needs to be resampled maybe, but also IDK if resmpling is necessary
     func full_matcher(source:[[Point]],target:[[Point]]) -> ([StrokeResult], [Int]) {
         let targetList:[[Point]] = remove_consecutive_dupes(target: target)
@@ -120,19 +177,56 @@ class Matcher {
         
 //        func is_in_order(j:Int) {
 //        }
-        for _ in 0..<targetList.count {
+        let make_strpoint = {(a:Point) -> StrokePoint in return StrokePoint(x: a.x, y: a.y)}
+
+        var targetRecognizers: [SwiftUnistrokeTemplate] = []
+        for i in 0..<targetList.count {
             strokeInfo.append((false,false,false))
             strokeInfoSimpleOrder.append((false,false,false))
+            targetRecognizers.append(SwiftUnistrokeTemplate(name:String(i), points: targetList[i].map(make_strpoint)))
+            
         }
         
+        let srcRecog = source.map({(points: [Point]) -> SwiftUnistroke in return SwiftUnistroke(points.map(make_strpoint))})
         for srcIndex in 0..<source.count {
             foundStroke = false
             if(numPrevFoundStrokes < remainingTargets.count) {
+                if(REC_2){
+                    let strokeFoundOpt = run_recognize_2(source: srcRecog[srcIndex], target: targetRecognizers, sourcePt: source[srcIndex], targetPt: target)
+                    
+                    if(strokeFoundOpt == nil) {
+                        errorStrokes.append(srcIndex)
+                        continue
+                    }
+                    
+                    var strokeResult = strokeFoundOpt!
+                    
+                    let (rightDirection, _, targetIndex, _) = strokeResult
+                    
+                    foundStroke = true
+                    strokeResult.orderDrawn = numPrevFoundStrokes
+                    remainingTargets[targetIndex].completed = true
+                    foundStrokes.append((rightDirection, numPrevFoundStrokes, targetIndex, -1))
+                    numPrevFoundStrokes += 1
+                    strokeInfoSimpleOrder[targetIndex] = ((true, rightDirection, srcIndex==targetIndex))
+
+                } else {
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                 for targetIndex in 0..<remainingTargets.count {
                     // maybe resample here
                     let currTarget = remainingTargets[targetIndex]
-                    if(!currTarget.completed){
-                        
+                    
+                    if(currTarget.completed){continue}
                     
                     let curr = instanceOfRecognizer.recognize(source:processSourcePoints(source[srcIndex]), target:currTarget.points, offset:0)
                     
@@ -146,10 +240,8 @@ class Matcher {
                         foundStroke = true
                         remainingTargets[targetIndex].completed = true
                         numPrevFoundStrokes += 1
-                        }
                     }
-
-                    
+                    }
                 }
                 
                 if(!foundStroke) {errorStrokes.append(srcIndex)}
