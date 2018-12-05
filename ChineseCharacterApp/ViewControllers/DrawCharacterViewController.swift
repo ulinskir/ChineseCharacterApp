@@ -99,6 +99,9 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     @IBAction func undoButtonTapped(_ sender: Any) {
         drawingView.clearCanvas()
     }
+    func all_to_cg (stroke:[Point]) -> [CGPoint] {
+        return stroke.map({(z:Point) -> CGPoint in return CGPoint(x:CGFloat(z.x),y:CGFloat(z.y))})
+    }
     
     // When the character has been submitted by the user,
     //  - send the matcher the screen dimensions and use it to check the user's char against the
@@ -115,10 +118,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         let targetStrokePoints = matcher.processTargetPoints(targetSvgs, destDimensions:currScreenDimensions)
         //insert target here?????
         let source = drawingView.getPoints()
-        func all_to_cg (stroke:[Point]) -> [CGPoint] {
-            return stroke.map({(z:Point) -> CGPoint in return CGPoint(x:CGFloat(z.x),y:CGFloat(z.y))})
-        }
-        let sourceGfx = source.map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
+        
         // save the result to the learning session
         typealias matcherResult = (targetScores: [StrokeResult], Errors: [Int])
         let res:matcherResult = matcher.full_matcher(source:source, target:targetStrokePoints)
@@ -307,6 +307,8 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             print("no char")
             return cell
         }
+        let sourceGfx = source.map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
+
         let dim = cell.frame.height
         cell.strokeView.layer.borderWidth = 1
         cell.strokeView.layer.borderColor = UIColor.black.cgColor

@@ -21,7 +21,7 @@ let kDistanceThreshold = 50.0;
 let kLengthThreshold = 20.0
 
 // Number of segments you're actually allowed to skip
-let kMaxMissedSegments = 4;
+let kMaxMissedSegments = 1;
 let kMaxOutOfOrder:Double = 2;
 
 // constant for how much distance in desired stroke location is allowable
