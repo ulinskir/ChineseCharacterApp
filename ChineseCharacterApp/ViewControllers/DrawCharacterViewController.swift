@@ -315,13 +315,17 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         }
         
         let sourceGfx = drawingView.getPoints().map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
-
         let dim = cell.frame.height
         cell.strokeView.layer.borderWidth = 1
         cell.strokeView.layer.borderColor = UIColor.black.cgColor
         //cell.strokeView.frame = CGRect(x: 0, y:0, width: dim, height: dim)
         let scaleFactor =  Double(dim/295)
         let rowNumber : Int = indexPath.row
+        
+        if rowNumber < sourceGfx.count {
+            
+        }
+        
         cell.strokeLabel.font = cell.strokeLabel.font.withSize(dim)
         cell.strokeLabel.text = String(char.char)
         let points = char.points[rowNumber][0]
