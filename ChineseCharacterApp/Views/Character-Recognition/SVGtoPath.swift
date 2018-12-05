@@ -12,7 +12,7 @@ import UIKit
 import Darwin
 
 typealias Edges = (north:Double, south:Double, east:Double, west:Double)
-let NUM_POINTS_IN_PATH:Int = 32
+let NUM_CURVE_POINTS:Int = 64
 
 
 // Multiplying a Point by a scalar.
@@ -74,6 +74,9 @@ private func nCr (_ a: Int, _ b: Int) -> Int {
 
 func bezier_curve(_ p: [Point],_ t: Double) -> Point {
     var sum:Point = p.first!
+    if(p.count == 2) {
+        return p[0] + t * (p[1].x - p[0].x, p[1].y - p[0].y)
+    }
     if (p.count==4) {
         return pow(1-t, 3) * p[0] + (3 * pow(1 - t, 2) * t * p[1]) + (3 * (1-t) * t*t * p[2] + pow(t,3) * p[3])
     }
@@ -111,33 +114,51 @@ public class bezierPoints {
         return CG.map({(pt:CGPoint) -> Point in return (Double(pt.x),Double(pt.y))})
     }
 
+
     func get_points(from svgData: String, scale: @escaping((Double,Double) -> (Double, Double))) -> [Point]{
+        var numPoints:Int = 64
+
+        // Approximate length of lines that seem to be working.
+        let goodLength:Int = 320
+        let pointDistance:Double = scale(Double(goodLength), 0).0 / Double(numPoints)
+        let util = util_fn()
+
         let svgPath = SVGPath(svgData, scale)
         
         var p: [Point] = []
         var cg: [CGPoint] = []
         var curr:CGPoint = CGPoint(x:0,y:0)
+        let resampling = true// svgPath.commands.count > 1
+        let num_bezier_samples = 512
         
         assert(svgPath.commands.first!.type == .move)
         for command in svgPath.commands {
             switch command.type {
                 case .move: break
-                case .line: cg = [curr, command.point]
+            // number of points = (length of stroke)/
+                case .line: cg = [curr, command.point]; numPoints = Int(
+                    sqrt(util.distance2(
+                        point1: util.cg_to_Point(curr),
+                        point2: util.cg_to_Point(command.point))) / pointDistance)
                 case .quadCurve: cg = [curr, command.control1,command.point]
-                case .cubeCurve: cg = [curr, command.control1,command.control2,command.point]
+                case .cubeCurve: cg = [curr, command.control1,command.control2,command.point]; numPoints = NUM_CURVE_POINTS
                 case .close: return p + to_point([curr])
             }
             if command.type != .move {
                 let curve_calc = get_curve_fn(to_point(cg))
-                p += curve_calc(NUM_POINTS_IN_PATH)
-            }
+                p += curve_calc(num_bezier_samples) // svgPath.commands.count)
+            }            
 //                p.append(bezier_curve(to_point(cg), NUM_POINTS_IN_PATH))            }
             //p = [curr, command.control1,command.control1,command.point].filter({$0 != nil}).map({(pt:CGPoint) -> Point in return (Double(pt.x),Double(pt.y))})
             curr = command.point
         }
+        
+        if(resampling) {p = Resampler().resamplePoints(p, totalPoints:NUM_CURVE_POINTS)}
+        print(p.count)
         return p
     }
 }
+
 public extension UIBezierPath {
     convenience init (svgPath: String, scale: @escaping (Double,Double) -> (Double, Double)){//, scale:CGFloat) {
         self.init()

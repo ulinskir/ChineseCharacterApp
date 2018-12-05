@@ -1,0 +1,313 @@
+
+#1
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(51 + xoff, 249 + yoff);
+  ctx.lineTo(36 + xoff, 249 + yoff, 463 + xoff, 248 + yoff, 448 + xoff, 248 + yoff);
+  ctx.stroke();
+}
+#2
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(95 + xoff, 113 + yoff);
+  ctx.lineTo(80 + xoff, 113 + yoff, 425 + xoff, 113 + yoff, 410 + xoff, 113 + yoff);
+  ctx.stroke();
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(53 + xoff, 395 + yoff);
+  ctx.lineTo(38 + xoff, 395 + yoff, 461 + xoff, 395 + yoff, 446 + xoff, 395 + yoff);
+  ctx.stroke();
+}
+#3
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(85 + xoff, 97 + yoff);
+  ctx.lineTo(70 + xoff, 97 + yoff, 432 + xoff, 97 + yoff, 417 + xoff, 97 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(115 + xoff, 252 + yoff);
+  ctx.lineTo(100 + xoff, 252 + yoff, 403 + xoff, 253 + yoff, 388 + xoff, 253 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(51 + xoff, 418 + yoff);
+  ctx.lineTo(36 + xoff, 418 + yoff, 464 + xoff, 418 + yoff, 449 + xoff, 418 + yoff);
+  ctx.stroke();
+}
+#4
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(82 + xoff, 88 + yoff);
+  ctx.lineTo(82 + xoff, 73 + yoff, 84 + xoff, 455 + yoff, 84 + xoff, 440 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(81 + xoff, 88 + yoff);
+  ctx.lineTo(43 + xoff, 91 + yoff, 415 + xoff, 86 + yoff, 416 + xoff, 87 + yoff);
+  ctx.lineTo(418 + xoff, 90 + yoff, 417 + xoff, 480 + yoff, 417 + xoff, 437 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(201 + xoff, 90 + yoff);
+  ctx.bezierCurveTo(204 + xoff, 200 + yoff, 209 + xoff, 269 + yoff, 138 + xoff, 321 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(300 + xoff, 92 + yoff);
+  ctx.bezierCurveTo(304 + xoff, 327 + yoff, 272 + xoff, 303 + yoff, 373 + xoff, 304 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(82 + xoff, 410 + yoff);
+  ctx.lineTo(67 + xoff, 410 + yoff, 434 + xoff, 411 + yoff, 419 + xoff, 411 + yoff);
+  ctx.stroke();
+}
+#5
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(77 + xoff, 159 + yoff);
+  ctx.lineTo(62 + xoff, 159 + yoff, 336 + xoff, 160 + yoff, 338 + xoff, 161 + yoff);
+  ctx.bezierCurveTo(342 + xoff, 163 + yoff, 339 + xoff, 418 + yoff, 340 + xoff, 419 + yoff);
+  ctx.bezierCurveTo(374 + xoff, 448 + yoff, 413 + xoff, 432 + yoff, 421 + xoff, 428 + yoff);
+  ctx.bezierCurveTo(432 + xoff, 423 + yoff, 439 + xoff, 371 + yoff, 438 + xoff, 335 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(206 + xoff, 49 + yoff);
+  ctx.bezierCurveTo(205 + xoff, 34 + yoff, 202 + xoff, 272 + yoff, 188 + xoff, 285 + yoff);
+  ctx.bezierCurveTo(184 + xoff, 288 + yoff, 190 + xoff, 353 + yoff, 60 + xoff, 438 + yoff);
+  ctx.stroke();
+}
+#6
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(191 + xoff, 85 + yoff);
+  ctx.bezierCurveTo(182 + xoff, 125 + yoff, 151 + xoff, 327 + yoff, 60 + xoff, 432 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(297 + xoff, 68 + yoff);
+  ctx.bezierCurveTo(315 + xoff, 308 + yoff, 400 + xoff, 393 + yoff, 443 + xoff, 434 + yoff);
+  ctx.stroke();
+}
+#7
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(52 + xoff, 241 + yoff);
+  ctx.bezierCurveTo(37 + xoff, 244 + yoff, 462 + xoff, 166 + yoff, 447 + xoff, 169 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(214 + xoff, 50 + yoff);
+  ctx.bezierCurveTo(214 + xoff, 35 + yoff, 202 + xoff, 413 + yoff, 217 + xoff, 428 + yoff);
+  ctx.bezierCurveTo(225 + xoff, 436 + yoff, 406 + xoff, 436 + yoff, 410 + xoff, 423 + yoff);
+  ctx.bezierCurveTo(420 + xoff, 390 + yoff, 423 + xoff, 325 + yoff, 421 + xoff, 340 + yoff);
+  ctx.stroke();
+}
+#8
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(198 + xoff, 62 + yoff);
+  ctx.bezierCurveTo(193 + xoff, 49 + yoff, 294 + xoff, 135 + yoff, 286 + xoff, 135 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(54 + xoff, 182 + yoff);
+  ctx.bezierCurveTo(39 + xoff, 182 + yoff, 460 + xoff, 181 + yoff, 445 + xoff, 181 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(185 + xoff, 252 + yoff);
+  ctx.bezierCurveTo(179 + xoff, 289 + yoff, 122 + xoff, 400 + yoff, 67 + xoff, 435 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(314 + xoff, 252 + yoff);
+  ctx.bezierCurveTo(313 + xoff, 241 + yoff, 438 + xoff, 448 + yoff, 428 + xoff, 439 + yoff);
+  ctx.stroke();
+}
+#9
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(80 + xoff, 87 + yoff);
+  ctx.bezierCurveTo(65 + xoff, 87 + yoff, 440 + xoff, 87 + yoff, 425 + xoff, 87 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(236 + xoff, 87 + yoff);
+  ctx.bezierCurveTo(243 + xoff, 64 + yoff, 162 + xoff, 440 + yoff, 162 + xoff, 420 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(101 + xoff, 230 + yoff);
+  ctx.bezierCurveTo(361 + xoff, 230 + yoff, 360 + xoff, 228 + yoff, 360 + xoff, 231 + yoff);
+  ctx.bezierCurveTo(360 + xoff, 234 + yoff, 360 + xoff, 232 + yoff, 361 + xoff, 423 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(54 + xoff, 422 + yoff);
+  ctx.bezierCurveTo(39 + xoff, 422 + yoff, 461 + xoff, 422 + yoff, 446 + xoff, 422 + yoff);
+  ctx.stroke();
+}
+#10
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(251 + xoff, 49 + yoff);
+  ctx.bezierCurveTo(251 + xoff, 34 + yoff, 252 + xoff, 468 + yoff, 252 + xoff, 453 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(55 + xoff, 210 + yoff);
+  ctx.bezierCurveTo(40 + xoff, 210 + yoff, 462 + xoff, 209 + yoff, 447 + xoff, 209 + yoff);
+  ctx.stroke();
+}
+#11
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(133 + xoff, 80 + yoff);
+  ctx.bezierCurveTo(133 + xoff, 65 + yoff, 132 + xoff, 458 + yoff, 132 + xoff, 443 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(133 + xoff, 81 + yoff);
+  ctx.bezierCurveTo(377 + xoff, 80 + yoff, 374 + xoff, 82 + yoff, 377 + xoff, 82 + yoff);
+  ctx.bezierCurveTo(378 + xoff, 82 + yoff, 377 + xoff, 424 + yoff, 377 + xoff, 439 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(131 + xoff, 237 + yoff);
+  ctx.bezierCurveTo(116 + xoff, 237 + yoff, 392 + xoff, 239 + yoff, 377 + xoff, 239 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(133 + xoff, 405 + yoff);
+  ctx.bezierCurveTo(118 + xoff, 405 + yoff, 390 + xoff, 405 + yoff, 375 + xoff, 405 + yoff);
+  ctx.stroke();
+}
+#12
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(150 + xoff, 79 + yoff);
+  ctx.bezierCurveTo(149 + xoff, 169 + yoff, 168 + xoff, 355 + yoff, 104 + xoff, 441 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(150 + xoff, 79 + yoff);
+  ctx.bezierCurveTo(135 + xoff, 79 + yoff, 376 + xoff, 80 + yoff, 375 + xoff, 80 + yoff);
+  ctx.bezierCurveTo(374 + xoff, 80 + yoff, 375 + xoff, 418 + yoff, 372 + xoff, 428 + yoff);
+  ctx.bezierCurveTo(369 + xoff, 439 + yoff, 310 + xoff, 438 + yoff, 295 + xoff, 437 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(150 + xoff, 187 + yoff);
+  ctx.bezierCurveTo(135 + xoff, 187 + yoff, 386 + xoff, 188 + yoff, 371 + xoff, 188 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(150 + xoff, 297 + yoff);
+  ctx.bezierCurveTo(135 + xoff, 297 + yoff, 389 + xoff, 297 + yoff, 374 + xoff, 297 + yoff);
+  ctx.stroke();
+}
+#13
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(104 + xoff, 112 + yoff);
+  ctx.bezierCurveTo(104 + xoff, 97 + yoff, 103 + xoff, 450 + yoff, 103 + xoff, 435 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(105 + xoff, 115 + yoff);
+  ctx.bezierCurveTo(90 + xoff, 115 + yoff, 398 + xoff, 116 + yoff, 398 + xoff, 115 + yoff);
+  ctx.bezierCurveTo(398 + xoff, 100 + yoff, 397 + xoff, 448 + yoff, 397 + xoff, 433 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(104 + xoff, 405 + yoff);
+  ctx.bezierCurveTo(89 + xoff, 405 + yoff, 411 + xoff, 405 + yoff, 396 + xoff, 405 + yoff);
+  ctx.stroke();
+}
+#14
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(89 + xoff, 135 + yoff);
+  ctx.bezierCurveTo(95 + xoff, 135 + yoff, 66 + xoff, 276 + yoff, 63 + xoff, 261 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(147 + xoff, 49 + yoff);
+  ctx.bezierCurveTo(147 + xoff, 34 + yoff, 146 + xoff, 466 + yoff, 146 + xoff, 451 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(195 + xoff, 130 + yoff);
+  ctx.bezierCurveTo(190 + xoff, 116 + yoff, 238 + xoff, 239 + yoff, 230 + xoff, 230 + yoff);
+  ctx.stroke();
+}
+#15
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(208 + xoff, 57 + yoff);
+  ctx.bezierCurveTo(197 + xoff, 100 + yoff, 80 + xoff, 234 + yoff, 53 + xoff, 248 + yoff);
+  ctx.stroke();
+}
+
+function drawShape(ctx, xoff, yoff) {
+  ctx.beginPath();
+  ctx.moveTo(148 + xoff, 153 + yoff);
+  ctx.bezierCurveTo(148 + xoff, 138 + yoff, 149 + xoff, 471 + yoff, 149 + xoff, 456 + yoff);
+  ctx.stroke();
+}

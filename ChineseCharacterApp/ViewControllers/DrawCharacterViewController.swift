@@ -11,6 +11,7 @@
 
 import UIKit
 
+
 class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
 
     
@@ -94,6 +95,9 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     @IBAction func undoButtonTapped(_ sender: Any) {
         drawingView.clearCanvas()
     }
+    func all_to_cg (stroke:[Point]) -> [CGPoint] {
+        return stroke.map({(z:Point) -> CGPoint in return CGPoint(x:CGFloat(z.x),y:CGFloat(z.y))})
+    }
     
     // When the character has been submitted by the user,
     //  - send the matcher the screen dimensions and use it to check the user's char against the
@@ -109,8 +113,20 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         let targetStrokePoints = matcher.processTargetPoints(targetSvgs, destDimensions:currScreenDimensions)
         //insert target here?????
         let source = drawingView.getPoints()
+        
+        var errorLevel = 0
         // save the result to the learning session
-        ls!.currentResult = matcher.full_matcher(source:source, target:targetStrokePoints)
+        typealias matcherResult = (targetScores: [StrokeResult], Errors: [Int])
+        let res:matcherResult = matcher.full_matcher(source:source, target:targetStrokePoints)
+        ls!.currentResult = res.targetScores
+        print(ls!.currentResult)
+        
+        if(source.count != targetSvgs.count) {
+            errorLevel = 5
+        } else {
+            errorLevel = matcher.get_level(results: res.targetScores)
+        }
+        print("error level", errorLevel)
         
         // Set up and load the check character popup
         checkUserChar()
@@ -297,6 +313,9 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             print("no char")
             return cell
         }
+        
+        let sourceGfx = drawingView.getPoints().map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
+
         let dim = cell.frame.height
         cell.strokeView.layer.borderWidth = 1
         cell.strokeView.layer.borderColor = UIColor.black.cgColor

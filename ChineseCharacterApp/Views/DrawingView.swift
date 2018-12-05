@@ -53,7 +53,6 @@ class DrawingView: UIView {
         
          let touch = touches.first
          touchPoint = touch?.location(in: self)
-         print(touchPoint)
          
          
          path.addLine(to: touchPoint)
@@ -61,6 +60,14 @@ class DrawingView: UIView {
          startingPoint = touchPoint
          
          drawShapeLayer()
+    }
+    func drawUserStroke(stroke:[CGPoint]){
+        assert(stroke.count > 1, "single point 'stroke' passed to DrawUserStroke")
+        path.move(to:stroke[0])
+        for st in stroke[1...] {
+            path.addLine(to:st)
+        }
+        drawShapeLayer()
     }
 
     

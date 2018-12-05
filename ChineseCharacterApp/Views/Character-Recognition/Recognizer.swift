@@ -17,11 +17,11 @@ typealias Result = (score:Double, source:(Point,Point)?, target: (Point,Point)?,
 typealias Point = (x:Double, y:Double)
 
 let kAngleThreshold = Double.pi / 5
-let kDistanceThreshold = 25.0;
-let kLengthThreshold = 1.5;
+let kDistanceThreshold = 50.0;
+let kLengthThreshold = 20.0
 
 // Number of segments you're actually allowed to skip
-let kMaxMissedSegments = 1;
+let kMaxMissedSegments = 2;
 let kMaxOutOfOrder:Double = 2;
 
 // constant for how much distance in desired stroke location is allowable
@@ -160,9 +160,9 @@ func performAlignment (_source:[Point], _target:[Point]) -> Result {
                    
                     source:[source[k], source[j]], target: [target[i - 1], target[i]], is_initial_segment: i == 1);
                 // Compares the two points in the source to two adjacent points of target
-                if (score != -Double.infinity) {
-                    print(score)
-                }
+//                if (score != -Double.infinity) {
+//                    print(score)
+//                }
                 
                 // Number of source segments being skipped
                 let penalty = (j - k - 1) * Int(kMissedSegmentPenalty);
@@ -183,7 +183,7 @@ func performAlignment (_source:[Point], _target:[Point]) -> Result {
                          target: nil,
                          warning: nil,
                          penalties: nil,
-                         rightDirection: true)
+                         rightDirection: false)
     // is either target.count or target.count - 1
     let min_matched = target.count - (hasHook(median:target) ? 1 : 0);
     
@@ -198,7 +198,7 @@ func performAlignment (_source:[Point], _target:[Point]) -> Result {
         
         
         if (score > result.score) {
-            result = (score:0.0,
+            result = (score:score,
                       source:(source[0], source[source.count - 1]),
                       target: (target[0], target[i]),
                       warning: i < target.count - 1 ? "Should hook." : nil,
@@ -232,6 +232,7 @@ func performAlignment (_source:[Point], _target:[Point]) -> Result {
 //}
 
 func scorePairing (source: [Point], target: [Point], is_initial_segment: Bool) -> Double {
+    
     
     // Angle offset
     let angle = angleDiff(angle1:getAngle(median:source), angle2:getAngle(median:target));
@@ -269,7 +270,7 @@ public class Recognizer:NSObject {
     func recognize (source:[Point], target:[Point], offset: Double) -> Result {
         // checks for stroke and reverse stroke
 //        print("source", source.first!, "to", source.last!)
-        print("target", target)
+//        print("target", target)
 //        if((util.distance2(point1:source.first!, point2:target.first!) < 10) &&
 //            util.distance2(point1:source.last!, point2:target.last!) < 10) {
 //            return(score:0, source:nil, target:nil, warning:nil, penalties:nil, rightDirection:false)
@@ -298,6 +299,7 @@ public class Recognizer:NSObject {
             }
         }
         result.score -= abs(offset) * Double(kOutOfOrderPenalty);
+//        print(result)
         return result;
     }
 }

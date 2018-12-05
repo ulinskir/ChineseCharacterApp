@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		184A431921B7611700A66CFA /* Recognize2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A431821B7611700A66CFA /* Recognize2.swift */; };
+		184A431B21B762FF00A66CFA /* unistrokeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A431A21B762FF00A66CFA /* unistrokeRecognizer.swift */; };
 		1876C321219CAF290097470B /* strokes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1876C319219CAF290097470B /* strokes.txt */; };
-		1876C322219CAF290097470B /* Resample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1876C31A219CAF290097470B /* Resample.swift */; };
 		1876C323219CAF290097470B /* SVGtoPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1876C31B219CAF290097470B /* SVGtoPath.swift */; };
 		1876C324219CAF290097470B /* Match_Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1876C31C219CAF290097470B /* Match_Main.swift */; };
 		1876C326219CAF290097470B /* Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1876C31E219CAF290097470B /* Recognizer.swift */; };
@@ -67,8 +68,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		184A431821B7611700A66CFA /* Recognize2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Recognize2.swift; path = "ChineseCharacterApp/Views/Character-Recognition/Recognize2.swift"; sourceTree = "<group>"; };
+		184A431A21B762FF00A66CFA /* unistrokeRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = unistrokeRecognizer.swift; sourceTree = "<group>"; };
 		1876C319219CAF290097470B /* strokes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = strokes.txt; sourceTree = "<group>"; };
-		1876C31A219CAF290097470B /* Resample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resample.swift; sourceTree = "<group>"; };
 		1876C31B219CAF290097470B /* SVGtoPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGtoPath.swift; sourceTree = "<group>"; };
 		1876C31C219CAF290097470B /* Match_Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Match_Main.swift; sourceTree = "<group>"; };
 		1876C31E219CAF290097470B /* Recognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recognizer.swift; sourceTree = "<group>"; };
@@ -143,8 +145,8 @@
 		1876C318219CAF290097470B /* Character-Recognition */ = {
 			isa = PBXGroup;
 			children = (
+				184A431A21B762FF00A66CFA /* unistrokeRecognizer.swift */,
 				1876C319219CAF290097470B /* strokes.txt */,
-				1876C31A219CAF290097470B /* Resample.swift */,
 				1876C31B219CAF290097470B /* SVGtoPath.swift */,
 				1876C31C219CAF290097470B /* Match_Main.swift */,
 				1876C31E219CAF290097470B /* Recognizer.swift */,
@@ -212,6 +214,7 @@
 		58EC0C482156B7EA00F9D1E6 = {
 			isa = PBXGroup;
 			children = (
+				184A431821B7611700A66CFA /* Recognize2.swift */,
 				58EC0C532156B7EA00F9D1E6 /* ChineseCharacterApp */,
 				58EC0C682156B7EB00F9D1E6 /* ChineseCharacterAppTests */,
 				58EC0C732156B7EB00F9D1E6 /* ChineseCharacterAppUITests */,
@@ -403,6 +406,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92FEFC072184CA6B0011EBD4 /* ChineseCharacterAppModel.xcdatamodeld in Sources */,
+				184A431921B7611700A66CFA /* Recognize2.swift in Sources */,
 				58FAF4E521650C690029E876 /* ChineseChar.swift in Sources */,
 				58F352772194D38D00137A0E /* LessonFinishedViewController.swift in Sources */,
 				581494C2216DA9E3000DC3B5 /* CreateModuleViewController.swift in Sources */,
@@ -421,7 +425,7 @@
 				588A1D432184DFBD00A19ECD /* learningSession.swift in Sources */,
 				580B6D7D2176C08A00061F4A /* CharacterDetailsViewController.swift in Sources */,
 				58FAF4E7216511290029E876 /* ModuleDetailsViewController.swift in Sources */,
-				1876C322219CAF290097470B /* Resample.swift in Sources */,
+				184A431B21B762FF00A66CFA /* unistrokeRecognizer.swift in Sources */,
 				382E4C01216D76AE00D2A953 /* User.swift in Sources */,
 				58B3BCC8215AEB8B0049A8E5 /* Buttons.swift in Sources */,
 				581494C0216D9944000DC3B5 /* ProfileTableViewCell.swift in Sources */,
