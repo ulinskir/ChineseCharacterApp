@@ -171,8 +171,14 @@ class Matcher {
     }
     
 // Target is a list of points, but source needs to be resampled maybe, but also IDK if resmpling is necessary
-    func full_matcher(source:[[Point]],target:[[Point]]) -> ([StrokeResult], [Int]) {
+    func full_matcher(src:[[Point]],target:[[Point]]) -> ([StrokeResult], [Int]) {
         let targetList:[[Point]] = remove_consecutive_dupes(target: target)
+        var source:[[Point]] = []
+        for stroke in src {
+            if (stroke.count > 3) {
+                source.append(processSourcePoints(stroke))
+            }
+        }
         
         
         var strokeInfo:[(StrokeResult)] = []
@@ -185,6 +191,7 @@ class Matcher {
         var numPrevFoundStrokes = 0
         var errorStrokes:[Int] = []
         var foundStrokes:[FoundStroke] = []
+        
 //        if(target.count >= 4){
 //            print("verticalstroke:", target[3])
 //            print("numStrokes:", target[3].count)
@@ -252,12 +259,12 @@ class Matcher {
                     
                     if(currTarget.completed){continue}
                     
-                    var curr = instanceOfRecognizer.recognize(source:processSourcePoints(currSource), target:currTarget.points, offset:0)
+                    var curr = instanceOfRecognizer.recognize(source:currSource, target:currTarget.points, offset:0)
                     print("srcLen", source[srcIndex].count)
                     if source.count > 30 {
                         let shortened = Array(source[srcIndex][5..<source.count-5])
                     
-                        let tooLong = instanceOfRecognizer.recognize(source:processSourcePoints(shortened), target:currTarget.points, offset:0)
+                        let tooLong = instanceOfRecognizer.recognize(source:shortened, target:currTarget.points, offset:0)
 
                         if(tooLong.score != -Double.infinity) {
                             curr = tooLong

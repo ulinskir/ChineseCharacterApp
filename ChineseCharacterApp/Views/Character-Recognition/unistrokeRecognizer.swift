@@ -335,6 +335,7 @@ extension StrokePoint {
 	*/
 	public static func pathLength(_ points: [StrokePoint]) -> Double {
 		var totalDistance:Double = 0.0
+        if(points.count < 2) {return 0}
 		for idx in 1..<points.count {
 			totalDistance += points[idx-1].distanceTo(points[idx])
 		}
