@@ -235,7 +235,7 @@ class Matcher {
                     
                     let curr = instanceOfRecognizer.recognize(source:processSourcePoints(source[srcIndex]), target:currTarget.points, offset:0)
                     
-                    if (curr.score != -Double.infinity){
+                    if (curr.score != -Double.infinity && recog_ez(source: source[srcIndex], target:currTarget.points).0){
                         // If the stroke matches
                         
 //                        result.append((true, curr.rightDirection, srcIndex, j==0))

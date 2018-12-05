@@ -307,7 +307,8 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             print("no char")
             return cell
         }
-        let sourceGfx = source.map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
+        
+        let sourceGfx = drawingView.getPoints().map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
 
         let dim = cell.frame.height
         cell.strokeView.layer.borderWidth = 1
