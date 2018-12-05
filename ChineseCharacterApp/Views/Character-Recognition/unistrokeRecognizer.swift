@@ -580,7 +580,7 @@ extension StrokePoint {
 	
 	- returns: resampled points array
 	*/
-fileprivate static func resample(_ points: [StrokePoint], totalPoints: Int) -> [StrokePoint] {
+    static func resample(_ points: [StrokePoint], totalPoints: Int) -> [StrokePoint] {
 		var initialPoints = points
 		let interval = StrokePoint.pathLength(initialPoints) / Double(totalPoints - 1)
 		var totalLength: Double = 0.0
@@ -613,3 +613,48 @@ fileprivate static func resample(_ points: [StrokePoint], totalPoints: Int) -> [
 		return newPoints
 	}
 }
+
+public class Resampler {
+    func resample(_ points: [StrokePoint], totalPoints: Int) -> [StrokePoint] {
+        var initialPoints = points
+        let interval = StrokePoint.pathLength(initialPoints) / Double(totalPoints - 1)
+        var totalLength: Double = 0.0
+        var newPoints: [StrokePoint] = [points.first!]
+        
+        
+        for i in 1..<initialPoints.count {
+            
+            let currentLength = initialPoints[i-1].distanceTo(initialPoints[i])
+            
+            if ((totalLength+currentLength) >= interval) {
+                
+                let qx = initialPoints[i-1].x + ((interval - totalLength) / currentLength) * (initialPoints[i].x - initialPoints[i-1].x)
+                let qy = initialPoints[i-1].y + ((interval - totalLength) / currentLength) * (initialPoints[i].y - initialPoints[i-1].y)
+                let q = StrokePoint(x: qx, y: qy)
+                
+                newPoints.append(q)
+                initialPoints.insert(q, at: i)
+                totalLength = 0.0
+                
+            } else {
+                
+                totalLength += currentLength
+                
+            }
+        }
+        if newPoints.count == totalPoints-1 {
+            newPoints.append(points.last!)
+        }
+        return newPoints
+    }
+
+    func resamplePoints(_ points: [Point], totalPoints:Int = 64) -> [Point] {
+        var sp:[StrokePoint] = []
+        for point in points {
+            sp.append(StrokePoint(x:point.x,y:point.y))
+        }
+        return resample(sp, totalPoints:totalPoints).map(
+            {(sp:StrokePoint) -> Point in return (sp.x, sp.y)})
+    }
+}
+

@@ -9,8 +9,8 @@
 import Foundation
 import CoreGraphics
 
-typealias StrokeResult = (completed:Bool, rightDirection:Bool, rightOrder:Bool)
-typealias FoundStroke = (rightDirection:Bool, orderDrawn:Int, targetIndex: Int, smoothedOrder:Int)
+typealias StrokeResult = (score: Double, completed:Bool, rightDirection:Bool, rightOrder:Bool)
+typealias FoundStroke = (rightDirection:Bool, orderDrawn:Int, targetIndex: Int, smoothedOrder:Int, score:Double)
 
 let srcEdges:Edges = (0,500,500,0)
 let destEdges:Edges = (0,335,335,0)
@@ -19,8 +19,8 @@ let RESAMPLING = false
 let SIMPLE_ORDER_CHECK:Bool = true
 let COMPOUND_ORDER_CHECK:Bool = true
 let FIVE_LEVELS = true
-let REC_2 = true
-let MAX_DISTANCE:Double = 25
+let REC_2 = false
+let MAX_DISTANCE:Double = 30
 
 
 let instanceOfRecognizer = Recognizer()
@@ -130,13 +130,13 @@ class Matcher {
         
         var goodTargets = target
         do{
-            let (template, _) = try source.recognizeIn(templates: target, useProtractor: false)
+            let (template, distance) = try source.recognizeIn(templates: target, useProtractor: false)
             
             if (template != nil) {
                 let targetIndex = Int(template!.name)!
                 let (completed, direction) = recog_ez(source: sourcePt, target: targetPt[targetIndex])
                 if(completed) {
-                    return (direction, -1, targetIndex, -1)
+                    return (direction, -1, targetIndex, -1, score: -distance!)
                 } else {
                     for i in 0..<goodTargets.count {
                         if goodTargets[i].name == template!.name {
@@ -181,8 +181,8 @@ class Matcher {
 
         var targetRecognizers: [SwiftUnistrokeTemplate] = []
         for i in 0..<targetList.count {
-            strokeInfo.append((false,false,false))
-            strokeInfoSimpleOrder.append((false,false,false))
+            strokeInfo.append((-Double.infinity,false,false,false))
+            strokeInfoSimpleOrder.append((-Double.infinity,false,false,false))
             targetRecognizers.append(SwiftUnistrokeTemplate(name:String(i), points: targetList[i].map(make_strpoint)))
             
         }
@@ -192,8 +192,13 @@ class Matcher {
             foundStroke = false
             if(numPrevFoundStrokes < remainingTargets.count) {
                 if(REC_2){
-                    let strokeFoundOpt = run_recognize_2(source: srcRecog[srcIndex], target: targetRecognizers, sourcePt: source[srcIndex], targetPt: target)
-                    
+                    var strokeFoundOpt: FoundStroke? = nil
+                    for recog in targetRecognizers {
+                        strokeFoundOpt = run_recognize_2(source: srcRecog[srcIndex], target: [recog], sourcePt: source[srcIndex], targetPt: target)
+                        if(strokeFoundOpt != nil) {
+                            break
+                        }
+                    }
                     if(strokeFoundOpt == nil) {
                         errorStrokes.append(srcIndex)
                         continue
@@ -201,14 +206,14 @@ class Matcher {
                     
                     var strokeResult = strokeFoundOpt!
                     
-                    let (rightDirection, _, targetIndex, _) = strokeResult
+                    let (rightDirection, _, targetIndex, _, score) = strokeResult
                     
                     foundStroke = true
                     strokeResult.orderDrawn = numPrevFoundStrokes
                     remainingTargets[targetIndex].completed = true
-                    foundStrokes.append((rightDirection, numPrevFoundStrokes, targetIndex, -1))
+                    foundStrokes.append((rightDirection, numPrevFoundStrokes, targetIndex, -1, score))
                     numPrevFoundStrokes += 1
-                    strokeInfoSimpleOrder[targetIndex] = ((true, rightDirection, srcIndex==targetIndex))
+                    strokeInfoSimpleOrder[targetIndex] = ((score, true, rightDirection, srcIndex==targetIndex))
 
                 } else {
                     
@@ -234,8 +239,8 @@ class Matcher {
                         // If the stroke matches
                         
 //                        result.append((true, curr.rightDirection, srcIndex, j==0))
-                        foundStrokes.append((curr.rightDirection, numPrevFoundStrokes, targetIndex, -1))
-                        strokeInfoSimpleOrder[targetIndex] = ((true, curr.rightDirection, srcIndex==targetIndex))
+                        foundStrokes.append((curr.rightDirection, numPrevFoundStrokes, targetIndex, -1, 0))
+                        strokeInfoSimpleOrder[targetIndex] = ((0, true, curr.rightDirection, srcIndex==targetIndex))
 //                        foundStrokes[j] = result.last!
                         foundStroke = true
                         remainingTargets[targetIndex].completed = true
@@ -257,7 +262,7 @@ class Matcher {
                 sorted[i].smoothedOrder = i
             }
             for i in 0..<sorted.count {
-                strokeInfo[sorted[i].targetIndex] = (true, sorted[i].rightDirection, sorted[i].smoothedOrder >= sorted[i].orderDrawn)
+                strokeInfo[sorted[i].targetIndex] = (sorted[i].score, true, sorted[i].rightDirection, sorted[i].smoothedOrder >= sorted[i].orderDrawn)
             }
         
         

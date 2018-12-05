@@ -129,6 +129,8 @@ public class bezierPoints {
         var p: [Point] = []
         var cg: [CGPoint] = []
         var curr:CGPoint = CGPoint(x:0,y:0)
+        let resampling = true// svgPath.commands.count > 1
+        let num_bezier_samples = 512
         
         assert(svgPath.commands.first!.type == .move)
         for command in svgPath.commands {
@@ -145,12 +147,14 @@ public class bezierPoints {
             }
             if command.type != .move {
                 let curve_calc = get_curve_fn(to_point(cg))
-                p += curve_calc(NUM_CURVE_POINTS)
+                p += curve_calc(num_bezier_samples) // svgPath.commands.count)
             }            
 //                p.append(bezier_curve(to_point(cg), NUM_POINTS_IN_PATH))            }
             //p = [curr, command.control1,command.control1,command.point].filter({$0 != nil}).map({(pt:CGPoint) -> Point in return (Double(pt.x),Double(pt.y))})
             curr = command.point
         }
+        
+        if(resampling) {p = Resampler().resamplePoints(p, totalPoints:NUM_CURVE_POINTS)}
         return p
     }
 }
