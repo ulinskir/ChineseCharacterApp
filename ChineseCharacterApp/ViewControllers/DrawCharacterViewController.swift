@@ -53,6 +53,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     @IBOutlet weak var checkViewPopup: UIView!  // a popup window that allows the usesr to navigate
                                                 // their results on a character
     
+    @IBOutlet weak var continueCheckViewButton: UIButton!
     @IBOutlet weak var strokeComparisonCollectionView: UICollectionView! // displays stroke by stroke results for the user to click through
     
     
@@ -110,7 +111,6 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         let source = drawingView.getPoints()
         // save the result to the learning session
         ls!.currentResult = matcher.full_matcher(source:source, target:targetStrokePoints)
-        print(ls!.currentResult)
         
         // Set up and load the check character popup
         checkUserChar()
@@ -169,16 +169,20 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             setupCharDisplay()
         } else {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "lessonFinishedViewController") as! LessonFinishedViewController
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
             self.present(newViewController, animated: true, completion: nil)
         }
     }
     
     // Sets up the check user char popup
     func checkUserChar() {
+        if ls!.current + 1 == ls!.charsToPractice.count {
+            continueCheckViewButton.setTitle("Done", for: .normal)
+        } else {
+            continueCheckViewButton.setTitle("Continue", for: .normal)
+        }
         displayCharInView()
         checkViewPopup.isHidden = false
-        //setSubmitButtonTitle(title: "Continue")
     }
     
     // Draws a red bullseye with size 1/16th of the drawing view at a given point
@@ -280,8 +284,8 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemWidth = collectionView.bounds.height - 10
-        let itemHeight = collectionView.bounds.height - 10
+        let itemWidth = collectionView.bounds.height
+        let itemHeight = collectionView.bounds.height
         return CGSize(width: itemWidth, height: itemHeight)
     }
     

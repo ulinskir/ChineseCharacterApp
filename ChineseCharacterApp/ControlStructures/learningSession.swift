@@ -58,7 +58,6 @@ class LearningSesion {
     func charPracticed(score:Double) {
         charsAlreadyPracticed[current] = score
         current += 1
-        //TO DO: determine if score is failing and if so make user practice it again
     }
     
     func sessionFinished() -> Bool {
