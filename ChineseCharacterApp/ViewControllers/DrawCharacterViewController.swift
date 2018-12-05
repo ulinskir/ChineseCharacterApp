@@ -53,6 +53,11 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     
     @IBOutlet weak var checkViewPopup: UIView!  // a popup window that allows the usesr to navigate
                                                 // their results on a character
+    @IBOutlet weak var textFeedbackStack: UIStackView!
+    @IBOutlet weak var resultFeedbackLabel: UILabel!
+    @IBOutlet weak var feedbackLabel: UILabel!
+    
+    
     
     @IBOutlet weak var continueCheckViewButton: UIButton!
     @IBOutlet weak var strokeComparisonCollectionView: UICollectionView! // displays stroke by stroke results for the user to click through
@@ -160,6 +165,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         }
         loadNextChar()
         checkViewPopup.isHidden = true
+        textFeedbackStack.isHidden = true
     }
     
     
@@ -171,6 +177,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         topView1.isHidden = true
         topView2.isHidden = true
         checkViewPopup.isHidden = true
+        textFeedbackStack.isHidden = true
         strokeComparisonCollectionView.delegate = self
         strokeComparisonCollectionView.dataSource = self
     }
@@ -206,6 +213,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         }
         displayCharInView()
         checkViewPopup.isHidden = false
+        textFeedbackStack.isHidden = false
     }
     
     // Draws a red bullseye with size 1/16th of the drawing view at a given point
@@ -331,6 +339,8 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         
         if rowNumber < sourceGfx.count {
             
+
+    
         }
         
         cell.strokeLabel.font = cell.strokeLabel.font.withSize(dim)
@@ -347,7 +357,8 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             self.imageView.removeFromSuperview()
         }
         let rowNumber = indexPath.row
-        //backgroundCharLabel.text = String(rowNumber)
+        let sourceGfx = drawingView.getPoints().map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
+        drawingView.drawUserStroke(stroke: sourceGfx[rowNumber])
         guard let char = ls!.getCurrentChar()
             else {
                 print("no char")
