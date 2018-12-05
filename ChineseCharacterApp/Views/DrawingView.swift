@@ -62,6 +62,14 @@ class DrawingView: UIView {
          
          drawShapeLayer()
     }
+    func drawUserStroke(stroke:[CGPoint]){
+        assert(stroke.count > 1, "single point 'stroke' passed to DrawUserStroke")
+        path.move(to:stroke[0])
+        for st in stroke[1...] {
+            path.addLine(to:st)
+        }
+        drawShapeLayer()
+    }
 
     
     func drawChar(stroke:String, scale:@escaping (Point) -> Point) {
