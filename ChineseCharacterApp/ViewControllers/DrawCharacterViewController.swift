@@ -109,7 +109,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     //    correct char
     //  - load the check char popup
     @IBAction func submitButtonTapped(_ sender: Any) {
-        let testing_resampler = true
+        let testing_resampler = false
         
         // Set up and run the matcher
         let dim = Double(self.drawingView.frame.width) // get the size of the drawing view
@@ -124,6 +124,8 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             for src in source {
             let resampler = Resampler()
             let resampled_tester = resampler.resamplePoints(src,totalPoints: 64)
+            drawingView.clearCanvas()
+            drawingView.drawUserStroke(stroke: all_to_cg(stroke: resampled_tester))
             }
         }
         var errorLevel = 0
@@ -136,7 +138,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
 
         // save the result to the learning session
         typealias matcherResult = (targetScores: [StrokeResult], Errors: [Int])
-        let res:matcherResult = matcher.full_matcher(source:source, target:targetStrokePoints)
+        let res:matcherResult = matcher.full_matcher(src:source, target:targetStrokePoints)
         ls!.currentResult = res.targetScores
         
         
