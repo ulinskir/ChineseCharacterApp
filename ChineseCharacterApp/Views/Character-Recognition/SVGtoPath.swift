@@ -120,12 +120,8 @@ public class bezierPoints {
 
         // Approximate length of lines that seem to be working.
         let goodLength:Int = 320
-        let lineDistance:Double = scale((goodLength, 0)).x / numPoints
+        let pointDistance:Double = scale(Double(goodLength), 0).0 / Double(numPoints)
         let util = util_fn()
-
-
-
-
 
         print("svgdata:", svgData)
         let svgPath = SVGPath(svgData, scale)
@@ -138,17 +134,18 @@ public class bezierPoints {
         for command in svgPath.commands {
             switch command.type {
                 case .move: break
+            // number of points = (length of stroke)/
                 case .line: cg = [curr, command.point]; numPoints = Int(
                     sqrt(util.distance2(
-                        point1: to_point(curr),
-                        point2: to_point(command.point))))
+                        point1: util.cg_to_Point(curr),
+                        point2: util.cg_to_Point(command.point))) / pointDistance)
                 case .quadCurve: cg = [curr, command.control1,command.point]
                 case .cubeCurve: cg = [curr, command.control1,command.control2,command.point]; numPoints = NUM_CURVE_POINTS
                 case .close: return p + to_point([curr])
             }
             if command.type != .move {
                 let curve_calc = get_curve_fn(to_point(cg))
-                p += curve_calc(numPoints)
+                p += curve_calc(numPoints / svgPath.commands.count)
             }            
 //                p.append(bezier_curve(to_point(cg), NUM_POINTS_IN_PATH))            }
             //p = [curr, command.control1,command.control1,command.point].filter({$0 != nil}).map({(pt:CGPoint) -> Point in return (Double(pt.x),Double(pt.y))})

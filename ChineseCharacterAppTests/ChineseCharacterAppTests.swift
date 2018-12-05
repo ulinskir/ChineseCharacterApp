@@ -28,17 +28,20 @@ class ChineseCharacterAppTests: XCTestCase {
         let src = _matcher.processTargetPoints(ice, destDimensions: (0,335,335,0))
         let res = _matcher.full_matcher(source:[[(0,0),(5,5)],src[1]],target:src)
         print(res)
-        XCTAssert(res[1].completed == true, "second stroke not found when first stroke is wrong")
+        XCTAssert(res.0[1].completed == true, "second stroke not found when first stroke is wrong")
         
     }
 
     func test_matcher_same_inputs() {
-        let ice = ["M 337 94 C 322 90 237 56 214 40", "M 339 141 C 324 137 244 105 221 89"]
+        let target = ["M 360 231 L 361 423"]
+        let stroke = ["M 350 231 L 352 423"]
+
 
         let _matcher = Matcher()
-        let src = _matcher.processTargetPoints(ice, destDimensions: (0,335,335,0))
-        let res = _matcher.full_matcher(source:src,target:src)
-        for stroke in res {
+        let targ = _matcher.processTargetPoints(target, destDimensions: (0,335,335,0))
+        let src = _matcher.processTargetPoints(stroke, destDimensions: (0,335,335,0))
+        let res = _matcher.full_matcher(source:src,target:targ)
+        for stroke in res.0 {
             XCTAssert(stroke == (true,true,true))
         }
     }

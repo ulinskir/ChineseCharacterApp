@@ -79,10 +79,8 @@ class Matcher {
         errorLevel += directionError ? 1 : 0
         return errorLevel
     }
-
-// Target is a list of points, but source needs to be resampled maybe, but also IDK if resmpling is necessary
-    func full_matcher(source:[[Point]],target:[[Point]]) -> ([StrokeResult], [Int]) {
-        var targetList:[[Point]] = target
+    func remove_consecutive_dupes(target:[[Point]]) -> [[Point]] {
+        var targetList = target
         for stroke in 0..<targetList.count {
             var toKill:[Int] = []
             var killed = 0
@@ -97,6 +95,13 @@ class Matcher {
                 killed += 1
             }
         }
+        return targetList
+    }
+
+// Target is a list of points, but source needs to be resampled maybe, but also IDK if resmpling is necessary
+    func full_matcher(source:[[Point]],target:[[Point]]) -> ([StrokeResult], [Int]) {
+        let targetList:[[Point]] = remove_consecutive_dupes(target: target)
+        
         
         var strokeInfo:[(StrokeResult)] = []
         var strokeInfoSimpleOrder:[StrokeResult] = []
@@ -108,6 +113,10 @@ class Matcher {
         var numPrevFoundStrokes = 0
         var errorStrokes:[Int] = []
         var foundStrokes:[FoundStroke] = []
+        if(target.count >= 4){
+            print("verticalstroke:", target[3])
+            print("numStrokes:", target[3].count)
+        }
         
 //        func is_in_order(j:Int) {
 //        }
