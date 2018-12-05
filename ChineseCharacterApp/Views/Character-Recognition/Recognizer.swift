@@ -16,12 +16,12 @@ typealias Result = (score:Double, source:(Point,Point)?, target: (Point,Point)?,
 // what you think it is. Double precision points for increased accuracy
 typealias Point = (x:Double, y:Double)
 
-let kAngleThreshold = Double.pi / 4
-let kDistanceThreshold = 40.0;
-let kLengthThreshold = 10.0
+let kAngleThreshold = Double.pi / 5
+let kDistanceThreshold = 50.0;
+let kLengthThreshold = 20.0
 
 // Number of segments you're actually allowed to skip
-let kMaxMissedSegments = 1;
+let kMaxMissedSegments = 4;
 let kMaxOutOfOrder:Double = 2;
 
 // constant for how much distance in desired stroke location is allowable
@@ -233,6 +233,7 @@ func performAlignment (_source:[Point], _target:[Point]) -> Result {
 
 func scorePairing (source: [Point], target: [Point], is_initial_segment: Bool) -> Double {
     
+    
     // Angle offset
     let angle = angleDiff(angle1:getAngle(median:source), angle2:getAngle(median:target));
     
@@ -298,7 +299,7 @@ public class Recognizer:NSObject {
             }
         }
         result.score -= abs(offset) * Double(kOutOfOrderPenalty);
-        print(result)
+//        print(result)
         return result;
     }
 }
