@@ -5,8 +5,9 @@
 //  including the following:
 //    - name
 //    - a list of the characters in the module.
-// Also allows the user to begin a practice session for the characters
-//  in the module: either learned, unlearned, or all.
+//  Also allows the user to begin a practice session for the characters
+//  in the module at a level selected in the practice level view
+//  or see the details of a character by selecting it from the table
 //
 //  ChineseCharacterApp
 //  Created by Risa Ulinski on 10/3/18.
@@ -30,11 +31,10 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     //Start Practice Session Buttons
     @IBOutlet weak var practiceAllCharactersButton: UIButton!
     
-    //Table to display characters
+    //Table to display characters in module
     @IBOutlet weak var moduleCharactersTableView: UITableView!
     let cellReuseIdentifier = "charCell"
     
-    //Other
     var module:Module? = nil //the module to display
     
     //Practice Level View
@@ -49,13 +49,11 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Display module's name in view
         moduleNameLabel.text = (module != nil) ?  module!.name : ""
         
         practiceLevelView.isHidden = true
-        
-        //TO DO: if no characters are learned yet, disable reviewOldCharactersButton
-        //TO DO: if all characters are learned, disable learnNewCharactersButton
-        
     }
     
     //Create a row in the table view for each character in the module
@@ -65,6 +63,7 @@ class ModuleDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         }
         return 0    }
     
+    // Display the practice level popup
     @IBAction func practiceLevelPopup(_ sender: Any) {
         practiceLevelView.isHidden = false
     }
