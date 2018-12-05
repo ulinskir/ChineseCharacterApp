@@ -13,7 +13,7 @@ typealias StrokeResult = (score: Double, completed:Bool, rightDirection:Bool, ri
 typealias FoundStroke = (rightDirection:Bool, orderDrawn:Int, targetIndex: Int, smoothedOrder:Int, score:Double)
 
 let srcEdges:Edges = (0,500,500,0)
-let destEdges:Edges = (0,335,335,0)
+//let destEdges:Edges = (0,335,335,0)
 var RESAMPLE_VAL = 128
 var MAX_SOURCE_POINTS = 128
 let RESAMPLING_SOURCE = false

@@ -78,9 +78,14 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
 
         }
         for stroke in char.strokes {
-//            let scaleFactor =  Double(self.drawingView.frame.width/295)
-            drawingView.drawChar(stroke: stroke, scale: SVGConverter().make_canvas_dimension_converter(from: (0,500,500,0), to: (0,335,335,0)))
         }
+//        let converter = SVGConverter().make_canvas_dimension_converter(from: (0,500,500,0), to:(0,dim,dim,0))
+        let hintPoints = Matcher().get_hints(char.strokes, destDimensions: (0,dim,dim,0))
+        
+//        for stroke in char.strokes {
+////            let scaleFactor =  Double(self.drawingView.frame.width/295)
+//            drawingView.drawChar(stroke: stroke, scale: SVGConverter().make_canvas_dimension_converter(from: (0,500,500,0), to: (0,dim,dim,0)))
+//        }
 //        if drawingView.strokes.count < char.points.count {
 //            // if there are still strokes to draw, display the hint
 //            // first scale the start point from a 295 pt view to the current view size
@@ -108,7 +113,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     //    correct char
     //  - load the check char popup
     @IBAction func submitButtonTapped(_ sender: Any) {
-        let testing_resampler = true
+        let testing_resampler = false
         
         // Set up and run the matcher
         let dim = Double(self.drawingView.frame.width) // get the size of the drawing view
@@ -123,6 +128,8 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             for src in source {
             let resampler = Resampler()
             let resampled_tester = resampler.resamplePoints(src,totalPoints: 64)
+            drawingView.clearCanvas()
+            drawingView.drawUserStroke(stroke: all_to_cg(stroke: resampled_tester))
             }
         }
         var errorLevel = 0
