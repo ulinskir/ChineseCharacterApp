@@ -10,6 +10,7 @@
 //
 
 import Foundation
+import UIKit
 
 class LearningSesion {
     var charsToPractice: [ChineseChar]
@@ -17,6 +18,7 @@ class LearningSesion {
     var level: Int
     var current: Int
     var currentResult: [StrokeResult]? = nil
+    var currentPoints: [[Point]]? = nil
     
     init() {
         charsToPractice = []

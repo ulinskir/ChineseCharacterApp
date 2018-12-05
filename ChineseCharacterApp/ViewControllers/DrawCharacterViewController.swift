@@ -127,10 +127,20 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             }
         }
         var errorLevel = 0
+        
+        
+        ls!.currentPoints = drawingView.getPoints()
+        print(ls!.currentPoints)
+        
+        print("drawing points")
+
         // save the result to the learning session
         typealias matcherResult = (targetScores: [StrokeResult], Errors: [Int])
         let res:matcherResult = matcher.full_matcher(source:source, target:targetStrokePoints)
         ls!.currentResult = res.targetScores
+        
+        
+        
         print(ls!.currentResult)
         
         if(source.count != targetSvgs.count) {
@@ -142,6 +152,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         
         // Set up and load the check character popup
         checkUserChar()
+        
     }
     
 //------------------------------ USER CHECKING INTERACTION BUTTONS -----------------------------//
@@ -211,7 +222,8 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         } else {
             continueCheckViewButton.setTitle("Continue", for: .normal)
         }
-        displayCharInView()
+        //displayCharInView()
+        drawingView.clearCanvas()
         checkViewPopup.isHidden = false
         textFeedbackStack.isHidden = false
     }
@@ -329,20 +341,27 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             return cell
         }
         
-        let sourceGfx = drawingView.getPoints().map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
+        let rowNumber : Int = indexPath.row
+
+//        let sourceGfx = drawingView.getPoints().map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
+        print(ls!.currentPoints)
+        print("poitns")
+        
+        if ls!.currentPoints != nil {
+            let currPoints:[[Point]] = ls!.currentPoints!
+            let sourceGfx = currPoints.map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
+            print(rowNumber, sourceGfx.count)
+
+        }
+
+        
         let dim = cell.frame.height
         cell.strokeView.layer.borderWidth = 1
         cell.strokeView.layer.borderColor = UIColor.black.cgColor
         //cell.strokeView.frame = CGRect(x: 0, y:0, width: dim, height: dim)
         let scaleFactor =  Double(dim/295)
-        let rowNumber : Int = indexPath.row
         
-        if rowNumber < sourceGfx.count {
-            
 
-    
-        }
-        
         cell.strokeLabel.font = cell.strokeLabel.font.withSize(dim)
         cell.strokeLabel.text = String(char.char)
         let points = char.points[rowNumber][0]
@@ -356,14 +375,23 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         if self.imageView.isDescendant(of: masterDrawingView) {
             self.imageView.removeFromSuperview()
         }
+        textFeedbackStack.isHidden = false
         let rowNumber = indexPath.row
-        let sourceGfx = drawingView.getPoints().map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
-        drawingView.drawUserStroke(stroke: sourceGfx[rowNumber])
         guard let char = ls!.getCurrentChar()
             else {
                 print("no char")
                 return
         }
+        
+        let sourceGfx = drawingView.getPoints().map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
+        if rowNumber < sourceGfx.count {
+            print("drawing line at" )
+            print(rowNumber)
+            drawingView.drawUserStroke(stroke: sourceGfx[rowNumber])
+        }
+        
+
+
         let scaleFactor =  Double(self.drawingView.frame.width/295)
         let points = char.points[rowNumber][0]
         self.drawPointOnCanvas(x: Double(points[0]) * scaleFactor, y:  Double(points[1]) * scaleFactor, view: masterDrawingView, point: imageView)
