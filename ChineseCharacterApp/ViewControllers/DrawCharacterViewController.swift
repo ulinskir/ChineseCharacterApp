@@ -77,8 +77,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             return
 
         }
-        for stroke in char.strokes {
-        }
+        let dim = Double(self.drawingView.frame.width)
 //        let converter = SVGConverter().make_canvas_dimension_converter(from: (0,500,500,0), to:(0,dim,dim,0))
         let hintPoints = Matcher().get_hints(char.strokes, destDimensions: (0,dim,dim,0))
         
