@@ -53,7 +53,6 @@ class DrawingView: UIView {
         
          let touch = touches.first
          touchPoint = touch?.location(in: self)
-         print(touchPoint)
          
          
          path.addLine(to: touchPoint)

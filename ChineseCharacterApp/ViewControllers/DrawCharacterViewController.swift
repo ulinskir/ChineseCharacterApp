@@ -114,17 +114,23 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         
         let matcher = Matcher()
         let targetSvgs = ls!.getCurrentChar()!.strokes
-        print(targetSvgs)
         let targetStrokePoints = matcher.processTargetPoints(targetSvgs, destDimensions:currScreenDimensions)
         //insert target here?????
         let source = drawingView.getPoints()
         
+        var errorLevel = 0
         // save the result to the learning session
         typealias matcherResult = (targetScores: [StrokeResult], Errors: [Int])
         let res:matcherResult = matcher.full_matcher(source:source, target:targetStrokePoints)
         ls!.currentResult = res.targetScores
         print(ls!.currentResult)
-        print("error level", matcher.get_level(results: res.targetScores))
+        
+        if(source.count != targetSvgs.count) {
+            errorLevel = 5
+        } else {
+            errorLevel = matcher.get_level(results: res.targetScores)
+        }
+        print("error level", errorLevel)
         
         // Set up and load the check character popup
         checkUserChar()

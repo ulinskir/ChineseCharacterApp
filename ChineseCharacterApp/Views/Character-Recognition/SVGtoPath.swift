@@ -123,7 +123,6 @@ public class bezierPoints {
         let pointDistance:Double = scale(Double(goodLength), 0).0 / Double(numPoints)
         let util = util_fn()
 
-        print("svgdata:", svgData)
         let svgPath = SVGPath(svgData, scale)
         
         var p: [Point] = []
@@ -155,6 +154,7 @@ public class bezierPoints {
         }
         
         if(resampling) {p = Resampler().resamplePoints(p, totalPoints:NUM_CURVE_POINTS)}
+        print(p.count)
         return p
     }
 }

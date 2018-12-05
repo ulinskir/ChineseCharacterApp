@@ -185,6 +185,9 @@ public struct StrokePoint {
 	
 	- returns: a new StrokePoint
 	*/
+    public init(_ point:(Double,Double)) {
+        (self.x, self.y) = point
+    }
 	public init(x: Double, y: Double) {
 		self.x = x
 		self.y = y

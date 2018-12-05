@@ -14,13 +14,14 @@ typealias FoundStroke = (rightDirection:Bool, orderDrawn:Int, targetIndex: Int, 
 
 let srcEdges:Edges = (0,500,500,0)
 let destEdges:Edges = (0,335,335,0)
-let RESAMPLE_VAL = 64
-let RESAMPLING = false
+var RESAMPLE_VAL = 128
+var MAX_SOURCE_POINTS = 128
+let RESAMPLING_SOURCE = false
 let SIMPLE_ORDER_CHECK:Bool = true
 let COMPOUND_ORDER_CHECK:Bool = true
 let FIVE_LEVELS = true
 let REC_2 = false
-let MAX_DISTANCE:Double = 30
+let MAX_DISTANCE:Double = 70
 
 
 let instanceOfRecognizer = Recognizer()
@@ -45,6 +46,7 @@ func recog_ez(source:[Point], target:[Point]) -> (Bool,Bool) {
     return (false,false)
 }
 
+
 class Matcher {
     func get_hints(_ target:[String], destDimensions:Edges) -> [Point] {
         var hints:[Point] = []
@@ -54,12 +56,25 @@ class Matcher {
         }
         return hints
     }
+    func to_strokePoint(_ points:[Point]) -> [StrokePoint] {
+        let res = points.map({(pt:Point) -> StrokePoint in return StrokePoint(pt)})
+        return res
+        }
+    func from_strokePoint(_ points:[StrokePoint]) -> [Point] {
+        let res = points.map({(pt:StrokePoint) -> Point in return (pt.x,pt.y)})
+        return res
+    }
     func processSourcePoints(_ source:[Point]) -> [Point] {
-        if(!RESAMPLING) { return source }
-        return source
+        if(!(RESAMPLING_SOURCE && source.count > MAX_SOURCE_POINTS)) { return source }
+        print("resampling")
+        let source_prep = Resampler()
         
-//        let source_prep = Source_prep()
-//        return source_prep.resample(source, RESAMPLE_VAL)
+        var res = source_prep.resamplePoints(source, totalPoints: RESAMPLE_VAL)
+        if (res.last! != source.last!) {
+            res.append(source.last!)
+        }
+        print("resampled to ", res.count)
+        return res
     }
     
     func processTargetPoints(_ target:[String], destDimensions:Edges) -> [[Point]] {//,_ src_edges:Edges,_ dest_edges:Edges) -> [Point] {
@@ -170,10 +185,10 @@ class Matcher {
         var numPrevFoundStrokes = 0
         var errorStrokes:[Int] = []
         var foundStrokes:[FoundStroke] = []
-        if(target.count >= 4){
-            print("verticalstroke:", target[3])
-            print("numStrokes:", target[3].count)
-        }
+//        if(target.count >= 4){
+//            print("verticalstroke:", target[3])
+//            print("numStrokes:", target[3].count)
+//        }
         
 //        func is_in_order(j:Int) {
 //        }
@@ -191,6 +206,9 @@ class Matcher {
         for srcIndex in 0..<source.count {
             foundStroke = false
             if(numPrevFoundStrokes < remainingTargets.count) {
+                
+                //alternate recognition algo
+                //-----------------------------------------------------------------------------------------
                 if(REC_2){
                     var strokeFoundOpt: FoundStroke? = nil
                     for recog in targetRecognizers {
@@ -221,8 +239,8 @@ class Matcher {
                     
                     
                     
-                    
-                    
+                    //current recognition algo
+       //-----------------------------------------------------------------------------------------
                     
                     
                     
@@ -230,16 +248,34 @@ class Matcher {
                 for targetIndex in 0..<remainingTargets.count {
                     // maybe resample here
                     let currTarget = remainingTargets[targetIndex]
+                    let currSource = source[srcIndex]
                     
                     if(currTarget.completed){continue}
                     
-                    let curr = instanceOfRecognizer.recognize(source:processSourcePoints(source[srcIndex]), target:currTarget.points, offset:0)
+                    var curr = instanceOfRecognizer.recognize(source:processSourcePoints(currSource), target:currTarget.points, offset:0)
+                    print("srcLen", source[srcIndex].count)
+                    if source.count > 30 {
+                        let shortened = Array(source[srcIndex][5..<source.count-5])
                     
-                    if (curr.score != -Double.infinity && recog_ez(source: source[srcIndex], target:currTarget.points).0){
+                        let tooLong = instanceOfRecognizer.recognize(source:processSourcePoints(shortened), target:currTarget.points, offset:0)
+
+                        if(tooLong.score != -Double.infinity) {
+                            curr = tooLong
+                        }
+                    }
+                    
+                    if (curr.score != -Double.infinity){
+                        
+                        
+                        if(!recog_ez(source: source[srcIndex], target:currTarget.points).0){
+                            foundStrokes.append((curr.rightDirection, numPrevFoundStrokes, targetIndex, -1, -1.56))
+                            
+                        } else {
                         // If the stroke matches
                         
 //                        result.append((true, curr.rightDirection, srcIndex, j==0))
                         foundStrokes.append((curr.rightDirection, numPrevFoundStrokes, targetIndex, -1, 0))
+                        }
                         strokeInfoSimpleOrder[targetIndex] = ((0, true, curr.rightDirection, srcIndex==targetIndex))
 //                        foundStrokes[j] = result.last!
                         foundStroke = true
