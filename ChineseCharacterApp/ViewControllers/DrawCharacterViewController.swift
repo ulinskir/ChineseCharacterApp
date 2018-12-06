@@ -136,7 +136,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
 
         // save the result to the learning session
         typealias matcherResult = (targetScores: [StrokeResult], Errors: [Int])
-        let res:matcherResult = matcher.full_matcher(source:source, target:targetStrokePoints)
+        let res:matcherResult = matcher.full_matcher(src:source, target:targetStrokePoints)
         ls!.currentResult = res.targetScores
         
         
