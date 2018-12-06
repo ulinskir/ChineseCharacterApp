@@ -18,7 +18,7 @@ typealias Point = (x:Double, y:Double)
 
 let kAngleThreshold = Double.pi / 5
 let kDistanceThreshold = 120.0;
-let kLengthThreshold = 10.0
+let kLengthThreshold = 50.0
 
 // Number of segments you're actually allowed to skip
 let kMaxMissedSegments = 2;

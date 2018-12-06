@@ -82,11 +82,14 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             print("no char")
             return
         }
+        let dim = Double(self.drawingView.frame.width)
         if drawingView.strokes.count < char.points.count {
             // if there are still strokes to draw, display the hint
             // first scale the start point from a 295 pt view to the current view size
             let scaleFactor =  Double(self.drawingView.frame.width/295)
             let points = char.points[drawingView.strokes.count][0]
+//            let scale = SVGConverter().make_canvas_dimension_converter(from: (0,500,500,0), to: (0,dim,dim,0))
+//            drawingView.drawChar(stroke: char.strokes[1] , scale: scale)
             // then draw it on the screen
             self.drawPointOnCanvas(x: Double(points[0]) * scaleFactor, y:  Double(points[1]) * scaleFactor, view: masterDrawingView, point: imageView)
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {

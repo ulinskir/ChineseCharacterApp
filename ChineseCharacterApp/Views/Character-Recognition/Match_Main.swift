@@ -21,7 +21,6 @@ let SIMPLE_ORDER_CHECK:Bool = true
 let COMPOUND_ORDER_CHECK:Bool = true
 let FIVE_LEVELS = true
 let REC_2 = false
-let MAX_DISTANCE:Double = 130
 let transforming = true
 
 
@@ -32,8 +31,8 @@ func is_right_direction(source:[Point],target:[Point]) -> Bool {
         util.distance2(point1: source.first!, point2: target.last!) + util.distance2(point1:source.last!, point2:target.first!)
 }
 
-func recog_ez(source:[Point], target:[Point]) -> (Bool,Bool) {
-    let distance = MAX_DISTANCE * MAX_DISTANCE
+func recog_ez(source:[Point], target:[Point], distance MaxDist:Double) -> (Bool,Bool) {
+    let distance = MaxDist * MaxDist
     
     if(util.distance2(point1: source.first!, point2: target.first!) < distance
         && util.distance2(point1: source.last!, point2: target.last!) < distance) {
@@ -150,7 +149,7 @@ class Matcher {
             
             if (template != nil) {
                 let targetIndex = Int(template!.name)!
-                let (completed, direction) = recog_ez(source: sourcePt, target: targetPt[targetIndex])
+                let (completed, direction) = recog_ez(source: sourcePt, target: targetPt[targetIndex], distance: 50)
                 if(completed) {
                     return (direction, -1, targetIndex, -1, score: -distance!)
                 } else {
@@ -172,7 +171,8 @@ class Matcher {
     }
     
 // Target is a list of points, but source needs to be resampled maybe, but also IDK if resmpling is necessary
-    func full_matcher(src:[[Point]],target:[[Point]]) -> ([StrokeResult], [Int]) {
+    func full_matcher(src:[[Point]],target:[[Point]], screenSize:Double = 335) -> ([StrokeResult], [Int]) {
+        let maxDistance = screenSize / 3
         let targetList:[[Point]] = remove_consecutive_dupes(target: target)
         var source:[[Point]] = []
         for stroke in src {
@@ -283,20 +283,22 @@ class Matcher {
                     if (curr.score != -Double.infinity){
                         
                         
-                        if(!recog_ez(source: source[srcIndex], target:currTarget.points).0){
-                            foundStrokes.append((curr.rightDirection, numPrevFoundStrokes, targetIndex, -1, -1.56))
-                            
-                        } else {
+                        if(recog_ez(source: source[srcIndex], target:currTarget.points, distance: maxDistance).0){
+//                            foundStrokes.append((curr.rightDirection, numPrevFoundStrokes, targetIndex, -1, -1.56))
+//
+//                        } else {
                         // If the stroke matches
                         
 //                        result.append((true, curr.rightDirection, srcIndex, j==0))
                         foundStrokes.append((curr.rightDirection, numPrevFoundStrokes, targetIndex, -1, 0))
-                        }
+                        
                         strokeInfoSimpleOrder[targetIndex] = ((0, true, curr.rightDirection, srcIndex==targetIndex))
 //                        foundStrokes[j] = result.last!
                         foundStroke = true
                         remainingTargets[targetIndex].completed = true
                         numPrevFoundStrokes += 1
+                        }
+                        else{print("strokes", srcIndex, targetIndex, "found out of place")}
                     }
                     }
                 }
