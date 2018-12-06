@@ -335,6 +335,7 @@ extension StrokePoint {
 	*/
 	public static func pathLength(_ points: [StrokePoint]) -> Double {
 		var totalDistance:Double = 0.0
+        if(points.count < 2) {return 0}
 		for idx in 1..<points.count {
 			totalDistance += points[idx-1].distanceTo(points[idx])
 		}
@@ -618,7 +619,19 @@ extension StrokePoint {
 }
 
 public class Resampler {
-    func resample(_ points: [StrokePoint], totalPoints: Int) -> [StrokePoint] {
+    func resample(_ points: [StrokePoint], maxPoints: Int) -> [StrokePoint] {
+        var new:[StrokePoint] = []
+        if points.count < maxPoints {
+            return points
+        }
+        else {
+            for i in stride(from:0,to:points.count,by:(points.count/maxPoints + 1)) {
+                new.append(points[i])
+                }
+            return new
+        }
+    }
+    func resampleLegacy(_ points: [StrokePoint], totalPoints: Int) -> [StrokePoint] {
         var initialPoints = points
         let interval = StrokePoint.pathLength(initialPoints) / Double(totalPoints - 1)
         var totalLength: Double = 0.0
@@ -656,7 +669,7 @@ public class Resampler {
         for point in points {
             sp.append(StrokePoint(x:point.x,y:point.y))
         }
-        return resample(sp, totalPoints:totalPoints).map(
+        return resample(sp, maxPoints: totalPoints).map(
             {(sp:StrokePoint) -> Point in return (sp.x, sp.y)})
     }
 }
