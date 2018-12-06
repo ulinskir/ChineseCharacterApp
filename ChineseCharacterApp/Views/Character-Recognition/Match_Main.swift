@@ -21,7 +21,8 @@ let SIMPLE_ORDER_CHECK:Bool = true
 let COMPOUND_ORDER_CHECK:Bool = true
 let FIVE_LEVELS = true
 let REC_2 = false
-let MAX_DISTANCE:Double = 70
+let MAX_DISTANCE:Double = 130
+let transforming = true
 
 
 let instanceOfRecognizer = Recognizer()
@@ -256,10 +257,18 @@ class Matcher {
                     // maybe resample here
                     let currTarget = remainingTargets[targetIndex]
                     let currSource = source[srcIndex]
+                    let transformed = Transformer().transform(userStroke: currSource, targetStroke: currTarget.points)
+                    assert((transformed.first! == currTarget.points.first!), "transforming not working as intended")
                     
                     if(currTarget.completed){continue}
                     
                     var curr = instanceOfRecognizer.recognize(source:currSource, target:currTarget.points, offset:0)
+                    if(transforming && curr.score == -Double.infinity) {
+                        print("transforming")
+                        
+                        curr = instanceOfRecognizer.recognize(source:transformed,target:currTarget.points, offset:0)
+                    }
+                    
                     print("srcLen", source[srcIndex].count)
                     if source.count > 30 {
                         let shortened = Array(source[srcIndex][5..<source.count-5])
