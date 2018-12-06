@@ -28,7 +28,15 @@ private func - (a:Point, b:Point) -> Point {
 //    return atan2(diff.y, diff.x)
 //}
 
-func rotate(_ points: [Point], byRadians radians: Double) -> [Point] {
+func rotate(_ points: [Point], byRadians userRads: Double, minAngle: Double = Double.pi / 4) -> [Point] {
+    assert(minAngle < Double.pi, "Minimum Angle Too Large")
+    let maxAngle = 2 * Double.pi - minAngle
+    var radians = userRads
+    
+    // if the angle between the two strokes is larger than the threshhold
+    if userRads > minAngle && userRads < maxAngle {
+        radians = (userRads < Double.pi ? minAngle : maxAngle)
+    }
     let centroid:Point = (0.0,0.0)
     let cosvalue = cos(radians)
     let sinvalue = sin(radians)
@@ -56,14 +64,14 @@ class Transformer {
         return points.map {$0 - startPoint}
     }
     
-    func transform(userStroke:[Point], targetStroke:[Point]) -> [Point]{
+    func transform(userStroke:[Point], targetStroke:[Point], angleThreshhold:Double) -> [Point]{
         
         assert(userStroke.count >= 2 && targetStroke.count >= 2, "Source and target are too small")
         var source = moveStartPoints(userStroke)
         let dest = moveStartPoints(targetStroke)
         let theta = angleDiff(angle1: getAngle(median: source), angle2: getAngle(median: dest))
         
-        source = rotate(source, byRadians: theta).map {
+        source = rotate(source, byRadians: theta, minAngle: angleThreshhold).map {
             $0 + targetStroke.first!
         }
         

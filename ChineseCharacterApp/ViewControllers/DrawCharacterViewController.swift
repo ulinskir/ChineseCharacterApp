@@ -77,6 +77,8 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     //       out of order.
     //       Hint is only enabled on levels 1 and 2
     @IBAction func hintButtonTapped(_ sender: Any) {
+        let viewSvgData = false
+
         guard let char = ls!.getCurrentChar() else {
             // make sure there is a current character in the learning session
             print("no char")
@@ -88,9 +90,12 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             // first scale the start point from a 295 pt view to the current view size
             let scaleFactor =  Double(self.drawingView.frame.width/295)
             let points = char.points[drawingView.strokes.count][0]
-//            let scale = SVGConverter().make_canvas_dimension_converter(from: (0,500,500,0), to: (0,dim,dim,0))
-//            drawingView.drawChar(stroke: char.strokes[1] , scale: scale)
-            // then draw it on the screen
+            if(viewSvgData) {
+                for stroke in char.strokes {
+                    let scale = SVGConverter().make_canvas_dimension_converter(from: (0,500,500,0), to: (0,dim,dim,0))
+                    drawingView.drawChar(stroke: stroke , scale: scale)
+                }
+            }
             self.drawPointOnCanvas(x: Double(points[0]) * scaleFactor, y:  Double(points[1]) * scaleFactor, view: masterDrawingView, point: imageView)
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 // after 2 seconds remove it

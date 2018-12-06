@@ -22,7 +22,7 @@ let COMPOUND_ORDER_CHECK:Bool = true
 let FIVE_LEVELS = true
 let REC_2 = false
 let transforming = true
-
+let maxTransformAngle = Double.pi / 6
 
 let instanceOfRecognizer = Recognizer()
 
@@ -257,7 +257,7 @@ class Matcher {
                     // maybe resample here
                     let currTarget = remainingTargets[targetIndex]
                     let currSource = source[srcIndex]
-                    let transformed = Transformer().transform(userStroke: currSource, targetStroke: currTarget.points)
+                    let transformed = Transformer().transform(userStroke: currSource, targetStroke: currTarget.points, angleThreshhold: maxTransformAngle)
                     assert((transformed.first! == currTarget.points.first!), "transforming not working as intended")
                     
                     if(currTarget.completed){continue}
@@ -292,7 +292,7 @@ class Matcher {
 //                        result.append((true, curr.rightDirection, srcIndex, j==0))
                         foundStrokes.append((curr.rightDirection, numPrevFoundStrokes, targetIndex, -1, 0))
                         
-                        strokeInfoSimpleOrder[targetIndex] = ((0, true, curr.rightDirection, srcIndex==targetIndex))
+                        strokeInfoSimpleOrder[targetIndex] = ((curr.score, true, curr.rightDirection, srcIndex==targetIndex))
 //                        foundStrokes[j] = result.last!
                         foundStroke = true
                         remainingTargets[targetIndex].completed = true
