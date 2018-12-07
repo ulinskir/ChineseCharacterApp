@@ -39,6 +39,8 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     var searchTerm = [ChineseChar]()
     var module = Module()
     
+    //TO disable/enable selecting items after practicing
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         practiceSelectedButton.isEnabled = false
@@ -132,51 +134,53 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     // highlight it and add it to the selected characters list; if it is selected
     // unhighlight it and remove it from the list
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // get the selected cell
-        var cell = collectionView.cellForItem(at: indexPath) as! UICollectionViewCell
-        
-        //determine which dataSource to use
-        var usingData = searching ? searchTerm : Chars
-        
-        //get access to the character's labels to use for highlighting
-        let Charlabel = cell.viewWithTag(1) as! UILabel
-        let Deflabel = cell.viewWithTag(2) as! UILabel
-        
-        //If character is already selected, deselected it; else, select it
-        if module.chineseChars.contains(where: {$0.char == usingData[indexPath.row].char}){
-            cell.backgroundColor = UIColor.white
-            Charlabel.textColor = UIColor.black
-            Deflabel.textColor = UIColor.black
-             
-            module.chineseChars.removeAll(where: {$0.char == usingData[indexPath.row].char})
-        } else {
-            cell.backgroundColor = UIColor(red:0.54, green:0.07, blue:0.00, alpha:1.0)
-            Charlabel.textColor = UIColor.white
-            Deflabel.textColor = UIColor.white
+        if practiceLevelView.isHidden == true {
+            // get the selected cell
+            var cell = collectionView.cellForItem(at: indexPath) as! UICollectionViewCell
             
-            module.chineseChars.append(usingData[indexPath.row])
-        }
-        
-        print("MODULE: [")
-        for ch in module.chineseChars{
-            print(ch.char + " : " + ch.definition)
-        }
-        print("]")
-        
-        if module.chineseChars.count > 0 {
-            saveButton.isEnabled = true
-            practiceSelectedButton.isEnabled = true
-            saveButton.backgroundColor = UIColor.groupTableViewBackground
-            saveButton.setTitleColor(UIColor(red:0.54, green:0.07, blue:0.00, alpha:1.0), for: .normal)
-            practiceSelectedButton.backgroundColor = UIColor.groupTableViewBackground
-            practiceSelectedButton.setTitleColor(UIColor(red:0.54, green:0.07, blue:0.00, alpha:1.0), for: .normal)
-        } else {
-            saveButton.isEnabled = false
-            practiceSelectedButton.isEnabled = false
-            saveButton.backgroundColor = UIColor.darkGray
-            saveButton.setTitleColor(UIColor.black, for: .disabled)
-            practiceSelectedButton.backgroundColor = UIColor.darkGray
-            practiceSelectedButton.setTitleColor(UIColor.black, for: .disabled)
+            //determine which dataSource to use
+            var usingData = searching ? searchTerm : Chars
+            
+            //get access to the character's labels to use for highlighting
+            let Charlabel = cell.viewWithTag(1) as! UILabel
+            let Deflabel = cell.viewWithTag(2) as! UILabel
+            
+            //If character is already selected, deselected it; else, select it
+            if module.chineseChars.contains(where: {$0.char == usingData[indexPath.row].char}){
+                cell.backgroundColor = UIColor.white
+                Charlabel.textColor = UIColor.black
+                Deflabel.textColor = UIColor.black
+                
+                module.chineseChars.removeAll(where: {$0.char == usingData[indexPath.row].char})
+            } else {
+                cell.backgroundColor = UIColor(red:0.54, green:0.07, blue:0.00, alpha:1.0)
+                Charlabel.textColor = UIColor.white
+                Deflabel.textColor = UIColor.white
+                
+                module.chineseChars.append(usingData[indexPath.row])
+            }
+            
+            print("MODULE: [")
+            for ch in module.chineseChars{
+                print(ch.char + " : " + ch.definition)
+            }
+            print("]")
+            
+            if module.chineseChars.count > 0 {
+                saveButton.isEnabled = true
+                practiceSelectedButton.isEnabled = true
+                saveButton.backgroundColor = UIColor.groupTableViewBackground
+                saveButton.setTitleColor(UIColor(red:0.54, green:0.07, blue:0.00, alpha:1.0), for: .normal)
+                practiceSelectedButton.backgroundColor = UIColor.groupTableViewBackground
+                practiceSelectedButton.setTitleColor(UIColor(red:0.54, green:0.07, blue:0.00, alpha:1.0), for: .normal)
+            } else {
+                saveButton.isEnabled = false
+                practiceSelectedButton.isEnabled = false
+                saveButton.backgroundColor = UIColor.darkGray
+                saveButton.setTitleColor(UIColor.black, for: .disabled)
+                practiceSelectedButton.backgroundColor = UIColor.darkGray
+                practiceSelectedButton.setTitleColor(UIColor.black, for: .disabled)
+            }
         }
     }
     
