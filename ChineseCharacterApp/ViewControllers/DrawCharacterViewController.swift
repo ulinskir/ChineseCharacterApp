@@ -85,10 +85,15 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         if drawingView.strokes.count < char.points.count {
             // if there are still strokes to draw, display the hint
             // first scale the start point from a 295 pt view to the current view size
-            let scaleFactor =  Double(self.drawingView.frame.width/295)
-            let points = char.points[drawingView.strokes.count][0]
+            
+            //let scaleFactor =  Double(self.drawingView.frame.width/295)
+            //let points = char.points[drawingView.strokes.count][0]
+            let matcher = Matcher()
+            let dim = Double(self.drawingView.frame.width)
+            let points = matcher.get_hints(char.strokes, destDimensions: (north: 0, south: dim, east: 0, west: dim))[drawingView.strokes.count]
             // then draw it on the screen
-            self.drawPointOnCanvas(x: Double(points[0]) * scaleFactor, y:  Double(points[1]) * scaleFactor, view: masterDrawingView, point: imageView)
+            self.drawPointOnCanvas(x: Double(points.x), y:  Double(points.y), view: masterDrawingView, point: imageView)
+            //self.drawPointOnCanvas(x: Double(points[0]) * scaleFactor, y:  Double(points[1]) * scaleFactor, view: masterDrawingView, point: imageView)
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 // after 2 seconds remove it
                 self.imageView.removeFromSuperview()
@@ -154,7 +159,6 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         
         // Set up and load the check character popup
         checkUserChar()
-        
     }
     
 //------------------------------ USER CHECKING INTERACTION BUTTONS -----------------------------//
@@ -228,6 +232,8 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         drawingView.clearCanvas()
         checkViewPopup.isHidden = false
         textFeedbackStack.isHidden = false
+        strokeComparisonCollectionView.reloadData()
+        
     }
     
     // Draws a red bullseye with size 1/16th of the drawing view at a given point
@@ -377,7 +383,8 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         if self.imageView.isDescendant(of: masterDrawingView) {
             self.imageView.removeFromSuperview()
         }
-        textFeedbackStack.isHidden = false
+        drawingView.clearCanvas()
+        textFeedbackStack.isHidden = true
         let rowNumber = indexPath.row
         guard let char = ls!.getCurrentChar()
             else {
@@ -385,14 +392,16 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
                 return
         }
         
-        let sourceGfx = drawingView.getPoints().map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
+        let currPoints:[[Point]] = ls!.currentPoints!
+        let sourceGfx = currPoints.map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
         if rowNumber < sourceGfx.count {
             print("drawing line at" )
             print(rowNumber)
-            drawingView.drawUserStroke(stroke: sourceGfx[rowNumber])
+            for i in 0...rowNumber {
+                drawingView.drawUserStroke(stroke: sourceGfx[i])
+                // drawingView.strokes.append(UIBezierPath(CGPath(currPoints[i])))
+            }
         }
-        
-
 
         let scaleFactor =  Double(self.drawingView.frame.width/295)
         let points = char.points[rowNumber][0]

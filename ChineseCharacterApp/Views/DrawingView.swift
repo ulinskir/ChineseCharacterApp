@@ -61,6 +61,7 @@ class DrawingView: UIView {
          
          drawShapeLayer()
     }
+    
     func drawUserStroke(stroke:[CGPoint]){
         assert(stroke.count > 1, "single point 'stroke' passed to DrawUserStroke")
         path.move(to:stroke[0])
@@ -77,10 +78,10 @@ class DrawingView: UIView {
         drawShapeLayer()
 }
     
-    func drawShapeLayer() {
+    func drawShapeLayer(color: UIColor = .black) {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = path.cgPath
-        shapeLayer.strokeColor = lineColor.cgColor
+        shapeLayer.strokeColor = color.cgColor
         shapeLayer.lineWidth = lineWidth
         shapeLayer.fillColor = UIColor.clear.cgColor
         self.layer.addSublayer(shapeLayer)
@@ -91,11 +92,12 @@ class DrawingView: UIView {
         if (strokes != []) {
             strokes[strokes.count - 1].removeAllPoints()
             //self.layer.sublayers?.remove(at: layer.sublayers!.count - 1)
-            self.layer.sublayers = nil
-            self.setNeedsDisplay()
-            stroke_number = 0
-            strokes = []
+
         }
+        self.layer.sublayers = nil
+        self.setNeedsDisplay()
+        stroke_number = 0
+        strokes = []
         points = []
     }
     
