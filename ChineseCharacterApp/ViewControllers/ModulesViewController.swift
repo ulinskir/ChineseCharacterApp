@@ -15,6 +15,7 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
     //data
     var modules: [Module] = []
     
+    
     //Top bar objects
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var modulesTitleLabel: UILabel!
