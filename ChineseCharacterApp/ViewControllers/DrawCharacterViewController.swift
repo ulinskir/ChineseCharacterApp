@@ -361,18 +361,21 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         }
 
         
-        let dim = cell.frame.height
+        let dim = (cell.frame.height)
         cell.strokeView.layer.borderWidth = 1
         cell.strokeView.layer.borderColor = UIColor.black.cgColor
         //cell.strokeView.frame = CGRect(x: 0, y:0, width: dim, height: dim)
-        let scaleFactor =  Double(dim/295)
+        //let scaleFactor =  Double(dim/295)
         
 
         cell.strokeLabel.font = cell.strokeLabel.font.withSize(dim)
         cell.strokeLabel.text = String(char.char)
-        let points = char.points[rowNumber][0]
-        let x = Double(points[0]) * scaleFactor
-        let y = Double(points[1]) * scaleFactor
+        let matcher = Matcher()
+        let points = matcher.get_hints(char.strokes, destDimensions: (north: 0, south: Double(dim), east: 0, west: Double(dim)))[rowNumber]
+        
+        //let points = char.points[rowNumber][0]
+        let x = Double(points.x)
+        let y = Double(points.y)
         drawPointOnCanvas(x: x, y: y, view: cell.strokeView, point: cell.strokeDot)
         return cell
     }
@@ -400,10 +403,13 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
                 // drawingView.strokes.append(UIBezierPath(CGPath(currPoints[i])))
             }
         }
+        let dim = self.drawingView.frame.width
+        let matcher = Matcher()
+        let points = matcher.get_hints(char.strokes, destDimensions: (north: 0, south: Double(dim), east: 0, west: Double(dim)))[rowNumber]
 
-        let scaleFactor =  Double(self.drawingView.frame.width/295)
-        let points = char.points[rowNumber][0]
-        self.drawPointOnCanvas(x: Double(points[0]) * scaleFactor, y:  Double(points[1]) * scaleFactor, view: masterDrawingView, point: imageView)
+        //let scaleFactor =  Double(self.drawingView.frame.width/295)
+        //let points = char.points[rowNumber][0]
+        self.drawPointOnCanvas(x: Double(points.x), y:  Double(points.y), view: masterDrawingView, point: imageView)
     }
     
     // When exit button is tapped, display popup to make sure the user wants to
