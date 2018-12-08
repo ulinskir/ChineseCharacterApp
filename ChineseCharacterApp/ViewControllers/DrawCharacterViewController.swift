@@ -82,7 +82,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             print("no char")
             return
         }
-        if drawingView.strokes.count < char.points.count {
+        if drawingView.strokes.count < char.strokes.count {
             // if there are still strokes to draw, display the hint
             // first scale the start point from a 295 pt view to the current view size
             
@@ -329,8 +329,8 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
 
     // for each stroke the user drew, create a box in the collection view
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(ls!.getCurrentChar()!.points.count)
-        return max(drawingView.strokes.count,  ls!.getCurrentChar()!.points.count)
+        print(ls!.getCurrentChar()!.strokes.count)
+        return max(drawingView.strokes.count,  ls!.getCurrentChar()!.strokes.count)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
