@@ -8,6 +8,10 @@
 
 import Foundation
 import UIKit
+
+let WITHOUTANGLE = false
+let WITHOUTDISTANCE = false
+let WITHOUTLENGTH = false
 //import
 //typealias StrokePoint =
 
@@ -17,8 +21,8 @@ typealias Result = (score:Double, source:(Point,Point)?, target: (Point,Point)?,
 typealias Point = (x:Double, y:Double)
 
 let kAngleThreshold = Double.pi / 5
-let kDistanceThreshold = 120.0;
-let kLengthThreshold = 50.0
+let kDistanceThreshold = 50.0;
+let kLengthThreshold = 30.0
 
 // Number of segments you're actually allowed to skip
 let kMaxMissedSegments = 2;
@@ -251,7 +255,8 @@ func scorePairing (source: [Point], target: [Point], is_initial_segment: Bool) -
 //    print("sourceMidpoint: ", sourceMidpoint, "targetMidpoint", targetMidpoint)
     
     // If angle or distance or length are beyond the threshold, returns -infinity
-    if (angle > (is_initial_segment ? 1 : 2) * kAngleThreshold || length > kLengthThreshold || distance > kDistanceThreshold){
+    
+    if !WITHOUTANGLE && (angle > (is_initial_segment ? 1 : 2) * kAngleThreshold || !WITHOUTLENGTH && length > kLengthThreshold || !WITHOUTDISTANCE && distance > kDistanceThreshold){
 //        ){// length > kLengthThreshold) {
 //        print("failed_scorePairing")
         return -Double.infinity;

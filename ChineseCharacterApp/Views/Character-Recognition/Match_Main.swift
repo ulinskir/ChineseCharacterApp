@@ -66,14 +66,15 @@ class Matcher {
     }
     func processSourcePoints(_ source:[Point]) -> [Point] {
         if(!(RESAMPLING_SOURCE && source.count > MAX_SOURCE_POINTS)) { return source }
-        print("resampling")
+//        print("resampling")
         let source_prep = Resampler()
+        print("Resampled for some fucking reason")
         
         var res = source_prep.resamplePoints(source, totalPoints: RESAMPLE_VAL)
         if (res.last! != source.last!) {
             res.append(source.last!)
         }
-        print("resampled to ", res.count)
+//        print("resampled to ", res.count)
         return res
     }
     
@@ -86,7 +87,6 @@ class Matcher {
         for i in 0..<target.count {
             points.append(bezierPointsInstance.get_points(from: target[i], scale: scaleFn))
         }
-//        print(points[0])
         return points
     }
     func get_level(results:[StrokeResult]) -> Int {
@@ -172,17 +172,17 @@ class Matcher {
     
 // Target is a list of points, but source needs to be resampled maybe, but also IDK if resmpling is necessary
     func full_matcher(src:[[Point]],target:[[Point]], screenSize:Double = 335) -> ([StrokeResult], [Int]) {
+        
         let maxDistance = screenSize / 5
         let targetList:[[Point]] = remove_consecutive_dupes(target: target)
         var source:[[Point]] = []
+        
         for stroke in src {
             if (stroke.count > 3) {
                 source.append(processSourcePoints(stroke))
             }
         }
-        
-        
-        var strokeInfo:[(StrokeResult)] = []
+        var strokeInfo:[StrokeResult] = []
         var strokeInfoSimpleOrder:[StrokeResult] = []
 
         typealias remTarg = (points:[Point], completed:Bool)
@@ -190,27 +190,26 @@ class Matcher {
         var remainingTargets:[remTarg] = targetList.map({(a:[Point]) -> remTarg in return (a, false)})
         var foundStroke = false
         var numPrevFoundStrokes = 0
+        
+        // strokes the user drew that didn't match anything
         var errorStrokes:[Int] = []
+        
+        // Strokes that were found.
         var foundStrokes:[FoundStroke] = []
-        
-//        if(target.count >= 4){
-//            print("verticalstroke:", target[3])
-//            print("numStrokes:", target[3].count)
-//        }
-        
-//        func is_in_order(j:Int) {
-//        }
+
         let make_strpoint = {(a:Point) -> StrokePoint in return StrokePoint(x: a.x, y: a.y)}
 
         var targetRecognizers: [SwiftUnistrokeTemplate] = []
         for i in 0..<targetList.count {
+            
+            // Set up results.
             strokeInfo.append((-Double.infinity,false,false,false))
             strokeInfoSimpleOrder.append((-Double.infinity,false,false,false))
             targetRecognizers.append(SwiftUnistrokeTemplate(name:String(i), points: targetList[i].map(make_strpoint)))
             
         }
         
-//        let srcRecog = source.map({(points: [Point]) -> SwiftUnistroke in return SwiftUnistroke(points.map(make_strpoint))})
+
         for srcIndex in 0..<source.count {
             foundStroke = false
             if(numPrevFoundStrokes < remainingTargets.count) {
@@ -228,7 +227,7 @@ class Matcher {
                     
                     var curr = instanceOfRecognizer.recognize(source:currSource, target:currTarget.points, offset:0)
                     if(transforming && curr.score == -Double.infinity) {
-                        print("transforming")
+//                        print("transforming")
                         
                         curr = instanceOfRecognizer.recognize(source:transformed,target:currTarget.points, offset:0)
                     }

@@ -112,6 +112,48 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         return stroke.map({(z:Point) -> CGPoint in return CGPoint(x:CGFloat(z.x),y:CGFloat(z.y))})
     }
     
+    func feedbackString(results:[StrokeResult], level:Int) -> String {
+        var result = ""
+        
+        for i in 0..<results.count {
+            let curr = results[i]
+            var good = true
+            var thisLine = "Stroke " + String(i+1) + ": "
+            if(!curr.completed) {
+                thisLine += "not recognized"
+            } else {
+                if(!curr.rightDirection) {
+                    thisLine +=  "wrong direction"
+                    good = false
+                    
+                    if(!curr.rightOrder) {
+                        thisLine += "; wrong order"
+                    }
+                }
+                else if(!curr.rightOrder) {
+                    good = false
+                    thisLine += "wrong order"
+                }
+                if(good) {
+                    thisLine += "correct"
+                }
+            }
+            result += thisLine + "\n"
+        }
+        result += "\n"
+        switch level {
+        case 0: result += "Great job!"
+        case 1: result += "Stroke(s) drawn in the wrong direction"
+        case 2: result += "Strokes drawn out of order"
+        case 3: result += "Strokes drawn out of order and in wrong direction"
+        case 4: result += "Stroke(s) not recognized"
+        case 5: result += "Wrong number of strokes"
+        default: result += "Whoops! Undefined level"
+            
+        }
+        return result
+    }
+    
     // When the character has been submitted by the user,
     //  - send the matcher the screen dimensions and use it to check the user's char against the
     //    correct char
@@ -127,30 +169,46 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         let targetStrokePoints = matcher.processTargetPoints(targetSvgs, destDimensions:currScreenDimensions)
         //insert target here?????
         let source = drawingView.getPoints()
-      
-        var errorLevel = 0
         
         
         ls!.currentPoints = drawingView.getPoints()
-        print(ls!.currentPoints)
+//        print(ls!.currentPoints)
+      
         
-        print("drawing points")
+        
 
+        
         // save the result to the learning session
-        typealias matcherResult = (targetScores: [StrokeResult], Errors: [Int])
+        typealias matcherResult = (targetScores: [StrokeResult], errorStrokes: [Int])
         let res:matcherResult = matcher.full_matcher(src:source, target:targetStrokePoints)
         ls!.currentResult = res.targetScores
         
-        
-        
-        print(ls!.currentResult)
-        
-        if(source.count != targetSvgs.count) {
-            errorLevel = 5
-        } else {
-            errorLevel = matcher.get_level(results: res.targetScores)
+        var errorLevel = matcher.get_level(results: res.targetScores)
+                if(source.count != targetSvgs.count) {
+                    errorLevel = 5
         }
+       
+
         print("error level", errorLevel)
+        var scoreDetails = feedbackString(results: res.targetScores, level:errorLevel)
+        if(errorLevel == 4) {
+            for errorStroke in res.errorStrokes {
+                let len = source[errorStroke].count
+                if (len < 50 || len > 120) {
+                    scoreDetails += "\n\n Stroke " + String(errorStroke + 1) + " may have been drawn too " + (len<50 ? "quickly." : "slowly.")
+                }
+                }
+        }
+        
+        
+        //        print("drawing points")
+        let alert:UIAlertController = UIAlertController(title:"Score", message:scoreDetails, preferredStyle: .alert)
+        let dismissScore:UIAlertAction = UIAlertAction(title:"OK", style: .cancel)
+        alert.addAction(dismissScore)
+        self.present(alert, animated:false)
+
+        print(ls!.currentResult!)
+        
         
         // Set up and load the check character popup
         checkUserChar()
@@ -227,7 +285,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         //displayCharInView()
         drawingView.clearCanvas()
         checkViewPopup.isHidden = false
-        textFeedbackStack.isHidden = false
+//        textFeedbackStack.isHidden = false
     }
     
     // Draws a red bullseye with size 1/16th of the drawing view at a given point
@@ -347,12 +405,12 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
 
 //        let sourceGfx = drawingView.getPoints().map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
         print(ls!.currentPoints)
-        print("poitns")
+//        print("poitns")
         
         if ls!.currentPoints != nil {
             let currPoints:[[Point]] = ls!.currentPoints!
             let sourceGfx = currPoints.map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
-            print(rowNumber, sourceGfx.count)
+//            print(rowNumber, sourceGfx.count)
 
         }
 

@@ -635,6 +635,9 @@ public class Resampler {
         }
     }
     func resampleLegacy(_ points: [StrokePoint], totalPoints: Int) -> [StrokePoint] {
+        if points.count < totalPoints {
+            return points
+        }
         var initialPoints = points
         let interval = StrokePoint.pathLength(initialPoints) / Double(totalPoints - 1)
         var totalLength: Double = 0.0
@@ -653,7 +656,8 @@ public class Resampler {
                 
                 newPoints.append(q)
                 initialPoints.insert(q, at: i)
-                totalLength = distanceTo(initialPoints[i-1], (qx, qy))
+                let(point1, point2) = ((initialPoints[i-1].x,initialPoints[i-1].y),(qx,qy))
+                totalLength = sqrt(util.distance2(point1:point1,point2:point2))
                 
             } else {
                 
@@ -661,12 +665,21 @@ public class Resampler {
                 
             }
         }
+        print("new points count", newPoints.count, "total points count", totalPoints)
         if newPoints.count == totalPoints-1 {
             newPoints.append(points.last!)
         }
         return newPoints
     }
-
+    func resamplePointsLegacy(_ points: [Point], totalPoints:Int = 64) -> [Point] {
+        var sp:[StrokePoint] = []
+        for point in points {
+            sp.append(StrokePoint(x:point.x,y:point.y))
+        }
+        
+        
+        return resampleLegacy(sp, totalPoints: totalPoints).map({($0.x, $0.y)})
+    }
     func resamplePoints(_ points: [Point], totalPoints:Int = 64) -> [Point] {
         var sp:[StrokePoint] = []
         for point in points {
