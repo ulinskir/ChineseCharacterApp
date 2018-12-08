@@ -154,7 +154,7 @@ public class bezierPoints {
         }
         
         if(resampling) {p = Resampler().resamplePoints(p, totalPoints:NUM_CURVE_POINTS)}
-        print(p.count)
+        //print(p.count)
         return p
     }
 }

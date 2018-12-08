@@ -41,7 +41,6 @@
 		58EC0C6A2156B7EB00F9D1E6 /* ChineseCharacterAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC0C692156B7EB00F9D1E6 /* ChineseCharacterAppTests.swift */; };
 		58EC0C752156B7EB00F9D1E6 /* ChineseCharacterAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC0C742156B7EB00F9D1E6 /* ChineseCharacterAppUITests.swift */; };
 		58F352752194AF4100137A0E /* DynamicFontSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F352742194AF4100137A0E /* DynamicFontSizeExtension.swift */; };
-		58F352772194D38D00137A0E /* LessonFinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F352762194D38D00137A0E /* LessonFinishedViewController.swift */; };
 		58FAF4E521650C690029E876 /* ChineseChar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FAF4E421650C690029E876 /* ChineseChar.swift */; };
 		58FAF4E7216511290029E876 /* ModuleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FAF4E6216511290029E876 /* ModuleDetailsViewController.swift */; };
 		92420D8D21B0888800D2D2CC /* dictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = 92420D8C21B0888800D2D2CC /* dictionary.json */; };
@@ -108,7 +107,6 @@
 		58EC0C742156B7EB00F9D1E6 /* ChineseCharacterAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChineseCharacterAppUITests.swift; sourceTree = "<group>"; };
 		58EC0C762156B7EB00F9D1E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58F352742194AF4100137A0E /* DynamicFontSizeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFontSizeExtension.swift; sourceTree = "<group>"; };
-		58F352762194D38D00137A0E /* LessonFinishedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonFinishedViewController.swift; sourceTree = "<group>"; };
 		58FAF4E421650C690029E876 /* ChineseChar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChineseChar.swift; sourceTree = "<group>"; };
 		58FAF4E6216511290029E876 /* ModuleDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleDetailsViewController.swift; sourceTree = "<group>"; };
 		92420D8C21B0888800D2D2CC /* dictionary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = dictionary.json; sourceTree = "<group>"; };
@@ -197,7 +195,6 @@
 		58B3BCC0215AB6730049A8E5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				58F352762194D38D00137A0E /* LessonFinishedViewController.swift */,
 				58FAF4E6216511290029E876 /* ModuleDetailsViewController.swift */,
 				58656488216487F90019C39C /* SettingsTableViewController.swift */,
 				58EC0C562156B7EA00F9D1E6 /* HomeViewController.swift */,
@@ -408,7 +405,6 @@
 				92FEFC072184CA6B0011EBD4 /* ChineseCharacterAppModel.xcdatamodeld in Sources */,
 				184A431921B7611700A66CFA /* Recognize2.swift in Sources */,
 				58FAF4E521650C690029E876 /* ChineseChar.swift in Sources */,
-				58F352772194D38D00137A0E /* LessonFinishedViewController.swift in Sources */,
 				581494C2216DA9E3000DC3B5 /* CreateModuleViewController.swift in Sources */,
 				58B3BCC4215ABB220049A8E5 /* ColorScheme.swift in Sources */,
 				581494BE216D7F27000DC3B5 /* CharacterInModuleTableViewCell.swift in Sources */,

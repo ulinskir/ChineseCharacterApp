@@ -49,7 +49,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     var level = 1                   // The level to practice on, defaults to 1
     
     var imageView = UIImageView(image: UIImage(named: "hintPoint"))    // used to diplay hint dots
-    
+    var imageViewBlack = UIImageView(image: UIImage(named: "hintPointBlack"))
     
     @IBOutlet weak var checkViewPopup: UIView!  // a popup window that allows the usesr to navigate
                                                 // their results on a character
@@ -79,10 +79,9 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     @IBAction func hintButtonTapped(_ sender: Any) {
         guard let char = ls!.getCurrentChar() else {
             // make sure there is a current character in the learning session
-            print("no char")
             return
         }
-        if drawingView.strokes.count < char.points.count {
+        if drawingView.strokes.count < char.strokes.count {
             // if there are still strokes to draw, display the hint
             // first scale the start point from a 295 pt view to the current view size
             
@@ -114,7 +113,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     //    correct char
     //  - load the check char popup
     @IBAction func submitButtonTapped(_ sender: Any) {
-        let testing_resampler = true
+        /*let testing_resampler = true
         
         // Set up and run the matcher
         let dim = Double(self.drawingView.frame.width) // get the size of the drawing view
@@ -134,19 +133,11 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         var errorLevel = 0
         
         
-        ls!.currentPoints = drawingView.getPoints()
-        print(ls!.currentPoints)
-        
-        print("drawing points")
-
+ 
         // save the result to the learning session
         typealias matcherResult = (targetScores: [StrokeResult], Errors: [Int])
         let res:matcherResult = matcher.full_matcher(src:source, target:targetStrokePoints)
         ls!.currentResult = res.targetScores
-        
-        
-        
-        print(ls!.currentResult)
         
         if(source.count != targetSvgs.count) {
             errorLevel = 5
@@ -154,7 +145,8 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             errorLevel = matcher.get_level(results: res.targetScores)
         }
         print("error level", errorLevel)
-        
+ */
+        ls!.currentPoints = drawingView.getPoints()
         // Set up and load the check character popup
         checkUserChar()
     }
@@ -226,7 +218,8 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         } else {
             continueCheckViewButton.setTitle("Continue", for: .normal)
         }
-        //displayCharInView()
+        //disable drawing on canvas
+        drawingView.enableUserDrawing = false
         hideCharInView()
         drawingView.clearCanvas()
         checkViewPopup.isHidden = false
@@ -248,6 +241,8 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             // if there is no char do nothing
             return
         }
+        // allow the user to draw on the canvas
+        drawingView.enableUserDrawing = true
         // if there is still a hint dot displayed, remove it
         if self.imageView.isDescendant(of: masterDrawingView) {
             self.imageView.removeFromSuperview()
@@ -270,7 +265,9 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             setLabelsInTop2(char: char)
             hintButton.isEnabled = false
         default:
-            print("error: undefined level")
+            // Default to level 1, display entire character in the background of the drawing view
+            setLabelsInTop2(char: char)
+            displayCharInView()
         }
     }
     
@@ -329,8 +326,10 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
 
     // for each stroke the user drew, create a box in the collection view
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(ls!.getCurrentChar()!.points.count)
-        return max(drawingView.strokes.count,  ls!.getCurrentChar()!.points.count)
+        guard let points = ls!.currentPoints else {
+            return ls!.getCurrentChar()!.strokes.count
+        }
+        return max(points.count,  ls!.getCurrentChar()!.strokes.count)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -344,34 +343,36 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "strokeCell", for: indexPath) as! StrokeCollectionViewCell
         // Check to make sure there is a char
         guard let char = ls!.getCurrentChar() else {
-            print("no char")
+            return cell
+        }
+        
+        guard let currUserPoints = ls!.currentPoints else {
             return cell
         }
         
         let rowNumber : Int = indexPath.row
-
-        print(ls!.currentPoints)
-        print("poitns")
         
-        if ls!.currentPoints != nil {
-            let currPoints:[[Point]] = ls!.currentPoints!
-            let sourceGfx = currPoints.map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
-            print(rowNumber, sourceGfx.count)
+        let matcher = Matcher()
+        let dim = (cell.frame.height)
+        //let sourceGfx = currUserPoints.map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
+        if (rowNumber < char.strokes.count) {
+            cell.strokeDot.isHidden = false
+            let points = matcher.get_hints(char.strokes, destDimensions: (north: 0, south: Double(dim), east: 0, west: Double(dim)))[rowNumber]
+            //let points = char.points[rowNumber][0]
+            let x = Double(points.x)
+            let y = Double(points.y)
+            drawPointOnCanvas(x: x, y: y, view: cell.strokeView, point: cell.strokeDot)
+        } else {
+            cell.strokeDot.isHidden = true
         }
         
-        let dim = (cell.frame.height)
         cell.strokeView.layer.borderWidth = 1
         cell.strokeView.layer.borderColor = UIColor.black.cgColor
 
         cell.strokeLabel.font = cell.strokeLabel.font.withSize(dim)
         cell.strokeLabel.text = String(char.char)
-        let matcher = Matcher()
-        let points = matcher.get_hints(char.strokes, destDimensions: (north: 0, south: Double(dim), east: 0, west: Double(dim)))[rowNumber]
         
-        //let points = char.points[rowNumber][0]
-        let x = Double(points.x)
-        let y = Double(points.y)
-        drawPointOnCanvas(x: x, y: y, view: cell.strokeView, point: cell.strokeDot)
+
         return cell
     }
     
@@ -379,37 +380,49 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         if self.imageView.isDescendant(of: masterDrawingView) {
             self.imageView.removeFromSuperview()
         }
+        //self.drawingView.layer.sublayers?.removeAll()
         displayCharInView()
         textFeedbackStack.isHidden = true
         let rowNumber = indexPath.row
         guard let char = ls!.getCurrentChar()
             else {
-                print("no char")
                 return
         }
         drawingView.clearCanvas()
+        drawStroke(rowNumber, withCorrect: true, highlighted: true)
+        var i = 0
+        while i < rowNumber {
+            drawStroke(i)
+            i += 1
+        }
+        // Draw correct start point
+        if rowNumber < char.strokes.count {
+            let dim = self.drawingView.frame.width
+            let matcher = Matcher()
+            let points = matcher.get_hints(char.strokes, destDimensions: (north: 0, south: Double(dim), east: 0, west: Double(dim)))[rowNumber]
+            self.drawPointOnCanvas(x: Double(points.x), y:  Double(points.y), view: masterDrawingView, point: imageView)
+        }
+       
+    }
+    
+    func drawStroke(_ num: Int, withCorrect: Bool = false, highlighted: Bool = false) {
+        let char = ls!.getCurrentChar()!
+        if withCorrect && num < char.strokes.count {
+            let dim = self.drawingView.frame.width
+            let lineWidth = max(CGFloat(dim/14 - 10), 12)
+            print("drawing correct stroke " + String(num))
+            drawingView.drawChar(stroke:char.strokes[num], scale: SVGConverter().make_canvas_dimension_converter(from: (0,500,500,0), to: (0,Double(dim),Double(dim),0)), width: lineWidth )
+        }
+        var color = UIColor.black
+        if highlighted {
+            color = UIColor(red:0.54, green:0.07, blue:0.00, alpha:1.0)
+        }
         let currPoints:[[Point]] = ls!.currentPoints!
         let sourceGfx = currPoints.map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
-        if rowNumber < sourceGfx.count {
-            print("drawing line at" )
-            print(rowNumber)
-            //if rowNumber > 0 {
-                //for i in 0...(rowNumber - 1) {
-                    //drawingView.drawUserStroke(stroke: sourceGfx[i])
-                    // drawingView.strokes.append(UIBezierPath(CGPath(currPoints[i])))
-                //}
-            //}
-            drawingView.drawUserStroke(stroke: sourceGfx[rowNumber], color: .red)
+        if num < sourceGfx.count  {
+            print("drawing user stroke " + String(num))
+            drawingView.drawUserStroke(stroke: sourceGfx[num], color: color)
         }
-        let dim = self.drawingView.frame.width
-        //let correctStroke = UIBezierPath(svgPath: char.strokes[rowNumber], scale: dim)
-        
-        // Draw correct start point
-        
-        
-        let matcher = Matcher()
-        let points = matcher.get_hints(char.strokes, destDimensions: (north: 0, south: Double(dim), east: 0, west: Double(dim)))[rowNumber]
-        self.drawPointOnCanvas(x: Double(points.x), y:  Double(points.y), view: masterDrawingView, point: imageView)
     }
     
     // When exit button is tapped, display popup to make sure the user wants to
@@ -422,7 +435,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         }
         let noAction:UIAlertAction = UIAlertAction(title:"No", style: .cancel)
         { (_:UIAlertAction) in
-            print("No")
+            
         }
         alert.addAction(yesAction)
         alert.addAction(noAction)

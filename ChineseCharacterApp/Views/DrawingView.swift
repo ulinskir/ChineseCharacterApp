@@ -19,6 +19,7 @@ class DrawingView: UIView {
     var points:[[Point]] = []
     var strokes = [UIBezierPath]()
     var stroke_number = 0
+    var enableUserDrawing = true
     
     override func layoutSubviews() {
         self.clipsToBounds = true
@@ -29,18 +30,21 @@ class DrawingView: UIView {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        strokes.append(path)
-        path = UIBezierPath()
-        stroke_number += 1
-        print("ENDED")
+        if enableUserDrawing {
+            strokes.append(path)
+            path = UIBezierPath()
+            stroke_number += 1
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first
-        startingPoint = touch?.location(in: self)
-        path = UIBezierPath()
-        path.move(to: startingPoint)
-        points.append([])
+        if enableUserDrawing {
+            let touch = touches.first
+            startingPoint = touch?.location(in: self)
+            path = UIBezierPath()
+            path.move(to: startingPoint)
+            points.append([])
+        }
     }
     
     
@@ -50,20 +54,22 @@ class DrawingView: UIView {
         
         path.move(to: startingPoint)
         points.append([])*/
-        
-         let touch = touches.first
-         touchPoint = touch?.location(in: self)
-         
-         
-         path.addLine(to: touchPoint)
-         points[points.count - 1].append((Double(touchPoint.x), Double(touchPoint.y)))
-         startingPoint = touchPoint
-         
-         drawShapeLayer()
+        if enableUserDrawing {
+            let touch = touches.first
+            touchPoint = touch?.location(in: self)
+            
+            
+            path.addLine(to: touchPoint)
+            points[points.count - 1].append((Double(touchPoint.x), Double(touchPoint.y)))
+            startingPoint = touchPoint
+            
+            drawShapeLayer()
+        }  
     }
     
     func drawUserStroke(stroke:[CGPoint], color: UIColor = .black){
         assert(stroke.count > 1, "single point 'stroke' passed to DrawUserStroke")
+        path = UIBezierPath()
         path.move(to:stroke[0])
         for st in stroke[1...] {
             path.addLine(to:st)
@@ -72,19 +78,20 @@ class DrawingView: UIView {
     }
 
     
-    func drawChar(stroke:String, scale:@escaping (Point) -> Point) {
+    func drawChar(stroke:String, scale:@escaping (Point) -> Point, width: CGFloat = 0) {
         func scale2 (x:Point) -> Point {return x}
         path = UIBezierPath(svgPath: stroke, scale: scale)
-        drawShapeLayer()
+        drawShapeLayer(color: .darkGray, width: width)
 }
     
-    func drawShapeLayer(color: UIColor = .black) {
+    func drawShapeLayer(color: UIColor = .black, width: CGFloat = 0) {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = path.cgPath
         shapeLayer.strokeColor = color.cgColor
-        shapeLayer.lineWidth = lineWidth
+        shapeLayer.lineWidth = lineWidth + width
         shapeLayer.fillColor = UIColor.clear.cgColor
         self.layer.addSublayer(shapeLayer)
+        print("stroke drawn")
         self.setNeedsDisplay()
     }
     
@@ -94,9 +101,6 @@ class DrawingView: UIView {
             //self.layer.sublayers?.remove(at: layer.sublayers!.count - 1)
 
         }
-        //self.layer.sublayers?.removeAll()
-        //[self.layer.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)]
-
         self.layer.sublayers = nil
         self.setNeedsDisplay()
         stroke_number = 0
