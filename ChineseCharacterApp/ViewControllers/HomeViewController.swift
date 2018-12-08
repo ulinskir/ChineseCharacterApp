@@ -53,14 +53,13 @@ class HomeViewController: UIViewController {
                 guard let charDict = char as? [String: Any] else {return nil}
                 guard let definition = charDict["definition"] as? String else {print("Missing Def"); return nil}
                 guard let hanzi = charDict["character"] as? String else {print("Missing Char"); return nil}
-                guard let pts = charDict["points"] as? [[[Int]]] else {print("Missing Points"); return nil}
                 guard let pinyin = charDict["pinyin"] as? [String] else {print("Missing Pinyin"); return nil}
                 guard let decomposition = charDict["decomposition"] as? String else {print("Missing Decomposition"); return nil}
                 guard let radical = charDict["radical"] as? String else {print("Missing Radical"); return nil}
                 guard let strokes = charDict["strokes"] as? [String] else {print("Missing Strokes"); return nil}
                 
                 
-                let curChar = ChineseChar(character: hanzi, pts: pts, def: definition, pin: pinyin, decomp: decomposition, rad: radical, strks: strokes)
+                let curChar = ChineseChar(character: hanzi, def: definition, pin: pinyin, decomp: decomposition, rad: radical, strks: strokes)
                 Chars.append(curChar)
             }
             

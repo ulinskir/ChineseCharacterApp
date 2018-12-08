@@ -99,7 +99,6 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
                 guard let charDict = char as? [String: Any] else {return}
                 guard let definition = charDict["definition"] as? String else {print("Missing Def"); return}
                 guard let hanzi = charDict["character"] as? String else {print("Missing Char"); return}
-                guard let pts = charDict["points"] as? [[[Int]]] else {print("Missing Points"); return}
                 guard let pinyin = charDict["pinyin"] as? [String] else {print("Missing Pinyin"); return}
                 guard let decomposition = charDict["decomposition"] as? String else {print("Missing Decomposition"); return}
                 guard let radical = charDict["radical"] as? String else {print("Missing Radical"); return}
@@ -107,7 +106,7 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
                 
                 
                 print("GOT PTS")
-                let curChar = ChineseChar(character: hanzi, pts: pts, def: definition, pin: pinyin, decomp: decomposition, rad: radical, strks: strokes)
+                let curChar = ChineseChar(character: hanzi, def: definition, pin: pinyin, decomp: decomposition, rad: radical, strks: strokes)
                 Chars.append(curChar)
             }
             
