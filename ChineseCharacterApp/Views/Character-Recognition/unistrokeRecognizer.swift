@@ -653,7 +653,7 @@ public class Resampler {
                 
                 newPoints.append(q)
                 initialPoints.insert(q, at: i)
-                totalLength = 0.0
+                totalLength = distanceTo(initialPoints[i-1], (qx, qy))
                 
             } else {
                 
