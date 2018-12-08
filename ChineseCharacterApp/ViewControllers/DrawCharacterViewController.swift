@@ -97,7 +97,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 // after 2 seconds remove it
                 self.imageView.removeFromSuperview()
-                }
+            }
         }
     }
     
@@ -227,6 +227,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             continueCheckViewButton.setTitle("Continue", for: .normal)
         }
         //displayCharInView()
+        hideCharInView()
         drawingView.clearCanvas()
         checkViewPopup.isHidden = false
         textFeedbackStack.isHidden = false
@@ -349,7 +350,6 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         
         let rowNumber : Int = indexPath.row
 
-//        let sourceGfx = drawingView.getPoints().map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
         print(ls!.currentPoints)
         print("poitns")
         
@@ -357,16 +357,11 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             let currPoints:[[Point]] = ls!.currentPoints!
             let sourceGfx = currPoints.map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
             print(rowNumber, sourceGfx.count)
-
         }
-
         
         let dim = (cell.frame.height)
         cell.strokeView.layer.borderWidth = 1
         cell.strokeView.layer.borderColor = UIColor.black.cgColor
-        //cell.strokeView.frame = CGRect(x: 0, y:0, width: dim, height: dim)
-        //let scaleFactor =  Double(dim/295)
-        
 
         cell.strokeLabel.font = cell.strokeLabel.font.withSize(dim)
         cell.strokeLabel.text = String(char.char)
@@ -384,7 +379,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         if self.imageView.isDescendant(of: masterDrawingView) {
             self.imageView.removeFromSuperview()
         }
-        drawingView.clearCanvas()
+        displayCharInView()
         textFeedbackStack.isHidden = true
         let rowNumber = indexPath.row
         guard let char = ls!.getCurrentChar()
@@ -392,23 +387,28 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
                 print("no char")
                 return
         }
-        
+        drawingView.clearCanvas()
         let currPoints:[[Point]] = ls!.currentPoints!
         let sourceGfx = currPoints.map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
         if rowNumber < sourceGfx.count {
             print("drawing line at" )
             print(rowNumber)
-            for i in 0...rowNumber {
-                drawingView.drawUserStroke(stroke: sourceGfx[i])
-                // drawingView.strokes.append(UIBezierPath(CGPath(currPoints[i])))
-            }
+            //if rowNumber > 0 {
+                //for i in 0...(rowNumber - 1) {
+                    //drawingView.drawUserStroke(stroke: sourceGfx[i])
+                    // drawingView.strokes.append(UIBezierPath(CGPath(currPoints[i])))
+                //}
+            //}
+            drawingView.drawUserStroke(stroke: sourceGfx[rowNumber], color: .red)
         }
         let dim = self.drawingView.frame.width
+        //let correctStroke = UIBezierPath(svgPath: char.strokes[rowNumber], scale: dim)
+        
+        // Draw correct start point
+        
+        
         let matcher = Matcher()
         let points = matcher.get_hints(char.strokes, destDimensions: (north: 0, south: Double(dim), east: 0, west: Double(dim)))[rowNumber]
-
-        //let scaleFactor =  Double(self.drawingView.frame.width/295)
-        //let points = char.points[rowNumber][0]
         self.drawPointOnCanvas(x: Double(points.x), y:  Double(points.y), view: masterDrawingView, point: imageView)
     }
     
