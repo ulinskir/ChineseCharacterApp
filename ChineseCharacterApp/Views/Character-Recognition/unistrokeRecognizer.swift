@@ -628,6 +628,9 @@ public class Resampler {
             for i in stride(from:0,to:points.count,by:(points.count/maxPoints + 1)) {
                 new.append(points[i])
                 }
+            if(new.last!.x != points.last!.x || new.last!.y != points.last!.y) {
+                new.append(points.last!)
+            }
             return new
         }
     }
