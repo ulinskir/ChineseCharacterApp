@@ -181,6 +181,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         ls = LearningSesion(charsToPractice: module!.chineseChars,level: level)
+        ls!.charsToPractice.shuffle()
         topView1.isHidden = true
         topView2.isHidden = true
         checkViewPopup.isHidden = true
