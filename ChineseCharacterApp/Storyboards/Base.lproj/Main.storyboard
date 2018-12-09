@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,10 +21,10 @@
                                 <rect key="frame" x="30" y="94" width="354" height="728"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qlj-Ns-k0Z">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="420.66666666666669"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="411.33333333333331"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" placeholderIntrinsicWidth="73" placeholderIntrinsicHeight="50" text="" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8CW-Rl-0tQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="354" height="124.66666666666667"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="354" height="111.33333333333333"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="2d5-Tq-dl9"/>
                                                 </constraints>
@@ -36,7 +36,7 @@
                                                 </variation>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="汉字" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tt9-yA-QiO">
-                                                <rect key="frame" x="0.0" y="124.66666666666666" width="354" height="93"/>
+                                                <rect key="frame" x="0.0" y="111.33333333333334" width="354" height="93"/>
                                                 <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="81"/>
                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -45,16 +45,16 @@
                                                 </variation>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Hanzi" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IRN-aP-T5n">
-                                                <rect key="frame" x="0.0" y="217.66666666666669" width="354" height="78"/>
-                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="68"/>
+                                                <rect key="frame" x="0.0" y="204.33333333333331" width="354" height="95.333333333333314"/>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="68"/>
                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
-                                                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="110"/>
+                                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="110"/>
                                                 </variation>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" placeholderIntrinsicWidth="73" placeholderIntrinsicHeight="50" text="" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmH-Qj-Rxc">
-                                                <rect key="frame" x="0.0" y="295.66666666666669" width="354" height="125"/>
+                                                <rect key="frame" x="0.0" y="299.66666666666669" width="354" height="111.66666666666669"/>
                                                 <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="51"/>
                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -68,43 +68,43 @@
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUH-tc-4zB" customClass="HomeViewButton" customModule="ChineseCharacterApp">
-                                        <rect key="frame" x="0.0" y="437.66666666666663" width="354" height="85.333333333333371"/>
+                                        <rect key="frame" x="0.0" y="428.33333333333337" width="354" height="88.666666666666629"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <rect key="contentStretch" x="0.0" y="0.0" width="0.90000000000000002" height="1"/>
-                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="32"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="32"/>
                                         <state key="normal" title="Browse">
                                             <color key="titleColor" red="0.65098039215686276" green="0.062745098039215685" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="50"/>
+                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="50"/>
                                         </variation>
                                         <connections>
                                             <segue destination="8Rv-Bi-lHb" kind="show" id="E9S-4Q-PWA"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTE-dn-bBi" customClass="HomeViewButton" customModule="ChineseCharacterApp">
-                                        <rect key="frame" x="0.0" y="540" width="354" height="85.666666666666629"/>
+                                        <rect key="frame" x="0.0" y="534" width="354" height="88.333333333333371"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="32"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="32"/>
                                         <state key="normal" title="Modules">
                                             <color key="titleColor" red="0.66003458810000004" green="0.04804273262" blue="0.10386177839999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="50"/>
+                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="50"/>
                                         </variation>
                                         <connections>
                                             <segue destination="jic-dd-Lb1" kind="show" id="Oyv-M6-exy"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A00-sC-hoO" customClass="HomeViewButton" customModule="ChineseCharacterApp">
-                                        <rect key="frame" x="0.0" y="642.66666666666663" width="354" height="85.333333333333371"/>
+                                        <rect key="frame" x="0.0" y="639.33333333333337" width="354" height="88.666666666666629"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="32"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="32"/>
                                         <state key="normal" title="Quick Start">
                                             <color key="titleColor" red="0.66003458810000004" green="0.04804273262" blue="0.10386177839999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="50"/>
+                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="50"/>
                                         </variation>
                                         <connections>
                                             <segue destination="SGK-gC-YUj" kind="show" id="fQs-EV-8Cn"/>
@@ -221,11 +221,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="75"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDQ-1C-tBn">
-                                                <rect key="frame" x="0.0" y="20" width="35" height="35"/>
+                                                <rect key="frame" x="0.0" y="21.666666666666671" width="32" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="tDQ-1C-tBn" secondAttribute="height" multiplier="1:1" id="aEW-lG-239"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                                                 <state key="normal" title="╳">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -235,7 +235,7 @@
                                                 </connections>
                                             </button>
                                             <progressView opaque="NO" contentMode="center" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fkl-ta-TYs">
-                                                <rect key="frame" x="45" y="32.666666666666671" width="329" height="10"/>
+                                                <rect key="frame" x="42" y="32.666666666666671" width="332" height="10"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="10" id="Due-bv-3bs"/>
                                                 </constraints>
@@ -254,17 +254,17 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="168"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GKh-JP-gER">
-                                                        <rect key="frame" x="112.33333333333336" y="0.0" width="149.66666666666663" height="85.333333333333329"/>
+                                                        <rect key="frame" x="103.66666666666669" y="0.0" width="167" height="85.333333333333329"/>
                                                         <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="50"/>
+                                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="50"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="pinyin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JkE-Th-0to">
-                                                        <rect key="frame" x="135.33333333333334" y="95.333333333333343" width="103.66666666666666" height="72.666666666666657"/>
+                                                        <rect key="frame" x="131.33333333333334" y="95.333333333333343" width="111.33333333333334" height="72.666666666666657"/>
                                                         <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="41"/>
+                                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="41"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -281,7 +281,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="cS9-Cx-WXn" secondAttribute="height" multiplier="1:1" id="Q7e-Bn-yTO"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -291,7 +291,7 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MLK-yO-Tem">
                                                                 <rect key="frame" x="0.0" y="0.0" width="226" height="85.333333333333329"/>
                                                                 <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="41"/>
+                                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="41"/>
                                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -299,7 +299,7 @@
                                                                 <rect key="frame" x="0.0" y="95.333333333333343" width="226" height="72.666666666666657"/>
                                                                 <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="31"/>
+                                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="31"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -336,29 +336,29 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check your work" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yx8-tk-wM8">
                                                         <rect key="frame" x="0.0" y="0.0" width="337" height="114.33333333333333"/>
-                                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="26"/>
+                                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="26"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="heightClass=regular-widthClass=regular">
-                                                            <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="60"/>
+                                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="60"/>
                                                         </variation>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Then select whether you got it right or wrong" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V66-SP-Bo6">
                                                         <rect key="frame" x="0.0" y="114.3333333333333" width="337" height="142.66666666666663"/>
-                                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="18"/>
+                                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="heightClass=regular-widthClass=regular">
-                                                            <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="60"/>
+                                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="60"/>
                                                         </variation>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click through the boxes below to see your results" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h67-4K-m0U">
                                                         <rect key="frame" x="0.0" y="257" width="337" height="80"/>
-                                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="heightClass=regular-widthClass=regular">
-                                                            <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="35"/>
+                                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="35"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -403,7 +403,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOG-0M-qHB">
                                                         <rect key="frame" x="0.0" y="0.0" width="177" height="59.333333333333336"/>
                                                         <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="18"/>
+                                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="18"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Hint">
                                                             <color key="titleColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -418,7 +418,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2KJ-VO-5g2">
                                                         <rect key="frame" x="197" y="0.0" width="177" height="59.333333333333336"/>
                                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="18"/>
+                                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="18"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Clear">
                                                             <color key="titleColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -432,7 +432,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HpH-JT-OCo">
                                                 <rect key="frame" x="0.0" y="79.333333333333371" width="374" height="88.666666666666686"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="24"/>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="24"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Check">
                                                     <color key="titleColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -483,13 +483,17 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dp3-vc-a7r" customClass="ShapeView" customModule="ChineseCharacterApp" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaM-2t-mIh">
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                                                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yv2-RJ-LJy" customClass="ShapeView" customModule="ChineseCharacterApp" customModuleProvider="target"/>
+                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yv2-RJ-LJy" customClass="ShapeView" customModule="ChineseCharacterApp" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                        </view>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
@@ -525,7 +529,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="suA-F6-66u">
                                                 <rect key="frame" x="0.0" y="89" width="374" height="79"/>
                                                 <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="40"/>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="40"/>
                                                 <state key="normal" title="Continue">
                                                     <color key="titleColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -554,12 +558,12 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpY-dM-zU8">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.39584225169999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="36"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="36"/>
                                 <state key="normal" title="Tap To Start">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="70"/>
+                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="70"/>
                                 </variation>
                                 <connections>
                                     <action selector="startLesson:" destination="SGK-gC-YUj" eventType="touchUpInside" id="nBm-7q-V7p"/>
@@ -640,59 +644,36 @@
                                                     <segue destination="BYZ-38-t0r" kind="show" id="bpR-eK-p4I"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6s9-g6-HYl">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Modules" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6s9-g6-HYl">
                                                 <rect key="frame" x="50" y="0.0" width="205" height="75"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <color key="tintColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="6s9-g6-HYl" secondAttribute="height" multiplier="41:15" id="1tX-Te-Zbe"/>
                                                 </constraints>
-                                                <attributedString key="attributedText">
-                                                    <fragment content="Modules">
-                                                        <attributes>
-                                                            <color key="NSColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="31" name="Baskerville"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="clipping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="31"/>
+                                                <color key="textColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kXU-QX-xUQ">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXU-QX-xUQ">
                                                 <rect key="frame" x="255" y="0.0" width="95" height="75"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="kXU-QX-xUQ" secondAttribute="height" multiplier="19:15" id="yEj-kz-gQA"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="18"/>
                                                 <color key="tintColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="Search">
-                                                            <attributes>
-                                                                <font key="NSFont" size="18" name="Baskerville"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                </state>
+                                                <state key="normal" title="Search"/>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CAi-5E-afy">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CAi-5E-afy">
                                                 <rect key="frame" x="350" y="0.0" width="64" height="75"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="CAi-5E-afy" secondAttribute="height" multiplier="13:25" id="5cq-bL-bjs"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="18"/>
                                                 <color key="tintColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="...">
-                                                            <attributes>
-                                                                <font key="NSFont" size="18" name="Baskerville"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                </state>
+                                                <state key="normal" title="..."/>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -714,12 +695,12 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Module Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="SPW-WA-aaZ">
-                                                            <rect key="frame" x="23.333333333333329" y="18" width="193.33333333333337" height="72.666666666666671"/>
-                                                            <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="33"/>
+                                                            <rect key="frame" x="53.333333333333329" y="18" width="212.33333333333337" height="72.666666666666671"/>
+                                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="33"/>
                                                             <color key="textColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                             <variation key="heightClass=regular-widthClass=regular">
-                                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="60"/>
+                                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="60"/>
                                                             </variation>
                                                         </label>
                                                     </subviews>
@@ -759,7 +740,7 @@
                                     <constraint firstAttribute="width" secondItem="dba-WM-hzj" secondAttribute="height" multiplier="1:1" id="YJD-NK-nRi"/>
                                     <constraint firstAttribute="height" constant="45" id="cPY-My-1mZ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                                 <state key="normal" title="+">
                                     <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 </state>
@@ -820,35 +801,21 @@
                                                     <segue destination="jic-dd-Lb1" kind="show" id="Gb1-Vw-imE"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fI-14-EAG">
-                                                <rect key="frame" x="50" y="0.0" width="259.66666666666669" height="75"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Module" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fI-14-EAG">
+                                                <rect key="frame" x="50" y="0.0" width="267" height="75"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <color key="tintColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <attributedString key="attributedText">
-                                                    <fragment content="Module">
-                                                        <attributes>
-                                                            <color key="NSColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="32" name="Baskerville"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="clipping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="32"/>
+                                                <color key="textColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wFV-nv-chk">
-                                                <rect key="frame" x="309.66666666666669" y="0.0" width="104.33333333333331" height="75"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wFV-nv-chk">
+                                                <rect key="frame" x="317" y="0.0" width="97" height="75"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                <fontDescription key="fontDescription" name="AppleColorEmoji" family="Apple Color Emoji" pointSize="18"/>
                                                 <color key="tintColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="🗑️">
-                                                            <attributes>
-                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" size="18" name="AppleColorEmoji"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
+                                                <state key="normal" title="🗑️">
+                                                    <color key="titleColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 </state>
                                                 <connections>
                                                     <segue destination="jic-dd-Lb1" kind="show" identifier="ModulesView" id="BCo-1M-AOZ"/>
@@ -860,23 +827,23 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0x-Lj-oIr">
-                                        <rect key="frame" x="112.66666666666669" y="76.000000000000014" width="189" height="158.33333333333337"/>
-                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="64"/>
+                                        <rect key="frame" x="114.33333333333333" y="76.000000000000014" width="185.33333333333337" height="158.33333333333337"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="64"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="100"/>
+                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="100"/>
                                         </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTn-PN-F63">
                                         <rect key="frame" x="100" y="235.33333333333331" width="214" height="53"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="23"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="23"/>
                                         <state key="normal" title="Practice Module">
                                             <color key="titleColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="40"/>
+                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="40"/>
                                         </variation>
                                         <connections>
                                             <action selector="practiceLevelPopup:" destination="Agy-ah-BZl" eventType="touchUpInside" id="n34-OT-tHF"/>
@@ -891,11 +858,11 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Characters:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGF-Xz-FpQ">
                                         <rect key="frame" x="0.0" y="310.33333333333331" width="414" height="31.666666666666686"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="19"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="19"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="30"/>
+                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="30"/>
                                         </variation>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JOt-01-gMc">
@@ -910,45 +877,45 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="BRF-5Q-LX2">
-                                                            <rect key="frame" x="0.0" y="8" width="312" height="145.66666666666666"/>
+                                                            <rect key="frame" x="0.0" y="8" width="406" height="161.66666666666666"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFT-f7-nfx">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="145.66666666666666" height="145.66666666666666"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="161.66666666666666" height="161.66666666666666"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="QFT-f7-nfx" secondAttribute="height" multiplier="1:1" id="J5S-Gd-5cl"/>
                                                                         <constraint firstAttribute="width" constant="100" id="eva-V8-m32">
                                                                             <variation key="heightClass=regular-widthClass=regular" constant="200"/>
                                                                         </constraint>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="64"/>
+                                                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="64"/>
                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <variation key="heightClass=regular-widthClass=regular">
-                                                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="120"/>
+                                                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="120"/>
                                                                     </variation>
                                                                 </label>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fVR-WD-xMs">
-                                                                    <rect key="frame" x="178.66666666666663" y="-12.333333333333329" width="133.33333333333337" height="158"/>
+                                                                    <rect key="frame" x="194.66666666666663" y="3.6666666666666714" width="211.33333333333337" height="158"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="ma2-vD-ho8">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="133.33333333333334" height="79"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="211.33333333333334" height="79"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="79" id="cqR-qG-kQ5"/>
                                                                             </constraints>
-                                                                            <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="17"/>
+                                                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                             <variation key="heightClass=regular-widthClass=regular">
-                                                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="40"/>
+                                                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="40"/>
                                                                             </variation>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="XUY-k5-ctS">
-                                                                            <rect key="frame" x="0.0" y="79" width="133.33333333333334" height="79"/>
-                                                                            <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="17"/>
+                                                                            <rect key="frame" x="0.0" y="79" width="211.33333333333334" height="79"/>
+                                                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                             <variation key="heightClass=regular-widthClass=regular">
-                                                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="40"/>
+                                                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="40"/>
                                                                             </variation>
                                                                         </label>
                                                                     </subviews>
@@ -1011,11 +978,11 @@
                                                 <variation key="heightClass=regular-widthClass=regular" constant="60"/>
                                             </constraint>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="30"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="60"/>
+                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="60"/>
                                         </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzb-y4-Kmv">
@@ -1029,7 +996,7 @@
                                                 <variation key="heightClass=regular-widthClass=regular" constant="274"/>
                                             </constraint>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="23"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="23"/>
                                         <state key="normal" title="Level 1">
                                             <color key="titleColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -1042,7 +1009,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eo4-t8-6Xk">
                                         <rect key="frame" x="56.999999999999986" y="148" width="137" height="48"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="23"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="23"/>
                                         <state key="normal" title="Level 2">
                                             <color key="titleColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -1054,7 +1021,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KkQ-bl-SJ1">
                                         <rect key="frame" x="56.999999999999986" y="224" width="137" height="48"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="23"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="23"/>
                                         <state key="normal" title="Level 3">
                                             <color key="titleColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -1182,10 +1149,10 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4Se-Nx-5kV">
-                                                            <rect key="frame" x="10" y="10.000000000000007" width="300" height="119.66666666666669"/>
+                                                            <rect key="frame" x="10" y="10.000000000000007" width="394" height="119.66666666666669"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label:     " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryY-wo-YJ8">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="394" height="60"/>
                                                                     <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="24"/>
                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -1194,7 +1161,7 @@
                                                                     </variation>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sT-Vu-gyw">
-                                                                    <rect key="frame" x="0.0" y="60" width="300" height="59.666666666666657"/>
+                                                                    <rect key="frame" x="0.0" y="60" width="394" height="59.666666666666657"/>
                                                                     <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="24"/>
                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -1283,19 +1250,12 @@
                                                     <segue destination="BYZ-38-t0r" kind="show" id="Hak-Or-E2q"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xca-SR-bL5">
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Browse Characters" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xca-SR-bL5">
                                                 <rect key="frame" x="50" y="0.0" width="364" height="75"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <color key="tintColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <attributedString key="attributedText">
-                                                    <fragment content="Browse Characters">
-                                                        <attributes>
-                                                            <color key="NSColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="32" name="Baskerville"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="clipping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="32"/>
+                                                <color key="textColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -1334,7 +1294,7 @@
                                                             <rect key="frame" x="40" y="-13" width="83" height="83"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Char" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="emS-0n-hKP">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="78.666666666666671" height="78.666666666666671"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="77.666666666666671" height="77.666666666666671"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="emS-0n-hKP" secondAttribute="height" multiplier="1:1" id="8QY-9r-O6r"/>
                                                                     </constraints>
@@ -1346,12 +1306,12 @@
                                                                     </variation>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="def" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HsZ-cp-CJL">
-                                                                    <rect key="frame" x="29" y="78.666666666666671" width="21" height="157.33333333333331"/>
-                                                                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="17"/>
+                                                                    <rect key="frame" x="26" y="77.666666666666671" width="26" height="155.33333333333331"/>
+                                                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <variation key="heightClass=regular-widthClass=regular">
-                                                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="30"/>
+                                                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="30"/>
                                                                     </variation>
                                                                 </label>
                                                             </subviews>
@@ -1385,12 +1345,12 @@
                                                         <variation key="heightClass=regular-widthClass=regular" constant="250"/>
                                                     </constraint>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="15"/>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
                                                 <state key="normal" title="Practice Selected">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <variation key="heightClass=regular-widthClass=regular">
-                                                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="30"/>
+                                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="30"/>
                                                 </variation>
                                                 <connections>
                                                     <action selector="practiceLevelPopup:" destination="8Rv-Bi-lHb" eventType="touchUpInside" id="vs0-9S-sLc"/>
@@ -1399,16 +1359,15 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8P4-mm-uD6">
                                                 <rect key="frame" x="200" y="10" width="125" height="50"/>
                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="15"/>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
                                                 <state key="normal" title="Save as Module">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <variation key="heightClass=regular-widthClass=regular">
-                                                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="30"/>
+                                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="30"/>
                                                 </variation>
                                                 <connections>
-                                                    <action selector="saveButtonTapped:" destination="8Rv-Bi-lHb" eventType="touchUpInside" id="znY-9V-0x2"/>
-                                                    <segue destination="Tfy-da-csh" kind="show" id="4Fz-Xz-ddx"/>
+                                                    <action selector="saveButtonTapped:" destination="8Rv-Bi-lHb" eventType="touchUpInside" id="ncC-lO-aaO"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1433,14 +1392,14 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g53-ZM-mTj">
-                                <rect key="frame" x="81.666666666666686" y="302.66666666666669" width="251" height="291.00000000000006"/>
+                                <rect key="frame" x="81.666666666666686" y="299.66666666666669" width="251" height="297.00000000000006"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Practice Level" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="PrW-CG-56q">
                                         <rect key="frame" x="30" y="24" width="190" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="A9h-fR-9rB"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="30"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1451,7 +1410,7 @@
                                             <constraint firstAttribute="height" constant="48" id="3uo-8o-XUe"/>
                                             <constraint firstAttribute="width" constant="137" id="3xd-qL-18E"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="23"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="23"/>
                                         <state key="normal" title="Level 1">
                                             <color key="titleColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -1468,7 +1427,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="xvx-Ro-cDX"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="23"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="23"/>
                                         <state key="normal" title="Level 2">
                                             <color key="titleColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -1481,7 +1440,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uG-F9-mTo">
                                         <rect key="frame" x="57" y="224" width="137" height="48"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="23"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="23"/>
                                         <state key="normal" title="Level 3">
                                             <color key="titleColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -1510,6 +1469,67 @@
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="Eiw-hN-w78"/>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z9R-qc-frQ" userLabel="Save Module">
+                                <rect key="frame" x="81" y="353" width="251" height="189"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name of Module:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EC4-Tp-0i3">
+                                        <rect key="frame" x="8" y="66" width="136" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zrd-xX-eR7">
+                                        <rect key="frame" x="8" y="98" width="235" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YmP-gF-dcA" customClass="HomeViewButton" customModule="ChineseCharacterApp">
+                                        <rect key="frame" x="132" y="136" width="96" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
+                                        <state key="normal" title="Save">
+                                            <color key="titleColor" red="0.66003458810000004" green="0.04804273262" blue="0.10386177839999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="saveModuleButtonTapped:" destination="8Rv-Bi-lHb" eventType="touchUpInside" id="LDg-2n-tHx"/>
+                                            <segue destination="Agy-ah-BZl" kind="show" identifier="saveModule" id="zKy-Yp-0Ug"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Save Module" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxQ-Up-sdD">
+                                        <rect key="frame" x="37" y="8" width="179" height="42"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0P-NK-kyG" customClass="HomeViewButton" customModule="ChineseCharacterApp">
+                                        <rect key="frame" x="21" y="136" width="96" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" red="0.66003458810000004" green="0.04804273262" blue="0.10386177839999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="cancelModuleButtonTapped:" destination="8Rv-Bi-lHb" eventType="touchUpInside" id="Qn2-sQ-tkl"/>
+                                            <action selector="saveModuleButtonTapped:" destination="8Rv-Bi-lHb" eventType="touchUpInside" id="82K-G6-13J"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <viewLayoutGuide key="safeArea" id="PTc-9Y-XiG"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
@@ -1524,12 +1544,16 @@
                     </view>
                     <connections>
                         <outlet property="browseCollectionView" destination="4N7-ME-SxF" id="2hv-p3-5fm"/>
+                        <outlet property="cancelModuleButton" destination="f0P-NK-kyG" id="cOn-dR-KIK"/>
                         <outlet property="levelOne" destination="mqH-rS-w0d" id="MV8-Yd-eBL"/>
                         <outlet property="levelThree" destination="0uG-F9-mTo" id="Di5-pz-g3e"/>
                         <outlet property="levelTwo" destination="nuX-Hu-BvM" id="8gu-jh-Ezv"/>
+                        <outlet property="newModuleName" destination="zrd-xX-eR7" id="TVK-jG-Ubn"/>
                         <outlet property="practiceLevelView" destination="g53-ZM-mTj" id="nG8-ch-hhf"/>
                         <outlet property="practiceSelectedButton" destination="NhB-Gm-Ve8" id="dHf-Pg-ync"/>
-                        <outlet property="saveButton" destination="8P4-mm-uD6" id="1vs-PX-aXV"/>
+                        <outlet property="saveButton" destination="8P4-mm-uD6" id="Nft-7N-099"/>
+                        <outlet property="saveModuleButton" destination="YmP-gF-dcA" id="gby-gT-BXk"/>
+                        <outlet property="saveModuleView" destination="z9R-qc-frQ" id="AzM-IX-DQb"/>
                         <outlet property="searchBar" destination="gQr-9e-1sg" id="4OU-7q-Mov"/>
                     </connections>
                 </viewController>
@@ -1546,7 +1570,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Qnw-rx-vQ3">
-                                <rect key="frame" x="0.0" y="44" width="414" height="684.33333333333337"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="697.66666666666663"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="W9e-cf-hqq" userLabel="top bar">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
@@ -1565,19 +1589,12 @@
                                                     <segue destination="jic-dd-Lb1" kind="show" identifier="CreateCancel" id="Pkk-On-Vok"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="js8-GR-NII">
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Module" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="js8-GR-NII">
                                                 <rect key="frame" x="50" y="0.0" width="364" height="75"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <color key="tintColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <attributedString key="attributedText">
-                                                    <fragment content="Create Module">
-                                                        <attributes>
-                                                            <color key="NSColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="32" name="Baskerville"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="clipping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="32"/>
+                                                <color key="textColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -1586,89 +1603,89 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2ka-ZJ-U3s">
-                                        <rect key="frame" x="20" y="95" width="374" height="85.666666666666686"/>
+                                        <rect key="frame" x="20" y="95" width="374" height="90"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cza-nC-LAt">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="19.666666666666668"/>
-                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="24"/>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
-                                                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="30"/>
+                                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="30"/>
                                                 </variation>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Module Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ev-dt-GIr">
-                                                <rect key="frame" x="0.0" y="19.666666666666657" width="374" height="66"/>
+                                                <rect key="frame" x="0.0" y="24" width="374" height="66"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="D87-Ie-HCH"/>
                                                 </constraints>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
-                                                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="40"/>
+                                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="40"/>
                                                 </variation>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pmo-Jv-MBD">
-                                        <rect key="frame" x="20" y="200.66666666666666" width="374" height="85.333333333333343"/>
+                                        <rect key="frame" x="20" y="205" width="374" height="90"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fS-Wb-8WY">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="19.666666666666668"/>
-                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="24"/>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
-                                                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="30"/>
+                                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="30"/>
                                                 </variation>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Author" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ScI-eu-HZa">
-                                                <rect key="frame" x="0.0" y="19.666666666666657" width="374" height="65.666666666666671"/>
+                                                <rect key="frame" x="0.0" y="24" width="374" height="66"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="name"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
-                                                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="40"/>
+                                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="40"/>
                                                 </variation>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tDZ-eM-wdY">
-                                        <rect key="frame" x="30" y="306" width="354" height="283.33333333333326"/>
+                                        <rect key="frame" x="30" y="315" width="354" height="287.66666666666674"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yds-V0-zh6">
-                                                <rect key="frame" x="0.0" y="0.0" width="354" height="19.666666666666668"/>
-                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="354" height="24"/>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
-                                                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="30"/>
+                                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="30"/>
                                                 </variation>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m0X-8g-IT0">
-                                                <rect key="frame" x="0.0" y="19.666666666666686" width="354" height="263.66666666666669"/>
+                                                <rect key="frame" x="0.0" y="24" width="354" height="263.66666666666669"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
-                                                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="25"/>
+                                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="25"/>
                                                 </variation>
                                             </textView>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="43" translatesAutoresizingMaskIntoConstraints="NO" id="aJt-Yw-sYL">
-                                        <rect key="frame" x="30" y="609.33333333333337" width="354" height="75"/>
+                                        <rect key="frame" x="30" y="622.66666666666663" width="354" height="75"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A0u-LJ-Ocp">
                                                 <rect key="frame" x="0.0" y="0.0" width="155.66666666666666" height="75"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                                                 <state key="normal" title="Cancel">
                                                     <color key="titleColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <variation key="heightClass=regular-widthClass=regular">
-                                                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="30"/>
+                                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="30"/>
                                                 </variation>
                                                 <connections>
                                                     <action selector="cancelCreateModuleButtonPressed:" destination="Tfy-da-csh" eventType="touchUpInside" id="sCr-B7-owI"/>
@@ -1678,12 +1695,12 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pta-7K-hEN">
                                                 <rect key="frame" x="198.66666666666663" y="0.0" width="155.33333333333337" height="75"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                                                 <state key="normal" title="Save">
                                                     <color key="titleColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <variation key="heightClass=regular-widthClass=regular">
-                                                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="30"/>
+                                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="30"/>
                                                 </variation>
                                                 <connections>
                                                     <action selector="saveModuleButtonPressed:" destination="Tfy-da-csh" eventType="touchUpInside" id="ubC-2g-XFp"/>
@@ -1760,19 +1777,12 @@
                                                     <segue destination="Agy-ah-BZl" kind="show" id="3bu-4q-Jxd"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJH-eu-Nof">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character Details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJH-eu-Nof">
                                                 <rect key="frame" x="50" y="0.0" width="364" height="75"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <color key="tintColor" red="0.65098039220000004" green="0.062745098040000002" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <attributedString key="attributedText">
-                                                    <fragment content="Character Details">
-                                                        <attributes>
-                                                            <color key="NSColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="32" name="Baskerville"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="clipping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="32"/>
+                                                <color key="textColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -1781,27 +1791,27 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="HCF-m4-sjK">
-                                        <rect key="frame" x="168" y="91.999999999999972" width="78" height="392.33333333333326"/>
+                                        <rect key="frame" x="163.66666666666666" y="91.999999999999972" width="87" height="392.33333333333326"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="G1V-5G-D96">
-                                                <rect key="frame" x="0.0" y="0.0" width="78" height="392.33333333333331"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="87" height="392.33333333333331"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTj-uQ-8QG">
-                                                        <rect key="frame" x="0.0" y="0.0" width="78" height="196.33333333333334"/>
-                                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="26"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="87" height="196.33333333333334"/>
+                                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="26"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="heightClass=regular-widthClass=regular">
-                                                            <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="60"/>
+                                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="60"/>
                                                         </variation>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pinyin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMR-rW-rQN">
-                                                        <rect key="frame" x="0.0" y="196.33333333333331" width="78" height="196"/>
-                                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="28"/>
+                                                        <rect key="frame" x="0.0" y="196.33333333333331" width="87" height="196"/>
+                                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="28"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="heightClass=regular-widthClass=regular">
-                                                            <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="50"/>
+                                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="50"/>
                                                         </variation>
                                                     </label>
                                                 </subviews>
@@ -1819,7 +1829,7 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4H-iU-Lqx">
                                                 <rect key="frame" x="0.0" y="0.0" width="306.66666666666669" height="306.66666666666669"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1863,10 +1873,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="E9S-4Q-PWA"/>
+        <segue reference="sRP-YC-7oU"/>
         <segue reference="3bu-4q-Jxd"/>
-        <segue reference="Oyv-M6-exy"/>
-        <segue reference="fQs-EV-8Cn"/>
+        <segue reference="Gb1-Vw-imE"/>
+        <segue reference="wSm-cm-9kX"/>
         <segue reference="DPe-GX-24C"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
