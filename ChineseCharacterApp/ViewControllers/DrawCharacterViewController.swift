@@ -194,6 +194,15 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setFontSizes()
+        let dim = masterDrawingView.frame.width
+        masterDrawingView.backgroundColor = UIColor(patternImage: UIImage(named: "chineseGrid.png")!)
+        masterDrawingView.contentMode =  UIView.ContentMode.scaleAspectFill
+        UIGraphicsBeginImageContext(masterDrawingView.frame.size);
+        var image = UIImage(named: "chineseGrid")
+        image?.draw(in: masterDrawingView.bounds)
+        image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext()
+        masterDrawingView.backgroundColor = UIColor(patternImage: image!)
     }
     
     

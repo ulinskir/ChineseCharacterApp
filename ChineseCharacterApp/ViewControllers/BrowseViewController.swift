@@ -26,6 +26,12 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     //Practice Level View
     @IBOutlet weak var practiceLevelView: UIView!
     
+    //Save Module View
+    @IBOutlet weak var saveModuleView: UIView!
+    @IBOutlet weak var newModuleName: UITextField!
+    @IBOutlet weak var saveModuleButton: HomeViewButton!
+    @IBOutlet weak var cancelModuleButton: HomeViewButton!
+    
     //Practice Level buttons
     @IBOutlet weak var levelOne: UIButton!
     @IBOutlet weak var levelTwo: UIButton!
@@ -54,6 +60,7 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
         loadCharsFromJSON()
         
         practiceLevelView.isHidden = true
+        saveModuleView.isHidden = true
     
         self.searchBar.endEditing(true);
     }
@@ -110,7 +117,6 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
                 Chars.append(curChar)
             }
             
-            
         }
         catch{
             print(error)
@@ -124,8 +130,9 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
             destination.module = module
             destination.level = level
         }
-        if let destination = segue.destination as? CreateModuleViewController {
+        if let destination = segue.destination as? ModuleDetailsViewController {
             destination.module = module
+            destination.moduleNameLabel.text = newModuleName.text!
         }
     }
 
@@ -221,8 +228,119 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     // Send the selected characters to the save module screen to be saved as a module
     @IBAction func saveButtonTapped(_ sender: Any) {
+        saveModuleView.isHidden = false
+    }
+    @IBAction func saveModuleButtonTapped(_ sender: Any) {
+        if !moduleNameExists(name: newModuleName.text!) {
+            saveModule()
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "ModulesViewController") as! ModulesViewController
+            self.present(newViewController, animated: true, completion: nil)
+        }
+        else {
+            //do something
+        }
         
     }
+    
+    func saveModule() {
+        let modName = newModuleName.text
+        if moduleNameExists(name: modName!) {
+            return
+        }
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let context = appDelegate.persistentContainer.viewContext
+        let newMod = NSEntityDescription.insertNewObject(forEntityName: "ModuleContent", into: context)
+        newMod.setValue(modName, forKey: "name")
+        var charsSet = newMod.mutableSetValue(forKey: "chars")
+        
+        for ch in module.chineseChars{
+            print(ch.char)
+            if charExists(char: ch.char) == false
+            {
+                print("add CHAR to DB")
+                let newChar = NSEntityDescription.insertNewObject(forEntityName: "Char", into: context)
+                newChar.setValue(ch.char, forKey: "char")
+                newChar.setValue(ch.definition, forKey: "definition")
+                newChar.setValue(ch.decomposition, forKey:"decomposition")
+                newChar.setValue(0, forKey: "learned")
+                newChar.setValue(ch.radical, forKey: "radical")
+                do{
+                    print("Save")
+                    try context.save()
+                }
+                catch{
+                    print(error)
+                }
+            }
+            
+            do{
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Char")
+                fetchRequest.predicate = NSPredicate(format: "char = %@", ch.char)
+                let charInDB = try context.fetch(fetchRequest) as! [Char]
+                print("IN DB")
+                print(charInDB.count)
+                if charInDB.count > 1{
+                    print("WHOOPS - TOO MANY")
+                }
+                else if charInDB.count > 0{
+                    charsSet.add(charInDB[0])
+                }
+                else{
+                    print("NONE")
+                }
+            }catch{
+                print("FAIL")
+            }
+            
+        }
+        
+        do{
+            try context.save()
+            print("SAVED")
+        }
+        catch{
+            print("FAIL")
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        newModuleName.resignFirstResponder()
+        return false
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            return false
+        }
+        return true
+    }
+    
+    func moduleNameExists(name: String) -> Bool{
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ModuleContent")
+        fetchRequest.includesSubentities = false
+        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        var entitiesCount = 0
+        
+        do {
+            entitiesCount = try context.count(for: fetchRequest)
+        }
+        catch {
+            print("error executing fetch request: \(error)")
+        }
+        
+        return entitiesCount > 0
+    }
+    
+    @IBAction func cancelModuleButtonTapped(_ sender: Any) {
+        saveModuleView.isHidden = true
+    }
+    
 }
 
 // Implements the search bar 
