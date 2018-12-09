@@ -194,15 +194,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setFontSizes()
-        let dim = masterDrawingView.frame.width
-        masterDrawingView.backgroundColor = UIColor(patternImage: UIImage(named: "chineseGrid.png")!)
-        masterDrawingView.contentMode =  UIView.ContentMode.scaleAspectFill
-        UIGraphicsBeginImageContext(masterDrawingView.frame.size);
-        var image = UIImage(named: "chineseGrid")
-        image?.draw(in: masterDrawingView.bounds)
-        image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext()
-        masterDrawingView.backgroundColor = UIColor(patternImage: image!)
+        displayGrid()
     }
     
     
@@ -230,6 +222,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         }
         //disable drawing on canvas
         drawingView.enableUserDrawing = false
+        masterDrawingView.backgroundColor = .white
         hideCharInView()
         drawingView.clearCanvas()
         checkViewPopup.isHidden = false
@@ -252,6 +245,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             return
         }
         // allow the user to draw on the canvas
+        displayGrid()
         drawingView.enableUserDrawing = true
         // if there is still a hint dot displayed, remove it
         if self.imageView.isDescendant(of: masterDrawingView) {
@@ -330,6 +324,21 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         pinyinTop1.font = pinyinTop1.font.withSize(pinyinTop1.frame.height * 0.6)
         englishTop1.font = englishTop1.font.withSize(englishTop1.frame.height * 0.6)
     }
+    
+    func displayGrid() {
+        masterDrawingView.backgroundColor = UIColor(patternImage: UIImage(named: "chineseGrid.png")!)
+        masterDrawingView.contentMode =  UIView.ContentMode.scaleAspectFill
+        UIGraphicsBeginImageContext(masterDrawingView.frame.size);
+        var image = UIImage(named: "chineseGrid")
+        image?.draw(in: masterDrawingView.bounds)
+        image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext()
+        masterDrawingView.backgroundColor = UIColor(patternImage: image!)
+    }
+    
+    func hideGrid() {
+        masterDrawingView.backgroundColor = .white
+    }
 
     
 //------------------------------ FUNCTIONS FOR STROKE COLLECTION VIEW -----------------------------//
@@ -381,8 +390,8 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         if self.imageView.isDescendant(of: masterDrawingView) {
             self.imageView.removeFromSuperview()
         }
-        //self.drawingView.layer.sublayers?.removeAll()
         displayCharInView()
+        displayGrid()
         textFeedbackStack.isHidden = true
         let rowNumber = indexPath.row
         guard let char = ls!.getCurrentChar()

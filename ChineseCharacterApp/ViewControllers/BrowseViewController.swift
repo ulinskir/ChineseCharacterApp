@@ -124,16 +124,13 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     //Transition to draw character view controller
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if let destination = segue.destination as? DrawCharacterViewController {
             destination.module = module
             destination.level = level
         }
-        if let destination = segue.destination as? ModuleDetailsViewController {
-            destination.module = module
-            destination.moduleNameLabel.text = newModuleName.text!
-        }
+        
     }
 
     // When a cell in the collection is selected, if it is not already selected
@@ -230,11 +227,14 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBAction func saveButtonTapped(_ sender: Any) {
         saveModuleView.isHidden = false
     }
+    
     @IBAction func saveModuleButtonTapped(_ sender: Any) {
         if !moduleNameExists(name: newModuleName.text!) {
             saveModule()
+            print("ModuleDetailsViewController")
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "ModulesViewController") as! ModulesViewController
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "ModuleDetailsViewController") as! ModuleDetailsViewController
+            newViewController.module = module
             self.present(newViewController, animated: true, completion: nil)
         }
         else {
@@ -245,9 +245,11 @@ class BrowseViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func saveModule() {
         let modName = newModuleName.text
+       
         if moduleNameExists(name: modName!) {
             return
         }
+        module.name = modName!
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let context = appDelegate.persistentContainer.viewContext
