@@ -48,7 +48,6 @@ class ShapeView: UIView {
         shapeLayer.lineWidth = lineWidth + width
         shapeLayer.fillColor = UIColor.clear.cgColor
         self.layer.addSublayer(shapeLayer)
-        print("stroke drawn")
         self.setNeedsDisplay()
     }
     

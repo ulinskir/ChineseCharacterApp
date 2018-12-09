@@ -14,7 +14,7 @@ class StrokeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var strokeView: UIView!
     
     override func prepareForReuse() {
-       super.prepareForReuse()
+        super.prepareForReuse()
         strokeShapeView.clearCanvas()
     }
     

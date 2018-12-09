@@ -17,6 +17,7 @@ class CharacterDetailsViewController: UIViewController, UICollectionViewDelegate
     @IBOutlet weak var charDisplayLabel: UILabel!
     @IBOutlet weak var shapeView: ShapeView!
     @IBOutlet weak var strokeCollectionView: UICollectionView!
+    @IBOutlet weak var masterCharView: UIView!
     
     var currModule:Module? = nil
     var currChar:ChineseChar? = nil
@@ -37,6 +38,7 @@ class CharacterDetailsViewController: UIViewController, UICollectionViewDelegate
     
     override func viewDidAppear(_ animated: Bool) {
         charDisplayLabel.font = charDisplayLabel.font.withSize(charDisplayLabel.frame.size.height*0.9)
+        displayGrid()
     }
     
     // If going back to the module details view, send the current module
@@ -64,14 +66,13 @@ class CharacterDetailsViewController: UIViewController, UICollectionViewDelegate
     
     // Set up the collection view cell at indexpath to show the correct stroke
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "strokeCell", for: indexPath) as! StrokeCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "strokeCell1", for: indexPath) as! StrokeCollectionViewCell
         // Check to make sure there is a char
         guard let char = currChar else {
             return cell
         }
         let rowNumber : Int = indexPath.row
-        let scaleFactor = cell.frame.width/shapeView.frame.width
-        drawStroke(shapeView: cell.strokeShapeView, rowNumber, highlighted: true, scaleFactor: scaleFactor)
+        drawStroke(shapeView1: cell.strokeShapeView, rowNumber)
         
         cell.strokeView.layer.borderWidth = 1
         cell.strokeView.layer.borderColor = UIColor.black.cgColor
@@ -91,7 +92,7 @@ class CharacterDetailsViewController: UIViewController, UICollectionViewDelegate
                 return
         }
         shapeView.clearCanvas()
-        drawStroke(shapeView: shapeView, rowNumber, highlighted: true)
+        drawStroke(shapeView1: shapeView, rowNumber)
   
         // Draw correct start point
         if rowNumber < char.strokes.count {
@@ -103,12 +104,12 @@ class CharacterDetailsViewController: UIViewController, UICollectionViewDelegate
         
     }
     
-    func drawStroke(shapeView: ShapeView, _ num: Int, highlighted: Bool = false, scaleFactor: CGFloat = 1) {
+    func drawStroke(shapeView1: ShapeView, _ num: Int) {
         let char = currChar!
         if num < char.strokes.count {
-            let dim = shapeView.frame.width
+            let dim = shapeView1.frame.width
             let lineWidth = CGFloat(dim/14 - 10)
-            shapeView.drawChar(stroke:char.strokes[num], scale: SVGConverter().make_canvas_dimension_converter(from: (0,500,500,0), to: (0,Double(dim),Double(dim),0)), width: lineWidth)
+            shapeView1.drawChar(stroke:char.strokes[num], scale: SVGConverter().make_canvas_dimension_converter(from: (0,500,500,0), to: (0,Double(dim),Double(dim),0)), width: lineWidth)
         }
     }
     
@@ -120,14 +121,14 @@ class CharacterDetailsViewController: UIViewController, UICollectionViewDelegate
     }
     
     func displayGrid() {
-        shapeView.backgroundColor = UIColor(patternImage: UIImage(named: "chineseGrid.png")!)
-        shapeView.contentMode =  UIView.ContentMode.scaleAspectFill
-        UIGraphicsBeginImageContext(shapeView.frame.size);
+        masterCharView.backgroundColor = UIColor(patternImage: UIImage(named: "chineseGrid.png")!)
+        masterCharView.contentMode =  UIView.ContentMode.scaleAspectFill
+        UIGraphicsBeginImageContext(masterCharView.frame.size);
         var image = UIImage(named: "chineseGrid")
-        image?.draw(in: shapeView.bounds)
+        image?.draw(in: masterCharView.bounds)
         image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext()
-        shapeView.backgroundColor = UIColor(patternImage: image!)
+        masterCharView.backgroundColor = UIColor(patternImage: image!)
     }
     
     

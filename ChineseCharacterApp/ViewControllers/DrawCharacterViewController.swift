@@ -179,11 +179,6 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     
     // Sets up the check user char popup
     func checkUserChar() {
-        if ls!.current + 1 == ls!.charsToPractice.count {
-            continueCheckViewButton.setTitle("Done", for: .normal)
-        } else {
-            continueCheckViewButton.setTitle("Continue", for: .normal)
-        }
         //disable drawing on canvas
         drawingView.enableUserDrawing = false
         masterDrawingView.backgroundColor = .white
@@ -192,7 +187,6 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         checkViewPopup.isHidden = false
         textFeedbackStack.isHidden = false
         strokeComparisonCollectionView.reloadData()
-        
     }
     
     // Draws a red bullseye with size 1/16th of the drawing view at a given point
