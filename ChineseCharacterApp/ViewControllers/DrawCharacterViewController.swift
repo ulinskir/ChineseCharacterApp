@@ -83,16 +83,13 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         }
         if drawingView.strokes.count < char.strokes.count {
             // if there are still strokes to draw, display the hint
-            // first scale the start point from a 295 pt view to the current view size
             
-            //let scaleFactor =  Double(self.drawingView.frame.width/295)
-            //let points = char.points[drawingView.strokes.count][0]
+            //first get the first point in the stroke svg
             let matcher = Matcher()
             let dim = Double(self.drawingView.frame.width)
             let points = matcher.get_hints(char.strokes, destDimensions: (north: 0, south: dim, east: 0, west: dim))[drawingView.strokes.count]
             // then draw it on the screen
             self.drawPointOnCanvas(x: Double(points.x), y:  Double(points.y), view: masterDrawingView, point: imageView)
-            //self.drawPointOnCanvas(x: Double(points[0]) * scaleFactor, y:  Double(points[1]) * scaleFactor, view: masterDrawingView, point: imageView)
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 // after 2 seconds remove it
                 self.imageView.removeFromSuperview()
@@ -104,48 +101,15 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     @IBAction func undoButtonTapped(_ sender: Any) {
         drawingView.clearCanvas()
     }
+    
     func all_to_cg (stroke:[Point]) -> [CGPoint] {
         return stroke.map({(z:Point) -> CGPoint in return CGPoint(x:CGFloat(z.x),y:CGFloat(z.y))})
     }
     
     // When the character has been submitted by the user,
-    //  - send the matcher the screen dimensions and use it to check the user's char against the
-    //    correct char
     //  - load the check char popup
     @IBAction func submitButtonTapped(_ sender: Any) {
-        /*let testing_resampler = true
-        
-        // Set up and run the matcher
-        let dim = Double(self.drawingView.frame.width) // get the size of the drawing view
-        let currScreenDimensions: Edges = (0,dim,dim,0) // send it to the matcher
-        
-        let matcher = Matcher()
-        let targetSvgs = ls!.getCurrentChar()!.strokes
-        let targetStrokePoints = matcher.processTargetPoints(targetSvgs, destDimensions:currScreenDimensions)
-        //insert target here?????
-        let source = drawingView.getPoints()
-        if(testing_resampler) {
-            for src in source {
-            let resampler = Resampler()
-            let resampled_tester = resampler.resamplePoints(src,totalPoints: 64)
-            }
-        }
-        var errorLevel = 0
-        
-        
- 
-        // save the result to the learning session
-        typealias matcherResult = (targetScores: [StrokeResult], Errors: [Int])
-        let res:matcherResult = matcher.full_matcher(src:source, target:targetStrokePoints)
-        ls!.currentResult = res.targetScores
-        
-        if(source.count != targetSvgs.count) {
-            errorLevel = 5
-        } else {
-            errorLevel = matcher.get_level(results: res.targetScores)
-        }
-        print("error level", errorLevel)
- */
+        // save the users points
         ls!.currentPoints = drawingView.getPoints()
         // Set up and load the check character popup
         checkUserChar()
@@ -154,8 +118,8 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
 //------------------------------ USER CHECKING INTERACTION BUTTONS -----------------------------//
 
     //TO DO: Determine metric for correctness of user's char
-    func isCharRight() -> Bool {
-        return true
+    func isCharRight(title:String) -> Bool {
+        return title == "correct"
     }
     
     // miss-named, actually continue button tapped
@@ -163,7 +127,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     // else insert char at the end of the learning sessions list of characters to be precticed
     // and move to the next char
     @IBAction func noButtonTapped(_ sender: UIButton) {
-        if isCharRight() {
+        if isCharRight(title: sender.titleLabel!.text!) {
             ls!.charPracticed(score: 1)
             progressBar.setProgress(Float(ls!.progress()), animated: true)
         } else {
