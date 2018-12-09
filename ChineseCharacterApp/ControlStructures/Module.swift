@@ -12,6 +12,11 @@ class Module {
     var name: String
     var chineseChars: [ChineseChar]
     
+    init(){
+        self.name = ""
+        self.chineseChars = []
+    }
+    
     init(name: String, chineseChars: [ChineseChar]) {
         self.name = name
         self.chineseChars = chineseChars

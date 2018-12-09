@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
     //data
     var modules: [Module] = []
+    
     
     //Top bar objects
     @IBOutlet weak var backButton: UIButton!
@@ -26,13 +28,9 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //bottom bar items - module management
     @IBOutlet weak var addModuleButton: UIButton!
-    @IBOutlet weak var deleteModuleButton: UIButton!
     
     
     var selectedModule:Module? = nil
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,15 +40,90 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
         modulesTableView.delegate = self
         modulesTableView.dataSource = self
         
-        let mod = ["names", "colors", "numbers", "food", "family", "emotions", "sports", "weather", "interests", "school", "shopping", "travel", "places"]
-        let door = ChineseChar(character: "a", strks: [""], def: "door", pin: ["pin"], decomp: "d-o-o-r", rad: "sure")
+        addModuleButton.layer.cornerRadius = addModuleButton.bounds.size.height / 2
+        addModuleButton.clipsToBounds = true
         
-        for i in mod {
-            modules.append(Module(name:"\(i)", chineseChars:[door]))
+        //Get the Database
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        //Get the JSON file
+        guard let Dictpath = Bundle.main.path(forResource: "dictionary", ofType: "json") else {return}
+        let Dicturl = URL(fileURLWithPath: Dictpath)
+        
+        //Get all of the Modules
+        let moduleRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ModuleContent")
+        do {
+            //Query the DB for the Modules
+            let result = try context.fetch(moduleRequest)
+            
+            //For each Module
+            for module in result as! [NSManagedObject] {
+                
+                //Get name and list of chars
+                let modName = module.value(forKey: "name") as! String
+                let chars = module.value(forKey: "chars") as! Set<Char>
+                
+                //set up a list of ChineseChars to create Module
+                var curChars = [ChineseChar]()
+                
+                //for every char
+                for char in chars{
+                    do {
+                        //Go through the JSON file
+                        let data = try Data(contentsOf: Dicturl)
+                        let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+                        guard let array = json as? [Any] else {return}
+                        
+                        lookJson : for jsonLine in array{
+                            guard let charDict = jsonLine as? [String: Any] else {return}
+                            guard let hanzi = charDict["character"] as? String else {print("Missing Char"); return}
+                            
+                            //When we find the correct char in the JSON
+                            if hanzi == char.char{
+                                guard let pinyin = charDict["pinyin"] as? [String] else {print("Missing Pinyin"); return}
+                                guard let strokes = charDict["strokes"] as? [String] else {print("Missing Strokes"); return}
+                                //Get the extra info we need from the JSON and add the current char to the curChars array
+                                curChars.append(ChineseChar(character: hanzi, def: char.definition as! String, pin: pinyin, decomp: char.decomposition as! String, rad: char.radical as! String, strks: strokes))
+                                
+                                //Stop looking through the JSON
+                                break lookJson
+                            }
+                            
+                            
+                        }
+                        
+                        
+                    }
+                    catch{
+                        print(error)
+                    }
+                    
+                }
+                
+                //Create a new Module with correct name and chars
+                modules.append(Module(name: modName, chineseChars: curChars))
+            }
+            
+        } catch {
+            print("Failed")
         }
-
     }
-
+    
+    @IBAction func deleteModule(_ sender: UIButton) {
+        let alert:UIAlertController = UIAlertController(title:"Cancel", message:"Are you sure you want to delete this \(String(describing: selectedModule))?", preferredStyle: .actionSheet)
+        let deleteAction:UIAlertAction = UIAlertAction(title:"Delete", style: .destructive)
+        { (_:UIAlertAction) in
+            print("Delete")
+        }
+        let cancelAction:UIAlertAction = UIAlertAction(title:"Cancel", style: .cancel)
+        { (_:UIAlertAction) in
+            print("Cancel")
+        }
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated:true)
+    }
     
 //----------------------Table Controller functions-------------------------------
     let cellSpacingHeight: CGFloat = 40
@@ -107,7 +180,6 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if let destination = segue.destination as? ModuleDetailsViewController {
@@ -132,3 +204,4 @@ class ModulesViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
 } // end ModulesViewController class
+

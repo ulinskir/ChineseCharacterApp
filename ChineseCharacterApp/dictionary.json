@@ -1,0 +1,17 @@
+[
+{"character":"一","definition":"one; a, an; alone","pinyin":["yī"],"decomposition":"？","radical":"一","matches":[null],"strokes":["M 51 249 L 448 248"]},
+{"character":"二","definition":"two; twice","pinyin":["èr"],"decomposition":"⿱一一","radical":"二","matches":[[0],[1]],"strokes":["M 95 113 L 410 112", "M 53 395 L 446 393"]},
+{"character":"三","definition":"three","pinyin":["sān"],"decomposition":"⿱一二","radical":"一","matches":[[0],[1],[1]],"strokes":["M 85 97 L 417 97", "M 115 252 L 388 253", "M 51 418 L 449 418"]},
+{"character":"四","definition":"four","pinyin":["sì"],"decomposition":"⿴囗儿","radical":"囗","matches":[[0],[0],[1],[1],[0]],"strokes":["M 82 88 L 84 440", "M 81 88 L 416 87 L 417 437", "M 201 90 C 204 200 209 269 138 321", "M 300 92 C 304 327 272 303 373 304", "M 82 410 L 419 411"]},
+{"character":"五","definition":"five; surname","pinyin":["wǔ"],"decomposition":"⿴二？","radical":"二","matches":[[0],null,null,[0]],"strokes":["M 80 87 L 425 87", "M 236 87 L 162 420", "M 101 230 L 360 231 L 361 423", "M 54 422 L 446 422"]},
+{"character":"六","definition":"six","pinyin":["liù"],"decomposition":"⿱亠八","radical":"八","matches":[[0],[0],[1],[1]],"strokes":["M 198 62 C 193 49 294 135 286 135", "M 54 182 L 445 181", "M 185 252 C 179 289 122 400 67 435", "M 314 252 C 313 241 438 448 428 439"]},
+{"character":"七","definition":"seven","pinyin":["qī"],"decomposition":"⿻一乚","radical":"一","matches":[[0],[1]],"strokes":["M 52 241 L 447 169", "M 214 50 C 214 35 202 413 217 428 C 225 436 406 436 410 423 C 420 390 423 325 421 340"]},
+{"character":"八","definition":"eight; all around, all sides","pinyin":["bā"],"decomposition":"？","radical":"八","matches":[null,null],"strokes":["M 191 85 C 182 125 151 327 60 432", "M 297 68 C 315 308 400 393 443 434"]},
+{"character":"九","definition":"nine","pinyin":["jiǔ"],"decomposition":"⿻丿乙","radical":"乙","matches":[[0],[1]],"strokes":["M 77 159 L 338 161 L 340 419 C 374 448 413 432 421 428 C 432 423 439 371 438 335", "M 206 49 C 205 34 202 272 188 285 C 184 288 190 353 60 438"]},
+{"character":"十","definition":"ten, tenth; complete; perfect","pinyin":["shí"],"decomposition":"⿻一丨","radical":"十","matches":[[0],[1]],"strokes":["M 251 49 L 252 453", "M 55 210 L 447 209"]},
+{"character":"日","definition":"sun; day; daytime","pinyin":["rì"],"decomposition":"⿴口一","radical":"日","matches":[[0],[0],[1],[0]],"strokes":["M 133 80 L 132 443", "M 133 81 L 377 82 C 378 82 377 424 377 439", "M 131 237 L 377 239", "M 133 405 L 375 405"]},
+{"character":"月","definition":"moon; month","pinyin":["yuè"],"decomposition":"⿵冂二","radical":"月","matches":[[0],[0],[1],[1]],"strokes":["M 150 79 C 149 169 168 355 104 441", "M 150 79 L 375 80 L 372 428 C 369 439 310 438 295 437", "M 150 187 L 371 188", "M 150 297 L 374 297"]},
+{"character":"口","definition":"mouth; entrance, gate, opening","pinyin":["kǒu"],"decomposition":"⿱冂一","radical":"口","matches":[[0],[0],[1]],"strokes":["M 104 112 L 103 435", "M 105 115 L 398 115 L 397 433", "M 104 405 L 396 405"]},
+{"character":"忄","definition":"heart; mind; soul","pinyin":["xīn"],"decomposition":"⿻八丨","radical":"忄","matches":[[0],[0],[1]],"strokes":["M 89 135 C 95 135 66 276 63 261", "M 147 49 L 146 451", "M 195 130 C 190 116 238 239 230 230"]},
+{"character":"亻","definition":"man, person; people","pinyin":["rén"],"decomposition":"？","radical":"亻","matches":[null,null],"strokes":["M 208 57 C 197 100 80 234 53 248", "M 148 153 C 148 138 149 471 149 456"]}
+]

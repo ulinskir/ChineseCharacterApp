@@ -7,29 +7,41 @@
 //
 
 import UIKit
+import CoreData
 
 class CharacterDetailsViewController: UIViewController {
 
-    @IBOutlet weak var chineseCharLabel: UILabel!
+    //@IBOutlet weak var chineseCharLabel: UILabel!
     @IBOutlet weak var englishLabel: UILabel!
     @IBOutlet weak var pinyinLabel: UILabel!
+    @IBOutlet weak var charDisplayLabel: UILabel!
     
+    var currModule:Module? = nil
+    var currChar:ChineseChar? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        //chineseCharLabel.text = currChar?.char
+        englishLabel.text = currChar?.definition
+        pinyinLabel.text = currChar!.pinyin.count > 0 ? currChar?.pinyin[0] : "none"
+        charDisplayLabel.text = currChar?.char
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        charDisplayLabel.font = charDisplayLabel.font.withSize(charDisplayLabel.frame.size.height)
+    }
+    
+    // If going back to the module details view, send the current module
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if let destination = segue.destination as? ModuleDetailsViewController {
+            destination.module = currModule
+        }
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+

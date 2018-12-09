@@ -12,16 +12,49 @@ import XCTest
 class ChineseCharacterAppTests: XCTestCase {
 
     override func setUp() {
+//        let ice = ["M 337 94 C 322 90 237 56 214 40", "M 339 141 C 324 137 244 105 221 89"]
+
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
+    func testFirst_doesnt_match() {
+        let ice = ["M 337 94 C 322 90 237 56 214 40", "M 339 141 C 324 137 244 105 221 89"]
+        
+        let _matcher = Matcher()
+        let src = _matcher.processTargetPoints(ice, destDimensions: (0,335,335,0))
+        let res = _matcher.full_matcher(source:[[(0,0),(5,5)],src[1]],target:src)
+        print(res)
+        XCTAssert(res.0[1].completed == true, "second stroke not found when first stroke is wrong")
+        
+    }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func test_matcher_same_inputs() {
+        let target = ["M 360 231 L 361 423"]
+        let stroke = ["M 350 231 L 352 423"]
+
+
+        let _matcher = Matcher()
+        let targ = _matcher.processTargetPoints(target, destDimensions: (0,335,335,0))
+        let src = _matcher.processTargetPoints(stroke, destDimensions: (0,335,335,0))
+        let res = _matcher.full_matcher(source:src,target:targ)
+        for stroke in res.0 {
+            XCTAssert(stroke == (true,true,true))
+        }
+    }
+    func test_recognizer() {
+        let ice = ["M 337 94 C 322 90 237 56 214 40", "M 339 141 C 324 137 244 105 221 89"]
+
+        let _rec = Recognizer()
+        let _matcher = Matcher()
+        let src = _matcher.processTargetPoints(ice, destDimensions: (0,335,335,0))
+        for stroke in src {
+            let res = _rec.recognize(source:stroke, target: stroke, offset: 0)
+            XCTAssert(res.score != -Double.infinity)
+        }
     }
 
     func testPerformanceExample() {

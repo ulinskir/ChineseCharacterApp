@@ -9,14 +9,17 @@
 
 import UIKit
 
-class DrawingView: UIView {
+class DrawingView: ShapeView {
 
-    
-    var lineColor:UIColor!
-    var lineWidth:CGFloat!
-    var path:UIBezierPath!
+    //var lineColor:UIColor!
+    //var lineWidth:CGFloat!
+    //var path = UIBezierPath()
     var touchPoint:CGPoint!
     var startingPoint:CGPoint!
+    var points:[[Point]] = []
+    var strokes = [UIBezierPath]()
+    var stroke_number = 0
+    var enableUserDrawing = true
     
     override func layoutSubviews() {
         self.clipsToBounds = true
@@ -26,40 +29,60 @@ class DrawingView: UIView {
         lineWidth = 10
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if enableUserDrawing {
+            strokes.append(path)
+            path = UIBezierPath()
+            stroke_number += 1
+        }
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first
-        startingPoint = touch?.location(in: self)
+        if enableUserDrawing {
+            let touch = touches.first
+            startingPoint = touch?.location(in: self)
+            path = UIBezierPath()
+            path.move(to: startingPoint)
+            points.append([])
+        }
     }
+    
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first
+        /*let touch = touches.first
         touchPoint = touch?.location(in: self)
         
-        path = UIBezierPath()
         path.move(to: startingPoint)
-        path.addLine(to: touchPoint)
-        startingPoint = touchPoint
-        
-        drawShapeLayer()
+        points.append([])*/
+        if enableUserDrawing {
+            let touch = touches.first
+            touchPoint = touch?.location(in: self)
+            
+            
+            path.addLine(to: touchPoint)
+            points[points.count - 1].append((Double(touchPoint.x), Double(touchPoint.y)))
+            startingPoint = touchPoint
+            
+            drawShapeLayer()
+        }  
     }
     
-    func drawShapeLayer() {
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.path = path.cgPath
-        shapeLayer.strokeColor = lineColor.cgColor
-        shapeLayer.lineWidth = lineWidth
-        shapeLayer.fillColor = UIColor.clear.cgColor
-        self.layer.addSublayer(shapeLayer)
-        self.setNeedsDisplay()
-    }
     
-    func clearCanvas() {
-        if (path != nil) {
-            path.removeAllPoints()
-            self.layer.sublayers = nil
-            self.setNeedsDisplay()
+    override func clearCanvas() {
+        if (strokes != []) {
+            strokes[strokes.count - 1].removeAllPoints()
+            //self.layer.sublayers?.remove(at: layer.sublayers!.count - 1)
+
         }
+        self.layer.sublayers = nil
+        self.setNeedsDisplay()
+        stroke_number = 0
+        strokes = []
+        points = []
+    }
+    
+    func getPoints() -> [[Point]] {
+        return points
     }
     
     /*

@@ -15,16 +15,23 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var userPropertiesTableView: UITableView!
     
-    
     var user:User? = nil
+    var image:String = "Monkey"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        user = User(fullName: "Judy Zhou", password: "123", email: "jzhou1@hamilton.edu")
+        user = User(fullName: "Tosa Rosa", password: "123", email: "BillyBob@hamilton.edu")
         
         userNameLabel.text = "Profile"
+        
+        userImage.image = UIImage(named: image + ".jpg")
+        userImage.layer.cornerRadius = userImage.bounds.size.height / 2.2
+        userImage.clipsToBounds = true
+        userImage.layer.borderWidth = 1
+        userImage.layer.borderColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0).cgColor
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
