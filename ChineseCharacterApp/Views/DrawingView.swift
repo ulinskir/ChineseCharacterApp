@@ -9,11 +9,11 @@
 
 import UIKit
 
-class DrawingView: UIView {
+class DrawingView: ShapeView {
 
-    var lineColor:UIColor!
-    var lineWidth:CGFloat!
-    var path = UIBezierPath()
+    //var lineColor:UIColor!
+    //var lineWidth:CGFloat!
+    //var path = UIBezierPath()
     var touchPoint:CGPoint!
     var startingPoint:CGPoint!
     var points:[[Point]] = []
@@ -67,35 +67,8 @@ class DrawingView: UIView {
         }  
     }
     
-    func drawUserStroke(stroke:[CGPoint], color: UIColor = .black){
-        assert(stroke.count > 1, "single point 'stroke' passed to DrawUserStroke")
-        path = UIBezierPath()
-        path.move(to:stroke[0])
-        for st in stroke[1...] {
-            path.addLine(to:st)
-        }
-        drawShapeLayer(color: color)
-    }
-
     
-    func drawChar(stroke:String, scale:@escaping (Point) -> Point, width: CGFloat = 0) {
-        func scale2 (x:Point) -> Point {return x}
-        path = UIBezierPath(svgPath: stroke, scale: scale)
-        drawShapeLayer(color: .darkGray, width: width)
-}
-    
-    func drawShapeLayer(color: UIColor = .black, width: CGFloat = 0) {
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.path = path.cgPath
-        shapeLayer.strokeColor = color.cgColor
-        shapeLayer.lineWidth = lineWidth + width
-        shapeLayer.fillColor = UIColor.clear.cgColor
-        self.layer.addSublayer(shapeLayer)
-        print("stroke drawn")
-        self.setNeedsDisplay()
-    }
-    
-    func clearCanvas() {
+    override func clearCanvas() {
         if (strokes != []) {
             strokes[strokes.count - 1].removeAllPoints()
             //self.layer.sublayers?.remove(at: layer.sublayers!.count - 1)

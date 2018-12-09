@@ -346,33 +346,24 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             return cell
         }
         
-        guard let currUserPoints = ls!.currentPoints else {
+        guard ls!.currentPoints != nil else {
             return cell
         }
         
         let rowNumber : Int = indexPath.row
-        
-        let matcher = Matcher()
-        let dim = (cell.frame.height)
-        //let sourceGfx = currUserPoints.map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
-        if (rowNumber < char.strokes.count) {
-            cell.strokeDot.isHidden = false
-            let points = matcher.get_hints(char.strokes, destDimensions: (north: 0, south: Double(dim), east: 0, west: Double(dim)))[rowNumber]
-            //let points = char.points[rowNumber][0]
-            let x = Double(points.x)
-            let y = Double(points.y)
-            drawPointOnCanvas(x: x, y: y, view: cell.strokeView, point: cell.strokeDot)
-        } else {
-            cell.strokeDot.isHidden = true
+        let scaleFactor = cell.frame.width/masterDrawingView.frame.width
+        drawStroke(shapeView: cell.strokeShapeView, rowNumber, withCorrect: true, highlighted: true, scaleFactor: scaleFactor)
+        var i = 0
+        while i < rowNumber {
+            drawStroke(shapeView: cell.strokeShapeView, i, scaleFactor: scaleFactor)
+            i += 1
         }
         
         cell.strokeView.layer.borderWidth = 1
         cell.strokeView.layer.borderColor = UIColor.black.cgColor
 
-        cell.strokeLabel.font = cell.strokeLabel.font.withSize(dim)
+        cell.strokeLabel.font = cell.strokeLabel.font.withSize(cell.frame.height*0.9)
         cell.strokeLabel.text = String(char.char)
-        
-
         return cell
     }
     
@@ -389,10 +380,10 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
                 return
         }
         drawingView.clearCanvas()
-        drawStroke(rowNumber, withCorrect: true, highlighted: true)
+        drawStroke(shapeView: drawingView, rowNumber, withCorrect: true, highlighted: true)
         var i = 0
         while i < rowNumber {
-            drawStroke(i)
+            drawStroke(shapeView: drawingView, i)
             i += 1
         }
         // Draw correct start point
@@ -405,13 +396,13 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
        
     }
     
-    func drawStroke(_ num: Int, withCorrect: Bool = false, highlighted: Bool = false) {
+    func drawStroke(shapeView: ShapeView, _ num: Int, withCorrect: Bool = false, highlighted: Bool = false, scaleFactor: CGFloat = 1) {
         let char = ls!.getCurrentChar()!
         if withCorrect && num < char.strokes.count {
-            let dim = self.drawingView.frame.width
-            let lineWidth = max(CGFloat(dim/14 - 10), 12)
+            let dim = shapeView.frame.width
+            let lineWidth = CGFloat(dim/14 - 10)
             print("drawing correct stroke " + String(num))
-            drawingView.drawChar(stroke:char.strokes[num], scale: SVGConverter().make_canvas_dimension_converter(from: (0,500,500,0), to: (0,Double(dim),Double(dim),0)), width: lineWidth )
+            shapeView.drawChar(stroke:char.strokes[num], scale: SVGConverter().make_canvas_dimension_converter(from: (0,500,500,0), to: (0,Double(dim),Double(dim),0)), width: lineWidth )
         }
         var color = UIColor.black
         if highlighted {
@@ -421,7 +412,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         let sourceGfx = currPoints.map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
         if num < sourceGfx.count  {
             print("drawing user stroke " + String(num))
-            drawingView.drawUserStroke(stroke: sourceGfx[num], color: color)
+            shapeView.drawUserStroke(stroke: sourceGfx[num], color: color, scaleFactor: scaleFactor)
         }
     }
     

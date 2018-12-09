@@ -9,8 +9,19 @@
 import UIKit
 
 class StrokeCollectionViewCell: UICollectionViewCell {
-    
+    @IBOutlet weak var strokeShapeView: ShapeView!
     @IBOutlet weak var strokeLabel: UILabel!
     @IBOutlet weak var strokeView: UIView!
-    @IBOutlet weak var strokeDot: UIImageView!
+    
+    override func prepareForReuse() {
+       super.prepareForReuse()
+        strokeShapeView.clearCanvas()
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            self.strokeView.backgroundColor = isSelected ? UIColor.gray : UIColor.white
+        }
+    }
+
 }

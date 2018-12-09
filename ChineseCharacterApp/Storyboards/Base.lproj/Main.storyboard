@@ -482,26 +482,29 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dp3-vc-a7r">
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dp3-vc-a7r" customClass="ShapeView" customModule="ChineseCharacterApp" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaM-2t-mIh">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaM-2t-mIh">
                                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hintPoint" translatesAutoresizingMaskIntoConstraints="NO" id="jqA-Xc-UPO">
-                                                                            <rect key="frame" x="-99" y="-44" width="240" height="128"/>
-                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        </imageView>
+                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yv2-RJ-LJy" customClass="ShapeView" customModule="ChineseCharacterApp" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                        </view>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="trailing" secondItem="JaM-2t-mIh" secondAttribute="trailing" id="1hI-2l-wSC"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="yv2-RJ-LJy" secondAttribute="trailing" id="BLe-uy-ctw"/>
+                                                                        <constraint firstItem="yv2-RJ-LJy" firstAttribute="top" secondItem="dp3-vc-a7r" secondAttribute="top" id="JSF-aQ-r98"/>
                                                                         <constraint firstItem="JaM-2t-mIh" firstAttribute="top" secondItem="dp3-vc-a7r" secondAttribute="top" id="NDc-gK-hSf"/>
                                                                         <constraint firstAttribute="bottom" secondItem="JaM-2t-mIh" secondAttribute="bottom" id="NnY-yP-Tph"/>
+                                                                        <constraint firstItem="yv2-RJ-LJy" firstAttribute="leading" secondItem="dp3-vc-a7r" secondAttribute="leading" id="ZhZ-0n-yk0"/>
                                                                         <constraint firstItem="JaM-2t-mIh" firstAttribute="leading" secondItem="dp3-vc-a7r" secondAttribute="leading" id="faw-AX-fBC"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="yv2-RJ-LJy" secondAttribute="bottom" id="iL6-f9-tDP"/>
                                                                         <constraint firstAttribute="width" secondItem="dp3-vc-a7r" secondAttribute="height" multiplier="1:1" id="ydp-SL-klr"/>
                                                                     </constraints>
                                                                 </view>
@@ -516,8 +519,8 @@
                                                             <constraint firstItem="dp3-vc-a7r" firstAttribute="centerY" secondItem="VVC-Fh-peU" secondAttribute="centerY" id="tMj-WW-J0A"/>
                                                         </constraints>
                                                         <connections>
-                                                            <outlet property="strokeDot" destination="jqA-Xc-UPO" id="bRf-Hr-kJt"/>
                                                             <outlet property="strokeLabel" destination="JaM-2t-mIh" id="96F-59-VXv"/>
+                                                            <outlet property="strokeShapeView" destination="yv2-RJ-LJy" id="BV0-3h-3zS"/>
                                                             <outlet property="strokeView" destination="dp3-vc-a7r" id="sPf-ge-A9U"/>
                                                         </connections>
                                                     </collectionViewCell>
@@ -1863,9 +1866,6 @@
             <point key="canvasLocation" x="-2429" y="352"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="hintPoint" width="1024" height="1024"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="E9S-4Q-PWA"/>
         <segue reference="3bu-4q-Jxd"/>

@@ -23,6 +23,7 @@
 		581494BE216D7F27000DC3B5 /* CharacterInModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581494BD216D7F27000DC3B5 /* CharacterInModuleTableViewCell.swift */; };
 		581494C0216D9944000DC3B5 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581494BF216D9944000DC3B5 /* ProfileTableViewCell.swift */; };
 		581494C2216DA9E3000DC3B5 /* CreateModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581494C1216DA9E3000DC3B5 /* CreateModuleViewController.swift */; };
+		58446F2521BC9DA50059965F /* ShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58446F2421BC9DA50059965F /* ShapeView.swift */; };
 		58656483216481E10019C39C /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58656482216481E10019C39C /* Module.swift */; };
 		586564872164879D0019C39C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586564862164879D0019C39C /* ProfileViewController.swift */; };
 		58656489216487F90019C39C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58656488216487F90019C39C /* SettingsTableViewController.swift */; };
@@ -83,6 +84,7 @@
 		581494BD216D7F27000DC3B5 /* CharacterInModuleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInModuleTableViewCell.swift; sourceTree = "<group>"; };
 		581494BF216D9944000DC3B5 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		581494C1216DA9E3000DC3B5 /* CreateModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateModuleViewController.swift; sourceTree = "<group>"; };
+		58446F2421BC9DA50059965F /* ShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeView.swift; sourceTree = "<group>"; };
 		58656482216481E10019C39C /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		586564862164879D0019C39C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		58656488216487F90019C39C /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 		580C3BD2217CD4B1002E8152 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				58446F2421BC9DA50059965F /* ShapeView.swift */,
 				58802B1A21AE5A3B00A749B4 /* StrokeCollectionViewCell.swift */,
 				1876C318219CAF290097470B /* Character-Recognition */,
 				58F352742194AF4100137A0E /* DynamicFontSizeExtension.swift */,
@@ -402,6 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58446F2521BC9DA50059965F /* ShapeView.swift in Sources */,
 				92FEFC072184CA6B0011EBD4 /* ChineseCharacterAppModel.xcdatamodeld in Sources */,
 				184A431921B7611700A66CFA /* Recognize2.swift in Sources */,
 				58FAF4E521650C690029E876 /* ChineseChar.swift in Sources */,
