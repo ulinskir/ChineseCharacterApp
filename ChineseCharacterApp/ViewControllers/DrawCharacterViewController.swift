@@ -158,15 +158,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setFontSizes()
-        let dim = masterDrawingView.frame.width
-        masterDrawingView.backgroundColor = UIColor(patternImage: UIImage(named: "chineseGrid.png")!)
-        masterDrawingView.contentMode =  UIView.ContentMode.scaleAspectFill
-        UIGraphicsBeginImageContext(masterDrawingView.frame.size);
-        var image = UIImage(named: "chineseGrid")
-        image?.draw(in: masterDrawingView.bounds)
-        image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext()
-        masterDrawingView.backgroundColor = UIColor(patternImage: image!)
+        displayGrid()
     }
     
     
@@ -194,6 +186,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         }
         //disable drawing on canvas
         drawingView.enableUserDrawing = false
+        masterDrawingView.backgroundColor = .white
         hideCharInView()
         drawingView.clearCanvas()
         checkViewPopup.isHidden = false
@@ -206,7 +199,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     func drawPointOnCanvas(x:Double,y:Double,view:UIView, point: UIImageView) {
         let pointRadius = Double(view.frame.height / 16)
         point.frame = CGRect(x: x - pointRadius/2, y: y - pointRadius/2, width: (pointRadius), height: (pointRadius))
-        view.addSubview(imageView)
+        view.addSubview(point)
     }
     
     // If there is a character to practice in the learning session display it appropiately for the given level
@@ -216,10 +209,14 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             return
         }
         // allow the user to draw on the canvas
+        displayGrid()
         drawingView.enableUserDrawing = true
         // if there is still a hint dot displayed, remove it
         if self.imageView.isDescendant(of: masterDrawingView) {
             self.imageView.removeFromSuperview()
+        }
+        if self.imageViewBlack.isDescendant(of: masterDrawingView) {
+            self.imageViewBlack.removeFromSuperview()
         }
         
         // initialize the stroke comparision view with the new strokes
@@ -294,6 +291,21 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         pinyinTop1.font = pinyinTop1.font.withSize(pinyinTop1.frame.height * 0.6)
         englishTop1.font = englishTop1.font.withSize(englishTop1.frame.height * 0.6)
     }
+    
+    func displayGrid() {
+        masterDrawingView.backgroundColor = UIColor(patternImage: UIImage(named: "chineseGrid.png")!)
+        masterDrawingView.contentMode =  UIView.ContentMode.scaleAspectFill
+        UIGraphicsBeginImageContext(masterDrawingView.frame.size);
+        var image = UIImage(named: "chineseGrid")
+        image?.draw(in: masterDrawingView.bounds)
+        image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext()
+        masterDrawingView.backgroundColor = UIColor(patternImage: image!)
+    }
+    
+    func hideGrid() {
+        masterDrawingView.backgroundColor = .white
+    }
 
     
 //------------------------------ FUNCTIONS FOR STROKE COLLECTION VIEW -----------------------------//
@@ -345,8 +357,11 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         if self.imageView.isDescendant(of: masterDrawingView) {
             self.imageView.removeFromSuperview()
         }
-        //self.drawingView.layer.sublayers?.removeAll()
+        if self.imageViewBlack.isDescendant(of: masterDrawingView) {
+            self.imageViewBlack.removeFromSuperview()
+        }
         displayCharInView()
+        displayGrid()
         textFeedbackStack.isHidden = true
         let rowNumber = indexPath.row
         guard let char = ls!.getCurrentChar()
@@ -365,6 +380,12 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             let dim = self.drawingView.frame.width
             let matcher = Matcher()
             let points = matcher.get_hints(char.strokes, destDimensions: (north: 0, south: Double(dim), east: 0, west: Double(dim)))[rowNumber]
+            print("drwinged")
+            self.drawPointOnCanvas(x: Double(points.x), y:  Double(points.y), view: masterDrawingView, point: imageViewBlack)
+        }
+        
+        if rowNumber < ls!.currentPoints!.count {
+            let points = ls!.currentPoints![rowNumber][0]
             self.drawPointOnCanvas(x: Double(points.x), y:  Double(points.y), view: masterDrawingView, point: imageView)
         }
        
@@ -375,7 +396,6 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         if withCorrect && num < char.strokes.count {
             let dim = shapeView.frame.width
             let lineWidth = CGFloat(dim/14 - 10)
-            print("drawing correct stroke " + String(num))
             shapeView.drawChar(stroke:char.strokes[num], scale: SVGConverter().make_canvas_dimension_converter(from: (0,500,500,0), to: (0,Double(dim),Double(dim),0)), width: lineWidth )
         }
         var color = UIColor.black
@@ -385,7 +405,6 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         let currPoints:[[Point]] = ls!.currentPoints!
         let sourceGfx = currPoints.map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
         if num < sourceGfx.count  {
-            print("drawing user stroke " + String(num))
             shapeView.drawUserStroke(stroke: sourceGfx[num], color: color, scaleFactor: scaleFactor)
         }
     }
