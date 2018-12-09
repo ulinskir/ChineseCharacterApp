@@ -398,7 +398,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         }
         let currPoints:[[Point]] = ls!.currentPoints!
         let sourceGfx = currPoints.map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
-        if num < sourceGfx.count  {
+        if num < sourceGfx.count  && sourceGfx[num].count > 1 {
             shapeView.drawUserStroke(stroke: sourceGfx[num], color: color, scaleFactor: scaleFactor)
         }
     }
