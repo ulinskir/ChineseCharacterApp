@@ -235,7 +235,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     func drawPointOnCanvas(x:Double,y:Double,view:UIView, point: UIImageView) {
         let pointRadius = Double(view.frame.height / 16)
         point.frame = CGRect(x: x - pointRadius/2, y: y - pointRadius/2, width: (pointRadius), height: (pointRadius))
-        view.addSubview(imageView)
+        view.addSubview(point)
     }
     
     // If there is a character to practice in the learning session display it appropiately for the given level
@@ -250,6 +250,9 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         // if there is still a hint dot displayed, remove it
         if self.imageView.isDescendant(of: masterDrawingView) {
             self.imageView.removeFromSuperview()
+        }
+        if self.imageViewBlack.isDescendant(of: masterDrawingView) {
+            self.imageViewBlack.removeFromSuperview()
         }
         
         // initialize the stroke comparision view with the new strokes
@@ -390,6 +393,9 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         if self.imageView.isDescendant(of: masterDrawingView) {
             self.imageView.removeFromSuperview()
         }
+        if self.imageViewBlack.isDescendant(of: masterDrawingView) {
+            self.imageViewBlack.removeFromSuperview()
+        }
         displayCharInView()
         displayGrid()
         textFeedbackStack.isHidden = true
@@ -410,6 +416,12 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             let dim = self.drawingView.frame.width
             let matcher = Matcher()
             let points = matcher.get_hints(char.strokes, destDimensions: (north: 0, south: Double(dim), east: 0, west: Double(dim)))[rowNumber]
+            print("drwinged")
+            self.drawPointOnCanvas(x: Double(points.x), y:  Double(points.y), view: masterDrawingView, point: imageViewBlack)
+        }
+        
+        if rowNumber < ls!.currentPoints!.count {
+            let points = ls!.currentPoints![rowNumber][0]
             self.drawPointOnCanvas(x: Double(points.x), y:  Double(points.y), view: masterDrawingView, point: imageView)
         }
        
@@ -420,7 +432,6 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         if withCorrect && num < char.strokes.count {
             let dim = shapeView.frame.width
             let lineWidth = CGFloat(dim/14 - 10)
-            print("drawing correct stroke " + String(num))
             shapeView.drawChar(stroke:char.strokes[num], scale: SVGConverter().make_canvas_dimension_converter(from: (0,500,500,0), to: (0,Double(dim),Double(dim),0)), width: lineWidth )
         }
         var color = UIColor.black
@@ -430,7 +441,6 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         let currPoints:[[Point]] = ls!.currentPoints!
         let sourceGfx = currPoints.map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
         if num < sourceGfx.count  {
-            print("drawing user stroke " + String(num))
             shapeView.drawUserStroke(stroke: sourceGfx[num], color: color, scaleFactor: scaleFactor)
         }
     }

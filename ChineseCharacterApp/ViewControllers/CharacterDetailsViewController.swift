@@ -15,6 +15,8 @@ class CharacterDetailsViewController: UIViewController, UICollectionViewDelegate
     @IBOutlet weak var englishLabel: UILabel!
     @IBOutlet weak var pinyinLabel: UILabel!
     @IBOutlet weak var charDisplayLabel: UILabel!
+    @IBOutlet weak var shapeView: ShapeView!
+    @IBOutlet weak var strokeCollectionView: UICollectionView!
     
     var currModule:Module? = nil
     var currChar:ChineseChar? = nil
@@ -28,13 +30,13 @@ class CharacterDetailsViewController: UIViewController, UICollectionViewDelegate
         englishLabel.text = currChar?.definition
         pinyinLabel.text = currChar!.pinyin.count > 0 ? currChar?.pinyin[0] : "none"
         charDisplayLabel.text = currChar?.char
-        strokeComparisonCollectionView.delegate = self
-        strokeComparisonCollectionView.dataSource = self
+        strokeCollectionView.delegate = self
+        strokeCollectionView.dataSource = self
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        charDisplayLabel.font = charDisplayLabel.font.withSize(charDisplayLabel.frame.size.height)
+        charDisplayLabel.font = charDisplayLabel.font.withSize(charDisplayLabel.frame.size.height*0.9)
     }
     
     // If going back to the module details view, send the current module
@@ -50,10 +52,8 @@ class CharacterDetailsViewController: UIViewController, UICollectionViewDelegate
     
     // for each stroke the user drew, create a box in the collection view
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let points = ls!.currentPoints else {
-            return ls!.getCurrentChar()!.strokes.count
-        }
-        return max(points.count,  ls!.getCurrentChar()!.strokes.count)
+        return currChar!.strokes.count
+
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -66,22 +66,12 @@ class CharacterDetailsViewController: UIViewController, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "strokeCell", for: indexPath) as! StrokeCollectionViewCell
         // Check to make sure there is a char
-        guard let char = ls!.getCurrentChar() else {
+        guard let char = currChar else {
             return cell
         }
-        
-        guard ls!.currentPoints != nil else {
-            return cell
-        }
-        
         let rowNumber : Int = indexPath.row
-        let scaleFactor = cell.frame.width/masterDrawingView.frame.width
-        drawStroke(shapeView: cell.strokeShapeView, rowNumber, withCorrect: true, highlighted: true, scaleFactor: scaleFactor)
-        var i = 0
-        while i < rowNumber {
-            drawStroke(shapeView: cell.strokeShapeView, i, scaleFactor: scaleFactor)
-            i += 1
-        }
+        let scaleFactor = cell.frame.width/shapeView.frame.width
+        drawStroke(shapeView: cell.strokeShapeView, rowNumber, highlighted: true, scaleFactor: scaleFactor)
         
         cell.strokeView.layer.borderWidth = 1
         cell.strokeView.layer.borderColor = UIColor.black.cgColor
@@ -92,53 +82,55 @@ class CharacterDetailsViewController: UIViewController, UICollectionViewDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if self.imageView.isDescendant(of: masterDrawingView) {
+        if self.imageView.isDescendant(of: shapeView) {
             self.imageView.removeFromSuperview()
         }
-        displayCharInView()
-        displayGrid()
-        textFeedbackStack.isHidden = true
         let rowNumber = indexPath.row
-        guard let char = ls!.getCurrentChar()
+        guard let char = currChar
             else {
                 return
         }
-        drawingView.clearCanvas()
-        drawStroke(shapeView: drawingView, rowNumber, withCorrect: true, highlighted: true)
-        var i = 0
-        while i < rowNumber {
-            drawStroke(shapeView: drawingView, i)
-            i += 1
-        }
+        shapeView.clearCanvas()
+        drawStroke(shapeView: shapeView, rowNumber, highlighted: true)
+  
         // Draw correct start point
         if rowNumber < char.strokes.count {
-            let dim = self.drawingView.frame.width
+            let dim = self.shapeView.frame.width
             let matcher = Matcher()
             let points = matcher.get_hints(char.strokes, destDimensions: (north: 0, south: Double(dim), east: 0, west: Double(dim)))[rowNumber]
-            self.drawPointOnCanvas(x: Double(points.x), y:  Double(points.y), view: masterDrawingView, point: imageView)
+            self.drawPointOnCanvas(x: Double(points.x), y:  Double(points.y), view: shapeView, point: imageView)
         }
         
     }
     
-    func drawStroke(shapeView: ShapeView, _ num: Int, withCorrect: Bool = false, highlighted: Bool = false, scaleFactor: CGFloat = 1) {
-        let char = ls!.getCurrentChar()!
-        if withCorrect && num < char.strokes.count {
+    func drawStroke(shapeView: ShapeView, _ num: Int, highlighted: Bool = false, scaleFactor: CGFloat = 1) {
+        let char = currChar!
+        if num < char.strokes.count {
             let dim = shapeView.frame.width
             let lineWidth = CGFloat(dim/14 - 10)
-            print("drawing correct stroke " + String(num))
-            shapeView.drawChar(stroke:char.strokes[num], scale: SVGConverter().make_canvas_dimension_converter(from: (0,500,500,0), to: (0,Double(dim),Double(dim),0)), width: lineWidth )
-        }
-        var color = UIColor.black
-        if highlighted {
-            color = UIColor(red:0.54, green:0.07, blue:0.00, alpha:1.0)
-        }
-        let currPoints:[[Point]] = ls!.currentPoints!
-        let sourceGfx = currPoints.map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
-        if num < sourceGfx.count  {
-            print("drawing user stroke " + String(num))
-            shapeView.drawUserStroke(stroke: sourceGfx[num], color: color, scaleFactor: scaleFactor)
+            shapeView.drawChar(stroke:char.strokes[num], scale: SVGConverter().make_canvas_dimension_converter(from: (0,500,500,0), to: (0,Double(dim),Double(dim),0)), width: lineWidth)
         }
     }
+    
+    // Draws a red bullseye with size 1/16th of the drawing view at a given point
+    func drawPointOnCanvas(x:Double,y:Double,view:UIView, point: UIImageView) {
+        let pointRadius = Double(view.frame.height / 16)
+        point.frame = CGRect(x: x - pointRadius/2, y: y - pointRadius/2, width: (pointRadius), height: (pointRadius))
+        view.addSubview(imageView)
+    }
+    
+    func displayGrid() {
+        shapeView.backgroundColor = UIColor(patternImage: UIImage(named: "chineseGrid.png")!)
+        shapeView.contentMode =  UIView.ContentMode.scaleAspectFill
+        UIGraphicsBeginImageContext(shapeView.frame.size);
+        var image = UIImage(named: "chineseGrid")
+        image?.draw(in: shapeView.bounds)
+        image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext()
+        shapeView.backgroundColor = UIColor(patternImage: image!)
+    }
+    
+    
 
 }
 
