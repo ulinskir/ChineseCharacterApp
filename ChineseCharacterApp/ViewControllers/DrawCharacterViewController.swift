@@ -378,7 +378,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             self.drawPointOnCanvas(x: Double(points.x), y:  Double(points.y), view: masterDrawingView, point: imageViewBlack)
         }
         
-        if rowNumber < ls!.currentPoints!.count {
+        if rowNumber < ls!.currentPoints!.count && ls!.currentPoints![rowNumber].count >= 0 {
             let points = ls!.currentPoints![rowNumber][0]
             self.drawPointOnCanvas(x: Double(points.x), y:  Double(points.y), view: masterDrawingView, point: imageView)
         }
