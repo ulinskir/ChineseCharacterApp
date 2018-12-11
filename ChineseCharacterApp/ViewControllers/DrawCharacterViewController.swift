@@ -200,8 +200,11 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             for errorStroke in res.errorStrokes {
                 let len = source[errorStroke].count
                 if (!res.targetScores[errorStroke].completed) && (len < 50 || len > 120) {
-                    scoreDetails += "\n\n Stroke " + String(errorStroke + 1) + " may have been drawn too " + (len<50 ? "quickly." : "slowly.")
+                    scoreDetails += "\n\n Stroke " + String(errorStroke + 1) + " may have been drawn too " +  (len<50 ? "quickly." : "slowly.")
+                    
                 }
+                    print("stroke", errorStroke, "length", len)
+                
             }
         }
         return scoreDetails
