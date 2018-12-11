@@ -671,7 +671,9 @@ public class Resampler {
         }
         return newPoints
     }
-    func resamplePointsLegacy(_ points: [Point], totalPoints:Int = 64) -> [Point] {
+    
+    
+    func resamplePointsLegacy(_ points: [Point], totalPoints:Int = 128) -> [Point] {
         var sp:[StrokePoint] = []
         for point in points {
             sp.append(StrokePoint(x:point.x,y:point.y))

@@ -75,16 +75,7 @@ class Transformer {
             $0 + targetStroke.first!
         }
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         return source
         
     }

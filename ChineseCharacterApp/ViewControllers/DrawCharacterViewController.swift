@@ -84,6 +84,8 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             print("no char")
             return
         }
+  
+        
         let dim = Double(self.drawingView.frame.width)
         if drawingView.strokes.count < char.points.count {
             // if there are still strokes to draw, display the hint
