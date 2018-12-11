@@ -153,8 +153,11 @@ public class bezierPoints {
             curr = command.point
         }
         
-        if(resampling) {p = Resampler().resamplePoints(p, totalPoints:NUM_CURVE_POINTS)}
-        //print(p.count)
+
+        if(resampling) {
+            p = Resampler().resamplePointsLegacy(p, totalPoints:128)
+            
+        }
         return p
     }
 }

@@ -77,19 +77,33 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     //       out of order.
     //       Hint is only enabled on levels 1 and 2
     @IBAction func hintButtonTapped(_ sender: Any) {
+        let viewSvgData = false
+
         guard let char = ls!.getCurrentChar() else {
             // make sure there is a current character in the learning session
             return
         }
+        let dim = Double(self.drawingView.frame.width)
+
         if drawingView.strokes.count < char.strokes.count {
             // if there are still strokes to draw, display the hint
             
             //first get the first point in the stroke svg
             let matcher = Matcher()
-            let dim = Double(self.drawingView.frame.width)
             let points = matcher.get_hints(char.strokes, destDimensions: (north: 0, south: dim, east: 0, west: dim))[drawingView.strokes.count]
             // then draw it on the screen
             self.drawPointOnCanvas(x: Double(points.x), y:  Double(points.y), view: masterDrawingView, point: imageView)
+  
+        
+//        if drawingView.strokes.count < char.strokes.count {
+            // if there are still strokes to draw, display the hint
+            // first scale the start point from a 295 pt view to the current view size
+            if(viewSvgData) {
+                for stroke in char.strokes {
+                    let scale = SVGConverter().make_canvas_dimension_converter(from: (0,500,500,0), to: (0,dim,dim,0))
+                    drawingView.drawChar(stroke: stroke , scale: scale)
+                }
+            }
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 // after 2 seconds remove it
                 self.imageView.removeFromSuperview()
@@ -108,9 +122,108 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
     
     // When the character has been submitted by the user,
     //  - load the check char popup
-    @IBAction func submitButtonTapped(_ sender: Any) {
-        // save the users points
+    
+    func feedbackString(results:[StrokeResult], level:Int) -> String {
+        var result = ""
+        
+        for i in 0..<results.count {
+            let curr = results[i]
+            var good = true
+            var thisLine = "Stroke " + String(i+1) + ": "
+            if(!curr.completed) {
+                thisLine += "not recognized"
+            } else {
+                if(!curr.rightDirection) {
+                    thisLine +=  "wrong direction"
+                    good = false
+                    
+                    if(!curr.rightOrder) {
+                        thisLine += "; wrong order"
+                    }
+                }
+                else if(!curr.rightOrder) {
+                    good = false
+                    thisLine += "wrong order"
+                }
+                if(good) {
+                    thisLine += "correct"
+                }
+            }
+            result += thisLine + "\n"
+        }
+        result += "\n"
+        switch level {
+        case 0: result += "Great job!"
+        case 1: result += "Stroke(s) drawn in the wrong direction"
+        case 2: result += "Strokes drawn out of order"
+        case 3: result += "Strokes drawn out of order and in wrong direction"
+        case 4: result += "Stroke(s) not recognized"
+        case 5: result += "Wrong number of strokes"
+        default: result += "Whoops! Undefined level"
+            
+        }
+        return result
+    }
+    
+    func runCharacterRecogntion() -> String {
+        let dim = Double(self.drawingView.frame.width) // get the size of the drawing view
+        let currScreenDimensions: Edges = (0,dim,dim,0) // send it to the matcher
+        
+        let matcher = Matcher()
+        let targetSvgs = ls!.getCurrentChar()!.strokes
+        let targetStrokePoints = matcher.processTargetPoints(targetSvgs, destDimensions:currScreenDimensions)
+        //insert target here?????
+        let source = drawingView.getPoints()
+        
+        
         ls!.currentPoints = drawingView.getPoints()
+        //        print(ls!.currentPoints)
+        
+        
+        
+        
+        
+        // save the result to the learning session
+        typealias matcherResult = (targetScores: [StrokeResult], errorStrokes: [Int])
+        let res:matcherResult = matcher.full_matcher(src:source, target:targetStrokePoints)
+        ls!.currentResult = res.targetScores
+        
+        var errorLevel = matcher.get_level(results: res.targetScores)
+        if(source.count != targetSvgs.count) {
+            errorLevel = 5
+        }
+        
+        
+        print("error level", errorLevel)
+        var scoreDetails = feedbackString(results: res.targetScores, level:errorLevel)
+        if(errorLevel == 4) {
+            for errorStroke in res.errorStrokes {
+                let len = source[errorStroke].count
+                if (!res.targetScores[errorStroke].completed) && (len < 50 || len > 120) {
+                    scoreDetails += "\n\n Stroke " + String(errorStroke + 1) + " may have been drawn too " + (len<50 ? "quickly." : "slowly.")
+                }
+            }
+        }
+        return scoreDetails
+    }
+    
+    // When the character has been submitted by the user,
+    //  - send the matcher the screen dimensions and use it to check the user's char against the
+    //    correct char
+    //  - load the check char popup
+    @IBAction func submitButtonTapped(_ sender: Any) {
+            // save the users points
+        ls!.currentPoints = drawingView.getPoints()
+        // Run character recognition, get a string result and display it as an alert on the screen
+        let scoreDetails = runCharacterRecogntion()
+        let alert:UIAlertController = UIAlertController(title:"Score", message:scoreDetails, preferredStyle: .alert)
+        let dismissScore:UIAlertAction = UIAlertAction(title:"OK", style: .cancel)
+        alert.addAction(dismissScore)
+        self.present(alert, animated:false)
+        
+        print(ls!.currentResult!)
+        
+        
         // Set up and load the check character popup
         checkUserChar()
     }
@@ -185,6 +298,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         hideCharInView()
         drawingView.clearCanvas()
         checkViewPopup.isHidden = false
+//<<<<<<< HEAD
         textFeedbackStack.isHidden = false
         strokeComparisonCollectionView.reloadData()
     }
@@ -326,6 +440,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
             return cell
         }
         
+//<<<<<<< HEAD
         guard ls!.currentPoints != nil else {
             return cell
         }
@@ -337,6 +452,19 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         while i < rowNumber {
             drawStroke(shapeView: cell.strokeShapeView, i, scaleFactor: scaleFactor)
             i += 1
+//=======
+//        let rowNumber : Int = indexPath.row
+//
+////        let sourceGfx = drawingView.getPoints().map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
+//        print(ls!.currentPoints)
+////        print("poitns")
+//
+//        if ls!.currentPoints != nil {
+//            let currPoints:[[Point]] = ls!.currentPoints!
+//            let sourceGfx = currPoints.map({(points:[Point]) -> [CGPoint] in return all_to_cg(stroke: points)})
+////            print(rowNumber, sourceGfx.count)
+
+//>>>>>>> tom
         }
         
         cell.strokeView.layer.borderWidth = 1

@@ -121,6 +121,9 @@ class Matcher {
     
     
     func remove_consecutive_dupes(target:[[Point]]) -> [[Point]] {
+        // This function does nothing right now, since it's bugged and I don't think it's a big deal.
+        
+        return target
         var targetList = target
         for stroke in 0..<targetList.count {
             var toKill:[Int] = []
