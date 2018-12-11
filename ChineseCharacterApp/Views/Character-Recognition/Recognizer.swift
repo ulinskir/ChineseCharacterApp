@@ -8,6 +8,10 @@
 
 import Foundation
 import UIKit
+
+let WITHOUTANGLE = false
+let WITHOUTDISTANCE = false
+let WITHOUTLENGTH = false
 //import
 //typealias StrokePoint =
 
@@ -18,7 +22,7 @@ typealias Point = (x:Double, y:Double)
 
 let kAngleThreshold = Double.pi / 5
 let kDistanceThreshold = 50.0;
-let kLengthThreshold = 20.0
+let kLengthThreshold = 30.0
 
 // Number of segments you're actually allowed to skip
 let kMaxMissedSegments = 2;
@@ -251,7 +255,8 @@ func scorePairing (source: [Point], target: [Point], is_initial_segment: Bool) -
 //    print("sourceMidpoint: ", sourceMidpoint, "targetMidpoint", targetMidpoint)
     
     // If angle or distance or length are beyond the threshold, returns -infinity
-    if (angle > (is_initial_segment ? 1 : 2) * kAngleThreshold || length > kLengthThreshold || distance > kDistanceThreshold){
+    
+    if !WITHOUTANGLE && (angle > (is_initial_segment ? 1 : 2) * kAngleThreshold || !WITHOUTLENGTH && length > kLengthThreshold || !WITHOUTDISTANCE && distance > kDistanceThreshold){
 //        ){// length > kLengthThreshold) {
 //        print("failed_scorePairing")
         return -Double.infinity;
@@ -267,7 +272,7 @@ public class Recognizer:NSObject {
 //        self.init()
 //    }
     
-    func recognize (source:[Point], target:[Point], offset: Double) -> Result {
+    func recognize (source:[Point], target:[Point], offset: Double = 0) -> Result {
         // checks for stroke and reverse stroke
 //        print("source", source.first!, "to", source.last!)
 //        print("target", target)

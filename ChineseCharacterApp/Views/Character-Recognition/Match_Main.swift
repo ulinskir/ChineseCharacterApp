@@ -21,26 +21,23 @@ let SIMPLE_ORDER_CHECK:Bool = true
 let COMPOUND_ORDER_CHECK:Bool = true
 let FIVE_LEVELS = true
 let REC_2 = false
-let MAX_DISTANCE:Double = 70
-
+let transforming = true
+let maxTransformAngle = Double.pi / 6
 
 let instanceOfRecognizer = Recognizer()
 
-func is_right_direction(source:[Point],target:[Point]) -> Bool {
-    return util.distance2(point1: source.first!, point2: target.first!) + util.distance2(point1: source.last!, point2: target.last!) <
-        util.distance2(point1: source.first!, point2: target.last!) + util.distance2(point1:source.last!, point2:target.first!)
+
+func get_distances(_ source:[Point],_ target:[Point]) -> Double {
+    return (getMinimumLength(pair: [source.first!, target.first!]) + getMinimumLength(pair:[source.last!, target.last!])) / 2
 }
 
-func recog_ez(source:[Point], target:[Point]) -> (Bool,Bool) {
-    let distance = MAX_DISTANCE * MAX_DISTANCE
-    
-    if(util.distance2(point1: source.first!, point2: target.first!) < distance
-        && util.distance2(point1: source.last!, point2: target.last!) < distance) {
+func recog_ez(source:[Point], target:[Point], distance MaxDist:Double) -> (Bool,Bool) {
+    let distance = MaxDist
+    if (getMinimumLength(pair: [source.first!, target.first!]) < distance && getMinimumLength(pair:[source.last!, target.last!]) < distance) {
         return (true,true)
     }
     
-    if (util.distance2(point1: source.first!, point2: target.last!) < distance
-        && util.distance2(point1:source.last!, point2:target.first!) < distance){
+    if (getMinimumLength(pair: [source.first!, target.last!]) < distance && getMinimumLength(pair:[source.last!, target.first!]) < distance) {
         return (true,false)
     }
     return (false,false)
@@ -48,6 +45,7 @@ func recog_ez(source:[Point], target:[Point]) -> (Bool,Bool) {
 
 
 class Matcher {
+    
     func get_hints(_ target:[String], destDimensions:Edges) -> [Point] {
         var hints:[Point] = []
         let targetPoints = processTargetPoints(target, destDimensions: destDimensions)
@@ -56,24 +54,27 @@ class Matcher {
         }
         return hints
     }
+    
     func to_strokePoint(_ points:[Point]) -> [StrokePoint] {
         let res = points.map({(pt:Point) -> StrokePoint in return StrokePoint(pt)})
         return res
         }
+    
     func from_strokePoint(_ points:[StrokePoint]) -> [Point] {
         let res = points.map({(pt:StrokePoint) -> Point in return (pt.x,pt.y)})
         return res
     }
+    
     func processSourcePoints(_ source:[Point]) -> [Point] {
         if(!(RESAMPLING_SOURCE && source.count > MAX_SOURCE_POINTS)) { return source }
-        print("resampling")
+//        print("resampling")
         let source_prep = Resampler()
         
         var res = source_prep.resamplePoints(source, totalPoints: RESAMPLE_VAL)
         if (res.last! != source.last!) {
             res.append(source.last!)
         }
-        print("resampled to ", res.count)
+//        print("resampled to ", res.count)
         return res
     }
     
@@ -86,7 +87,6 @@ class Matcher {
         for i in 0..<target.count {
             points.append(bezierPointsInstance.get_points(from: target[i], scale: scaleFn))
         }
-//        print(points[0])
         return points
     }
     func get_level(results:[StrokeResult]) -> Int {
@@ -118,6 +118,8 @@ class Matcher {
         errorLevel += directionError ? 1 : 0
         return errorLevel
     }
+    
+    
     func remove_consecutive_dupes(target:[[Point]]) -> [[Point]] {
         var targetList = target
         for stroke in 0..<targetList.count {
@@ -129,59 +131,24 @@ class Matcher {
                 }
                 
             }
-            for index in toKill {
-                targetList[stroke].remove(at:index - killed)
-                killed += 1
-            }
         }
         return targetList
     }
     
-    func run_recognize_2(source:SwiftUnistroke, target:[SwiftUnistrokeTemplate], sourcePt:[Point], targetPt:[[Point]]) -> FoundStroke?
-    {
-        if(target.count == 0) {
-            return nil
-        }
-        
-        var goodTargets = target
-        do{
-            let (template, distance) = try source.recognizeIn(templates: target, useProtractor: false)
-            
-            if (template != nil) {
-                let targetIndex = Int(template!.name)!
-                let (completed, direction) = recog_ez(source: sourcePt, target: targetPt[targetIndex])
-                if(completed) {
-                    return (direction, -1, targetIndex, -1, score: -distance!)
-                } else {
-                    for i in 0..<goodTargets.count {
-                        if goodTargets[i].name == template!.name {
-                            goodTargets.remove(at: i)
-                            break
-                        }
-                    }
-                    return run_recognize_2(source: source, target: goodTargets, sourcePt: sourcePt, targetPt: targetPt)
-                    }
-                //                        foundStrokes[j] = result.last!
-                
-                
-            }} catch {
-                print(error.localizedDescription)
-        }
-        return nil
-    }
     
 // Target is a list of points, but source needs to be resampled maybe, but also IDK if resmpling is necessary
-    func full_matcher(src:[[Point]],target:[[Point]]) -> ([StrokeResult], [Int]) {
+    func full_matcher(src:[[Point]],target:[[Point]], screenSize:Double = 335) -> ([StrokeResult], [Int]) {
+        
+        let maxDistance = screenSize / 5
         let targetList:[[Point]] = remove_consecutive_dupes(target: target)
         var source:[[Point]] = []
+        
         for stroke in src {
             if (stroke.count > 3) {
                 source.append(processSourcePoints(stroke))
             }
         }
-        
-        
-        var strokeInfo:[(StrokeResult)] = []
+        var strokeInfo:[StrokeResult] = []
         var strokeInfoSimpleOrder:[StrokeResult] = []
 
         typealias remTarg = (points:[Point], completed:Bool)
@@ -189,78 +156,59 @@ class Matcher {
         var remainingTargets:[remTarg] = targetList.map({(a:[Point]) -> remTarg in return (a, false)})
         var foundStroke = false
         var numPrevFoundStrokes = 0
+        
+        // strokes the user drew that didn't match anything
         var errorStrokes:[Int] = []
+        
+        // Strokes that were found.
         var foundStrokes:[FoundStroke] = []
-        
-//        if(target.count >= 4){
-//            print("verticalstroke:", target[3])
-//            print("numStrokes:", target[3].count)
-//        }
-        
-//        func is_in_order(j:Int) {
-//        }
+
         let make_strpoint = {(a:Point) -> StrokePoint in return StrokePoint(x: a.x, y: a.y)}
 
         var targetRecognizers: [SwiftUnistrokeTemplate] = []
         for i in 0..<targetList.count {
+            
+            // Set up results.
             strokeInfo.append((-Double.infinity,false,false,false))
             strokeInfoSimpleOrder.append((-Double.infinity,false,false,false))
             targetRecognizers.append(SwiftUnistrokeTemplate(name:String(i), points: targetList[i].map(make_strpoint)))
             
         }
         
-        let srcRecog = source.map({(points: [Point]) -> SwiftUnistroke in return SwiftUnistroke(points.map(make_strpoint))})
+
         for srcIndex in 0..<source.count {
             foundStroke = false
             if(numPrevFoundStrokes < remainingTargets.count) {
                 
-                //alternate recognition algo
-                //-----------------------------------------------------------------------------------------
-                if(REC_2){
-                    var strokeFoundOpt: FoundStroke? = nil
-                    for recog in targetRecognizers {
-                        strokeFoundOpt = run_recognize_2(source: srcRecog[srcIndex], target: [recog], sourcePt: source[srcIndex], targetPt: target)
-                        if(strokeFoundOpt != nil) {
-                            break
-                        }
-                    }
-                    if(strokeFoundOpt == nil) {
-                        errorStrokes.append(srcIndex)
-                        continue
-                    }
-                    
-                    var strokeResult = strokeFoundOpt!
-                    
-                    let (rightDirection, _, targetIndex, _, score) = strokeResult
-                    
-                    foundStroke = true
-                    strokeResult.orderDrawn = numPrevFoundStrokes
-                    remainingTargets[targetIndex].completed = true
-                    foundStrokes.append((rightDirection, numPrevFoundStrokes, targetIndex, -1, score))
-                    numPrevFoundStrokes += 1
-                    strokeInfoSimpleOrder[targetIndex] = ((score, true, rightDirection, srcIndex==targetIndex))
 
-                } else {
-                    
-                    
-                    
-                    
-                    
-                    //current recognition algo
-       //-----------------------------------------------------------------------------------------
-                    
-                    
-                    
-                    
+                var bestMatch:(targetIndex:Int, strokeResult:StrokeResult)? = nil
                 for targetIndex in 0..<remainingTargets.count {
                     // maybe resample here
                     let currTarget = remainingTargets[targetIndex]
                     let currSource = source[srcIndex]
+                    let transformed = Transformer().transform(userStroke: currSource, targetStroke: currTarget.points, angleThreshhold: maxTransformAngle)
+                    
+                    assert((transformed.first! == currTarget.points.first!), "transforming not working as intended")
                     
                     if(currTarget.completed){continue}
                     
                     var curr = instanceOfRecognizer.recognize(source:currSource, target:currTarget.points, offset:0)
-                    print("srcLen", source[srcIndex].count)
+                    if(transforming && curr.score == -Double.infinity) {
+//                        print("transforming")
+                        if recog_ez(source:currSource,target:currTarget.points, distance: maxDistance) == (true,false) {
+                            var reversed = currSource
+                            reversed.reverse()
+                            
+                            let transformReverse = Transformer().transform(userStroke: reversed, targetStroke: currTarget.points, angleThreshhold: maxTransformAngle)
+                            curr = instanceOfRecognizer.recognize(source:transformReverse, target:currTarget.points)
+                            curr.rightDirection = false
+                        
+                        } else {
+                        curr = instanceOfRecognizer.recognize(source:transformed,target:currTarget.points, offset:0)
+                        }
+                        
+                    }
+                    
                     if source.count > 30 {
                         let shortened = Array(source[srcIndex][5..<source.count-5])
                     
@@ -274,26 +222,37 @@ class Matcher {
                     if (curr.score != -Double.infinity){
                         
                         
-                        if(!recog_ez(source: source[srcIndex], target:currTarget.points).0){
-                            foundStrokes.append((curr.rightDirection, numPrevFoundStrokes, targetIndex, -1, -1.56))
-                            
-                        } else {
-                        // If the stroke matches
+                        if(recog_ez(source: source[srcIndex], target:currTarget.points, distance: maxDistance).0){
+                            let score = get_distances(currSource, currTarget.points)
+
+                            if(bestMatch == nil || bestMatch!.strokeResult.score > score) {
+                                let newBest:StrokeResult = (score, true, curr.rightDirection, false)
+                                bestMatch = (targetIndex, newBest)
                         
-//                        result.append((true, curr.rightDirection, srcIndex, j==0))
-                        foundStrokes.append((curr.rightDirection, numPrevFoundStrokes, targetIndex, -1, 0))
                         }
-                        strokeInfoSimpleOrder[targetIndex] = ((0, true, curr.rightDirection, srcIndex==targetIndex))
-//                        foundStrokes[j] = result.last!
-                        foundStroke = true
-                        remainingTargets[targetIndex].completed = true
-                        numPrevFoundStrokes += 1
+                        else{print("strokes", srcIndex, targetIndex, "found out of place")}
                     }
                     }
-                }
                 
+                
+            }
+                if(bestMatch != nil) {
+                    
+                    let bestRes = bestMatch!.strokeResult
+                    let targetIndex = bestMatch!.targetIndex
+                    foundStrokes.append((bestRes.rightDirection, numPrevFoundStrokes, bestMatch!.targetIndex, -1, bestRes.score))
+                
+
+                    strokeInfoSimpleOrder[targetIndex] = ((bestRes.score, true, bestRes.rightDirection, srcIndex == bestMatch!.targetIndex))
+                //                        foundStrokes[j] = result.last!
+                    foundStroke = true
+                    remainingTargets[targetIndex].completed = true
+                    numPrevFoundStrokes += 1
+                }
                 if(!foundStroke) {errorStrokes.append(srcIndex)}
-            }}
+                }
+            
+        }
             print("found strokes:", numPrevFoundStrokes)
         
             var sorted:[FoundStroke] = foundStrokes
@@ -309,23 +268,10 @@ class Matcher {
             }
         
         
-        
-        
-        
-//        for i in 0..<foundStrokes.count {
-//            if(foundStrokes[i] != nil) {
-//            let srcIndex = foundStrokes[i]!.matchingIndex
-//            foundStrokes[i]!.rightOrder = srcIndex - errorStrokes < i
-//
-//            }
-        
-        
-        if(COMPOUND_ORDER_CHECK) {
-            for i in 0..<strokeInfo.count {
+        for i in 0..<strokeInfo.count {
                 strokeInfo[i].rightOrder = strokeInfo[i].rightOrder && strokeInfoSimpleOrder[i].rightOrder
             }
             return (strokeInfo, errorStrokes)
-        }
-        return (SIMPLE_ORDER_CHECK ? strokeInfoSimpleOrder : strokeInfo, errorStrokes)
+        
     }
 }
