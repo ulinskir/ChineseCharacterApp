@@ -22,6 +22,9 @@ The only stuff I'm really using is at the very bottom. The code I got the resamp
 
 The original resampler, which is called resampleLegacy in the code, seems to be bugged, since it should be giving you exactly the number of points you pass to it, but it gives less. I made my own, simple version which finds the ceiling of the ratio of how many points there are vs. how many points there should be and removes points (if there are ~twice as many points as there should be, it removes every other; if there are 3x as many, it removes all but every third, and so on, so forth). Currently this is only run on the target stroke.
 
+IMPORTANT: In the function hintButtonTapped, there is a variable viewSvgData. It is normally set to false. If you set it to true, it will show the actual SVG's when hint button is pressed. This allows you to see if the SVG is messed up. If there is a weird thing on the end of a line (looks like a half-moon), it means the line doubles back on itself and needs to be remade.
+
+
 2: Matching ========================================================================
 Once the lists of lists of points have been obtained from source list source strokes are passed from the DrawingView, and converted to double-precision Points, they get passed to 
 Matcher class has a function full_matcher which takes source and target points and returns a list of StrokeResults, which are defined at the top of the file, and a list of Ints which are the indices of strokes the strokes which the user drew that weren't recognized. 
