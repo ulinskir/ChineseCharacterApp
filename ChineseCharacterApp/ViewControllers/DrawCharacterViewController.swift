@@ -154,13 +154,7 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         return result
     }
     
-    // When the character has been submitted by the user,
-    //  - send the matcher the screen dimensions and use it to check the user's char against the
-    //    correct char
-    //  - load the check char popup
-    @IBAction func submitButtonTapped(_ sender: Any) {
-        
-        // Set up and run the matcher
+    func runCharacterRecogntion() -> String {
         let dim = Double(self.drawingView.frame.width) // get the size of the drawing view
         let currScreenDimensions: Edges = (0,dim,dim,0) // send it to the matcher
         
@@ -172,11 +166,11 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         
         
         ls!.currentPoints = drawingView.getPoints()
-//        print(ls!.currentPoints)
-      
+        //        print(ls!.currentPoints)
         
         
-
+        
+        
         
         // save the result to the learning session
         typealias matcherResult = (targetScores: [StrokeResult], errorStrokes: [Int])
@@ -184,24 +178,31 @@ class DrawCharacterViewController: UIViewController, UICollectionViewDelegate, U
         ls!.currentResult = res.targetScores
         
         var errorLevel = matcher.get_level(results: res.targetScores)
-                if(source.count != targetSvgs.count) {
-                    errorLevel = 5
+        if(source.count != targetSvgs.count) {
+            errorLevel = 5
         }
-       
-
+        
+        
         print("error level", errorLevel)
         var scoreDetails = feedbackString(results: res.targetScores, level:errorLevel)
         if(errorLevel == 4) {
             for errorStroke in res.errorStrokes {
                 let len = source[errorStroke].count
-                if (len < 50 || len > 120) {
+                if (!res.targetScores[errorStroke].completed) && (len < 50 || len > 120) {
                     scoreDetails += "\n\n Stroke " + String(errorStroke + 1) + " may have been drawn too " + (len<50 ? "quickly." : "slowly.")
                 }
-                }
+            }
         }
-        
-        
-        //        print("drawing points")
+        return scoreDetails
+    }
+    
+    // When the character has been submitted by the user,
+    //  - send the matcher the screen dimensions and use it to check the user's char against the
+    //    correct char
+    //  - load the check char popup
+    @IBAction func submitButtonTapped(_ sender: Any) {
+        // Run character recognition, get a string result and display it as an alert on the screen
+        let scoreDetails = runCharacterRecogntion()
         let alert:UIAlertController = UIAlertController(title:"Score", message:scoreDetails, preferredStyle: .alert)
         let dismissScore:UIAlertAction = UIAlertAction(title:"OK", style: .cancel)
         alert.addAction(dismissScore)

@@ -26,10 +26,7 @@ let maxTransformAngle = Double.pi / 6
 
 let instanceOfRecognizer = Recognizer()
 
-func is_right_direction(source:[Point],target:[Point]) -> Bool {
-    return util.distance2(point1: source.first!, point2: target.first!) + util.distance2(point1: source.last!, point2: target.last!) <
-        util.distance2(point1: source.first!, point2: target.last!) + util.distance2(point1:source.last!, point2:target.first!)
-}
+
 func get_distances(_ source:[Point],_ target:[Point]) -> Double {
     return (getMinimumLength(pair: [source.first!, target.first!]) + getMinimumLength(pair:[source.last!, target.last!])) / 2
 }
@@ -48,6 +45,7 @@ func recog_ez(source:[Point], target:[Point], distance MaxDist:Double) -> (Bool,
 
 
 class Matcher {
+    
     func get_hints(_ target:[String], destDimensions:Edges) -> [Point] {
         var hints:[Point] = []
         let targetPoints = processTargetPoints(target, destDimensions: destDimensions)
@@ -56,19 +54,21 @@ class Matcher {
         }
         return hints
     }
+    
     func to_strokePoint(_ points:[Point]) -> [StrokePoint] {
         let res = points.map({(pt:Point) -> StrokePoint in return StrokePoint(pt)})
         return res
         }
+    
     func from_strokePoint(_ points:[StrokePoint]) -> [Point] {
         let res = points.map({(pt:StrokePoint) -> Point in return (pt.x,pt.y)})
         return res
     }
+    
     func processSourcePoints(_ source:[Point]) -> [Point] {
         if(!(RESAMPLING_SOURCE && source.count > MAX_SOURCE_POINTS)) { return source }
 //        print("resampling")
         let source_prep = Resampler()
-        print("Resampled for some fucking reason")
         
         var res = source_prep.resamplePoints(source, totalPoints: RESAMPLE_VAL)
         if (res.last! != source.last!) {
@@ -118,6 +118,8 @@ class Matcher {
         errorLevel += directionError ? 1 : 0
         return errorLevel
     }
+    
+    
     func remove_consecutive_dupes(target:[[Point]]) -> [[Point]] {
         var targetList = target
         for stroke in 0..<targetList.count {
@@ -129,46 +131,10 @@ class Matcher {
                 }
                 
             }
-            for index in toKill {
-                targetList[stroke].remove(at:index - killed)
-                killed += 1
-            }
         }
         return targetList
     }
     
-    func run_recognize_2(source:SwiftUnistroke, target:[SwiftUnistrokeTemplate], sourcePt:[Point], targetPt:[[Point]]) -> FoundStroke?
-    {
-        if(target.count == 0) {
-            return nil
-        }
-        
-        var goodTargets = target
-        do{
-            let (template, distance) = try source.recognizeIn(templates: target, useProtractor: false)
-            
-            if (template != nil) {
-                let targetIndex = Int(template!.name)!
-                let (completed, direction) = recog_ez(source: sourcePt, target: targetPt[targetIndex], distance: 50)
-                if(completed) {
-                    return (direction, -1, targetIndex, -1, score: -distance!)
-                } else {
-                    for i in 0..<goodTargets.count {
-                        if goodTargets[i].name == template!.name {
-                            goodTargets.remove(at: i)
-                            break
-                        }
-                    }
-                    return run_recognize_2(source: source, target: goodTargets, sourcePt: sourcePt, targetPt: targetPt)
-                    }
-                //                        foundStrokes[j] = result.last!
-                
-                
-            }} catch {
-                print(error.localizedDescription)
-        }
-        return nil
-    }
     
 // Target is a list of points, but source needs to be resampled maybe, but also IDK if resmpling is necessary
     func full_matcher(src:[[Point]],target:[[Point]], screenSize:Double = 335) -> ([StrokeResult], [Int]) {
@@ -221,6 +187,7 @@ class Matcher {
                     let currTarget = remainingTargets[targetIndex]
                     let currSource = source[srcIndex]
                     let transformed = Transformer().transform(userStroke: currSource, targetStroke: currTarget.points, angleThreshhold: maxTransformAngle)
+                    
                     assert((transformed.first! == currTarget.points.first!), "transforming not working as intended")
                     
                     if(currTarget.completed){continue}
@@ -228,8 +195,18 @@ class Matcher {
                     var curr = instanceOfRecognizer.recognize(source:currSource, target:currTarget.points, offset:0)
                     if(transforming && curr.score == -Double.infinity) {
 //                        print("transforming")
+                        if recog_ez(source:currSource,target:currTarget.points, distance: maxDistance) == (true,false) {
+                            var reversed = currSource
+                            reversed.reverse()
+                            
+                            let transformReverse = Transformer().transform(userStroke: reversed, targetStroke: currTarget.points, angleThreshhold: maxTransformAngle)
+                            curr = instanceOfRecognizer.recognize(source:transformReverse, target:currTarget.points)
+                            curr.rightDirection = false
                         
+                        } else {
                         curr = instanceOfRecognizer.recognize(source:transformed,target:currTarget.points, offset:0)
+                        }
+                        
                     }
                     
                     if source.count > 30 {
@@ -291,23 +268,10 @@ class Matcher {
             }
         
         
-        
-        
-        
-//        for i in 0..<foundStrokes.count {
-//            if(foundStrokes[i] != nil) {
-//            let srcIndex = foundStrokes[i]!.matchingIndex
-//            foundStrokes[i]!.rightOrder = srcIndex - errorStrokes < i
-//
-//            }
-        
-        
-        if(COMPOUND_ORDER_CHECK) {
-            for i in 0..<strokeInfo.count {
+        for i in 0..<strokeInfo.count {
                 strokeInfo[i].rightOrder = strokeInfo[i].rightOrder && strokeInfoSimpleOrder[i].rightOrder
             }
             return (strokeInfo, errorStrokes)
-        }
-        return (SIMPLE_ORDER_CHECK ? strokeInfoSimpleOrder : strokeInfo, errorStrokes)
+        
     }
 }

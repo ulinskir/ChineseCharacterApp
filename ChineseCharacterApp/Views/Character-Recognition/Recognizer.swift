@@ -272,7 +272,7 @@ public class Recognizer:NSObject {
 //        self.init()
 //    }
     
-    func recognize (source:[Point], target:[Point], offset: Double) -> Result {
+    func recognize (source:[Point], target:[Point], offset: Double = 0) -> Result {
         // checks for stroke and reverse stroke
 //        print("source", source.first!, "to", source.last!)
 //        print("target", target)
